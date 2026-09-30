@@ -1,6 +1,6 @@
 # Sliding Stars — first iOS beta
 
-Status: the iOS archive compiled successfully on GitHub using Xcode 26.6 (build 3.1, September 30, 2026). **Not yet distribution-signed, uploaded or available on TestFlight**. Apple app registration, the internal tester group and three signing-identifier secrets are configured; only the private-key secret `ASC_KEY_P8` remains before upload. The account owner uses Windows and an iPhone, with GitHub Actions macos-26/Xcode 26 for builds. CI follows the existing Ai-sky ad-hoc-archive/cloud-signing method. The public repository is https://github.com/lasmith1689-sys/sliding-stars.
+Status: **version 1.0 (4.1) is available for internal TestFlight testing**, verified September 30, 2026. Xcode 26.6 archived, cloud-signed and uploaded successfully; Apple processing is Complete and the build is Testing in the Me group with one internal tester. [Successful upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36722641138). Physical iPhone installation/play testing remains for the account owner.
 
 ## Included
 
@@ -32,4 +32,6 @@ Suggested “What to Test”: “Play the first rescues, try the later mechanics
 
 Setup update, September 30, 2026: registered the bundle ID and created App Store Connect app **6817778193**. Internal group **Me** has automatic distribution enabled and the account owner added (1 tester, 0 builds). Saved the existing team, key and issuer identifiers as GitHub repository secrets. Only the existing private key (`ASC_KEY_P8`) is still missing; GitHub cannot reveal it from another repository. No new key was created or existing access changed.
 
-Next step: the account owner enters the original `.p8` contents directly in GitHub, then run and verify TestFlight delivery in this task. No new task is required.
+Delivery update: the owner added the private key directly to GitHub. Build 4.1 passed all 964 tests across 105 files, compiled and uploaded successfully. Apple processing completed; TestFlight shows Testing and Me with one internal tester. Testing notes are saved. No private-key contents were read or committed.
+
+Next step: open TestFlight on iPhone, install Sliding Stars 1.0 (4.1), and check first rescues and progress after relaunch. Continue in this task for device-specific issues; no new task is required.

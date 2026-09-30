@@ -4,7 +4,7 @@ This app uses the account owner's existing Ai-sky distribution method: macos-26/
 
 ## 1. Register the app
 
-Setup completed September 30, 2026: App ID and [App Store Connect app 6817778193](https://appstoreconnect.apple.com/apps/6817778193/distribution) exist. Internal group **Me** has automatic distribution enabled and the account owner added. GitHub secrets `APPLE_TEAM_ID`, `ASC_KEY_ID` and `ASC_ISSUER_ID` are saved. Only `ASC_KEY_P8` remains before running the upload workflow. Use the existing key's original `.p8` file directly in GitHub; saved GitHub secrets cannot be read back.
+Delivery completed September 30, 2026: **1.0 (4.1)** is marked **Testing** in the Me internal group, with the account owner added. All four GitHub secrets are configured. [Upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36722641138) passed. Open TestFlight on iPhone and install Sliding Stars. The instructions below are retained for maintenance; do not repeat registration or create duplicate keys.
 
 1. Open [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list).
 2. Click **+ → App IDs → Continue → App → Continue**.
