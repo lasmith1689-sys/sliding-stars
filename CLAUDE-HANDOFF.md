@@ -26,7 +26,7 @@ User is frustrated with excessive usage and planning. Implement bounded useful c
 
 ## Implemented checkpoint
 
-See `docs/2026-09-30-CAMPAIGN-CROSSCHECK.md` for findings, evidence and limitations. The committed content contains 1,000 unique boards, 102 authored plus 898 terrain variations, 61 masks, nine shape families, 20 implemented mechanics and hash-checked winning traces for every board. Generation takes about 13 seconds locally. Proofs are only 1–9 moves; this is not yet a thoroughly playtested 1,000-level game with 25 completed mechanics.
+See `docs/2026-09-30-CAMPAIGN-CROSSCHECK.md` and the newer QC report for findings, evidence and limitations. The committed content contains 1,000 unique boards, 102 authored plus 898 terrain variations, 62 masks, nine shape families, 20 implemented mechanics and hash-checked winning traces for every board. The revised generation takes about 31 seconds locally. Proofs are only 1–9 moves; this is not yet a thoroughly playtested 1,000-level game with 25 completed mechanics.
 
 - `src/campaign/generation.ts`: deterministic offline template mutation, optional safe horizontal mirroring, replay acceptance, duplicate rejection, bounded failure. `scripts/campaign/generate.mjs` writes 20 chapter files and validation artifacts.
 - `src/campaign/catalog.ts`: full 1–1000 IDs, authored boards kept exact, lazy chapter loading. `BETA_CAMPAIGN_IDS` remains an API compatibility alias.
@@ -67,9 +67,9 @@ Use existing `.github/workflows/testflight.yml` and `.github/scripts/testflight.
 
 ## Copy-paste continuation prompt
 
-Continue development of Sliding Stars in this folder. First read CLAUDE-HANDOFF.md and docs/2026-09-30-CAMPAIGN-CROSSCHECK.md, inspect Git status and current verification evidence. Preserve the original parent app, the direct-touch/automatic-completion fixes, saved progress and no-portals decision. Start with purposeful multi-step procedural variety and one complete new mechanic, staying within bounded generation and booster-free replay validation. Work efficiently without routine approval stops or spawning teams. Do not claim the old 25-mechanic plan is finished: the current checkpoint has 1,000 verified but often short template-based missions and 20 mechanics. Use the existing Windows/GitHub macOS signing workflow for TestFlight. Finish a tested, reviewable increment, publish when ready under existing authorization, and report concrete remaining work.
+Continue development of Sliding Stars in this folder. First read CLAUDE-HANDOFF.md, docs/2026-09-30-QUALITY-CONTROL.md and docs/2026-09-30-CAMPAIGN-CROSSCHECK.md, inspect Git status and current verification evidence. Preserve the original parent app, direct touch, automatic completion, cute art, concise board-specific guide, improved campaign rotation, verified route hints, saved progress and no-portals decision. Prioritize purposeful multi-step procedural variety and useful hints after player detours, then one complete new mechanic at a time. Keep generation bounded, booster-free proofs and shipped hint advice synchronized. Work efficiently without routine approval stops or spawning teams. Do not claim the 25-mechanic plan is finished: this checkpoint has 1,000 verified but often short template-based missions and 20 mechanics. Use the existing Windows/GitHub macOS signing workflow for TestFlight. Finish a tested increment, publish under existing authorization, and report actual remaining work and device-test limits.
 
-## Current release verification
+## Earlier release verification (6.1, retained for provenance)
 
 - Parent source checkpoint `36beb03`; public release source `1fd78f0dc999830a57d0be4010b43c09d6629a4e`.
 - Web alias is live, deploy `6abd917f9a40900b6eebd98d`. Its production browser shows 1,000 missions. Local production at 390x844 loaded mission 1000, won through two real drag gestures, and automatically advanced to the first unfinished mission with saved rewards.
@@ -79,3 +79,13 @@ Continue development of Sliding Stars in this folder. First read CLAUDE-HANDOFF.
 - **Apple processing/internal availability of 6.1 has not been verified.** App Store Connect browser session expired and now requires account-holder sign-in. Earlier 5.1 remains the last independently confirmed Testing build. Next device step: open TestFlight and check for 6.1, or sign in to App Store Connect and verify Me has 6.1. Never report upload alone as installability.
 - No private keys were read or committed. Original app and production preserved. Temporary preview server stopped and phone viewport reset. Only unrelated parent `docs/reviews/` was left untouched.
 - Approximately 13% of the user's weekly Codex allowance remained at handoff. The user explicitly wants to continue efficiently in Claude Code; the copy-paste prompt above supplies the task and safeguards. No additional Codex thread is required.
+
+## QC release verification (latest)
+
+- QC source: parent commit `91a7f93`; public release source `57f17b92a3152d142a90a564cd3ef4a88eb2cdf9`. Later documentation-only commits update this handoff without changing the binary.
+- Live web alias: https://next--sliding-stars.netlify.app/ . Verified deploy `6abd9eca44f1240bfa46bca2` loads the concise guide and route hint. Original production is unchanged.
+- **1.0 (7.1) uploaded successfully to Apple at 2026-09-30 23:48:13 UTC.** The logs explicitly confirm Upload succeeded and EXPORT SUCCEEDED: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36792476666 .
+- All **1,018 tests / 112 files passed** locally, on Linux CI and on the macOS TestFlight runner. Linux run: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36792476789 . Production audit, build and iOS sync passed. Web and native bundles each include all twenty hint chapters; all twenty level chapters are packaged offline.
+- Physical device installation, offline relaunch and Apple's internal-testing availability of 7.1 remain unconfirmed. App Store Connect previously required account-holder sign-in. Check TestFlight for 7.1; don't equate successful upload with confirmed installability.
+- Browser checks: mission 1 won and advanced to 2 at 390x844; concise guide and crate coaching inspected; mission 801 won through two real drag gestures and automatically advanced to 802 at 320x568. Its long label was shortened after spotting overlap. Temporary local server stopped and viewport restored.
+- Start the next development increment with the prioritized QC follow-ups above. Approximately 7% of weekly Codex allowance remained near the end of QC, within the user-authorized ten-percentage-point spend. This is a tested beta checkpoint, not a declaration of all 25 mechanics or thousand-session fun.

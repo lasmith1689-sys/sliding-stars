@@ -6,7 +6,7 @@ The current web beta contains **1,000 proof-verified missions and 20 implemented
 
 ## Install on iPhone
 
-**Version 1.0 (6.1) uploaded successfully to Apple** on September 30, 2026; all 994 tests passed. Apple processing and internal availability still require confirmation because the browser login expired. Version 5.1 is the last independently confirmed available build. Open TestFlight on iPhone and check for the 6.1 update. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
+**Version 1.0 (7.1) uploaded successfully to Apple** on September 30, 2026; all 1,018 tests passed. Apple processing and internal availability still require confirmation because the browser login expired. Version 5.1 is the last independently confirmed available build. Open TestFlight on iPhone and check for the 7.1 update. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
 
 Bundle ID: `com.lasmith1689.SlidingStars`. The iOS app bundles game/art locally and stores saves through native Preferences. Safari progress and native-app progress are separate.
 

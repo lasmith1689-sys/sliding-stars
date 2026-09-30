@@ -35,8 +35,14 @@ npx cap sync ios
 
 Reports: `validation/campaign/generated/pacing-{baseline,after}.json` and `qc-play{-before,}.json`. To regenerate both levels and their matching hint advice, run `node scripts/campaign/generate.mjs`. To rebuild advice from unchanged committed levels/proofs, run `node scripts/campaign/export-hints.mjs`.
 
+Local integrated verification: 1,018 tests across 112 files passed. Typecheck, production build, iOS synchronization and production boundary audit passed (861 modules, 61 chunks, no development campaign tooling). Browser gestures completed mission 1 at 390x844 and phase-door mission 801 at 320x568. Completion automatically advanced to the next unfinished mission. The offline package contains all twenty chapter files and twenty hint maps.
+
 ## Judgment and remaining work
 
 The opening rescue and crate lesson are readable, responsive and easy to understand in browser play. The compact phase board retains distinct holes, visible crew and reachable controls. The improved rotation and useful hints remove concrete sources of boredom and frustration. That supports a stronger playable beta, not a guarantee that a person will enjoy a thousand sessions.
 
 Highest remaining priorities: physical iPhone play for touch/offline/save checks; multi-step strategic generation beyond terrain mutations; useful bounded hints after deviations from recognized routes; five additional complete mechanics to reach 25; and stronger station/VIP rewards. Do not use the sampled hint win rate as a human engagement measurement, or claim the full original game plan is complete.
+
+## Published checkpoint
+
+QC source `57f17b9` is live on the `next` Netlify alias, deploy `6abd9eca44f1240bfa46bca2`. Production startup, route hint and the concise guide were verified there. TestFlight **1.0 (7.1)** successfully uploaded at 2026-09-30 23:48:13 UTC; [the macOS run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36792476666) and [Linux CI](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36792476789) both passed all 1,018 tests. Apple processing/internal availability and real iPhone testing remain to be confirmed. See the latest section of CLAUDE-HANDOFF.md for continuation.

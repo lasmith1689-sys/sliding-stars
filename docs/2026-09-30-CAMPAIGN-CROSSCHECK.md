@@ -1,5 +1,7 @@
 # Sliding Seas crosscheck and 1,000-mission checkpoint
 
+Follow-up: [the quality-control report](2026-09-30-QUALITY-CONTROL.md) records subsequent pacing, guide, visual and route-hint improvements. Its current metrics supersede this initial checkpoint (62 masks now; compact route advice ships separately from development proofs).
+
 This updates the broader research and supplement already in this folder. Player reviews are qualitative evidence, not proof of the reference game's exact rules. No reliable source reviewed establishes that Sliding Seas itself generates levels procedurally; seeded generation is our requested design choice.
 
 ## Reference findings and revisions
