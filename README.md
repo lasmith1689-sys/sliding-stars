@@ -6,7 +6,7 @@ The current beta contains **102 fixed authored missions and 20 implemented mecha
 
 ## Install on iPhone
 
-**Version 1.0 (4.1) is available to the account owner through internal TestFlight**, verified September 30, 2026. Open TestFlight on iPhone and install Sliding Stars. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases; all 964 tests passed. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
+**Version 1.0 (5.1) is available to the account owner through internal TestFlight**, verified September 30, 2026. Open TestFlight on iPhone and install Sliding Stars. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases; all 981 tests passed. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
 
 Bundle ID: `com.lasmith1689.SlidingStars`. The iOS app bundles game/art locally and stores saves through native Preferences. Safari progress and native-app progress are separate.
 

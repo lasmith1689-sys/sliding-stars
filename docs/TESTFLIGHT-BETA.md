@@ -1,6 +1,6 @@
 # Sliding Stars — first iOS beta
 
-Status: **version 1.0 (4.1) is available for internal TestFlight testing**, verified September 30, 2026. Xcode 26.6 archived, cloud-signed and uploaded successfully; Apple processing is Complete and the build is Testing in the Me group with one internal tester. [Successful upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36722641138). Physical iPhone installation/play testing remains for the account owner.
+Status: **version 1.0 (5.1) is available for internal TestFlight testing**, verified September 30, 2026. Xcode 26.6 archived, cloud-signed and uploaded successfully; Apple processing is Complete and the build is Testing in the Me group with one internal tester. [Successful upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36725952629). Physical iPhone installation/play testing remains for the account owner.
 
 ## Included
 
@@ -32,9 +32,9 @@ Suggested “What to Test”: “Play the first rescues, try the later mechanics
 
 Setup update, September 30, 2026: registered the bundle ID and created App Store Connect app **6817778193**. Internal group **Me** has automatic distribution enabled and the account owner added (1 tester, 0 builds). Saved the existing team, key and issuer identifiers as GitHub repository secrets. Only the existing private key (`ASC_KEY_P8`) is still missing; GitHub cannot reveal it from another repository. No new key was created or existing access changed.
 
-Delivery update: the owner added the private key directly to GitHub. Build 4.1 passed all 964 tests across 105 files, compiled and uploaded successfully. Apple processing completed; TestFlight shows Testing and Me with one internal tester. Testing notes are saved. No private-key contents were read or committed.
+Delivery update: the owner added the private key directly to GitHub. Build 5.1 passed all 964 tests across 105 files, compiled and uploaded successfully. Apple processing completed; TestFlight shows Testing and Me with one internal tester. Testing notes are saved. No private-key contents were read or committed.
 
-Next step: open TestFlight on iPhone, install Sliding Stars 1.0 (4.1), and check first rescues and progress after relaunch. Continue in this task for device-specific issues; no new task is required.
+Next step: open TestFlight on iPhone, install Sliding Stars 1.0 (5.1), and check first rescues and progress after relaunch. Continue in this task for device-specific issues; no new task is required.
 
 ## Direct-touch update (September 30, 2026)
 
@@ -45,3 +45,5 @@ Bundled Fredoka and Nunito replace the generic UI lettering, including canvas la
 Verified in the browser at 390x844: drag to win mission 1 automatically opened mission 2 without clicking. At 320x568, board and controls remained separated and readable. Automated checks cover partial-drag positions, riding crew, smooth release, return, masked cells, auto-advance, background pauses and save-failure handling. All remaining authored mission proofs pass.
 
 Reference: https://www.slidingseas.com/ and https://www.gamezebo.com/reviews/sliding-seas-review-a-gorgeous-entertaining-match-stuff-puzzler/ . Core reference loop: sliding/matching terrain into land and shelter to rescue stranded guests; changes above implement the user's direct-touch and clear-completion requirements.
+
+Delivery confirmed: build 1.0 (5.1), GitHub run 36725952629, passed all 981 tests across 107 files on macOS, cloud-signed and uploaded. Apple shows Testing in Me (1 internal tester). Update notes saved. Web preview updated at https://next--sliding-stars.netlify.app (deploy 6abd165f4466950d3c555d4b). Next: update the app through TestFlight and try slow dragging and automatic rescue progression. No new thread required.

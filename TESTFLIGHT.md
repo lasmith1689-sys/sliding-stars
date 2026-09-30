@@ -4,7 +4,7 @@ This app uses the account owner's existing Ai-sky distribution method: macos-26/
 
 ## 1. Register the app
 
-Delivery completed September 30, 2026: **1.0 (4.1)** is marked **Testing** in the Me internal group, with the account owner added. All four GitHub secrets are configured. [Upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36722641138) passed. Open TestFlight on iPhone and install Sliding Stars. The instructions below are retained for maintenance; do not repeat registration or create duplicate keys.
+Delivery completed September 30, 2026: **1.0 (5.1)** is marked **Testing** in the Me internal group, with the account owner added. All four GitHub secrets are configured. [Upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36725952629) passed. Open TestFlight on iPhone and install Sliding Stars. The instructions below are retained for maintenance; do not repeat registration or create duplicate keys.
 
 1. Open [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list).
 2. Click **+ → App IDs → Continue → App → Continue**.
