@@ -1,5 +1,5 @@
 import { expect,it } from 'vitest';
-import { BETA_CAMPAIGN_IDS,RETIRED_BETA_CAMPAIGN_IDS,getCampaignLevel } from '../../src/campaign/catalog';
+import { BETA_CAMPAIGN_IDS,AUTHORED_CAMPAIGN_IDS,RETIRED_BETA_CAMPAIGN_IDS,getCampaignLevel } from '../../src/campaign/catalog';
 import { authoredLessonLevels } from '../../src/campaign/lessons';
 import { lessonSolutionTraces } from '../../src/campaign/content/lesson-solutions.dev';
 import { replayTrace } from '../../src/campaign/validator';
@@ -12,13 +12,13 @@ import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {safeTerrain} from '../../src/campaign/engine/needs';
 import {transition} from '../../src/campaign/engine/turn';
 
-it('ships 102 reviewed boards with no portal missions at their canonical IDs',async()=>{
+it('ships 1000 missions while preserving 102 authored teaching boards',async()=>{
  const reviewed=authoredLessonLevels.filter(level=>level.id<=805&&!level.mechanics.some(m=>m.id==='portals'));
- expect(BETA_CAMPAIGN_IDS).toEqual(reviewed.map(level=>level.id));
- expect(BETA_CAMPAIGN_IDS).toHaveLength(102);
+ expect(AUTHORED_CAMPAIGN_IDS).toEqual(reviewed.map(level=>level.id));
+ expect(BETA_CAMPAIGN_IDS).toEqual(Array.from({length:1000},(_,i)=>i+1));
  for(const level of reviewed)expect(await getCampaignLevel(level.id)).toEqual(level);
- for(const id of RETIRED_BETA_CAMPAIGN_IDS)await expect(getCampaignLevel(id)).rejects.toThrow(/retired/);
- await expect(getCampaignLevel(9)).rejects.toThrow(/Missing campaign content/);
+ for(const id of RETIRED_BETA_CAMPAIGN_IDS)expect((await getCampaignLevel(id)).mechanics.some(m=>m.id==='portals')).toBe(false);
+ expect((await getCampaignLevel(1000)).id).toBe(1000);
 });
 
 it.each([1,2,3])('opening mission %s starts with every explorer still needing rescue',async id=>{
@@ -36,7 +36,7 @@ it.each(RETIRED_BETA_CAMPAIGN_IDS)('moves saved portal mission %s to a playable 
  const migrated=await migrateRetiredBetaMission(save,store);
  expect(save).toEqual(original);expect(migrated.active.kind).toBe('campaign');
  if(migrated.active.kind==='campaign'){
-  expect(migrated.active.state.levelId).toBe(id===615?661:426);
+  expect(migrated.active.state.levelId).toBe(id+1);
   expect(migrated.active.state.level.mechanics.some(m=>m.id==='portals')).toBe(false);
   expect(migrated.active.events).toEqual([]);
  }
@@ -71,25 +71,25 @@ it('preserves an opening mission already in progress and never overwrites a fail
 });
 
 it('replays every committed booster-free proof against the exact shipped definitions',async()=>{
- for(const id of BETA_CAMPAIGN_IDS){
+ for(const id of AUTHORED_CAMPAIGN_IDS){
   const trace=lessonSolutionTraces.find(item=>item.levelId===id);
   expect(trace,`missing trace for ${id}`).toBeDefined();
   expect(replayTrace(await getCampaignLevel(id),JSON.parse(JSON.stringify(trace))),`mission ${id}`).toEqual({won:true,issues:[]});
  }
 });
 
-it('advances across release gaps without claiming the missing canonical missions',async()=>{
+it('advances into generated missions without skipping canonical numbers',async()=>{
  const store=new MemoryStorage(),save=createCampaignSave(await getCampaignLevel(8));
  save.completedCampaignIds=[1,2,3,4,5,6,7,8];
  save.active.kind==='campaign'&&(save.active.state.status='won');
  expect(nextCampaignId(save)).toBe(9);
- expect(nextAvailableCampaignId(save,BETA_CAMPAIGN_IDS)).toBe(16);
+ expect(nextAvailableCampaignId(save,BETA_CAMPAIGN_IDS)).toBe(9);
  expect(saveSnapshot(store,save).ok).toBe(true);
  const next=await advanceToCampaign(save,store);
  expect(next.active.kind).toBe('campaign');
- if(next.active.kind==='campaign')expect(next.active.state.levelId).toBe(16);
+ if(next.active.kind==='campaign')expect(next.active.state.levelId).toBe(9);
  expect(next.completedCampaignIds).toEqual([1,2,3,4,5,6,7,8]);
- expect(next.attempts['16']).toEqual({started:1,failed:0});
+ expect(next.attempts['9']).toEqual({started:1,failed:0});
  expect(loadSave(store)).toEqual(next);
 });
 
@@ -108,6 +108,11 @@ it('selects and replays fixed missions while retaining rewards and prior progres
  expect(replay.attempts['1']).toEqual({started:2,failed:0});
  expect(replay.completedCampaignIds).toEqual([1]);
  expect(loadSave(store)).toEqual(replay);
- await expect(selectBetaCampaignMission(replay,store,9)).rejects.toThrow(/not in this beta/);
+ await expect(selectBetaCampaignMission(replay,store,1001)).rejects.toThrow(/not in this beta/);
  expect(loadSave(store)).toEqual(replay);
+});
+
+it.each(RETIRED_BETA_CAMPAIGN_IDS)('does not migrate the new nonportal mission %s',async id=>{
+ const store=new MemoryStorage(),save=createCampaignSave(await getCampaignLevel(id));
+ expect(await migrateRetiredBetaMission(save,store)).toBe(save);
 });

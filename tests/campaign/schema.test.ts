@@ -265,9 +265,9 @@ describe('versioned campaign boundaries',()=>{
     level.mechanics=[{id:'tethers',actorIds:['pair']},{id:'gravity',fixtureIds:['switch']}];
     expect(()=>parseCampaignLevel(level)).toThrow(/Gravity chambers/);
   });
-  it('fails explicitly for unshipped content without generating a replacement',async()=>{
+  it('loads committed generated content and rejects out-of-range requests',async()=>{
     expect((await getCampaignLevel(1)).id).toBe(1);
-    await expect(getCampaignLevel(9)).rejects.toThrow(/missing.*chapter-01/i);
+    expect((await getCampaignLevel(9)).id).toBe(9);
     await expect(getCampaignLevel(1001)).rejects.toThrow(/1.*1000/);
   });
   it('preserves the original first three boards and lesson text as conversion fixtures',()=>{

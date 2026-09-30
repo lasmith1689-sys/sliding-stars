@@ -1,0 +1,46 @@
+{
+  "generatorVersion": "terrain-replay-1",
+  "seed": 20260930,
+  "through": 100,
+  "maxAttemptsPerLevel": 120,
+  "elapsedMs": 1117,
+  "generated": 100,
+  "authored": 28,
+  "uniquePuzzles": 100,
+  "uniqueMasks": 20,
+  "shapes": [
+    "compact-rectangle",
+    "diamond",
+    "wide-shelf",
+    "tall-corridor"
+  ],
+  "boardSizes": [
+    "3x3",
+    "6x5",
+    "4x4",
+    "4x5",
+    "5x4",
+    "5x5",
+    "6x4",
+    "7x4",
+    "7x5",
+    "8x4"
+  ],
+  "mechanics": [
+    "crates",
+    "ice",
+    "rovers",
+    "reactors",
+    "comets"
+  ],
+  "rejections": {
+    "proof-rejected": 416
+  },
+  "unresolved": [],
+  "limitations": [
+    "Proofs establish at least one winning booster-free path, not subjective balance or all-path safety.",
+    "Variations reuse authored mechanics and objective structures; terrain and optional horizontal mirroring vary.",
+    "Difficulty labels estimate proof length; human playtesting is still needed.",
+    "No new mechanics beyond the 20 implemented nonportal mechanics are claimed."
+  ]
+}

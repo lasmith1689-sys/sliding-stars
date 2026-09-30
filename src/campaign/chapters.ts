@@ -2,7 +2,7 @@ import { MECHANIC_SCHEDULE } from './schedule';
 const SETTINGS = [
   ['Home Orbit','Arrival Lounge'],['Ember Belt','Cloud Kitchen'],['Shuttle Harbor','Parcel Post'],
   ['Moonwhale Cove','Moonwhale Lookout'],['Pawprint Moon','Pup Nursery'],['Ribbon Nebula','Ribbon Garden'],
-  ['Mischief Patrol','Toy Workshop'],['Twin-Star Crossing','Stargate Pavilion'],['Patchwork Orbit','Bridge House'],
+  ['Mischief Patrol','Toy Workshop'],['Starry Archipelago','Rescue Lookout'],['Patchwork Orbit','Bridge House'],
   ['Cozy Comet Inn','Guest Lodge'],['Moonflower Fields','Moonflower Conservatory'],['Keylight Station','Keylight Gallery'],
   ['Sideways Sky','Tumble Observatory'],['Sunpetal Reach','Sunpetal Atrium'],['Jellymoon Lagoon','Jelly Tea Room'],
   ['Wandering Harbor','Shuttle Café'],['Lantern Passage','Lantern Walk'],['Together Constellation','Friendship Dome'],

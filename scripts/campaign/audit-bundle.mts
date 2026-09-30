@@ -2,7 +2,7 @@ import { build } from 'vite';
 import { fileURLToPath } from 'node:url';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
-const forbidden=/(?:\/campaign\/(?:solver|validator)\.ts|\/lesson-solutions\.dev\.ts|\/scripts\/campaign\/|\/validation\/campaign\/traces\/)/;
+const forbidden=/(?:\/campaign\/(?:solver|validator|generation)\.ts|\/lesson-solutions\.dev\.ts|\/scripts\/campaign\/|\/validation\/campaign\/(?:traces|generated)\/)/;
 let modules=0,chunks=0;
 await build({root,logLevel:'error',build:{write:false},plugins:[{
   name:'audit-campaign-production-boundary',

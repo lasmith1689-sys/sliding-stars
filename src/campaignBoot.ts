@@ -9,7 +9,7 @@ import {CampaignInput,directionHint,actionBetween} from './input/campaign';
 import {dragFrame} from './input/campaignDrag';
 import {MissionCompletion} from './ui/missionCompletion';
 import type {Pos} from './core/types';
-import {legalActions} from './campaign/engine/actions';
+import {campaignHint} from './campaign/hints';
 import {transition} from './campaign/engine/turn';
 import type {CampaignAction} from './campaign/types';
 import {CampaignShell} from './ui/campaignShell';
@@ -42,8 +42,8 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  };
  const input=new CampaignInput(state,()=>game.locked||shell.dialog.open,a=>{void dispatch(a);});
  const recover=()=>{presentation++;input.cancel();pointerId=null;dragOrigin=null;animator.cancel();board.sync(makeScene(state()));game.finishPresentation();shell.update();diagnostics();checkCompletion();};
- const hint=()=>{const actions=legalActions(state()),guided=state().turn===0&&(state().levelId===111||state().levelId===112)?{type:'swap' as const,from:{r:state().levelId===111?0:1,c:2},to:{r:state().levelId===111?1:2,c:2}}:null;
-  const action=(guided&&actions.find(a=>JSON.stringify(a)===JSON.stringify(guided)))||actions[0];if(!action){shell.preview('No slide is available. Open the Guide for supplies or restart.');return;}
+ const hint=()=>{
+  const action=campaignHint(state());if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
   const preview=transition(state(),action),departures=preview.events.flatMap(e=>e.type==='remove'&&e.reason==='departure'&&e.piece.kind==='cargo'?[e.piece.destinationId]:[]),gravity=preview.events.filter(e=>e.type==='gravity');
   board.hint(action,departures);const direction=directionHint(action);shell.preview(`Slide ${direction.word.toLowerCase()} between the glowing tiles${gravity.length?` · Gravity next: ${gravity.map(e=>e.after).join(' then ')}`:departures.length?' to evacuate safely':state().levelId===1?' to join three habitats':''}.`);
  };
@@ -61,7 +61,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  const shell=new CampaignShell(game,{
   hint,retrySave:saveNow,restart:()=>{recover();game.restart();saveInBackground();board.relayout(makeScene(state()));shell.layout(board.layout);shell.preview('A fresh route. Tap two neighbors or drag.');shell.update();diagnostics();},
   next:async()=>{await saveNow();if(!previewMode&&BETA_CAMPAIGN_IDS.every(id=>game.save.completedCampaignIds.includes(id))){
-   shell.panel('Every beta mission complete!', '<img class="result-portrait" src="/optimized/pepper.webp" alt="Pepper"><p>You brought a little more life to the stars. Your progress is saved; revisit any mission while the full campaign grows.</p><button class="primary wide" id="all-missions">Replay a mission</button>',()=>shell.dialog.querySelector('#all-missions')!.addEventListener('click',()=>{shell.dialog.close();openBetaMissionPicker(game.save,storage,()=>{void reloadSavedMission();});}));return;
+   shell.panel('All 1,000 missions complete!', '<img class="result-portrait" src="/optimized/pepper.webp" alt="Pepper"><p>You brought a little more life to the stars. Your progress is saved. Choose any constellation to play again.</p><button class="primary wide" id="all-missions">Replay a mission</button>',()=>shell.dialog.querySelector('#all-missions')!.addEventListener('click',()=>{shell.dialog.close();openBetaMissionPicker(game.save,storage,()=>{void reloadSavedMission();});}));return;
   }await advanceToCampaign(game.save,storage,provider);await reloadSavedMission();},
   preferences:()=>{if(!game.save.preferences.sound)void audio?.suspend();saveInBackground();},
   power:kind=>{input.cancel();if(!game.save.wallet.inventory[kind]){const bought=game.purchase(kind);if(bought)saveInBackground();shell.preview(bought?'Charge purchased. Open Guide to select it.':'More credits needed. Earn them by merging and rescuing.');shell.update();return;}

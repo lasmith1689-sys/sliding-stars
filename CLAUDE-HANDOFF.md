@@ -1,0 +1,64 @@
+# Continue Sliding Stars in Claude Code
+
+## User intent and constraints
+
+Build a cute space adaptation of the core Sliding Seas rescue/terrain puzzle experience. The user wants 1,000 winnable procedurally authored levels, varied size and shape, gradual new mechanics, relaxed but thoughtful play and generous retries. Cute nonviolent threats are welcome. Do not reintroduce portals, arrow-driven dragging, a mandatory Continue button, generic typography, or characters labeled safe before rescue. Preserve the original game in the parent directory. Work only in this improved app folder.
+
+User is frustrated with excessive usage and planning. Implement bounded useful changes, verify, continue without routine permission questions, and state actual remaining gaps. No full redesign, sprawling research, or multi-agent expansion by default.
+
+## Repositories and deployment
+
+- Workspace app: `H:\Projects\iPhone Apps\sliding-stars\sliding-stars-next`.
+- Parent Git branch: `codex/thousand-level-campaign`; no parent origin. Original app preserved at parent root. Ignore unrelated parent `docs/reviews/`.
+- Public release Git checkout: `release/github`, main branch, origin `https://github.com/lasmith1689-sys/sliding-stars.git`. Sync app changes into this checkout before pushing. Do not export the original parent app/history or local secrets.
+- Improved web URL: `https://next--sliding-stars.netlify.app/`. Netlify site ID `bc41ec96-bbad-4e56-b0d1-c612c54db038`. Deploy only alias `next`, never overwrite original production with `--prod`.
+- Public repo is authorized. A commit containing `[ship]` triggers TestFlight; ordinary pushes run CI. Documentation-only follow-up can use `[skip ci]`.
+
+## Implemented checkpoint
+
+See `docs/2026-09-30-CAMPAIGN-CROSSCHECK.md` for findings, evidence and limitations. The committed content contains 1,000 unique boards, 102 authored plus 898 terrain variations, 61 masks, nine shape families, 20 implemented mechanics and hash-checked winning traces for every board. Generation takes about 13 seconds locally. Proofs are only 1–9 moves; this is not yet a thoroughly playtested 1,000-level game with 25 completed mechanics.
+
+- `src/campaign/generation.ts`: deterministic offline template mutation, optional safe horizontal mirroring, replay acceptance, duplicate rejection, bounded failure. `scripts/campaign/generate.mjs` writes 20 chapter files and validation artifacts.
+- `src/campaign/catalog.ts`: full 1–1000 IDs, authored boards kept exact, lazy chapter loading. `BETA_CAMPAIGN_IDS` remains an API compatibility alias.
+- `src/ui/releaseNavigation.ts`: 20 constellation choices with 50 missions per page.
+- `src/session/adapter.ts`: save-safe advancement and retired portal migration. IDs 376–380/615 now also identify ordinary generated missions; migrate ONLY saved definitions that actually contain portals. Never discard progress, wallets or reward ledgers.
+- `src/campaign/hints.ts`: bounded immediate goal/shelter scoring; no consumables or live-state mutation. Not a multi-turn solver.
+- Previous TestFlight 5.1 fixes: real-time drag (`campaignDrag.ts`, board renderer), automatic celebratory advancement (`missionCompletion.ts`), offline Nunito/Fredoka fonts, unsafe starting crew in missions 1–3, portals removed from release.
+
+## Next useful work, in order
+
+1. Read this handoff, research crosscheck, current release status below, and `git status`. Preserve ongoing user changes. Run targeted tests before editing.
+2. Improve procedural variety and purpose: multiple causal rescue steps, alternate masks/topologies, genuinely interacting mechanics. Keep deterministic generation, exact definition proofs, duplicate rejection and bounded work. Do not claim cosmetic terrain changes alone deliver 1,000 distinct strategic experiences. Consider improving recurring mechanics selection in late chapters; current generator favors recent templates heavily.
+3. Implement the four planned modules one at a time: relays at 841, tethers at 881, repair at 921, rendezvous at 961. Add original art/animation, five progressive teaching boards, rules/save validation, independent winning traces and a causal test that disabling the new mechanic prevents the intended solution. Add a suitable fifth original mechanic in the retired portal introduction slot to reach 25. Never restore portals without user direction.
+4. Regenerate affected content only deliberately, preserve all authored IDs and in-progress immutable saved definitions, rerun all 1,000 exact proofs, then build and publish. Validate actual mobile interactions, end-of-chapter/1000 progression, save upgrade and offline reopening on iPhone.
+5. Assess shelter pacing and station/home rewards against reference evidence. Do not blindly implement every old plan item; the old superpowers plan is aspirational and has stale counts.
+
+## Commands and safeguards
+
+Windows uses `npm.cmd` / `npx.cmd` if PowerShell blocks npm.ps1. Node 24 is used by CI.
+
+```text
+npm run typecheck
+npm test -- --configLoader runner
+node scripts/campaign/generate.mjs
+npm run build
+node scripts/campaign/audit-bundle.mts
+npx cap sync ios
+npx netlify deploy --dir dist --alias next --no-build --site bc41ec96-bbad-4e56-b0d1-c612c54db038 --json
+```
+
+The generator and proofs are development-only. The production audit forbids solver, validator, generator and proof artifacts in the client graph. Commit generated chapter files and validation evidence. No runtime generation, random fallback, fake win flags, paid-powerup requirements or weakened schema checks to make a proof pass.
+
+## Apple / no Mac
+
+Paid individual account holder, Windows PC and iPhone. Build on GitHub Actions `macos-26`, Xcode 26. Bundle ID `com.lasmith1689.SlidingStars`, App Store Connect app ID `6817778193`. Internal group `Me` has automatic distribution. User has already configured all four repository secrets: APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8. Never ask to paste a key or print it.
+
+Use existing `.github/workflows/testflight.yml` and `.github/scripts/testflight.sh`: archive ad-hoc signed with entitlements; export automatic app-store-connect upload using the Admin Team API key and Apple's cloud-managed distribution certificate. Build number is run_number.run_attempt. Privacy manifest and encryption declaration already exist. Do not replace working signing with certificate/profile management. The earlier 1.0 (5.1) build was verified Testing in App Store Connect before this expansion.
+
+## Copy-paste continuation prompt
+
+Continue development of Sliding Stars in this folder. First read CLAUDE-HANDOFF.md and docs/2026-09-30-CAMPAIGN-CROSSCHECK.md, inspect Git status and current verification evidence. Preserve the original parent app, the direct-touch/automatic-completion fixes, saved progress and no-portals decision. Start with purposeful multi-step procedural variety and one complete new mechanic, staying within bounded generation and booster-free replay validation. Work efficiently without routine approval stops or spawning teams. Do not claim the old 25-mechanic plan is finished: the current checkpoint has 1,000 verified but often short template-based missions and 20 mechanics. Use the existing Windows/GitHub macOS signing workflow for TestFlight. Finish a tested, reviewable increment, publish when ready under existing authorization, and report concrete remaining work.
+
+## Current release verification
+
+Updated by Codex after the final checks and publication of this checkpoint.

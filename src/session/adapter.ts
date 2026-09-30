@@ -72,7 +72,7 @@ export async function migrateRetiredBetaMission(save:SaveV2,storage:SaveStorage)
   const revised=await getCampaignLevel(current.levelId);
   if(JSON.stringify(current.level.crew)!==JSON.stringify(revised.crew))return startCampaignLevel(save,checked,storage,current.levelId,async()=>revised,false);
  }
- if(!RETIRED_BETA_CAMPAIGN_IDS.includes(current.levelId))return save;
+ if(!RETIRED_BETA_CAMPAIGN_IDS.includes(current.levelId)||!current.level.mechanics.some(mechanic=>mechanic.id==='portals'))return save;
  const retiredId=checked.active.state.levelId;
  const id=BETA_CAMPAIGN_IDS.find(candidate=>candidate>retiredId&&!checked.completedCampaignIds.includes(candidate))
   ??BETA_CAMPAIGN_IDS.find(candidate=>!checked.completedCampaignIds.includes(candidate))??BETA_CAMPAIGN_IDS[0]!;

@@ -17,7 +17,7 @@ export const MECHANIC_SCHEDULE:MechanicIntroduction[] = [
   {id:'shelter',name:'Shelter requests',firstLevel:471,chapter:10,existing:false,evidence:'A',prerequisites:['waves']},
   {id:'gardens',name:'Moon gardens',firstLevel:516,chapter:11,existing:false,evidence:'O',prerequisites:['crates','exits']},
   {id:'keys',name:'Star keys and gates',firstLevel:561,chapter:12,existing:false,evidence:'O',prerequisites:['exits','bridges']},
-  {id:'gravity',name:'Gravity switches',firstLevel:611,chapter:13,existing:false,evidence:'O',prerequisites:['portals']},
+  {id:'gravity',name:'Gravity switches',firstLevel:611,chapter:13,existing:false,evidence:'O',prerequisites:['currents']},
   {id:'solar',name:'Solar collectors',firstLevel:661,chapter:14,existing:false,evidence:'O',prerequisites:['reactors']},
   {id:'jelly',name:'Friendly space jelly',firstLevel:711,chapter:15,existing:false,evidence:'O',prerequisites:['ice','reactors']},
   {id:'docks',name:'Visiting shuttle docks',firstLevel:756,chapter:16,existing:false,evidence:'O',prerequisites:['rovers','currents']},

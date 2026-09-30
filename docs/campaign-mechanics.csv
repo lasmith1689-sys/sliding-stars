@@ -15,7 +15,7 @@ bridges,Fold-out bridges,426,9,false,O,ice|rovers
 shelter,Shelter requests,471,10,false,A,waves
 gardens,Moon gardens,516,11,false,O,crates|exits
 keys,Star keys and gates,561,12,false,O,exits|bridges
-gravity,Gravity switches,611,13,false,O,portals
+gravity,Gravity switches,611,13,false,O,currents
 solar,Solar collectors,661,14,false,O,reactors
 jelly,Friendly space jelly,711,15,false,O,ice|reactors
 docks,Visiting shuttle docks,756,16,false,O,rovers|currents

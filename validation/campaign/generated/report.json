@@ -1,0 +1,72 @@
+{
+  "generatorVersion": "terrain-replay-1",
+  "seed": 20260930,
+  "through": 1000,
+  "maxAttemptsPerLevel": 180,
+  "elapsedMs": 12398,
+  "generated": 1000,
+  "authored": 102,
+  "uniquePuzzles": 1000,
+  "uniqueMasks": 61,
+  "shapes": [
+    "compact-rectangle",
+    "diamond",
+    "wide-shelf",
+    "tall-corridor",
+    "stepped-terraces",
+    "u",
+    "linked-lobes",
+    "l",
+    "offset-chambers"
+  ],
+  "boardSizes": [
+    "3x3",
+    "6x5",
+    "4x4",
+    "4x5",
+    "5x4",
+    "5x5",
+    "6x4",
+    "7x4",
+    "7x5",
+    "8x4",
+    "2x3",
+    "3x4",
+    "4x3",
+    "5x3",
+    "3x5"
+  ],
+  "mechanics": [
+    "crates",
+    "ice",
+    "rovers",
+    "reactors",
+    "comets",
+    "exits",
+    "waves",
+    "moonwhales",
+    "pups",
+    "currents",
+    "pirates",
+    "bridges",
+    "shelter",
+    "gardens",
+    "keys",
+    "gravity",
+    "solar",
+    "jelly",
+    "docks",
+    "phase"
+  ],
+  "rejections": {
+    "proof-rejected": 5897,
+    "duplicate-board": 142
+  },
+  "unresolved": [],
+  "limitations": [
+    "Proofs establish at least one winning booster-free path, not subjective balance or all-path safety.",
+    "Variations reuse authored mechanics and objective structures; terrain and optional horizontal mirroring vary.",
+    "Difficulty labels estimate proof length; human playtesting is still needed.",
+    "No new mechanics beyond the 20 implemented nonportal mechanics are claimed."
+  ]
+}
