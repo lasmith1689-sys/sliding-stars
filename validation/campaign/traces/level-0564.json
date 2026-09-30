@@ -1,0 +1,622 @@
+{
+  "level": {
+    "id": 564,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 12,
+    "seed": 7,
+    "geometry": {
+      "rows": 4,
+      "cols": 5,
+      "mask": [
+        [
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [
+        {
+          "r": 3,
+          "c": 2
+        },
+        {
+          "r": 3,
+          "c": 1
+        },
+        {
+          "r": 3,
+          "c": 3
+        }
+      ],
+      "refillSources": [
+        {
+          "id": "source-0-1",
+          "at": {
+            "r": 1,
+            "c": 0
+          },
+          "segmentId": "column-0-1"
+        },
+        {
+          "id": "source-1-0",
+          "at": {
+            "r": 0,
+            "c": 1
+          },
+          "segmentId": "column-1-0"
+        },
+        {
+          "id": "source-2-0",
+          "at": {
+            "r": 0,
+            "c": 2
+          },
+          "segmentId": "column-2-0"
+        },
+        {
+          "id": "source-3-0",
+          "at": {
+            "r": 0,
+            "c": 3
+          },
+          "segmentId": "column-3-0"
+        },
+        {
+          "id": "source-3-3",
+          "at": {
+            "r": 3,
+            "c": 3
+          },
+          "segmentId": "column-3-3"
+        },
+        {
+          "id": "source-4-3",
+          "at": {
+            "r": 3,
+            "c": 4
+          },
+          "segmentId": "column-4-3"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-3-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 3
+            },
+            {
+              "r": 1,
+              "c": 3
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-3-3",
+          "cells": [
+            {
+              "r": 3,
+              "c": 3
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-4-3",
+          "cells": [
+            {
+              "r": 3,
+              "c": 4
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 0,
+              "c": 3
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 3
+            },
+            {
+              "r": 3,
+              "c": 4
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [
+        {
+          "id": "gate-0-link-0",
+          "from": {
+            "r": 2,
+            "c": 2
+          },
+          "to": {
+            "r": 3,
+            "c": 2
+          },
+          "active": false
+        },
+        {
+          "id": "gate-0-link-1",
+          "from": {
+            "r": 3,
+            "c": 2
+          },
+          "to": {
+            "r": 3,
+            "c": 1
+          },
+          "active": false
+        },
+        {
+          "id": "gate-0-link-2",
+          "from": {
+            "r": 3,
+            "c": 1
+          },
+          "to": {
+            "r": 3,
+            "c": 3
+          },
+          "active": false
+        }
+      ],
+      "endpoints": []
+    },
+    "pieces": [
+      {
+        "id": "tile-0-2",
+        "at": {
+          "r": 0,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-3",
+        "at": {
+          "r": 0,
+          "c": 3
+        },
+        "kind": "pod",
+        "passengerIds": []
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-3",
+        "at": {
+          "r": 1,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-3-0",
+        "at": {
+          "r": 3,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 4
+      },
+      {
+        "id": "tile-3-4",
+        "at": {
+          "r": 3,
+          "c": 4
+        },
+        "kind": "station",
+        "facing": "left"
+      },
+      {
+        "id": "key-0",
+        "at": {
+          "r": 0,
+          "c": 1
+        },
+        "kind": "cargo",
+        "cargoKind": "key",
+        "destinationId": "lock-0",
+        "passengerIds": []
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 3,
+          "c": 0
+        },
+        "status": "active",
+        "carrierId": null,
+        "rescueMoves": 20,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "gate-0",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "gate",
+        "cells": [
+          {
+            "r": 3,
+            "c": 2
+          },
+          {
+            "r": 3,
+            "c": 1
+          },
+          {
+            "r": 3,
+            "c": 3
+          }
+        ],
+        "connectionIds": [
+          "gate-0-link-0",
+          "gate-0-link-1",
+          "gate-0-link-2"
+        ],
+        "open": false
+      },
+      {
+        "id": "lock-0",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "lock",
+        "gateId": "gate-0",
+        "keyId": "key-0"
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "keys",
+        "fixtureIds": [
+          "gate-0",
+          "lock-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "home",
+        "type": "homeCrew",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "crew-0"
+          ]
+        }
+      },
+      {
+        "id": "restore",
+        "type": "restoreInfrastructure",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "gate-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-564",
+    "lessonId": "lesson-564",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "stepped-terraces",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "find-the-key-descent-around-missing-corners",
+        "keys"
+      ],
+      "assistedAllowance": 0,
+      "capOverride": null
+    }
+  },
+  "trace": {
+    "levelId": 564,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "6bf73f2dc76b6fdf",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 1
+        },
+        "to": {
+          "r": 1,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 2
+        },
+        "to": {
+          "r": 0,
+          "c": 3
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 3
+        },
+        "to": {
+          "r": 1,
+          "c": 3
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 0
+        },
+        "to": {
+          "r": 2,
+          "c": 0
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 3,
+          "c": 3
+        },
+        "to": {
+          "r": 3,
+          "c": 4
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 3,
+          "c": 2
+        },
+        "to": {
+          "r": 3,
+          "c": 3
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 3,
+          "c": 1
+        },
+        "to": {
+          "r": 3,
+          "c": 2
+        }
+      }
+    ],
+    "finalHash": "83066ba68ffa8a17"
+  }
+}

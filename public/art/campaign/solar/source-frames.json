@@ -1,0 +1,44 @@
+{
+  "asset": "solar-sheet-v1",
+  "width": 1536,
+  "height": 1024,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 174,
+      "y": 59,
+      "width": 454,
+      "height": 434,
+      "visiblePixels": 122494,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 887,
+      "y": 35,
+      "width": 453,
+      "height": 458,
+      "visiblePixels": 134093,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 158,
+      "y": 520,
+      "width": 469,
+      "height": 474,
+      "visiblePixels": 146030,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 867,
+      "y": 520,
+      "width": 515,
+      "height": 474,
+      "visiblePixels": 154527,
+      "touchesImageEdge": false
+    }
+  ]
+}

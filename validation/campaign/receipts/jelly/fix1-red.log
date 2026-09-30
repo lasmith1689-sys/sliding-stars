@@ -1,0 +1,39 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/jelly.test.ts (10 tests | 1 failed) 134ms
+   × keeps the reachable no-failure demonstration recoverable after forty-one ordinary swaps 41ms
+npm.cmd :
+At line:2 char:1
++ & npm.cmd test -- tests/campaign/mechanics/jelly.test.ts 2>&1 | Tee-O ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > keeps the reachable no-failure demonstration recoverable after
+forty-one ordinary swaps
+CampaignContentError: Invalid campaign content: no non-consumable legal action; terrain recovery exhausted
+ ❯ ensureLegalActions src/campaign/engine/recovery.ts:39:108
+     37| }
+     38| export function ensureLegalActions(context:TurnContext):void {
+     39|   if(context.state.status==='playing'&&!legalActions(context.state).le…
+       |                                                                                                            ^
+     40| }
+     41|
+ ❯ runTransition src/campaign/engine/turn.ts:94:3
+ ❯ transition src/campaign/engine/turn.ts:99:98
+ ❯ tests/campaign/mechanics/jelly.test.ts:141:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  19:16:50
+   Duration  551ms (transform 233ms, setup 0ms, import 320ms, tests 134ms, environment 0ms)

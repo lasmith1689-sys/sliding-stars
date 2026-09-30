@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "sourceSha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+  "exactOriginalPrompt": true,
+  "frames": [
+    {
+      "id": "gravity-down",
+      "source": "public/art/campaign/gravity/source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 832,
+        "height": 832,
+        "left": 28,
+        "top": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8737980769230769
+      },
+      "deliveryPath": "optimized/campaign/gravity/down.webp",
+      "size": 256,
+      "sourceSha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+      "deliverySha256": "6d291a6d1c7fb05c5eb53108f1aca01bf7cb744debbe15b3e385470bc3436bf7",
+      "bytes": 8268,
+      "hasAlpha": true,
+      "edgeAlpha": 0
+    },
+    {
+      "id": "gravity-left",
+      "source": "public/art/campaign/gravity/source.png",
+      "frame": {
+        "left": 768,
+        "top": 0,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 832,
+        "height": 832,
+        "left": 56,
+        "top": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8737980769230769
+      },
+      "deliveryPath": "optimized/campaign/gravity/left.webp",
+      "size": 256,
+      "sourceSha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+      "deliverySha256": "15a7152e32ed65fd173a83832c229a7463c23a92a3921b32624da4ab743caa0b",
+      "bytes": 8242,
+      "hasAlpha": true,
+      "edgeAlpha": 0
+    },
+    {
+      "id": "gravity-pressed-down",
+      "source": "public/art/campaign/gravity/source.png",
+      "frame": {
+        "left": 0,
+        "top": 512,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 832,
+        "height": 832,
+        "left": 28,
+        "top": 259
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8737980769230769
+      },
+      "deliveryPath": "optimized/campaign/gravity/pressed-down.webp",
+      "size": 256,
+      "sourceSha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+      "deliverySha256": "febc7406cd704603dd191020b9e378d8b60c8af7a2b934bae8fdf8a976fc7d1d",
+      "bytes": 9948,
+      "hasAlpha": true,
+      "edgeAlpha": 0
+    },
+    {
+      "id": "gravity-pressed-left",
+      "source": "public/art/campaign/gravity/source.png",
+      "frame": {
+        "left": 768,
+        "top": 512,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 832,
+        "height": 832,
+        "left": 56,
+        "top": 259
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8737980769230769
+      },
+      "deliveryPath": "optimized/campaign/gravity/pressed-left.webp",
+      "size": 256,
+      "sourceSha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+      "deliverySha256": "f05c57267ce4f180f53ee37d29822ad49f894386e11c16cde48617b8efe1a055",
+      "bytes": 10002,
+      "hasAlpha": true,
+      "edgeAlpha": 0
+    }
+  ],
+  "gravityBytes": 36460,
+  "campaignFrames": 51,
+  "campaignBytes": 598806,
+  "cache": "sliding-stars-next-d98623b5082d",
+  "cachedFiles": 137,
+  "bundleBytes": 818828,
+  "excluded": [
+    "source art",
+    "validation/proofs",
+    "development solution markers"
+  ],
+  "scope": "Static build/cache and alpha audit; not an installed offline-device test."
+}

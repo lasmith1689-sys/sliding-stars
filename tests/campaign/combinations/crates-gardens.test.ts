@@ -1,0 +1,38 @@
+import {expect,it} from 'vitest';
+import {loadCampaignLevel} from '../../../src/campaign/engine/load';
+import {transition} from '../../../src/campaign/engine/turn';
+import {parseCampaignState} from '../../../src/campaign/schema';
+import {harvestCrateLevel,waitingMerge,openingMerge} from '../fixtures/harvest-crate';
+
+it('a mature garden waits behind its output crate and yields once after a real opening merge',()=>{
+ const initial=loadCampaignLevel(harvestCrateLevel('garden'));
+ const plot=initial.fixtures.find(f=>f.kind==='garden')!;
+ if(plot.kind==='garden')plot.stage=3;
+ const mature=parseCampaignState(JSON.parse(JSON.stringify(initial)));
+ const waiting=transition(mature,waitingMerge);
+ expect(waiting.accepted).toBe(true);
+ expect(waiting.events.some(e=>e.type==='merge')).toBe(true);
+ expect(waiting.state.fixtures.find(f=>f.id==='crop-crate')).toEqual({id:'crop-crate',kind:'crate',hp:1,at:{r:2,c:2}});
+ expect(waiting.state.fixtures.find(f=>f.id==='plot')).toEqual(plot);
+ expect(waiting.events.filter(e=>e.type==='garden').map(e=>e.phase)).toEqual(['waiting']);
+ expect(waiting.state.pieces.some(p=>p.id==='harvest-0'||p.at.r===2&&p.at.c===2)).toBe(false);
+ expect(waiting.state.mechanics.find(m=>m.id==='gardens')?.harvestedIds).toEqual([]);
+ expect(waiting.state.goalProgress.every(g=>g.completedIds.length===0)).toBe(true);
+ const restored=parseCampaignState(JSON.parse(JSON.stringify(waiting.state)));
+ const opened=transition(restored,openingMerge);
+ expect(opened.accepted).toBe(true);
+ expect(opened).toEqual(transition(waiting.state,openingMerge));
+ const removed=opened.events.findIndex(e=>e.type==='fixture'&&e.fixtureId==='crop-crate'&&e.after===null);
+ const spawned=opened.events.findIndex(e=>e.type==='spawn'&&e.piece.id==='harvest-0');
+ expect(removed).toBeGreaterThanOrEqual(0);
+ expect(spawned).toBeGreaterThan(removed);
+ expect(opened.events[spawned]).toMatchObject({type:'spawn',piece:{kind:'cargo',cargoKind:'harvest',id:'harvest-0',at:{r:2,c:2},destinationId:'harvest-exit-0'}});
+ expect(opened.events.filter(e=>e.type==='spawn'&&e.piece.id==='harvest-0')).toHaveLength(1);
+ expect(opened.state.mechanics.find(m=>m.id==='gardens')?.harvestedIds).toEqual(['harvest-0']);
+ expect(opened.state.mechanics.find(m=>m.id==='crates')?.openedIds).toEqual(['crop-crate']);
+ expect(opened.state.goalProgress.find(g=>g.goalId==='supplies')?.completedIds).toEqual(['crop-crate']);
+ expect(opened.state.mechanics.find(m=>m.id==='exits')?.departedIds).toEqual(['harvest-0']);
+ expect(opened.state.goalProgress.find(g=>g.goalId==='harvest')?.completedIds).toEqual(['harvest-0']);
+ expect(opened.state.status).toBe('won');
+ expect(parseCampaignState(JSON.parse(JSON.stringify(opened.state)))).toEqual(opened.state);
+});

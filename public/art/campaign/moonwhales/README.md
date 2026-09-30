@@ -1,0 +1,9 @@
+# Moonwhale source and delivery
+
+Original host-native ImageGen artwork, commissioned for Sliding Stars; no reference-game artwork is used. The selected original source is `source.png`, preserved byte-for-byte (SHA-256 in `source.provenance.json`). The exact sheet edit prompt is `prompt.txt`; its original reference character and generation path are recorded in the receipt. The controller generated the source before this mechanic implementation.
+
+The game-dev CLI is unavailable on this host. The reviewed project fallback uses the existing `scripts/prepare-art.mjs` Sharp pipeline and explicit `CAMPAIGN_ASSETS` frames, with no second asset pipeline. Each full 627 × 627 source cell is placed on a transparent 800 × 800 canvas. Upper poses use offset (70,60); lower tilted poses use (50,160) to align the body/saddle rather than independently enlarging alpha bounds. Uniform display scale and pivot (0.5,0.55) retain the full silhouette. Delivery is 256 × 256 alpha WebP; exact source/delivery hashes, frames and byte counts are in generated `public/optimized/campaign/manifest.json`.
+
+Idle, ready, waiting and complete poses all ship. Waiting also uses an amber marked landing and explicit queued-hop copy; expression alone is not the warning. The astronaut is a separate existing project sprite positioned above the saddle, travelling with the whale, then taking one continuous hop to the actual target. Reduced motion disables idle breathing and uses the existing short event timing.
+
+Static evidence: all four emitted WebPs inspected by the controller; complete tails, flippers and decorative accents with transparent margins. Automated frame/margin/aspect checks live in `tests/render/campaign-moonwhale-art.test.ts`. Phone-scale game evidence is recorded in `validation/campaign/playtests.md`. No physical-device performance claim.

@@ -1,0 +1,35 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/render/campaign-solar-indicator.test.ts
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/render/campaign-solar-indicator.test.ts (0 test)
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/render/campaign-solar-indicator.test.ts 2>&1 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/render/campaign-solar-indicator.test.ts [ tests/render/campaign-solar-indicator.test.ts ]
+Error: Cannot find module '../../src/render/campaign/solarIndicator' imported from H:/Projects/iPhone
+Apps/sliding-stars/sliding-stars-next/tests/render/campaign-solar-indicator.test.ts
+ ❯ tests/render/campaign-solar-indicator.test.ts:7:1
+      5| import type {SolarCollector} from '../../src/campaign/mechanics/solar';
+      6| import {solarCoachCopy} from '../../src/ui/campaignCoach';
+      7| import {addSolarIndicator} from '../../src/render/campaign/solarIndica…
+       | ^
+      8|
+      9| function collector(levelId:number):SolarCollector {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  18:06:07
+   Duration  810ms (transform 209ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

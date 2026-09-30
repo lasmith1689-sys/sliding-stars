@@ -1,0 +1,140 @@
+{
+  "assets": [
+    {
+      "id": "pirate-idle",
+      "source": "public/art/campaign/pirates/source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.53
+      },
+      "deliveryPath": "optimized/campaign/pirates/idle.webp",
+      "size": 256,
+      "sourceSha256": "9c003d32b78d4dfb3e8e576d5c74828f726ed8a41d339a1bc08ea83c81e4a166",
+      "deliverySha256": "c93f3875bde6e67165fc0675c39e9ef6d08a419cbfa495623cc4d7c17d5354fa",
+      "bytes": 12614,
+      "hasAlpha": true
+    },
+    {
+      "id": "pirate-distracted",
+      "source": "public/art/campaign/pirates/source.png",
+      "frame": {
+        "left": 627,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 72,
+        "top": 34
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.53
+      },
+      "deliveryPath": "optimized/campaign/pirates/distracted.webp",
+      "size": 256,
+      "sourceSha256": "9c003d32b78d4dfb3e8e576d5c74828f726ed8a41d339a1bc08ea83c81e4a166",
+      "deliverySha256": "c7178c177b2c02706eac702ee15381877b2118526d16c4744bcb5843da49f897",
+      "bytes": 14548,
+      "hasAlpha": true
+    },
+    {
+      "id": "pirate-warning",
+      "source": "public/art/campaign/pirates/source.png",
+      "frame": {
+        "left": 0,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 54,
+        "top": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.53
+      },
+      "deliveryPath": "optimized/campaign/pirates/warning.webp",
+      "size": 256,
+      "sourceSha256": "9c003d32b78d4dfb3e8e576d5c74828f726ed8a41d339a1bc08ea83c81e4a166",
+      "deliverySha256": "a78da4ca61ce51eeb1c162015430dce8fa0e3ad27bdde34f69b9352cec37985c",
+      "bytes": 14526,
+      "hasAlpha": true
+    },
+    {
+      "id": "pirate-returned",
+      "source": "public/art/campaign/pirates/source.png",
+      "frame": {
+        "left": 627,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 70,
+        "top": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.53
+      },
+      "deliveryPath": "optimized/campaign/pirates/returned.webp",
+      "size": 256,
+      "sourceSha256": "9c003d32b78d4dfb3e8e576d5c74828f726ed8a41d339a1bc08ea83c81e4a166",
+      "deliverySha256": "ccff3e0c05909a329d29fc9d23617033d76935530f2f09836fe5b3fbc8a676a8",
+      "bytes": 16596,
+      "hasAlpha": true
+    }
+  ],
+  "inspection": "Four complete 48 and72 CSS-pixel sprites inspected against game palette. Full uniform square canvas; stable chassis pivot. No clipped antenna, thrusters, parcel or happy confetti.",
+  "cached": [
+    {
+      "id": "pirate-idle",
+      "exists": true,
+      "inServiceWorker": true,
+      "hashMatchesReceipt": true
+    },
+    {
+      "id": "pirate-distracted",
+      "exists": true,
+      "inServiceWorker": true,
+      "hashMatchesReceipt": true
+    },
+    {
+      "id": "pirate-warning",
+      "exists": true,
+      "inServiceWorker": true,
+      "hashMatchesReceipt": true
+    },
+    {
+      "id": "pirate-returned",
+      "exists": true,
+      "inServiceWorker": true,
+      "hashMatchesReceipt": true
+    }
+  ],
+  "cache": "sliding-stars-next-3d2f901a64e4",
+  "proofsExcluded": true,
+  "sourcesExcluded": true,
+  "nativeHardware": false,
+  "finalVerification": "Full suite 698 passed before self-review outcome guard; focused 72 passed, typecheck and build after guard. Fix1 terminal coaching: genuine two-case RED, 16 focused coach/render tests passed, typecheck/build and fresh production hash/cache audit passed. No additional full suite or unaffected proof/manual rerun."
+}

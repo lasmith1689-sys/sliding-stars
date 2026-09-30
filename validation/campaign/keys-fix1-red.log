@@ -1,0 +1,44 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/keys.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/keys.test.ts (17 tests | 2 failed) 151ms
+   × rejects a lock ID added to the gate ledger with open=false 7ms
+   × rejects a lock ID added to the gate ledger with open=true 5ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/campaign/mechanics/keys.test.ts --maxWorkers=1  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/mechanics/keys.test.ts > rejects a lock ID added to the gate ledger with open=false
+ FAIL  tests/campaign/mechanics/keys.test.ts > rejects a lock ID added to the gate ledger with open=true
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/campaign/mechanics/keys.test.ts:55:68
+     53|  expect(parseCampaignState(JSON.parse(JSON.stringify(state)))).toEqual…
+     54|  const runtime=state.mechanics.find(m=>m.id==='keys')!;runtime.unlocke…
+     55|  expect(()=>parseCampaignState(JSON.parse(JSON.stringify(state)))).toT…
+       |                                                                    ^
+     56| });
+     57| it('gravity delivers a key at its lock before it could overshoot throu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 15 passed (17)
+   Start at  16:34:59
+   Duration  602ms (transform 250ms, setup 0ms, import 334ms, tests 151ms, environment 0ms)

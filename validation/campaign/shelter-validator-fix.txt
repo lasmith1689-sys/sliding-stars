@@ -1,0 +1,12 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/validator.test.ts
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  19:39:15
+   Duration  1.05s (transform 585ms, setup 0ms, import 758ms, tests 48ms, environment 0ms)

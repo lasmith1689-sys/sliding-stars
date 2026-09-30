@@ -1,0 +1,501 @@
+{
+  "level": {
+    "id": 380,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 8,
+    "seed": 7,
+    "geometry": {
+      "rows": 3,
+      "cols": 7,
+      "mask": [
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "source-0-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "segmentId": "column-0-0"
+        },
+        {
+          "id": "source-1-0",
+          "at": {
+            "r": 0,
+            "c": 1
+          },
+          "segmentId": "column-1-0"
+        },
+        {
+          "id": "source-2-0",
+          "at": {
+            "r": 0,
+            "c": 2
+          },
+          "segmentId": "column-2-0"
+        },
+        {
+          "id": "source-5-0",
+          "at": {
+            "r": 0,
+            "c": 5
+          },
+          "segmentId": "column-5-0"
+        },
+        {
+          "id": "source-6-0",
+          "at": {
+            "r": 0,
+            "c": 6
+          },
+          "segmentId": "column-6-0"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-4-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 4
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-5-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 5
+            },
+            {
+              "r": 1,
+              "c": 5
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-6-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 6
+            },
+            {
+              "r": 1,
+              "c": 6
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 0,
+              "c": 4
+            },
+            {
+              "r": 0,
+              "c": 5
+            },
+            {
+              "r": 0,
+              "c": 6
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 5
+            },
+            {
+              "r": 1,
+              "c": 6
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": [
+        {
+          "id": "exit-0",
+          "kind": "exit",
+          "at": {
+            "r": 0,
+            "c": 4
+          },
+          "active": true
+        }
+      ]
+    },
+    "pieces": [
+      {
+        "id": "tile-0-1",
+        "at": {
+          "r": 0,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-2",
+        "at": {
+          "r": 0,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-0-4",
+        "at": {
+          "r": 0,
+          "c": 4
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-0-5",
+        "at": {
+          "r": 0,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-6",
+        "at": {
+          "r": 0,
+          "c": 6
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-5",
+        "at": {
+          "r": 1,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-6",
+        "at": {
+          "r": 1,
+          "c": 6
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "capsule-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "kind": "cargo",
+        "cargoKind": "capsule",
+        "destinationId": "exit-0",
+        "passengerIds": [
+          "traveler-0"
+        ]
+      }
+    ],
+    "crew": [
+      {
+        "id": "traveler-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "status": "active",
+        "carrierId": "capsule-0",
+        "rescueMoves": null,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "portal-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "portal",
+        "receiver": {
+          "r": 0,
+          "c": 4
+        },
+        "segmentId": "column-4-0"
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "portals",
+        "fixtureIds": [
+          "portal-0"
+        ]
+      },
+      {
+        "id": "exits",
+        "endpointIds": [
+          "exit-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "evacuate",
+        "type": "evacuate",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "traveler-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-380",
+    "lessonId": "lesson-380",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "offset-chambers",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "lower-a-capsule-into-entry-and-clear-its-remote-exit",
+        "portals",
+        "exits"
+      ],
+      "assistedAllowance": 0,
+      "capOverride": null
+    }
+  },
+  "trace": {
+    "levelId": 380,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "3e2c1608d7053029",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 2
+        },
+        "to": {
+          "r": 1,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 5
+        },
+        "to": {
+          "r": 1,
+          "c": 5
+        }
+      }
+    ],
+    "finalHash": "f9952f416bece56b"
+  }
+}

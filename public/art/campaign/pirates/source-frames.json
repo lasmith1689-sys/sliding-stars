@@ -1,0 +1,44 @@
+{
+  "asset": "pirate-sheet-v1",
+  "width": 1254,
+  "height": 1254,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 88,
+      "y": 44,
+      "width": 478,
+      "height": 502,
+      "visiblePixels": 118891,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 689,
+      "y": 48,
+      "width": 478,
+      "height": 510,
+      "visiblePixels": 124804,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 73,
+      "y": 653,
+      "width": 493,
+      "height": 509,
+      "visiblePixels": 126146,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 682,
+      "y": 653,
+      "width": 495,
+      "height": 544,
+      "visiblePixels": 132245,
+      "touchesImageEdge": false
+    }
+  ]
+}

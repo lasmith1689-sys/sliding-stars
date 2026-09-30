@@ -1,0 +1,49 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/jelly.test.ts (16 tests | 2 failed) 230ms
+   × repairs a saved practice route hidden behind legal two-cell shuffling 4ms
+   × repairs the exact historical forty-one-turn saved practice state beyond ordinary action recovery 12ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/campaign/mechanics/jelly.test.ts 2>&1 | Tee-Obj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > repairs a saved practice route hidden behind legal two-cell shuffling
+AssertionError: expected 0 to be greater than or equal to 5
+ ❯ tests/campaign/mechanics/jelly.test.ts:219:88
+    217|  const next=transition(state,legalActions(state)[0]!);
+    218|  expect(next.accepted).toBe(true);
+    219|  expect(next.events.filter(e=>e.type==='jelly'&&e.phase==='practice-as…
+       |                                                                                        ^
+    220|  expect(next.state.fixtures.find(f=>f.kind==='jelly')?.coatedCells.len…
+    221|  expect(parseCampaignState(JSON.parse(JSON.stringify(next.state)))).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > repairs the exact historical forty-one-turn saved practice state
+beyond ordinary action recovery
+AssertionError: expected 3 to be greater than 3
+ ❯ tests/campaign/mechanics/jelly.test.ts:230:88
+    228|  const next=transition(state,legalActions(state)[0]!);
+    229|  expect(next.accepted).toBe(true);
+    230|  expect(next.events.filter(e=>e.type==='jelly'&&e.phase==='practice-as…
+       |                                                                                        ^
+    231|  expect(parseCampaignState(JSON.parse(JSON.stringify(next.state)))).to…
+    232| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 14 passed (16)
+   Start at  20:03:28
+   Duration  668ms (transform 246ms, setup 0ms, import 338ms, tests 230ms, environment 0ms)

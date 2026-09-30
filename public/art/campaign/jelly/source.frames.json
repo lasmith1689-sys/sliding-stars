@@ -1,0 +1,44 @@
+{
+  "asset": "jelly-sheet-v1",
+  "width": 1254,
+  "height": 1254,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 131,
+      "y": 424,
+      "width": 432,
+      "height": 194,
+      "visiblePixels": 58360,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 681,
+      "y": 363,
+      "width": 530,
+      "height": 255,
+      "visiblePixels": 82960,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 126,
+      "y": 818,
+      "width": 424,
+      "height": 262,
+      "visiblePixels": 67382,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 779,
+      "y": 795,
+      "width": 309,
+      "height": 276,
+      "visiblePixels": 21476,
+      "touchesImageEdge": false
+    }
+  ]
+}

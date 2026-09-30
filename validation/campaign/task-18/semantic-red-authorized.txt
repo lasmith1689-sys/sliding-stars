@@ -1,0 +1,66 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/gravity.test.ts
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/gravity.test.ts (2 tests | 2 failed) 7ms
+   × a containing merge changes actual ordered fall to left with riders and a second merge restores down 5ms
+   × adjacency does not trigger and repeated processing of a containing junction toggles once 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/mechanics/gravity.test.ts > a containing merge changes actual ordered fall to left with riders and a second merge restores down
+AssertionError: expected { id: 'switch', …(4) } to match object { direction: 'left', …(1) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "at": {
+      "c": 1,
+      "r": 1,
+    },
+-   "direction": "left",
++   "direction": "down",
+  }
+
+ ❯ tests/campaign/mechanics/gravity.test.ts:10:30
+      8| it('a containing merge changes actual ordered fall to left with riders…
+      9|  const c=createContext(gravityState());module()?.onMerge?.(c,gravityMe…
+     10|  expect(c.state.fixtures[0]).toMatchObject({direction:'left',at:{r:1,c…
+       |                              ^
+     11|  expect(c.state.pieces[0]!.at).toEqual({r:1,c:0});expect(c.state.crew[…
+     12|  expect(c.state.geometry.refillSources.every(s=>s.at.c===2)).toBe(true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/campaign/mechanics/gravity.test.ts > adjacency does not trigger and repeated processing of a containing junction toggles once
+AssertionError: expected { id: 'switch', …(4) } to match object { direction: 'left' }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "direction": "left",
++   "direction": "down",
+  }
+
+ ❯ tests/campaign/mechanics/gravity.test.ts:25:30
+     23|  const junction=gravityMerge('junction');junction.cells.push({r:0,c:1}…
+     24|  module()?.onMerge?.(c,junction);module()?.onMerge?.(c,junction);
+     25|  expect(c.state.fixtures[0]).toMatchObject({direction:'left'});expect(…
+       |                              ^
+     26| });
+     27|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  16:42:15
+   Duration  333ms (transform 177ms, setup 0ms, import 228ms, tests 7ms, environment 0ms)

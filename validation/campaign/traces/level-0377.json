@@ -1,0 +1,439 @@
+{
+  "level": {
+    "id": 377,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 8,
+    "seed": 7,
+    "geometry": {
+      "rows": 3,
+      "cols": 6,
+      "mask": [
+        [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "source-0-1",
+          "at": {
+            "r": 1,
+            "c": 0
+          },
+          "segmentId": "column-0-1"
+        },
+        {
+          "id": "source-1-1",
+          "at": {
+            "r": 1,
+            "c": 1
+          },
+          "segmentId": "column-1-1"
+        },
+        {
+          "id": "source-2-1",
+          "at": {
+            "r": 1,
+            "c": 2
+          },
+          "segmentId": "column-2-1"
+        },
+        {
+          "id": "source-5-0",
+          "at": {
+            "r": 0,
+            "c": 5
+          },
+          "segmentId": "column-5-0"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-4-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 4
+            },
+            {
+              "r": 1,
+              "c": 4
+            },
+            {
+              "r": 2,
+              "c": 4
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-5-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 5
+            },
+            {
+              "r": 1,
+              "c": 5
+            },
+            {
+              "r": 2,
+              "c": 5
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 4
+            },
+            {
+              "r": 0,
+              "c": 5
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 4
+            },
+            {
+              "r": 1,
+              "c": 5
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 4
+            },
+            {
+              "r": 2,
+              "c": 5
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": []
+    },
+    "pieces": [
+      {
+        "id": "tile-0-4",
+        "at": {
+          "r": 0,
+          "c": 4
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-0-5",
+        "at": {
+          "r": 0,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-1-4",
+        "at": {
+          "r": 1,
+          "c": 4
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-5",
+        "at": {
+          "r": 1,
+          "c": 5
+        },
+        "kind": "station",
+        "facing": "left"
+      },
+      {
+        "id": "tile-2-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "pod",
+        "passengerIds": []
+      },
+      {
+        "id": "tile-2-4",
+        "at": {
+          "r": 2,
+          "c": 4
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-5",
+        "at": {
+          "r": 2,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 1
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "status": "active",
+        "carrierId": null,
+        "rescueMoves": 20,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "portal-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "portal",
+        "receiver": {
+          "r": 0,
+          "c": 4
+        },
+        "segmentId": "column-4-0"
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "portals",
+        "fixtureIds": [
+          "portal-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "home",
+        "type": "homeCrew",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "crew-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-377",
+    "lessonId": "lesson-377",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "offset-chambers",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "route-a-riding-pod-across-the-bottom-shelf-before-release",
+        "portals"
+      ],
+      "assistedAllowance": 0,
+      "capOverride": null
+    }
+  },
+  "trace": {
+    "levelId": 377,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "670cb06948258586",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 1
+        },
+        "to": {
+          "r": 2,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 0
+        },
+        "to": {
+          "r": 2,
+          "c": 1
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 4
+        },
+        "to": {
+          "r": 2,
+          "c": 5
+        }
+      }
+    ],
+    "finalHash": "2e629c3b4e557a2f"
+  }
+}

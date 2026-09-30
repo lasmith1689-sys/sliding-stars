@@ -1,0 +1,12 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/keys.test.ts tests/campaign/combinations/bridges-keys.test.ts tests/campaign/mechanics/bridges.test.ts tests/campaign/schema.test.ts tests/campaign/validator.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+
+ Test Files  5 passed (5)
+      Tests  90 passed (90)
+   Start at  16:35:18
+   Duration  1.51s (transform 298ms, setup 0ms, import 659ms, tests 365ms, environment 0ms)

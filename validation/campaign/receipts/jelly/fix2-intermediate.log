@@ -1,0 +1,79 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts tests/campaign/schema.test.ts tests/session/storage.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/jelly.test.ts (19 tests | 2 failed) 311ms
+   × repairs a saved practice route hidden behind legal two-cell shuffling 4ms
+   × repairs the exact historical forty-one-turn saved practice state beyond ordinary action recovery 2ms
+ ❯ tests/campaign/schema.test.ts (48 tests | 1 failed) 57ms
+     × normalizes only the exact suppressed prior practice forecast 37ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/campaign/mechanics/jelly.test.ts tests/campaign ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/schema.test.ts > versioned campaign boundaries > normalizes only the exact suppressed prior
+practice forecast
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/campaign/schema.test.ts:88:44
+     86|     if(ordinary?.kind!=='jelly')throw Error('Missing ordinary jelly');
+     87|     ordinary.preview={r:1,c:1};
+     88|     expect(()=>parseCampaignState(normal)).toThrow(/preview must match…
+       |                                            ^
+     89|   });
+     90|   it('rejects snapshot version mismatch and dangling state references'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > repairs a saved practice route hidden behind legal two-cell shuffling
+AssertionError: expected '5eb0daa343cec38a' to be '9a875ddba9610b17' // Object.is equality
+
+Expected: "9a875ddba9610b17"
+Received: "5eb0daa343cec38a"
+
+ ❯ tests/campaign/mechanics/jelly.test.ts:220:27
+    218|  const saved=JSON.parse(readFileSync(new URL('../../../validation/camp…
+    219|  const state=parseCampaignState(saved.state);
+    220|  expect(hashState(state)).toBe('9a875ddba9610b17');
+       |                           ^
+    221|  expect(practiceRouteDisconnected(state)).toBe(true);
+    222|  expect(legalActions(state)).toHaveLength(2);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > repairs the exact historical forty-one-turn saved practice state
+beyond ordinary action recovery
+AssertionError: expected '1ae040a27f472763' to be '60457b136cc44c7c' // Object.is equality
+
+Expected: "60457b136cc44c7c"
+Received: "1ae040a27f472763"
+
+ ❯ tests/campaign/mechanics/jelly.test.ts:241:27
+    239|  const saved=JSON.parse(readFileSync(new URL('../../../validation/camp…
+    240|  const state=parseCampaignState(saved.state);
+    241|  expect(hashState(state)).toBe('60457b136cc44c7c');
+       |                           ^
+    242|  expect(practiceRouteDisconnected(state)).toBe(true);
+    243|  const next=transition(state,legalActions(state)[0]!);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  3 failed | 88 passed (91)
+   Start at  20:38:29
+   Duration  1.29s (transform 326ms, setup 0ms, import 581ms, tests 418ms, environment 0ms)

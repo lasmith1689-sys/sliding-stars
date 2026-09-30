@@ -1,0 +1,43 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/jelly.test.ts (18 tests | 1 failed) 320ms
+   × settles a line exposed only by practice peeling before saving the next boundary 5ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/campaign/mechanics/jelly.test.ts --maxWorkers=1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > settles a line exposed only by practice peeling before saving the next
+boundary
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/campaign/mechanics/jelly.test.ts:250:82
+    248|  expect(next.accepted).toBe(true);
+    249|  expect(next.events.some(e=>e.type==='jelly'&&e.phase==='practice-assi…
+    250|  expect(next.events.some(e=>e.type==='merge'&&e.cells.some(p=>p.r===1&…
+       |                                                                                  ^
+    251|  expect(terrainMatches(next.state)).toHaveLength(0);
+    252|  expect(parseCampaignState(JSON.parse(JSON.stringify(next.state)))).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 passed (18)
+   Start at  20:17:23
+   Duration  752ms (transform 241ms, setup 0ms, import 333ms, tests 320ms, environment 0ms)

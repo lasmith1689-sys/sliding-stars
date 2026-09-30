@@ -1,0 +1,59 @@
+{
+  "accepted": true,
+  "stageMapping": [
+    "growth0: sprout in planter",
+    "growth1: bud",
+    "growth2: bloom",
+    "growth3: crescent ready"
+  ],
+  "planterCanvas": "512 square, common planter width410-412, bottom463, pivot(.5,.9)",
+  "cropPresentation": "separate native ImageGen basket cargo, center pivot",
+  "review": "Source and delivery inspected; phone516 actual four stages and cargo, phone517 actual waiting and release, phone520 actual cargo departure; no copied reference-game assets",
+  "frames": [
+    {
+      "name": "seed",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentPixels": 38533,
+      "sha256": "2db53b27944a83bc1203b6b6565d31a96f05257d40a8f833d8ef3e6e9e1dc876",
+      "bytes": 14890
+    },
+    {
+      "name": "sprout",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentPixels": 35860,
+      "sha256": "1bf9c194483543257c7877c7f4cebc1cdfdd566d902923a138e153acdfa00325",
+      "bytes": 17244
+    },
+    {
+      "name": "bloom",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentPixels": 31443,
+      "sha256": "d63764b17772539f5b7f5ac20371478a240d908f9ba20bd80405337cad1b888a",
+      "bytes": 20172
+    },
+    {
+      "name": "ripe",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentPixels": 30726,
+      "sha256": "5079cd180b4b7fee6ce5d8556ff549cdeb18627caff6857ba794c495edf09dd7",
+      "bytes": 22802
+    },
+    {
+      "name": "harvest",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentPixels": 39056,
+      "sha256": "2ff4ef44ab5ef4ec097a605d0233f9962e0c76ca9c4d4e318b8a4ca3437c3a15",
+      "bytes": 14540
+    }
+  ]
+}

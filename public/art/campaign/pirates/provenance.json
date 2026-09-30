@@ -1,0 +1,81 @@
+{
+  "asset": "pirate-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:/Users/lasmi/.codex/generated_images/01a0d98f-38f7-7573-ab14-94124a85df50/exec-f4720b9c-0d1c-4568-8a1e-fa00fac8c36c.png",
+  "sha256": "9c003d32b78d4dfb3e8e576d5c74828f726ed8a41d339a1bc08ea83c81e4a166",
+  "width": 1254,
+  "height": 1254,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 118899,
+      "bounds": {
+        "minX": 88,
+        "minY": 44,
+        "maxX": 565,
+        "maxY": 545
+      },
+      "clearMargin": 44
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 627,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 124808,
+      "bounds": {
+        "minX": 62,
+        "minY": 48,
+        "maxX": 539,
+        "maxY": 557
+      },
+      "clearMargin": 48
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 126149,
+      "bounds": {
+        "minX": 73,
+        "minY": 26,
+        "maxX": 565,
+        "maxY": 534
+      },
+      "clearMargin": 26
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 627,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 132252,
+      "bounds": {
+        "minX": 55,
+        "minY": 26,
+        "maxX": 549,
+        "maxY": 569
+      },
+      "clearMargin": 26
+    }
+  ],
+  "visualReview": "Consistent friendly toy drone in four poses with held parcel and gentle return. No weapons or skulls. Prompt: ../pirate-sheet-prompt.txt.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

@@ -1,0 +1,114 @@
+{
+    "status":  "passed",
+    "cache":  "sliding-stars-next-bc34accb594b",
+    "offlineFiles":  133,
+    "campaignSprites":  47,
+    "keysBytes":  61700,
+    "verification":  "All four source/public/dist SHA256 match receipts and sw.js includes each delivery; raw sources/proofs excluded",
+    "keys":  [
+                 {
+                     "id":  "key-idle",
+                     "source":  "public/art/campaign/keys/source.png",
+                     "frame":  {
+                                   "left":  172,
+                                   "top":  42,
+                                   "width":  428,
+                                   "height":  431
+                               },
+                     "canvas":  {
+                                    "width":  512,
+                                    "height":  512,
+                                    "left":  42,
+                                    "top":  40
+                                },
+                     "pivot":  {
+                                   "x":  0.5,
+                                   "y":  0.5
+                               },
+                     "deliveryPath":  "optimized/campaign/keys/idle.webp",
+                     "size":  256,
+                     "sourceSha256":  "26760ccec159dc546994103889ba58a619f5874ecc66f265e7b580b9facaa6f3",
+                     "deliverySha256":  "6466bd846e93f9625a68a7531662db6da44d3753dada8fbaf58b2fbeef0b5b99",
+                     "bytes":  15292,
+                     "hasAlpha":  true
+                 },
+                 {
+                     "id":  "key-sparkle",
+                     "source":  "public/art/campaign/keys/source.png",
+                     "frame":  {
+                                   "left":  911,
+                                   "top":  551,
+                                   "width":  472,
+                                   "height":  427
+                               },
+                     "canvas":  {
+                                    "width":  512,
+                                    "height":  512,
+                                    "left":  20,
+                                    "top":  42
+                                },
+                     "pivot":  {
+                                   "x":  0.5,
+                                   "y":  0.5
+                               },
+                     "deliveryPath":  "optimized/campaign/keys/sparkle.webp",
+                     "size":  256,
+                     "sourceSha256":  "26760ccec159dc546994103889ba58a619f5874ecc66f265e7b580b9facaa6f3",
+                     "deliverySha256":  "43e5a53934894d6fd0fde326fe2106fa313bf50d47f06835d9147300d78c14fd",
+                     "bytes":  22930,
+                     "hasAlpha":  true
+                 },
+                 {
+                     "id":  "gate-closed",
+                     "source":  "public/art/campaign/keys/source.png",
+                     "frame":  {
+                                   "left":  796,
+                                   "top":  76,
+                                   "width":  710,
+                                   "height":  375
+                               },
+                     "canvas":  {
+                                    "width":  768,
+                                    "height":  768,
+                                    "left":  29,
+                                    "top":  225
+                                },
+                     "pivot":  {
+                                   "x":  0.5,
+                                   "y":  0.78125
+                               },
+                     "deliveryPath":  "optimized/campaign/keys/closed.webp",
+                     "size":  256,
+                     "sourceSha256":  "26760ccec159dc546994103889ba58a619f5874ecc66f265e7b580b9facaa6f3",
+                     "deliverySha256":  "ac6dfc93c39840c60302e0f3d18f8b63a951c40f13e728db833839d9ed59a587",
+                     "bytes":  12482,
+                     "hasAlpha":  true
+                 },
+                 {
+                     "id":  "gate-open",
+                     "source":  "public/art/campaign/keys/source.png",
+                     "frame":  {
+                                   "left":  28,
+                                   "top":  583,
+                                   "width":  733,
+                                   "height":  379
+                               },
+                     "canvas":  {
+                                    "width":  768,
+                                    "height":  768,
+                                    "left":  18,
+                                    "top":  221
+                                },
+                     "pivot":  {
+                                   "x":  0.5,
+                                   "y":  0.78125
+                               },
+                     "deliveryPath":  "optimized/campaign/keys/open.webp",
+                     "size":  256,
+                     "sourceSha256":  "26760ccec159dc546994103889ba58a619f5874ecc66f265e7b580b9facaa6f3",
+                     "deliverySha256":  "c2db5a38e1ee0dee1cfbb3ecd05a99f88e02b8dcc86c63514a02bf45a2454d35",
+                     "bytes":  10996,
+                     "hasAlpha":  true
+                 }
+             ]
+}

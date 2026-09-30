@@ -1,0 +1,4 @@
+Command: npm.cmd test -- tests/campaign/mechanics/keys.test.ts tests/campaign/mechanics/bridges.test.ts tests/campaign/combinations/bridges-keys.test.ts tests/campaign/lessons.test.ts tests/campaign/validator.test.ts tests/campaign/schema.test.ts tests/campaign/mechanics/waves.test.ts --maxWorkers=1
+Captured result: exit 0; 7 files passed; 227 tests passed.
+Start 16:23:27, September29 2026; Duration 7.73s.
+This compact receipt transcribes the tool output; it is not a second test run.

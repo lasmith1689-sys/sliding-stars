@@ -1,0 +1,36 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/gravity.test.ts tests/campaign/combinations/gravity-portals.test.ts tests/campaign/lessons.test.ts tests/campaign/validator.test.ts tests/render/campaign-gravity.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/lessons.test.ts (122 tests | 1 failed) 5349ms
+   × level 615 wins by its committed booster-free teaching actions and clears its lesson fixtures 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/lessons.test.ts > level 615 wins by its committed booster-free teaching actions and clears its lesson fixtures
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/campaign/lessons.test.ts:99:80
+     97|    if(event.type==='fixture'&&event.after===null)released.add(event.fi…
+     98|    const crewId=event.type==='move'?event.entityId:event.type==='crew'…
+     99|    if(crewId&&blockers.get(crewId))expect(released.has(blockers.get(cr…
+       |                                                                                ^
+    100|   }
+    101|   state=result.state;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 142 passed (143)
+   Start at  16:57:26
+   Duration  6.76s (transform 298ms, setup 0ms, import 726ms, tests 5.53s, environment 0ms)

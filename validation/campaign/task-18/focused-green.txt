@@ -1,0 +1,12 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/gravity.test.ts tests/campaign/combinations/gravity-portals.test.ts tests/campaign/lessons.test.ts tests/campaign/validator.test.ts tests/render/campaign-gravity.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+
+ Test Files  5 passed (5)
+      Tests  144 passed (144)
+   Start at  16:58:23
+   Duration  6.67s (transform 300ms, setup 0ms, import 732ms, tests 5.45s, environment 0ms)

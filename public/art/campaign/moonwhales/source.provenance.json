@@ -1,0 +1,81 @@
+{
+  "asset": "moonwhale-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:/Users/lasmi/.codex/generated_images/01a0d98f-38f7-7573-ab14-94124a85df50/exec-104b5144-6ed3-4b93-a6c5-5fa246a8193a.png",
+  "sha256": "e9fdd583c9d74130144c1a4b03d7c2d1cd3e0075a2b21388d4007bff5f78df77",
+  "width": 1254,
+  "height": 1254,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 154514,
+      "bounds": {
+        "minX": 47,
+        "minY": 167,
+        "maxX": 597,
+        "maxY": 588
+      },
+      "clearMargin": 29
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 627,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 159500,
+      "bounds": {
+        "minX": 11,
+        "minY": 167,
+        "maxX": 582,
+        "maxY": 588
+      },
+      "clearMargin": 11
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 162590,
+      "bounds": {
+        "minX": 71,
+        "minY": 52,
+        "maxX": 610,
+        "maxY": 492
+      },
+      "clearMargin": 16
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 627,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 163766,
+      "bounds": {
+        "minX": 21,
+        "minY": 57,
+        "maxX": 597,
+        "maxY": 492
+      },
+      "clearMargin": 21
+    }
+  ],
+  "visualReview": "Four consistent moon-whale poses with saddle clear for a separate rider. Normalize pivots and small-scale fit. Prompt: ../moonwhale-sheet-prompt.txt; edit input moonwhale-idle-v1.png.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

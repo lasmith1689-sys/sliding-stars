@@ -1,0 +1,18 @@
+{
+  "asset": "solar-sheet-v1",
+  "source": "source.png",
+  "sourceSha256": "e394ff8bd154254f1b2d72728f84490ef7aaa0b693e0b02aaaba60f947344575",
+  "prompt": "prompt.txt",
+  "provenance": "provenance.json",
+  "sourceFrames": "source-frames.json",
+  "frameManifest": "src/assets/campaign-manifest.ts",
+  "delivery": [
+    {"state":"idle","path":"optimized/campaign/solar/idle.webp","bytes":14486,"sha256":"71201e411c3a4a4340e2254ea5e7b341b2837c242251fa2c1c530ba22802d77f"},
+    {"state":"charging","path":"optimized/campaign/solar/charging.webp","bytes":16510,"sha256":"c0f913f125bcb3bc30d157c3fab894fe69fc25a5920accb26130c5ad2ecab89a"},
+    {"state":"ready","path":"optimized/campaign/solar/ready.webp","bytes":17614,"sha256":"b5a7becf511bdfdc856f619194736f9be27790ad8c071d7d98909af80f5b9ecb"},
+    {"state":"pulse","path":"optimized/campaign/solar/pulse.webp","bytes":23752,"sha256":"d6f606e990322bd6b77dfd2433c9debe6059441e34df53cb9a52289495bbe195"}
+  ],
+  "frameLayout": "Four 540x512 source crops on equal 640x640 transparent canvases, shared pivot (0.5, 0.8625); vertical offsets hold the solid base on one baseline.",
+  "visualReview": "Controller inspected all four optimized WebPs after alignment: solid base and doorway align, petals and pulse are intact, no visible clipping. In-game phone play shows idle, 1/2 charge and ready with crisp tier/quota/entrance overlays.",
+  "bundleReview": "Production build includes four optimized WebPs and offline cache entries; raw source, prompt and provenance are excluded from dist."
+}

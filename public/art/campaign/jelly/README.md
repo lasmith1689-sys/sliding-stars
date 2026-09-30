@@ -1,0 +1,1 @@
+Original host-native generated source: jelly-sheet-v1.png. The four manifest frames preserve the full visible art and align their bases at canvas y=560, including the ready frame's separate droplet. The preview target is a rule-driven board marker, independent of the illustration.

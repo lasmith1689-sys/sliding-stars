@@ -1,0 +1,40 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/jelly.test.ts (18 tests | 1 failed) 307ms
+   × repairs the exact historical forty-one-turn saved practice state beyond ordinary action recovery 11ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/campaign/mechanics/jelly.test.ts --maxWorkers=1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/mechanics/jelly.test.ts > repairs the exact historical forty-one-turn saved practice state
+beyond ordinary action recovery
+AssertionError: expected 'playing' to be 'won' // Object.is equality
+
+Expected: "won"
+Received: "playing"
+
+ ❯ tests/campaign/mechanics/jelly.test.ts:235:27
+    233|   {type:'swap' as const,from:{r:4,c:2},to:{r:4,c:3}},
+    234|  ]){const move=transition(recovered,action);expect(move.accepted).toBe…
+    235|  expect(recovered.status).toBe('won');
+       |                           ^
+    236|  expect(recovered.crew[0]?.status).toBe('housed');
+    237|  expect(hashState(recovered)).toBe('b2ab38f1b2410ccd');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 passed (18)
+   Start at  20:17:58
+   Duration  728ms (transform 237ms, setup 0ms, import 324ms, tests 307ms, environment 0ms)

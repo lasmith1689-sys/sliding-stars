@@ -1,0 +1,10 @@
+export * from './types';
+export * from './events';
+export { createRng, type Rng } from './rng';
+export { loadLevel } from './level';
+export { findMatches, type Match } from './match';
+export { trySwap, settle, POINTS, type MoveResult } from './game';
+export { solve, type SolveResult } from './solver';
+export { hasLegalMove, ensureLegalMoves, shuffleBoard, findHint } from './shuffle';
+export { usePowerUp, buyPowerUp, POWER_UP_COST, type PowerUpKind } from './powerups';
+export { makeSolvableLevel, generateLevel, paramsForLevel } from './generator';

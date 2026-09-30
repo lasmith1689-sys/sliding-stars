@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "scope": "candidate",
+  "expectedLevels": 5,
+  "verifiedLevels": 5,
+  "limits": {
+    "maxNodes": 30000,
+    "maxDepth": 9,
+    "maxMilliseconds": 25000
+  },
+  "issues": [],
+  "results": [
+    {
+      "levelId": 611,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 612,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 613,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 614,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 615,
+      "status": "verified",
+      "issues": []
+    }
+  ],
+  "freshProcess": {
+    "won": true,
+    "pid": 44508,
+    "issues": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "asset": "gravity-sheet-v1",
+  "width": 1536,
+  "height": 1024,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 210,
+      "y": 48,
+      "width": 355,
+      "height": 442,
+      "visiblePixels": 118562,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 952,
+      "y": 48,
+      "width": 354,
+      "height": 442,
+      "visiblePixels": 118870,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 202,
+      "y": 556,
+      "width": 398,
+      "height": 431,
+      "visiblePixels": 122602,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 939,
+      "y": 556,
+      "width": 397,
+      "height": 432,
+      "visiblePixels": 122734,
+      "touchesImageEdge": false
+    }
+  ]
+}

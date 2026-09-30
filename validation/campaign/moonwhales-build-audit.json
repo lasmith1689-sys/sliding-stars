@@ -1,0 +1,118 @@
+{
+  "status": "passed",
+  "cache": "sliding-stars-next-8119121196c2",
+  "offlineFiles": 98,
+  "productionCampaignChunk": "campaignBoot-yk31PsMA.js",
+  "productionGraph": {
+    "modules": 787,
+    "chunks": 17,
+    "developmentCampaignModules": 0
+  },
+  "whaleBytes": 50448,
+  "frames": [
+    {
+      "id": "whale-idle",
+      "source": "public/art/campaign/moonwhales/source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 800,
+        "height": 800,
+        "left": 70,
+        "top": 60
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/moonwhales/idle.webp",
+      "size": 256,
+      "sourceSha256": "e9fdd583c9d74130144c1a4b03d7c2d1cd3e0075a2b21388d4007bff5f78df77",
+      "deliverySha256": "3ccf8a4e16aa1ea5f0929aa5b6f7bff59b6512c078dada8b59024c34e445de0f",
+      "bytes": 11652,
+      "hasAlpha": true
+    },
+    {
+      "id": "whale-ready",
+      "source": "public/art/campaign/moonwhales/source.png",
+      "frame": {
+        "left": 627,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 800,
+        "height": 800,
+        "left": 70,
+        "top": 60
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/moonwhales/ready.webp",
+      "size": 256,
+      "sourceSha256": "e9fdd583c9d74130144c1a4b03d7c2d1cd3e0075a2b21388d4007bff5f78df77",
+      "deliverySha256": "2bbe9d45c2d370cc9de1ae598a5021bf3774a2d5d1b03d88f518de4654b371a3",
+      "bytes": 12984,
+      "hasAlpha": true
+    },
+    {
+      "id": "whale-waiting",
+      "source": "public/art/campaign/moonwhales/source.png",
+      "frame": {
+        "left": 0,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 800,
+        "height": 800,
+        "left": 50,
+        "top": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/moonwhales/waiting.webp",
+      "size": 256,
+      "sourceSha256": "e9fdd583c9d74130144c1a4b03d7c2d1cd3e0075a2b21388d4007bff5f78df77",
+      "deliverySha256": "7fbb97ea3795bebeee3d61567d51d8aa171d268ef0fc5cfb8f36ca7c44cd0713",
+      "bytes": 12342,
+      "hasAlpha": true
+    },
+    {
+      "id": "whale-complete",
+      "source": "public/art/campaign/moonwhales/source.png",
+      "frame": {
+        "left": 627,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 800,
+        "height": 800,
+        "left": 50,
+        "top": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/moonwhales/complete.webp",
+      "size": 256,
+      "sourceSha256": "e9fdd583c9d74130144c1a4b03d7c2d1cd3e0075a2b21388d4007bff5f78df77",
+      "deliverySha256": "e17aeb58790c113fc4d571cbd7d4d19cca773bd7bdf623e9f0b1fb432eab7535",
+      "bytes": 13470,
+      "hasAlpha": true
+    }
+  ]
+}

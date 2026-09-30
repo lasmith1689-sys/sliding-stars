@@ -1,0 +1,159 @@
+{
+  "status": "passed",
+  "scope": "lesson-fixtures",
+  "expectedLevels": 28,
+  "verifiedLevels": 28,
+  "limits": {
+    "maxNodes": 10000,
+    "maxDepth": 20,
+    "maxMilliseconds": 10000
+  },
+  "issues": [],
+  "results": [
+    {
+      "levelId": 1,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 2,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 3,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 4,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 5,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 6,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 7,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 8,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 16,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 17,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 18,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 19,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 20,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 31,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 32,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 33,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 34,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 35,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 56,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 57,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 58,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 59,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 60,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 81,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 82,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 83,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 84,
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "levelId": 85,
+      "status": "verified",
+      "issues": []
+    }
+  ],
+  "freshProcess": {
+    "won": true,
+    "pid": 7852,
+    "issues": []
+  }
+}

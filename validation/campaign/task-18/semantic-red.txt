@@ -1,0 +1,23 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/gravity.test.ts
+
+failed to load config from H:\Projects\iPhone Apps\sliding-stars\sliding-stars-next\vitest.config.ts
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: EPERM: operation not permitted, open 'H:\Projects\iPhone Apps\sliding-stars\sliding-stars-next\node_modules\.vite-temp\vitest.config.ts.timestamp-1790714521483-ae96ba2e6a6c9.mjs'
+    at async open (node:internal/fs/promises:1281:25)
+    at async Object.writeFile (node:internal/fs/promises:1899:14)
+    at async loadConfigFromBundledFile (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vite/dist/node/chunks/node.js:35731:3)
+    at async bundleAndLoadConfigFile (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vite/dist/node/chunks/node.js:35595:17)
+    at async loadConfigFromFile (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vite/dist/node/chunks/node.js:35554:42)
+    at async resolveConfig (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vite/dist/node/chunks/node.js:35170:22)
+    at async _createServer (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vite/dist/node/chunks/node.js:25332:65)
+    at async createViteServer (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js:8835:17)
+    at async createVitest (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js:14221:18)
+    at async prepareVitest (file:///H:/Projects/iPhone%20Apps/sliding-stars/node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js:14588:14) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'H:\\Projects\\iPhone Apps\\sliding-stars\\sliding-stars-next\\node_modules\\.vite-temp\\vitest.config.ts.timestamp-1790714521483-ae96ba2e6a6c9.mjs'
+}

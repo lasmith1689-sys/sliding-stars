@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "cache": "sliding-stars-next-d18df4b3706d",
+  "files": 130,
+  "manifestAssets": 43,
+  "gardenBytes": 89648,
+  "deliveries": [
+    {
+      "id": "garden-seed",
+      "path": "optimized/campaign/gardens/seed.webp",
+      "bytes": 14890,
+      "sha256": "2db53b27944a83bc1203b6b6565d31a96f05257d40a8f833d8ef3e6e9e1dc876",
+      "alpha": true,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "garden-sprout",
+      "path": "optimized/campaign/gardens/sprout.webp",
+      "bytes": 17244,
+      "sha256": "1bf9c194483543257c7877c7f4cebc1cdfdd566d902923a138e153acdfa00325",
+      "alpha": true,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "garden-bloom",
+      "path": "optimized/campaign/gardens/bloom.webp",
+      "bytes": 20172,
+      "sha256": "d63764b17772539f5b7f5ac20371478a240d908f9ba20bd80405337cad1b888a",
+      "alpha": true,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "garden-ripe",
+      "path": "optimized/campaign/gardens/ripe.webp",
+      "bytes": 22802,
+      "sha256": "5079cd180b4b7fee6ce5d8556ff549cdeb18627caff6857ba794c495edf09dd7",
+      "alpha": true,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "garden-harvest",
+      "path": "optimized/campaign/gardens/harvest.webp",
+      "bytes": 14540,
+      "sha256": "2ff4ef44ab5ef4ec097a605d0233f9962e0c76ca9c4d4e318b8a4ca3437c3a15",
+      "alpha": true,
+      "width": 256,
+      "height": 256
+    }
+  ],
+  "sourceAndProofArtifactsExcluded": true,
+  "hardwareAndInstalledOfflineClaim": false
+}

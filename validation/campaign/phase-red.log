@@ -1,0 +1,30 @@
+Original focused RED command: npm.cmd test -- --configLoader runner tests/campaign/mechanics/phase.test.ts
+Capture note: an initial PowerShell log write was denied by the sandbox. This is the exact subsequent tool output, preserved from the original meaningful RED run; it was not rerun to recreate the failure.
+
+> sliding-stars@0.1.0 test
+> vitest run --configLoader runner tests/campaign/mechanics/phase.test.ts
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/mechanics/phase.test.ts (2 tests | 2 failed) 4ms
+   × closes a sourced middle door over ordinary supporting terrain, then opens next turn 3ms
+   × keeps an occupied passage open with a serialized pending close until clearance 0ms
+
+ FAIL  tests/campaign/mechanics/phase.test.ts > closes a sourced middle door over ordinary supporting terrain, then opens next turn
+CampaignContentError: Invalid campaign content: mechanic phase is not implemented
+ ❯ src/campaign/mechanics/registry.ts:29:64
+ ❯ selectModules src/campaign/mechanics/registry.ts:28:70
+ ❯ loadCampaignLevel src/campaign/engine/load.ts:11:54
+ ❯ tests/campaign/mechanics/phase.test.ts:28:12
+
+ FAIL  tests/campaign/mechanics/phase.test.ts > keeps an occupied passage open with a serialized pending close until clearance
+CampaignContentError: Invalid campaign content: mechanic phase is not implemented
+ ❯ src/campaign/mechanics/registry.ts:29:64
+ ❯ selectModules src/campaign/mechanics/registry.ts:28:70
+ ❯ loadCampaignLevel src/campaign/engine/load.ts:11:54
+ ❯ tests/campaign/mechanics/phase.test.ts:43:12
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Duration  421ms (transform 231ms, setup 0ms, import 321ms, tests 4ms, environment 0ms)
+EXIT_CODE=1

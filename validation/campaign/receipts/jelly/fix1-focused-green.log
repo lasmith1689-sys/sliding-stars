@@ -1,0 +1,12 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts tests/campaign/combinations/jelly-reactors.test.ts tests/campaign/schema.test.ts tests/campaign/lessons.test.ts
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+
+ Test Files  4 passed (4)
+      Tests  195 passed (195)
+   Start at  19:51:52
+   Duration  5.30s (transform 763ms, setup 0ms, import 1.21s, tests 5.14s, environment 0ms)

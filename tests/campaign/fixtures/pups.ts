@@ -1,0 +1,2 @@
+import {baseLevel} from './base';
+export function pupLevel(){const l=baseLevel();l.id=231;l.chapter=5;l.crew=[];l.pieces=l.pieces.map(p=>({id:p.id,at:p.at,kind:'tile' as const,tier:((p.at.r+p.at.c)%2?5:4) as 4|5}));l.actors=[{id:'pup',kind:'pup',at:{r:2,c:0},nurseryId:'nursery'}];l.geometry.endpoints=[{id:'nursery',kind:'nursery',at:{r:0,c:2},active:true}];l.mechanics=[{id:'pups',actorIds:['pup']}];l.goals=[{id:'pups',type:'guideCreatures',eligible:{type:'ids',ids:['pup']}}];return l;}

@@ -1,0 +1,8 @@
+node_modules/
+.vite-cache/
+public/optimized/
+dist/
+.netlify/
+_deploy_*.bat
+.playwright-mcp/
+release/

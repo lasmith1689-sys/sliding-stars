@@ -1,0 +1,36 @@
+node scripts/campaign/solve.mts --lesson 613 --maxNodes 18000 --maxDepth 8 --maxMilliseconds 20000 --out validation/campaign/task-18/level-0613.json
+{
+  "status": "solved",
+  "trace": {
+    "levelId": 613,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "610df548ae22a0c4",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 0
+        },
+        "to": {
+          "r": 2,
+          "c": 1
+        }
+      }
+    ],
+    "finalHash": "cbd3f3c21db2b213"
+  },
+  "levelId": 613,
+  "limits": {
+    "maxNodes": 18000,
+    "maxDepth": 8,
+    "maxMilliseconds": 20000
+  },
+  "freshProcess": {
+    "won": true,
+    "pid": 13620,
+    "issues": []
+  },
+  "written": "H:\\Projects\\iPhone Apps\\sliding-stars\\sliding-stars-next\\validation\\campaign\\task-18\\level-0613.json"
+}

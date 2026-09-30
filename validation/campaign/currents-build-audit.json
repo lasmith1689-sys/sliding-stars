@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "cache": "sliding-stars-next-ec1b3180d44a",
+  "offlineFiles": 107,
+  "productionCampaignChunk": "campaignBoot-C-s0Z2OG.js",
+  "sharedCampaignChunk": "campaign-D12l1ty2.js",
+  "productionGraph": {
+    "modules": 789,
+    "chunks": 17,
+    "developmentCampaignModules": 0
+  },
+  "currentBytes": 16352,
+  "frames": [
+    {
+      "id": "current-idle",
+      "source": "public/art/campaign/currents/source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "deliveryPath": "optimized/campaign/currents/idle.webp",
+      "size": 128,
+      "sourceSha256": "f5868764a0b07f20f0360f44dced74aecd0fc261c65f29a3a5b35a68211839b4",
+      "deliverySha256": "460eb8a4957a308a5771e7944eb73f81f15c402ac35b5061d2aaa34c61656f4d",
+      "bytes": 3656,
+      "hasAlpha": true
+    },
+    {
+      "id": "current-moving",
+      "source": "public/art/campaign/currents/source.png",
+      "frame": {
+        "left": 627,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "deliveryPath": "optimized/campaign/currents/moving.webp",
+      "size": 128,
+      "sourceSha256": "f5868764a0b07f20f0360f44dced74aecd0fc261c65f29a3a5b35a68211839b4",
+      "deliverySha256": "d33c33ec2ed94ab446f5ed7240c876553bf8980f1ec6ce429f8333d3d25d6aa5",
+      "bytes": 4420,
+      "hasAlpha": true
+    },
+    {
+      "id": "current-waiting",
+      "source": "public/art/campaign/currents/source.png",
+      "frame": {
+        "left": 0,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "deliveryPath": "optimized/campaign/currents/waiting.webp",
+      "size": 128,
+      "sourceSha256": "f5868764a0b07f20f0360f44dced74aecd0fc261c65f29a3a5b35a68211839b4",
+      "deliverySha256": "22dd19393426fd87e975a7b13a89c2659b621d3b0f44a62b34182a611735cdc9",
+      "bytes": 4038,
+      "hasAlpha": true
+    },
+    {
+      "id": "current-complete",
+      "source": "public/art/campaign/currents/source.png",
+      "frame": {
+        "left": 627,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "deliveryPath": "optimized/campaign/currents/complete.webp",
+      "size": 128,
+      "sourceSha256": "f5868764a0b07f20f0360f44dced74aecd0fc261c65f29a3a5b35a68211839b4",
+      "deliverySha256": "24d86cc76e841fbe565fea3d71fc8b1965b738300f41c2f9b8e3893706205a57",
+      "bytes": 4238,
+      "hasAlpha": true
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "asset": "exits-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:\\Users\\lasmi\\.codex\\generated_images\\01a0d98f-38f7-7573-ab14-94124a85df50\\exec-4932c18c-cc4f-4bb3-9e4b-757cdee97dc2.png",
+  "sha256": "9accb6edf8d070c7a826e9d632c771809ac3974b8190e6b9731be794c3cd6468",
+  "width": 1536,
+  "height": 1024,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 125789,
+      "bounds": {
+        "minX": 231,
+        "minY": 73,
+        "maxX": 680,
+        "maxY": 458
+      },
+      "clearMargin": 53
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 125754,
+      "bounds": {
+        "minX": 119,
+        "minY": 74,
+        "maxX": 568,
+        "maxY": 511
+      },
+      "clearMargin": 0
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 124170,
+      "bounds": {
+        "minX": 231,
+        "minY": 60,
+        "maxX": 680,
+        "maxY": 438
+      },
+      "clearMargin": 60
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 135700,
+      "bounds": {
+        "minX": 119,
+        "minY": 0,
+        "maxX": 573,
+        "maxY": 443
+      },
+      "clearMargin": 0
+    }
+  ],
+  "visualReview": "Source candidate for evacuation exits. Needs baseline anchor, actual event mapping and game-scale review.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

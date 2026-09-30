@@ -1,0 +1,585 @@
+{
+  "level": {
+    "id": 615,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 13,
+    "seed": 7,
+    "geometry": {
+      "rows": 3,
+      "cols": 7,
+      "mask": [
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "source-0-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "segmentId": "column-0-0"
+        },
+        {
+          "id": "source-1-0",
+          "at": {
+            "r": 0,
+            "c": 1
+          },
+          "segmentId": "column-1-0"
+        },
+        {
+          "id": "source-2-0",
+          "at": {
+            "r": 0,
+            "c": 2
+          },
+          "segmentId": "column-2-0"
+        },
+        {
+          "id": "source-4-0",
+          "at": {
+            "r": 0,
+            "c": 4
+          },
+          "segmentId": "column-4-0"
+        },
+        {
+          "id": "source-5-0",
+          "at": {
+            "r": 0,
+            "c": 5
+          },
+          "segmentId": "column-5-0"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-4-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 4
+            },
+            {
+              "r": 1,
+              "c": 4
+            },
+            {
+              "r": 2,
+              "c": 4
+            }
+          ],
+          "direction": "down",
+          "chamberId": "switched"
+        },
+        {
+          "id": "column-5-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 5
+            },
+            {
+              "r": 1,
+              "c": 5
+            },
+            {
+              "r": 2,
+              "c": 5
+            }
+          ],
+          "direction": "down",
+          "chamberId": "switched"
+        },
+        {
+          "id": "column-6-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 6
+            },
+            {
+              "r": 1,
+              "c": 6
+            },
+            {
+              "r": 2,
+              "c": 6
+            }
+          ],
+          "direction": "down",
+          "chamberId": "switched"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        },
+        {
+          "id": "switched",
+          "cells": [
+            {
+              "r": 0,
+              "c": 4
+            },
+            {
+              "r": 0,
+              "c": 5
+            },
+            {
+              "r": 0,
+              "c": 6
+            },
+            {
+              "r": 1,
+              "c": 4
+            },
+            {
+              "r": 1,
+              "c": 5
+            },
+            {
+              "r": 1,
+              "c": 6
+            },
+            {
+              "r": 2,
+              "c": 4
+            },
+            {
+              "r": 2,
+              "c": 5
+            },
+            {
+              "r": 2,
+              "c": 6
+            }
+          ],
+          "directions": [
+            "down",
+            "left"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": []
+    },
+    "pieces": [
+      {
+        "id": "tile-0-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-1",
+        "at": {
+          "r": 0,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-0-2",
+        "at": {
+          "r": 0,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-0-4",
+        "at": {
+          "r": 0,
+          "c": 4
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-0-5",
+        "at": {
+          "r": 0,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-6",
+        "at": {
+          "r": 0,
+          "c": 6
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-4",
+        "at": {
+          "r": 1,
+          "c": 4
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-5",
+        "at": {
+          "r": 1,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-6",
+        "at": {
+          "r": 1,
+          "c": 6
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "pod",
+        "passengerIds": []
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-4",
+        "at": {
+          "r": 2,
+          "c": 4
+        },
+        "kind": "station",
+        "facing": "right"
+      },
+      {
+        "id": "tile-2-5",
+        "at": {
+          "r": 2,
+          "c": 5
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-6",
+        "at": {
+          "r": 2,
+          "c": 6
+        },
+        "kind": "tile",
+        "tier": 4
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "status": "active",
+        "carrierId": null,
+        "rescueMoves": 20,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "gravity-0",
+        "at": {
+          "r": 0,
+          "c": 5
+        },
+        "kind": "gravity-switch",
+        "chamberId": "switched",
+        "direction": "down"
+      },
+      {
+        "id": "portal-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "portal",
+        "receiver": {
+          "r": 0,
+          "c": 6
+        },
+        "segmentId": "column-6-0"
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "gravity",
+        "fixtureIds": [
+          "gravity-0"
+        ]
+      },
+      {
+        "id": "portals",
+        "fixtureIds": [
+          "portal-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "home",
+        "type": "homeCrew",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "crew-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-615",
+    "lessonId": "lesson-615",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "linked-lobes",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "turn-the-unsourced-portal-lane-to-bring-a-riding-pod-home",
+        "gravity",
+        "portals"
+      ],
+      "assistedAllowance": 0,
+      "capOverride": null
+    }
+  },
+  "trace": {
+    "levelId": 615,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "676e0b3c53c68694",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 5
+        },
+        "to": {
+          "r": 1,
+          "c": 5
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 5
+        },
+        "to": {
+          "r": 1,
+          "c": 5
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 4
+        },
+        "to": {
+          "r": 2,
+          "c": 4
+        }
+      }
+    ],
+    "finalHash": "650cd7b405065b71"
+  }
+}

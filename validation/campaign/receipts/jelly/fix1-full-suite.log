@@ -1,0 +1,12 @@
+
+> sliding-stars@0.1.0 test
+> vitest run --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+
+ Test Files  98 passed (98)
+      Tests  908 passed (908)
+   Start at  19:52:08
+   Duration  43.88s (transform 1.03s, setup 0ms, import 9.11s, tests 26.45s, environment 5ms)

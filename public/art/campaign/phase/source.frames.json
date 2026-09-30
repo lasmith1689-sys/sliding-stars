@@ -1,0 +1,44 @@
+{
+  "asset": "phase-sheet-v1",
+  "width": 1536,
+  "height": 1024,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 109,
+      "y": 67,
+      "width": 569,
+      "height": 368,
+      "visiblePixels": 108137,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 858,
+      "y": 67,
+      "width": 569,
+      "height": 368,
+      "visiblePixels": 175851,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 109,
+      "y": 535,
+      "width": 569,
+      "height": 365,
+      "visiblePixels": 112316,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 859,
+      "y": 535,
+      "width": 568,
+      "height": 365,
+      "visiblePixels": 123736,
+      "touchesImageEdge": false
+    }
+  ]
+}

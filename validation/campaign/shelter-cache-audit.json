@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "cache": "sliding-stars-next-1c94633fc277",
+  "files": 124,
+  "manifestAssets": 38,
+  "shelterBytes": 16898,
+  "deliveries": [
+    {
+      "id": "shelter-waiting",
+      "path": "optimized/campaign/shelter/waiting.webp",
+      "bytes": 3256,
+      "sha256": "8b1ea38aafaaaa80291bf28b19173365e1fea1241cc77691741a08f9a163839f",
+      "alpha": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "id": "shelter-happy",
+      "path": "optimized/campaign/shelter/happy.webp",
+      "bytes": 3256,
+      "sha256": "4809b2376036e43737e03296e0a4f3b50d6e011d599de7367427da80051072de",
+      "alpha": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "id": "shelter-calm",
+      "path": "optimized/campaign/shelter/calm.webp",
+      "bytes": 3380,
+      "sha256": "f7e93ef31edda17ebf78e6799f9bd238a33fdd7507362d0615b743c973b8bb06",
+      "alpha": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "id": "shelter-urgent",
+      "path": "optimized/campaign/shelter/urgent.webp",
+      "bytes": 3520,
+      "sha256": "840c182d4e420099c9296f6af34beaaf8bb94889974481d9da36f9c44c312b1d",
+      "alpha": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "id": "shelter-complete",
+      "path": "optimized/campaign/shelter/complete.webp",
+      "bytes": 3486,
+      "sha256": "cc8958ba28a4f0cece846de3e08f4f4abfe8fed0562fefc8b57cb0ba1b1471e5",
+      "alpha": true,
+      "width": 128,
+      "height": 128
+    }
+  ],
+  "cacheContentHashMatches": true,
+  "sourceArtAndTracesExcluded": true,
+  "legacyCacheUnchanged": true
+}

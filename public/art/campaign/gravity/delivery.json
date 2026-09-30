@@ -1,0 +1,16 @@
+{
+  "asset": "gravity console",
+  "source": "source.png",
+  "originalPrompt": "prompt.txt",
+  "originalProvenance": "provenance.json",
+  "sourceSha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+  "origin": "Controller-prepared native ImageGen output, preserved byte for byte; no reference-game art copied and no additional paid generation used.",
+  "delivery": "Sharp via scripts/prepare-art.mjs and src/assets/campaign-manifest.ts",
+  "states": ["down", "left", "pressed-down", "pressed-left"],
+  "layout": "Four 768x512 source quadrants padded onto equal 832x832 canvases, common pivot (0.5,727/832), 256px alpha WebP. Full frame padding preserves pulse extent without shrinking the solid console between states.",
+  "bytes": 36460,
+  "audit": "validation/campaign/task-18/art-bundle-audit.json contains per-frame delivery hashes, crops, pivots, bytes and zero-alpha border checks.",
+  "inspection": "Implementer inspected native source and optimized left frame, then actual phone play at 375/390 and 320 CSS widths. Controller independently inspected all four optimized WebPs and confirmed full silhouettes, arrows, aligned solid bases and unclipped pulse. Static inspection does not establish every animation frame.",
+  "runtime": "Console arrow always shows current direction; typed gravity event displays pressed-after frame, then final scene synchronizes current direction. Preview and hint explicitly describe next direction and opposite refill edge. Reduced motion retains meaningful state changes without console rocking.",
+  "limitations": "No physical-device, every-frame or installed-offline acceptance claimed. Original provenance remains the original source-only record; this delivery record supplements it."
+}

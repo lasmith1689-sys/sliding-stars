@@ -1,0 +1,375 @@
+{
+  "level": {
+    "id": 614,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 13,
+    "seed": 7,
+    "geometry": {
+      "rows": 3,
+      "cols": 4,
+      "mask": [
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "gravity-0-left-0-source",
+          "at": {
+            "r": 0,
+            "c": 3
+          },
+          "segmentId": "gravity-0-left-0"
+        },
+        {
+          "id": "gravity-0-left-1-source",
+          "at": {
+            "r": 1,
+            "c": 3
+          },
+          "segmentId": "gravity-0-left-1"
+        },
+        {
+          "id": "gravity-0-left-2-source",
+          "at": {
+            "r": 2,
+            "c": 3
+          },
+          "segmentId": "gravity-0-left-2"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "gravity-0-left-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 3
+            },
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 0,
+              "c": 1
+            }
+          ],
+          "direction": "left",
+          "chamberId": "switched"
+        },
+        {
+          "id": "gravity-0-left-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 0
+            }
+          ],
+          "direction": "left",
+          "chamberId": "switched"
+        },
+        {
+          "id": "gravity-0-left-2",
+          "cells": [
+            {
+              "r": 2,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 1
+            }
+          ],
+          "direction": "left",
+          "chamberId": "switched"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "switched",
+          "cells": [
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 0,
+              "c": 3
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 3
+            }
+          ],
+          "directions": [
+            "down",
+            "left"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": []
+    },
+    "pieces": [
+      {
+        "id": "tile-0-1",
+        "at": {
+          "r": 0,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 4
+      },
+      {
+        "id": "tile-0-2",
+        "at": {
+          "r": 0,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-3",
+        "at": {
+          "r": 0,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-3",
+        "at": {
+          "r": 1,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-3",
+        "at": {
+          "r": 2,
+          "c": 3
+        },
+        "kind": "station",
+        "facing": "left"
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 0,
+          "c": 1
+        },
+        "status": "active",
+        "carrierId": null,
+        "rescueMoves": 20,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "gravity-0",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "gravity-switch",
+        "chamberId": "switched",
+        "direction": "left"
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "gravity",
+        "fixtureIds": [
+          "gravity-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "home",
+        "type": "homeCrew",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "crew-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-614",
+    "lessonId": "lesson-614",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "stepped-terraces",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "start-left-and-turn-down-around-the-missing-corners",
+        "gravity"
+      ],
+      "assistedAllowance": 0,
+      "capOverride": null
+    }
+  },
+  "trace": {
+    "levelId": 614,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "f365899968ea3ea6",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 2
+        },
+        "to": {
+          "r": 1,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 2
+        },
+        "to": {
+          "r": 2,
+          "c": 3
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 2
+        },
+        "to": {
+          "r": 2,
+          "c": 2
+        }
+      }
+    ],
+    "finalHash": "b9fa01837b1d9d3e"
+  }
+}

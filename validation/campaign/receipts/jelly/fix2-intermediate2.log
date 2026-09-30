@@ -1,0 +1,44 @@
+
+> sliding-stars@0.1.0 test
+> vitest run tests/campaign/mechanics/jelly.test.ts tests/campaign/schema.test.ts tests/session/storage.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.9 H:/Projects/iPhone Apps/sliding-stars/sliding-stars-next
+
+ ❯ tests/campaign/schema.test.ts (48 tests | 1 failed) 69ms
+     × normalizes only the exact suppressed prior practice forecast 51ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- tests/campaign/mechanics/jelly.test.ts tests/campaign ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/campaign/schema.test.ts > versioned campaign boundaries > normalizes only the exact suppressed prior
+practice forecast
+AssertionError: expected [Function] to throw error matching /preview must match/ but got 'jelly.preview: cell outside
+permitted…'
+
+- Expected:
+/preview must match/
+
++ Received:
+"jelly.preview: cell outside permitted footprint"
+
+ ❯ tests/campaign/schema.test.ts:88:44
+     86|     if(ordinary?.kind!=='jelly')throw Error('Missing ordinary jelly');
+     87|     ordinary.preview=ordinary.preview?.r===0&&ordinary.preview.c===0?{…
+     88|     expect(()=>parseCampaignState(normal)).toThrow(/preview must match…
+       |                                            ^
+     89|   });
+     90|   it('rejects snapshot version mismatch and dangling state references'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 90 passed (91)
+   Start at  20:39:02
+   Duration  1.43s (transform 377ms, setup 0ms, import 654ms, tests 475ms, environment 0ms)

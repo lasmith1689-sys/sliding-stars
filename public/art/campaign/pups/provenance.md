@@ -1,0 +1,9 @@
+# Original moon-pup campaign art
+
+Pup source: controller-generated original built-in ImageGen sheet, supplied for Task 10 as `asset-concepts/moonpup-sheet-v1.png`. Exact original prompt copied to `prompt.txt`. Native 1254×1254 RGBA source retained unchanged. Four 627×627 cells are idle, walking, waiting, happy arrival. Full cells retained on identical padded 720×720 canvases with the same pivot so the body and paws stay aligned. No reference-game imagery used.
+
+Nursery source: original built-in ImageGen generation in this task, September 26, 2026. Native 1254×1254 RGBA retained unchanged as `nursery-source.png`; exact prompt in `nursery-prompt.txt`. Host output: `01a0df22-cb81-7cb1-ac4e-4175821aafea/exec-6b2c47f4-5c37-4143-9279-b0ac5ee09819.png`. Full source retained on padded 1400×1400 canvas.
+
+Local game-dev CLI was not available (`Get-Command game-dev -ErrorAction SilentlyContinue`). Use the approved shared Sharp delivery pipeline, `node scripts/prepare-art.mjs`. All five delivery images are 256×256 WebP with true alpha and clear frame margins. The shared `public/optimized/campaign/manifest.json` records original/delivery SHA-256, dimensions, frame, canvas, pivot and compressed size. Generated original project art; no third-party stock or copied artwork, provider purchase, license acceptance or second asset pipeline.
+
+Inspected native sheet and nursery before use; inspected actual delivery silhouettes separately. Idle and waiting remain visible while a path is available/blocked; walking pose and restrained paw bob are used during ordered movement; happy pose appears during arrival and persists beside the nursery afterward. Reduced motion disables idle sway, paw bob and arrival scale pulse. Static delivery review does not imply physical iPhone performance or frame-time measurement.

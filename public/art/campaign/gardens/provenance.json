@@ -1,0 +1,81 @@
+{
+  "asset": "gardens-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:\\Users\\lasmi\\.codex\\generated_images\\01a0d98f-38f7-7573-ab14-94124a85df50\\exec-e01ca8cf-5634-4495-a9d1-fe44cbf86701.png",
+  "sha256": "bdc376af47ede3ac1560b8309bb4e98b35ecb20da12012cd985f73f51e367436",
+  "width": 1536,
+  "height": 1024,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 100877,
+      "bounds": {
+        "minX": 284,
+        "minY": 141,
+        "maxX": 693,
+        "maxY": 473
+      },
+      "clearMargin": 38
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 110291,
+      "bounds": {
+        "minX": 80,
+        "minY": 64,
+        "maxX": 491,
+        "maxY": 473
+      },
+      "clearMargin": 38
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 126914,
+      "bounds": {
+        "minX": 284,
+        "minY": 22,
+        "maxX": 693,
+        "maxY": 465
+      },
+      "clearMargin": 22
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 125428,
+      "bounds": {
+        "minX": 80,
+        "minY": 18,
+        "maxX": 491,
+        "maxY": 471
+      },
+      "clearMargin": 18
+    }
+  ],
+  "visualReview": "Source candidate for garden growth. Actual rule-stage mapping, harvest cargo and constant planter scale pending.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

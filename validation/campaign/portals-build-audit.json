@@ -1,0 +1,297 @@
+{
+  "assets": [
+    {
+      "id": "portal-idle",
+      "source": "public/art/campaign/portals/source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 768,
+        "height": 768,
+        "left": 0,
+        "top": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.62
+      },
+      "deliveryPath": "optimized/campaign/portals/idle.webp",
+      "size": 256,
+      "sourceSha256": "72eb1968bc7f003b7fbee83c590946eb9d4631da82c47f00e333efbc2c638f95",
+      "deliverySha256": "25e15238fccf40e09015e2f7e87c910ec9815385255c4b1c9c4b81321154c7b1",
+      "bytes": 10212,
+      "hasAlpha": true,
+      "distSha256": "25e15238fccf40e09015e2f7e87c910ec9815385255c4b1c9c4b81321154c7b1",
+      "cached": true,
+      "transparentPixels": 49255
+    },
+    {
+      "id": "portal-ready",
+      "source": "public/art/campaign/portals/source.png",
+      "frame": {
+        "left": 768,
+        "top": 0,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 768,
+        "height": 768,
+        "left": 0,
+        "top": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.62
+      },
+      "deliveryPath": "optimized/campaign/portals/ready.webp",
+      "size": 256,
+      "sourceSha256": "72eb1968bc7f003b7fbee83c590946eb9d4631da82c47f00e333efbc2c638f95",
+      "deliverySha256": "145cf6f1ee60b5ad9132772e79581aab9e5d27968ac7c55515f278e05b83ff71",
+      "bytes": 10402,
+      "hasAlpha": true,
+      "distSha256": "145cf6f1ee60b5ad9132772e79581aab9e5d27968ac7c55515f278e05b83ff71",
+      "cached": true,
+      "transparentPixels": 49299
+    },
+    {
+      "id": "portal-waiting",
+      "source": "public/art/campaign/portals/source.png",
+      "frame": {
+        "left": 0,
+        "top": 512,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 768,
+        "height": 768,
+        "left": 0,
+        "top": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.62
+      },
+      "deliveryPath": "optimized/campaign/portals/waiting.webp",
+      "size": 256,
+      "sourceSha256": "72eb1968bc7f003b7fbee83c590946eb9d4631da82c47f00e333efbc2c638f95",
+      "deliverySha256": "aeff7bf82961c952c16975d80fa7502814d4fb35b16d53b537dc2f8d16f277a7",
+      "bytes": 10458,
+      "hasAlpha": true,
+      "distSha256": "aeff7bf82961c952c16975d80fa7502814d4fb35b16d53b537dc2f8d16f277a7",
+      "cached": true,
+      "transparentPixels": 49240
+    },
+    {
+      "id": "portal-arrival",
+      "source": "public/art/campaign/portals/source.png",
+      "frame": {
+        "left": 768,
+        "top": 512,
+        "width": 768,
+        "height": 512
+      },
+      "canvas": {
+        "width": 768,
+        "height": 768,
+        "left": 0,
+        "top": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.62
+      },
+      "deliveryPath": "optimized/campaign/portals/arrival.webp",
+      "size": 256,
+      "sourceSha256": "72eb1968bc7f003b7fbee83c590946eb9d4631da82c47f00e333efbc2c638f95",
+      "deliverySha256": "05263841bd12bdecfad6841d242d975a04e796092dea680de96bd71d2387fb50",
+      "bytes": 13942,
+      "hasAlpha": true,
+      "distSha256": "05263841bd12bdecfad6841d242d975a04e796092dea680de96bd71d2387fb50",
+      "cached": true,
+      "transparentPixels": 46201
+    }
+  ],
+  "cache": "sliding-stars-next-42ebae2334cd",
+  "files": 115,
+  "sourceAndProofsExcluded": true,
+  "proofs": [
+    {
+      "levelId": 376,
+      "sha256": "42584715dc603a31644e05ccc4770ae7849ee08910500edc7615d2a26e94ec5d",
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "42a38f0e3d71c729",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 3
+          },
+          "to": {
+            "r": 2,
+            "c": 4
+          }
+        }
+      ],
+      "finalHash": "b6083efd62f38792"
+    },
+    {
+      "levelId": 377,
+      "sha256": "90eeb127299470d91025b1da9ecbae1330fcabfc4761e49ad2c4279ba5f206e7",
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "670cb06948258586",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 2
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 4
+          },
+          "to": {
+            "r": 2,
+            "c": 5
+          }
+        }
+      ],
+      "finalHash": "2e629c3b4e557a2f"
+    },
+    {
+      "levelId": 378,
+      "sha256": "cbada7794f0d1e4bd52002a53139ef2aad9a787004cf435882067a4dcb559992",
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "68fae27045e650a7",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 0
+          },
+          "to": {
+            "r": 4,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 3
+          },
+          "to": {
+            "r": 0,
+            "c": 4
+          }
+        }
+      ],
+      "finalHash": "11c735f7cfb8342c"
+    },
+    {
+      "levelId": 379,
+      "sha256": "e13a67d8380ad44b34ee05356faf94ae995db172ad91685124e5e98da5f08d60",
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "bbdc8d242bb3d4f3",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 4
+          },
+          "to": {
+            "r": 2,
+            "c": 4
+          }
+        }
+      ],
+      "finalHash": "e417a3fad6cc6c09"
+    },
+    {
+      "levelId": 380,
+      "sha256": "14bbc270872ae64f33c79b54d3e5c8728d683296a285507cca517d23a049c077",
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "3e2c1608d7053029",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 2
+          },
+          "to": {
+            "r": 1,
+            "c": 2
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 5
+          },
+          "to": {
+            "r": 1,
+            "c": 5
+          }
+        }
+      ],
+      "finalHash": "f9952f416bece56b"
+    }
+  ],
+  "contactSheet": "portals-game-scale.png"
+}

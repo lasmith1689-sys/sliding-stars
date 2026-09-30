@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "scope": "candidate",
+  "expectedLevels": 1,
+  "verifiedLevels": 1,
+  "limits": {
+    "maxNodes": 10000,
+    "maxDepth": 20,
+    "maxMilliseconds": 10000
+  },
+  "issues": [],
+  "results": [
+    {
+      "levelId": 663,
+      "status": "verified",
+      "issues": []
+    }
+  ],
+  "freshProcess": {
+    "won": true,
+    "pid": 1352,
+    "issues": []
+  }
+}

@@ -1,0 +1,498 @@
+{
+  "level": {
+    "id": 663,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 14,
+    "seed": 7,
+    "geometry": {
+      "rows": 4,
+      "cols": 3,
+      "mask": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "source-0-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "segmentId": "column-0-0"
+        },
+        {
+          "id": "source-1-0",
+          "at": {
+            "r": 0,
+            "c": 1
+          },
+          "segmentId": "column-1-0"
+        },
+        {
+          "id": "source-2-0",
+          "at": {
+            "r": 0,
+            "c": 2
+          },
+          "segmentId": "column-2-0"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 0,
+              "c": 1
+            },
+            {
+              "r": 0,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 2
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": [
+        {
+          "id": "solar-home",
+          "kind": "station",
+          "at": {
+            "r": 2,
+            "c": 1
+          },
+          "active": false
+        }
+      ]
+    },
+    "pieces": [
+      {
+        "id": "tile-0-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-0-1",
+        "at": {
+          "r": 0,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-0-2",
+        "at": {
+          "r": 0,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 4
+      },
+      {
+        "id": "tile-3-0",
+        "at": {
+          "r": 3,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-3-1",
+        "at": {
+          "r": 3,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-3-2",
+        "at": {
+          "r": 3,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "status": "active",
+        "carrierId": null,
+        "rescueMoves": 20,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "solar-0",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "solar",
+        "tier": 1,
+        "quota": 2,
+        "charge": 0,
+        "endpointId": "solar-home"
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "solar",
+        "fixtureIds": [
+          "solar-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "home",
+        "type": "homeCrew",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "crew-0"
+          ]
+        }
+      },
+      {
+        "id": "restore",
+        "type": "restoreInfrastructure",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "solar-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-663",
+    "lessonId": "lesson-663",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "tall-corridor",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "two-distinct-nearby-merges-are-needed-for-two-lights",
+        "solar"
+      ],
+      "assistedAllowance": 0,
+      "capOverride": null
+    }
+  },
+  "trace": {
+    "levelId": 663,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "a1063a5611a87fce",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 1
+        },
+        "to": {
+          "r": 1,
+          "c": 1
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 1
+        },
+        "to": {
+          "r": 1,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 1
+        },
+        "to": {
+          "r": 1,
+          "c": 1
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 0
+        },
+        "to": {
+          "r": 3,
+          "c": 0
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 2
+        },
+        "to": {
+          "r": 3,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 3,
+          "c": 0
+        },
+        "to": {
+          "r": 3,
+          "c": 1
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 0,
+          "c": 2
+        },
+        "to": {
+          "r": 1,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 1
+        },
+        "to": {
+          "r": 1,
+          "c": 2
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 2,
+          "c": 1
+        },
+        "to": {
+          "r": 3,
+          "c": 1
+        }
+      }
+    ],
+    "finalHash": "2ec3b57469b24976"
+  }
+}

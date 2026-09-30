@@ -1,0 +1,44 @@
+{
+  "asset": "exits-sheet-v1",
+  "width": 1536,
+  "height": 1024,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 231,
+      "y": 73,
+      "width": 450,
+      "height": 386,
+      "visiblePixels": 125787,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 887,
+      "y": 74,
+      "width": 450,
+      "height": 386,
+      "visiblePixels": 125482,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 231,
+      "y": 572,
+      "width": 450,
+      "height": 379,
+      "visiblePixels": 124170,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 887,
+      "y": 506,
+      "width": 455,
+      "height": 450,
+      "visiblePixels": 135971,
+      "touchesImageEdge": false
+    }
+  ]
+}

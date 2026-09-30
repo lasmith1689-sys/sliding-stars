@@ -1,0 +1,81 @@
+{
+  "asset": "gravity-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:\\Users\\lasmi\\.codex\\generated_images\\01a0d98f-38f7-7573-ab14-94124a85df50\\exec-78d65251-bb8d-494d-902b-73e530110e0b.png",
+  "sha256": "7389d78bfdc846920c0e67069abe1115acd10f53b8c97a9e93b66c816971e1fe",
+  "width": 1536,
+  "height": 1024,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 118564,
+      "bounds": {
+        "minX": 210,
+        "minY": 48,
+        "maxX": 564,
+        "maxY": 489
+      },
+      "clearMargin": 22
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 118872,
+      "bounds": {
+        "minX": 184,
+        "minY": 48,
+        "maxX": 537,
+        "maxY": 489
+      },
+      "clearMargin": 22
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 122605,
+      "bounds": {
+        "minX": 202,
+        "minY": 44,
+        "maxX": 599,
+        "maxY": 474
+      },
+      "clearMargin": 37
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 122743,
+      "bounds": {
+        "minX": 171,
+        "minY": 44,
+        "maxX": 567,
+        "maxY": 475
+      },
+      "clearMargin": 36
+    }
+  ],
+  "visualReview": "Source candidate; four frames intended down,left,pressed-down,pressed-left. Arrow direction requires pixel review and crisp code overlay if ambiguous.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

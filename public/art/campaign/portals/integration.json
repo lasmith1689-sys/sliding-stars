@@ -1,0 +1,17 @@
+{
+  "source": "portal-sheet-v3",
+  "provider": "host-native image_gen",
+  "license": "Original generated artwork; no reference-game assets copied",
+  "rejected": [
+    "portal-sheet-v1: RGB baked checkerboard",
+    "portal-sheet-v2: RGB baked checkerboard"
+  ],
+  "normalization": "Full 768x512 alpha frame padded to 768x768, top128; shared pivot (0.5,0.62); Sharp 256px WebP with full aspect and silhouette retained",
+  "manifest": "public/optimized/campaign/manifest.json",
+  "states": [
+    "idle",
+    "ready",
+    "waiting",
+    "arrival"
+  ]
+}

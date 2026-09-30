@@ -1,0 +1,81 @@
+{
+  "asset": "solar-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:\\Users\\lasmi\\.codex\\generated_images\\01a0d98f-38f7-7573-ab14-94124a85df50\\exec-91f8cec3-aeb8-4832-b5fa-be996a7b58e3.png",
+  "sha256": "e394ff8bd154254f1b2d72728f84490ef7aaa0b693e0b02aaaba60f947344575",
+  "width": 1536,
+  "height": 1024,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 122495,
+      "bounds": {
+        "minX": 174,
+        "minY": 59,
+        "maxX": 627,
+        "maxY": 492
+      },
+      "clearMargin": 19
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 134094,
+      "bounds": {
+        "minX": 119,
+        "minY": 35,
+        "maxX": 571,
+        "maxY": 492
+      },
+      "clearMargin": 19
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 146030,
+      "bounds": {
+        "minX": 158,
+        "minY": 8,
+        "maxX": 626,
+        "maxY": 481
+      },
+      "clearMargin": 8
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 154528,
+      "bounds": {
+        "minX": 99,
+        "minY": 8,
+        "maxX": 613,
+        "maxY": 481
+      },
+      "clearMargin": 8
+    }
+  ],
+  "visualReview": "Source candidate; required tier and numeric charge must remain crisp UI overlays. Constant body scale and actual endpoint mapping pending.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

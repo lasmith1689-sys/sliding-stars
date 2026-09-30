@@ -1,0 +1,81 @@
+{
+  "asset": "bridges-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:\\Users\\lasmi\\.codex\\generated_images\\01a0d98f-38f7-7573-ab14-94124a85df50\\exec-f8b84070-3806-4a50-a496-972f323aba7d.png",
+  "sha256": "8c42840abba61a60e8d2f150cc26dc6585239c576aad7459b92513de5fd4db9f",
+  "width": 1536,
+  "height": 1024,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 87223,
+      "bounds": {
+        "minX": 152,
+        "minY": 130,
+        "maxX": 542,
+        "maxY": 435
+      },
+      "clearMargin": 76
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 105478,
+      "bounds": {
+        "minX": 101,
+        "minY": 130,
+        "maxX": 666,
+        "maxY": 441
+      },
+      "clearMargin": 70
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 107939,
+      "bounds": {
+        "minX": 55,
+        "minY": 104,
+        "maxX": 716,
+        "maxY": 421
+      },
+      "clearMargin": 51
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 768,
+        "y": 512,
+        "width": 768,
+        "height": 512
+      },
+      "visiblePixels": 112791,
+      "bounds": {
+        "minX": 46,
+        "minY": 104,
+        "maxX": 711,
+        "maxY": 424
+      },
+      "clearMargin": 46
+    }
+  ],
+  "visualReview": "Source candidate; actual geometry dictates per-cell span presentation. Fixed hinge pivot and production-scale validation pending.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

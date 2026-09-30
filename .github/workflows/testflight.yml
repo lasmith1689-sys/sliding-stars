@@ -1,0 +1,43 @@
+name: TestFlight
+on:
+  push:
+    branches: [main, "codex/**"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: testflight-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  testflight:
+    name: iOS archive and TestFlight upload
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[ship]')
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - name: Build and bundle the game
+        run: npm run ios:sync
+      - run: npm test -- --configLoader runner
+      - name: Archive, cloud-sign and upload
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          BUILD_NUMBER: ${{ github.run_number }}.${{ github.run_attempt }}
+        run: bash .github/scripts/testflight.sh
+      - name: Keep the archive build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-archive-log
+          path: ${{ runner.temp }}/sliding-stars-testflight-*/archive.log
+          if-no-files-found: ignore
+          retention-days: 7

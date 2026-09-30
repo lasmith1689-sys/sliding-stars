@@ -1,0 +1,26 @@
+id,name,firstLevel,chapter,existing,evidence,prerequisites
+crates,Supply crates,4,1,true,A,
+ice,Ice crystals,16,1,true,O,crates
+rovers,Rescue rovers,31,1,true,O,
+reactors,Reactors,56,2,true,A,crates
+comets,Frozen comets,81,2,true,O,ice
+exits,Evacuation exits,111,3,false,A,
+waves,Incoming rescue waves,146,3,false,A,exits
+moonwhales,Moon-whale transfers,186,4,false,A,rovers
+pups,Moon-pup herding,231,5,false,A,rovers
+currents,Orbital currents,276,6,false,A,moonwhales
+pirates,Pirate-drone interception,326,7,false,A,rovers|reactors
+portals,Paired portals,376,8,false,O,exits|currents
+bridges,Fold-out bridges,426,9,false,O,ice|rovers
+shelter,Shelter requests,471,10,false,A,waves
+gardens,Moon gardens,516,11,false,O,crates|exits
+keys,Star keys and gates,561,12,false,O,exits|bridges
+gravity,Gravity switches,611,13,false,O,portals
+solar,Solar collectors,661,14,false,O,reactors
+jelly,Friendly space jelly,711,15,false,O,ice|reactors
+docks,Visiting shuttle docks,756,16,false,O,rovers|currents
+phase,Phase doors,801,17,false,O,keys
+relays,Signal relays,841,17,false,O,solar
+tethers,Tethered rescue pairs,881,18,false,O,comets|moonwhales
+repair,Repair bots,921,19,false,O,keys|rovers
+rendezvous,Shuttle rendezvous,961,20,false,O,docks|phase|moonwhales

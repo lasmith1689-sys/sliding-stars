@@ -1,0 +1,2524 @@
+{
+  "level": {
+    "id": 711,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "chapter": 15,
+    "seed": 9,
+    "geometry": {
+      "rows": 5,
+      "cols": 4,
+      "mask": [
+        [
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "source-0-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "segmentId": "column-0-0"
+        },
+        {
+          "id": "source-1-1",
+          "at": {
+            "r": 1,
+            "c": 1
+          },
+          "segmentId": "column-1-1"
+        },
+        {
+          "id": "source-2-1",
+          "at": {
+            "r": 1,
+            "c": 2
+          },
+          "segmentId": "column-2-1"
+        },
+        {
+          "id": "source-3-1",
+          "at": {
+            "r": 1,
+            "c": 3
+          },
+          "segmentId": "column-3-1"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 0
+            },
+            {
+              "r": 4,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 1
+            },
+            {
+              "r": 4,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 2
+            },
+            {
+              "r": 4,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-3-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 3
+            },
+            {
+              "r": 3,
+              "c": 3
+            },
+            {
+              "r": 4,
+              "c": 3
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 3
+            },
+            {
+              "r": 3,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 3
+            },
+            {
+              "r": 4,
+              "c": 0
+            },
+            {
+              "r": 4,
+              "c": 1
+            },
+            {
+              "r": 4,
+              "c": 2
+            },
+            {
+              "r": 4,
+              "c": 3
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": []
+    },
+    "pieces": [
+      {
+        "id": "tile-0-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-0",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-1-1",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-2",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-1-3",
+        "at": {
+          "r": 1,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-0",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-2-1",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-2-2",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-2-3",
+        "at": {
+          "r": 2,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-3-0",
+        "at": {
+          "r": 3,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-3-1",
+        "at": {
+          "r": 3,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-3-2",
+        "at": {
+          "r": 3,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-3-3",
+        "at": {
+          "r": 3,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-4-0",
+        "at": {
+          "r": 4,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "tile-4-1",
+        "at": {
+          "r": 4,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "tile-4-2",
+        "at": {
+          "r": 4,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-4-3",
+        "at": {
+          "r": 4,
+          "c": 3
+        },
+        "kind": "station",
+        "facing": "left"
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "status": "active",
+        "carrierId": null,
+        "rescueMoves": 20,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "jelly-0",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "jelly",
+        "coatedCells": [],
+        "preview": null
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "jelly",
+        "fixtureIds": [
+          "jelly-0"
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "home",
+        "type": "homeCrew",
+        "eligible": {
+          "type": "ids",
+          "ids": [
+            "crew-0"
+          ]
+        }
+      }
+    ],
+    "moveLimit": null,
+    "needMoves": 20,
+    "presentationId": "lesson-711",
+    "lessonId": "lesson-711",
+    "rewardId": "campaign-level",
+    "metadata": {
+      "shapeFamily": "diamond",
+      "difficulty": "teaching",
+      "purposeTags": [
+        "watch-a-spread-then-clear-it-before-the-rescue",
+        "jelly"
+      ],
+      "assistedAllowance": 0,
+      "failurePolicy": "no-failure",
+      "capOverride": null
+    }
+  },
+  "prefixActions": [
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 2,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 2
+      },
+      "to": {
+        "r": 2,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 1
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 3,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 3,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 1
+      },
+      "to": {
+        "r": 2,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 1
+      },
+      "to": {
+        "r": 2,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 3
+      },
+      "to": {
+        "r": 3,
+        "c": 3
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 1
+      },
+      "to": {
+        "r": 1,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 2,
+        "c": 3
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 2,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 1
+      },
+      "to": {
+        "r": 2,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 1
+      },
+      "to": {
+        "r": 2,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 2,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 2,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 0
+      },
+      "to": {
+        "r": 2,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 3,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 2,
+        "c": 3
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 0
+      },
+      "to": {
+        "r": 1,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 3,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 1
+      },
+      "to": {
+        "r": 2,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 2,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 0
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 3
+      },
+      "to": {
+        "r": 4,
+        "c": 3
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 3,
+        "c": 2
+      },
+      "to": {
+        "r": 3,
+        "c": 3
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 2
+      },
+      "to": {
+        "r": 3,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 4,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 4,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 4,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 4,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 4,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 4,
+        "c": 0
+      },
+      "to": {
+        "r": 4,
+        "c": 1
+      }
+    }
+  ],
+  "state": {
+    "level": {
+      "id": 711,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "chapter": 15,
+      "seed": 9,
+      "geometry": {
+        "rows": 5,
+        "cols": 4,
+        "mask": [
+          [
+            true,
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true,
+            true
+          ]
+        ],
+        "inactiveCells": [],
+        "refillSources": [
+          {
+            "id": "source-0-0",
+            "at": {
+              "r": 0,
+              "c": 0
+            },
+            "segmentId": "column-0-0"
+          },
+          {
+            "id": "source-1-1",
+            "at": {
+              "r": 1,
+              "c": 1
+            },
+            "segmentId": "column-1-1"
+          },
+          {
+            "id": "source-2-1",
+            "at": {
+              "r": 1,
+              "c": 2
+            },
+            "segmentId": "column-2-1"
+          },
+          {
+            "id": "source-3-1",
+            "at": {
+              "r": 1,
+              "c": 3
+            },
+            "segmentId": "column-3-1"
+          }
+        ],
+        "gravitySegments": [
+          {
+            "id": "column-0-0",
+            "cells": [
+              {
+                "r": 0,
+                "c": 0
+              },
+              {
+                "r": 1,
+                "c": 0
+              },
+              {
+                "r": 2,
+                "c": 0
+              },
+              {
+                "r": 3,
+                "c": 0
+              },
+              {
+                "r": 4,
+                "c": 0
+              }
+            ],
+            "direction": "down",
+            "chamberId": "room"
+          },
+          {
+            "id": "column-1-1",
+            "cells": [
+              {
+                "r": 1,
+                "c": 1
+              },
+              {
+                "r": 2,
+                "c": 1
+              },
+              {
+                "r": 3,
+                "c": 1
+              },
+              {
+                "r": 4,
+                "c": 1
+              }
+            ],
+            "direction": "down",
+            "chamberId": "room"
+          },
+          {
+            "id": "column-2-1",
+            "cells": [
+              {
+                "r": 1,
+                "c": 2
+              },
+              {
+                "r": 2,
+                "c": 2
+              },
+              {
+                "r": 3,
+                "c": 2
+              },
+              {
+                "r": 4,
+                "c": 2
+              }
+            ],
+            "direction": "down",
+            "chamberId": "room"
+          },
+          {
+            "id": "column-3-1",
+            "cells": [
+              {
+                "r": 1,
+                "c": 3
+              },
+              {
+                "r": 2,
+                "c": 3
+              },
+              {
+                "r": 3,
+                "c": 3
+              },
+              {
+                "r": 4,
+                "c": 3
+              }
+            ],
+            "direction": "down",
+            "chamberId": "room"
+          }
+        ],
+        "chambers": [
+          {
+            "id": "room",
+            "cells": [
+              {
+                "r": 0,
+                "c": 0
+              },
+              {
+                "r": 1,
+                "c": 0
+              },
+              {
+                "r": 1,
+                "c": 1
+              },
+              {
+                "r": 1,
+                "c": 2
+              },
+              {
+                "r": 1,
+                "c": 3
+              },
+              {
+                "r": 2,
+                "c": 0
+              },
+              {
+                "r": 2,
+                "c": 1
+              },
+              {
+                "r": 2,
+                "c": 2
+              },
+              {
+                "r": 2,
+                "c": 3
+              },
+              {
+                "r": 3,
+                "c": 0
+              },
+              {
+                "r": 3,
+                "c": 1
+              },
+              {
+                "r": 3,
+                "c": 2
+              },
+              {
+                "r": 3,
+                "c": 3
+              },
+              {
+                "r": 4,
+                "c": 0
+              },
+              {
+                "r": 4,
+                "c": 1
+              },
+              {
+                "r": 4,
+                "c": 2
+              },
+              {
+                "r": 4,
+                "c": 3
+              }
+            ],
+            "directions": [
+              "down"
+            ]
+          }
+        ],
+        "routes": [],
+        "connections": [],
+        "endpoints": []
+      },
+      "pieces": [
+        {
+          "id": "tile-0-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "kind": "tile",
+          "tier": 1
+        },
+        {
+          "id": "tile-1-0",
+          "at": {
+            "r": 1,
+            "c": 0
+          },
+          "kind": "tile",
+          "tier": 1
+        },
+        {
+          "id": "tile-1-1",
+          "at": {
+            "r": 1,
+            "c": 1
+          },
+          "kind": "tile",
+          "tier": 2
+        },
+        {
+          "id": "tile-1-2",
+          "at": {
+            "r": 1,
+            "c": 2
+          },
+          "kind": "tile",
+          "tier": 2
+        },
+        {
+          "id": "tile-1-3",
+          "at": {
+            "r": 1,
+            "c": 3
+          },
+          "kind": "tile",
+          "tier": 3
+        },
+        {
+          "id": "tile-2-0",
+          "at": {
+            "r": 2,
+            "c": 0
+          },
+          "kind": "tile",
+          "tier": 2
+        },
+        {
+          "id": "tile-2-1",
+          "at": {
+            "r": 2,
+            "c": 1
+          },
+          "kind": "tile",
+          "tier": 1
+        },
+        {
+          "id": "tile-2-2",
+          "at": {
+            "r": 2,
+            "c": 2
+          },
+          "kind": "tile",
+          "tier": 3
+        },
+        {
+          "id": "tile-2-3",
+          "at": {
+            "r": 2,
+            "c": 3
+          },
+          "kind": "tile",
+          "tier": 2
+        },
+        {
+          "id": "tile-3-0",
+          "at": {
+            "r": 3,
+            "c": 0
+          },
+          "kind": "tile",
+          "tier": 3
+        },
+        {
+          "id": "tile-3-1",
+          "at": {
+            "r": 3,
+            "c": 1
+          },
+          "kind": "tile",
+          "tier": 2
+        },
+        {
+          "id": "tile-3-2",
+          "at": {
+            "r": 3,
+            "c": 2
+          },
+          "kind": "tile",
+          "tier": 1
+        },
+        {
+          "id": "tile-3-3",
+          "at": {
+            "r": 3,
+            "c": 3
+          },
+          "kind": "tile",
+          "tier": 3
+        },
+        {
+          "id": "tile-4-0",
+          "at": {
+            "r": 4,
+            "c": 0
+          },
+          "kind": "tile",
+          "tier": 1
+        },
+        {
+          "id": "tile-4-1",
+          "at": {
+            "r": 4,
+            "c": 1
+          },
+          "kind": "tile",
+          "tier": 3
+        },
+        {
+          "id": "tile-4-2",
+          "at": {
+            "r": 4,
+            "c": 2
+          },
+          "kind": "tile",
+          "tier": 2
+        },
+        {
+          "id": "tile-4-3",
+          "at": {
+            "r": 4,
+            "c": 3
+          },
+          "kind": "station",
+          "facing": "left"
+        }
+      ],
+      "crew": [
+        {
+          "id": "crew-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "status": "active",
+          "carrierId": null,
+          "rescueMoves": 20,
+          "shelterMoves": null,
+          "shelterStarted": false,
+          "vipId": null
+        }
+      ],
+      "actors": [],
+      "fixtures": [
+        {
+          "id": "jelly-0",
+          "at": {
+            "r": 2,
+            "c": 2
+          },
+          "kind": "jelly",
+          "coatedCells": [],
+          "preview": null
+        }
+      ],
+      "arrivals": [],
+      "mechanics": [
+        {
+          "id": "jelly",
+          "fixtureIds": [
+            "jelly-0"
+          ]
+        }
+      ],
+      "goals": [
+        {
+          "id": "home",
+          "type": "homeCrew",
+          "eligible": {
+            "type": "ids",
+            "ids": [
+              "crew-0"
+            ]
+          }
+        }
+      ],
+      "moveLimit": null,
+      "needMoves": 20,
+      "presentationId": "lesson-711",
+      "lessonId": "lesson-711",
+      "rewardId": "campaign-level",
+      "metadata": {
+        "shapeFamily": "diamond",
+        "difficulty": "teaching",
+        "purposeTags": [
+          "watch-a-spread-then-clear-it-before-the-rescue",
+          "jelly"
+        ],
+        "assistedAllowance": 0,
+        "failurePolicy": "no-failure",
+        "capOverride": null
+      }
+    },
+    "levelId": 711,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "turn": 96,
+    "nextEntityId": 72,
+    "rngState": 2015813113,
+    "geometry": {
+      "rows": 5,
+      "cols": 4,
+      "mask": [
+        [
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "inactiveCells": [],
+      "refillSources": [
+        {
+          "id": "source-0-0",
+          "at": {
+            "r": 0,
+            "c": 0
+          },
+          "segmentId": "column-0-0"
+        },
+        {
+          "id": "source-1-1",
+          "at": {
+            "r": 1,
+            "c": 1
+          },
+          "segmentId": "column-1-1"
+        },
+        {
+          "id": "source-2-1",
+          "at": {
+            "r": 1,
+            "c": 2
+          },
+          "segmentId": "column-2-1"
+        },
+        {
+          "id": "source-3-1",
+          "at": {
+            "r": 1,
+            "c": 3
+          },
+          "segmentId": "column-3-1"
+        }
+      ],
+      "gravitySegments": [
+        {
+          "id": "column-0-0",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 0
+            },
+            {
+              "r": 4,
+              "c": 0
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-1-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 1
+            },
+            {
+              "r": 4,
+              "c": 1
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-2-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 2
+            },
+            {
+              "r": 4,
+              "c": 2
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        },
+        {
+          "id": "column-3-1",
+          "cells": [
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 3
+            },
+            {
+              "r": 3,
+              "c": 3
+            },
+            {
+              "r": 4,
+              "c": 3
+            }
+          ],
+          "direction": "down",
+          "chamberId": "room"
+        }
+      ],
+      "chambers": [
+        {
+          "id": "room",
+          "cells": [
+            {
+              "r": 0,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 0
+            },
+            {
+              "r": 1,
+              "c": 1
+            },
+            {
+              "r": 1,
+              "c": 2
+            },
+            {
+              "r": 1,
+              "c": 3
+            },
+            {
+              "r": 2,
+              "c": 0
+            },
+            {
+              "r": 2,
+              "c": 1
+            },
+            {
+              "r": 2,
+              "c": 2
+            },
+            {
+              "r": 2,
+              "c": 3
+            },
+            {
+              "r": 3,
+              "c": 0
+            },
+            {
+              "r": 3,
+              "c": 1
+            },
+            {
+              "r": 3,
+              "c": 2
+            },
+            {
+              "r": 3,
+              "c": 3
+            },
+            {
+              "r": 4,
+              "c": 0
+            },
+            {
+              "r": 4,
+              "c": 1
+            },
+            {
+              "r": 4,
+              "c": 2
+            },
+            {
+              "r": 4,
+              "c": 3
+            }
+          ],
+          "directions": [
+            "down"
+          ]
+        }
+      ],
+      "routes": [],
+      "connections": [],
+      "endpoints": []
+    },
+    "pieces": [
+      {
+        "id": "tile-4-2",
+        "at": {
+          "r": 4,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "tile-4-3",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "station",
+        "facing": "left"
+      },
+      {
+        "id": "entity-4",
+        "at": {
+          "r": 2,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 4
+      },
+      {
+        "id": "entity-19",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "kind": "pod",
+        "passengerIds": [
+          "crew-0"
+        ]
+      },
+      {
+        "id": "entity-29",
+        "at": {
+          "r": 4,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "entity-31",
+        "at": {
+          "r": 1,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "entity-41",
+        "at": {
+          "r": 4,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 4
+      },
+      {
+        "id": "entity-47",
+        "at": {
+          "r": 1,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "entity-53",
+        "at": {
+          "r": 3,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "entity-61",
+        "at": {
+          "r": 3,
+          "c": 3
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "entity-62",
+        "at": {
+          "r": 3,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 3
+      },
+      {
+        "id": "entity-63",
+        "at": {
+          "r": 2,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "entity-64",
+        "at": {
+          "r": 2,
+          "c": 1
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "entity-65",
+        "at": {
+          "r": 4,
+          "c": 0
+        },
+        "kind": "pod",
+        "passengerIds": []
+      },
+      {
+        "id": "entity-69",
+        "at": {
+          "r": 3,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      },
+      {
+        "id": "entity-70",
+        "at": {
+          "r": 1,
+          "c": 0
+        },
+        "kind": "tile",
+        "tier": 1
+      },
+      {
+        "id": "entity-71",
+        "at": {
+          "r": 1,
+          "c": 2
+        },
+        "kind": "tile",
+        "tier": 2
+      }
+    ],
+    "crew": [
+      {
+        "id": "crew-0",
+        "at": {
+          "r": 0,
+          "c": 0
+        },
+        "status": "active",
+        "carrierId": "entity-19",
+        "rescueMoves": null,
+        "shelterMoves": null,
+        "shelterStarted": false,
+        "vipId": null
+      }
+    ],
+    "actors": [],
+    "fixtures": [
+      {
+        "id": "jelly-0",
+        "at": {
+          "r": 2,
+          "c": 2
+        },
+        "kind": "jelly",
+        "coatedCells": [
+          {
+            "r": 1,
+            "c": 1
+          },
+          {
+            "r": 1,
+            "c": 2
+          },
+          {
+            "r": 1,
+            "c": 3
+          },
+          {
+            "r": 2,
+            "c": 0
+          },
+          {
+            "r": 2,
+            "c": 1
+          },
+          {
+            "r": 2,
+            "c": 3
+          },
+          {
+            "r": 3,
+            "c": 0
+          },
+          {
+            "r": 3,
+            "c": 1
+          },
+          {
+            "r": 3,
+            "c": 2
+          },
+          {
+            "r": 3,
+            "c": 3
+          },
+          {
+            "r": 4,
+            "c": 1
+          }
+        ],
+        "preview": {
+          "r": 1,
+          "c": 0
+        }
+      }
+    ],
+    "arrivals": [],
+    "mechanics": [
+      {
+        "id": "jelly",
+        "turnsUntilSpread": 3,
+        "cancelledThisTurn": false
+      }
+    ],
+    "goalProgress": [
+      {
+        "goalId": "home",
+        "completedIds": []
+      }
+    ],
+    "movesRemaining": null,
+    "points": 760,
+    "status": "playing",
+    "transportedThisTurn": [],
+    "pendingTransfers": []
+  }
+}

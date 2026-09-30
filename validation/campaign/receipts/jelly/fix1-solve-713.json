@@ -1,0 +1,68 @@
+{
+  "status": "solved",
+  "trace": {
+    "levelId": 713,
+    "campaignVersion": "2026.1",
+    "rulesVersion": "campaign-1",
+    "initialHash": "7fe8f309c5ac6d24",
+    "actions": [
+      {
+        "type": "swap",
+        "from": {
+          "r": 3,
+          "c": 3
+        },
+        "to": {
+          "r": 4,
+          "c": 3
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 4,
+          "c": 1
+        },
+        "to": {
+          "r": 5,
+          "c": 1
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 1,
+          "c": 0
+        },
+        "to": {
+          "r": 1,
+          "c": 1
+        }
+      },
+      {
+        "type": "swap",
+        "from": {
+          "r": 3,
+          "c": 1
+        },
+        "to": {
+          "r": 3,
+          "c": 2
+        }
+      }
+    ],
+    "finalHash": "6b61c7a41720a5fb"
+  },
+  "levelId": 713,
+  "limits": {
+    "maxNodes": 120000,
+    "maxDepth": 22,
+    "maxMilliseconds": 30000
+  },
+  "freshProcess": {
+    "won": true,
+    "pid": 21196,
+    "issues": []
+  },
+  "written": "H:\\Projects\\iPhone Apps\\sliding-stars\\sliding-stars-next\\validation\\campaign\\traces\\level-0713.json"
+}

@@ -1,0 +1,44 @@
+{
+  "asset": "docks-sheet-v1",
+  "width": 1536,
+  "height": 1024,
+  "method": "Alpha >16 connected components, four largest bodies; smaller components assigned to nearest body center. Suggestions require visual review.",
+  "frames": [
+    {
+      "quadrant": 0,
+      "x": 53,
+      "y": 83,
+      "width": 605,
+      "height": 346,
+      "visiblePixels": 135189,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 1,
+      "x": 871,
+      "y": 83,
+      "width": 602,
+      "height": 349,
+      "visiblePixels": 137417,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 2,
+      "x": 55,
+      "y": 571,
+      "width": 603,
+      "height": 349,
+      "visiblePixels": 137563,
+      "touchesImageEdge": false
+    },
+    {
+      "quadrant": 3,
+      "x": 768,
+      "y": 571,
+      "width": 705,
+      "height": 346,
+      "visiblePixels": 139934,
+      "touchesImageEdge": false
+    }
+  ]
+}

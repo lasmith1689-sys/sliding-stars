@@ -1,0 +1,20 @@
+{
+    "levelId":  662,
+    "campaignVersion":  "2026.1",
+    "rulesVersion":  "campaign-1",
+    "initialHash":  "09fc40bda3e67e7d",
+    "actions":  [
+                    {
+                        "type":  "swap",
+                        "from":  {
+                                     "r":  0,
+                                     "c":  1
+                                 },
+                        "to":  {
+                                   "r":  1,
+                                   "c":  1
+                               }
+                    }
+                ],
+    "finalHash":  "84a20f436bf1387e"
+}

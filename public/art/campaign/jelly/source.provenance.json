@@ -1,0 +1,81 @@
+{
+  "asset": "jelly-sheet-v1",
+  "provider": "host-native image_gen",
+  "generatedSource": "C:/Users/lasmi/.codex/generated_images/01a0d98f-38f7-7573-ab14-94124a85df50/exec-be4d5021-6e0b-4130-8312-b37d7070e2c8.png",
+  "sha256": "c66ab3dcc426dbd81c1d366f157233ae7b01e9e389f1a4cf678289b3890c151d",
+  "width": 1254,
+  "height": 1254,
+  "hasAlpha": true,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 58363,
+      "bounds": {
+        "minX": 131,
+        "minY": 424,
+        "maxX": 562,
+        "maxY": 617
+      },
+      "clearMargin": 9
+    },
+    {
+      "state": "actionable",
+      "frame": {
+        "x": 627,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 82966,
+      "bounds": {
+        "minX": 54,
+        "minY": 363,
+        "maxX": 583,
+        "maxY": 617
+      },
+      "clearMargin": 9
+    },
+    {
+      "state": "blocked",
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 67383,
+      "bounds": {
+        "minX": 126,
+        "minY": 191,
+        "maxX": 549,
+        "maxY": 452
+      },
+      "clearMargin": 77
+    },
+    {
+      "state": "complete",
+      "frame": {
+        "x": 627,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      },
+      "visiblePixels": 21482,
+      "bounds": {
+        "minX": 152,
+        "minY": 168,
+        "maxX": 460,
+        "maxY": 443
+      },
+      "clearMargin": 152
+    }
+  ],
+  "visualReview": "Friendly low jelly with spread droplet, squash and clear states. Check tiny top-row bottom padding and independent state pivots before production. Prompt: ../jelly-sheet-prompt.txt.",
+  "acceptance": "Source sheet only. In-game scale, pivots, animation and mechanic-state coverage remain to be verified."
+}

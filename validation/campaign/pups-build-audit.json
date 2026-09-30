@@ -1,0 +1,145 @@
+{
+  "status": "passed",
+  "cache": "sliding-stars-next-81ebc10b6d71",
+  "offlineFiles": 103,
+  "productionCampaignChunk": "campaignBoot-_NLZYQoB.js",
+  "sharedCampaignChunk": "campaign-BnfOBPt2.js",
+  "productionGraph": {
+    "modules": 788,
+    "chunks": 17,
+    "developmentCampaignModules": 0
+  },
+  "pupBytes": 66686,
+  "frames": [
+    {
+      "id": "pup-idle",
+      "source": "public/art/campaign/pups/source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/pups/idle.webp",
+      "size": 256,
+      "sourceSha256": "a97c637642693c34239bf5755632fc5c660d2c50b4e2d67c5c8a7ed0460fc027",
+      "deliverySha256": "d4c7e23d7e375bf1212c442a83b48441190c28fc18e4eb17b336cc31320ca340",
+      "bytes": 12676,
+      "hasAlpha": true
+    },
+    {
+      "id": "pup-walking",
+      "source": "public/art/campaign/pups/source.png",
+      "frame": {
+        "left": 627,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/pups/walking.webp",
+      "size": 256,
+      "sourceSha256": "a97c637642693c34239bf5755632fc5c660d2c50b4e2d67c5c8a7ed0460fc027",
+      "deliverySha256": "944a46066093beea7d96ea17dc997e962188c06a2413b71120d75453e8c5194f",
+      "bytes": 14118,
+      "hasAlpha": true
+    },
+    {
+      "id": "pup-waiting",
+      "source": "public/art/campaign/pups/source.png",
+      "frame": {
+        "left": 0,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/pups/waiting.webp",
+      "size": 256,
+      "sourceSha256": "a97c637642693c34239bf5755632fc5c660d2c50b4e2d67c5c8a7ed0460fc027",
+      "deliverySha256": "420f7d6c5b8d3db076041c945f6887f56c75f4cf835a66a6c215cbb985af9f58",
+      "bytes": 12008,
+      "hasAlpha": true
+    },
+    {
+      "id": "pup-complete",
+      "source": "public/art/campaign/pups/source.png",
+      "frame": {
+        "left": 627,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      },
+      "canvas": {
+        "width": 720,
+        "height": 720,
+        "left": 46,
+        "top": 46
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/pups/complete.webp",
+      "size": 256,
+      "sourceSha256": "a97c637642693c34239bf5755632fc5c660d2c50b4e2d67c5c8a7ed0460fc027",
+      "deliverySha256": "a05d4ee22d1865e672537883233fb4305223412c6ab4a4055ecccc9eade630b3",
+      "bytes": 12702,
+      "hasAlpha": true
+    },
+    {
+      "id": "pup-nursery",
+      "source": "public/art/campaign/pups/nursery-source.png",
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "canvas": {
+        "width": 1400,
+        "height": 1400,
+        "left": 73,
+        "top": 73
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "deliveryPath": "optimized/campaign/pups/nursery.webp",
+      "size": 256,
+      "sourceSha256": "3e3fd431e2e22c37340ef7c52a9490b7518e7495572940a129aef1233c0ef166",
+      "deliverySha256": "45b0a3cec15d03464074fd994a7b21990713333fb9671423d66bdf360464a893",
+      "bytes": 15182,
+      "hasAlpha": true
+    }
+  ]
+}

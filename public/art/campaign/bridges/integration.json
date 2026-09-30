@@ -1,0 +1,13 @@
+{
+  "provider": "host-native image_gen",
+  "source": "C:\\Users\\lasmi\\.codex\\generated_images\\01a0dfd1-5866-7be1-86b8-34f7c15573d6\\exec-759ad06f-1651-4cd0-9eb7-2f8702fafdcd.png",
+  "sourceSha256": "560c360391681675e0494ec64b110200cf10f795d0dab9d36995c5a1e5c53bc1",
+  "referenceSha256": "8c42840abba61a60e8d2f150cc26dc6585239c576aad7459b92513de5fd4db9f",
+  "license": "Original AI-generated artwork for this project; no third-party game assets.",
+  "rejectedGeneration": {
+    "path": "exec-3a52fe06-a460-4e49-882f-3c09c3aadf9f.png",
+    "reason": "RGB with painted checkerboard, no alpha; not shipped"
+  },
+  "normalization": "Existing prepare-art.mjs / Sharp crop, square padding, WebP256, quality88 alpha100. Four independently framed one-cell sprites; no whole-span stretch.",
+  "gameDev": "game-dev not on PATH; approved existing native-source and Sharp fallback used; no paid provider or second pipeline."
+}
