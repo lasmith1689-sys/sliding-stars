@@ -1,6 +1,6 @@
 # Sliding Stars — first iOS beta
 
-Status: game and iOS source prepared; **not yet compiled, signed, uploaded or available on TestFlight**. The account owner uses Windows and an iPhone, with GitHub Actions macos-26/Xcode 26 for builds. CI follows the existing Ai-sky ad-hoc-archive/cloud-signing method. Repository setup, the four repository secrets and the new Apple app record must precede upload.
+Status: the iOS archive compiled successfully on GitHub using Xcode 26.6 (build 3.1, September 30, 2026). **Not yet distribution-signed, uploaded or available on TestFlight**; the run reported missing repository secrets. The account owner uses Windows and an iPhone, with GitHub Actions macos-26/Xcode 26 for builds. CI follows the existing Ai-sky ad-hoc-archive/cloud-signing method. The public repository is https://github.com/lasmith1689-sys/sliding-stars. The four repository secrets and the new Apple app record are still required for upload.
 
 ## Included
 
@@ -20,7 +20,7 @@ The full 1000-mission catalog, four later mechanics (relays, tethers, repairs an
 - Typecheck, production build and Capacitor iOS synchronization passed.
 - Production-browser touch check at 390×844: mission 1 completion, advancement to mission 2, mission picker and phase mission 801; its accepted move survived reload with controls unlocked.
 - Small-phone inspection found long guidance overlapping controls; footer reservations were corrected and the layout checks passed.
-- Native compilation, signing, real-iPhone performance/lifecycle/save testing and Apple processing remain unverified until Mac/device access exists.
+- GitHub CI and the macOS job both passed all 964 tests. Xcode 26.6 produced the iOS archive and verified bundle identity, build number, privacy manifest and bundled game assets: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36712456092 . Distribution signing/upload were skipped because repository secrets were missing. Real-iPhone testing and Apple processing remain pending.
 
 ## Build and upload
 
