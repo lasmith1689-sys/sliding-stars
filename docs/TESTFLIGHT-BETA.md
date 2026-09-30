@@ -1,49 +1,31 @@
-# Sliding Stars — first iOS beta
+# Sliding Stars beta checkpoint - September 30, 2026
 
-Status: **version 1.0 (5.1) is available for internal TestFlight testing**, verified September 30, 2026. Xcode 26.6 archived, cloud-signed and uploaded successfully; Apple processing is Complete and the build is Testing in the Me group with one internal tester. [Successful upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36725952629). Physical iPhone installation/play testing remains for the account owner.
+The 1,000-mission web beta is live at https://next--sliding-stars.netlify.app/ (deploy 6abd917f9a40900b6eebd98d). Public source commit: 1fd78f0. Original production and original source remain preserved.
 
 ## Included
 
-102 fixed authored missions, 20 implemented mechanics, board shapes and sizes that vary by mission, animated terrain/creatures, mission selection and replay, hints, boosters, sound and reduced-motion preferences, generous practice missions and immediate retries. All 102 exact mission definitions have passing committed solution replays. Canonical numbers have gaps; those gaps are explicitly described in the beta mission picker.
+1,000 distinct starting puzzles: 102 authored teaching missions plus 898 seeded terrain variants. Twenty implemented nonportal mechanics, 61 distinct board masks, nine shape families and 15 board bounding sizes. Every exact definition has an independently replayed, hash-checked winning path without boosters. All 1,000 numbers are playable through sequential progression and the 20-constellation picker.
 
-The iOS project bundles game code and art locally. Native saves use Preferences with ordered backup/primary writes and retry support. The existing app icon, portrait layout, dark launch screen, privacy manifest and shared Xcode scheme are configured. Safari and native-app saves are separate.
-
-## Still outside this beta
-
-The full 1000-mission catalog, four later mechanics (relays, tethers, repairs and rendezvous), and the expanded station/VIP reward systems are unfinished. This is a playable beta, not a claim that 85% of all planned content is complete. Original saves and the original production website are preserved.
+Direct finger-following tiles, cute existing art, offline rounded fonts and automatic mission completion remain intact. New hints prefer immediate objective progress and avoid immediate losing moves. Existing saves and rewards are preserved; migration distinguishes old portal boards from new ordinary missions at the same numbers.
 
 ## Validation
 
-- One full release regression run: 962 tests passed across 105 files.
-- Subsequent native persistence checks: 5/5 passed, including interruption during migration and protection of unknown future saves.
-- Compact layout checks: 5/5 passed, retaining board targets of at least 40 pixels on the tested 7×9 configurations.
-- Typecheck, production build and Capacitor iOS synchronization passed.
-- Production-browser touch check at 390×844: mission 1 completion, advancement to mission 2, mission picker and phase mission 801; its accepted move survived reload with controls unlocked.
-- Small-phone inspection found long guidance overlapping controls; footer reservations were corrected and the layout checks passed.
-- GitHub CI and the macOS job both passed all 964 tests. Xcode 26.6 produced the iOS archive and verified bundle identity, build number, privacy manifest and bundled game assets: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36712456092 . Distribution signing/upload were skipped because repository secrets were missing. Real-iPhone testing and Apple processing remain pending.
+- All 1,000 shipped definitions independently replayed to victory; all starting puzzle fingerprints unique; no unintroduced mechanics in generated practice.
+- All 994 tests across 109 files passed on Linux CI and macOS. GitHub CI passed at source commit 1fd78f0: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36787522319 .
+- Typecheck, production build, production-module boundary audit and Capacitor synchronization passed. Generator, solver and proof artifacts are absent from client code.
+- Production browser check at 390x844: selected mission 1000 from the constellation picker, won it using two real drag gestures, and observed automatic advancement to the first unfinished mission. Verified the published build shows 0/1000 missions.
+- Real iPhone installation, touch feel and offline relaunch still require the account owner's device check.
 
-## Build and upload
+## Honest limits
 
-Follow [TESTFLIGHT.md](../TESTFLIGHT.md) for the account owner's Windows-only workflow. The bundle ID is **com.lasmith1689.SlidingStars**. GitHub runs on macos-26 with Node 24, archives with ad-hoc signing, then exports through Apple's cloud-managed certificate using the four repository secrets. Build numbers use run_number.run_attempt. No Mac purchase or certificate/profile management is needed.
+This is an expanded playable beta, not the complete original design. Winning proofs are 1-9 moves. Terrain variations often share the same core strategy; human difficulty/playtesting and deeper multi-step generation remain priorities. Relays, tethers, repair bots and rendezvous remain unimplemented, and a fifth mechanic must replace portals to reach 25. Expanded station/VIP rewards remain unfinished.
 
-After Apple processing, attach the build to an internal TestFlight group containing the account owner. Verify TestFlight shows the build and that it can actually be installed. External testers may require Apple's beta review. Do not claim delivery before that verification.
+See [the current research crosscheck](2026-09-30-CAMPAIGN-CROSSCHECK.md) and [Claude Code handoff](../CLAUDE-HANDOFF.md). Those documents distinguish reference evidence, implemented behavior and remaining work.
 
-Suggested “What to Test”: “Play the first rescues, try the later mechanics through Missions, and check that progress and settings survive closing and reopening the app. Please note any unclear rules, cramped controls, animation problems or unexpectedly hard missions. This beta includes 102 authored missions; numbered gaps are planned content.”
+## iOS delivery
 
-Setup update, September 30, 2026: registered the bundle ID and created App Store Connect app **6817778193**. Internal group **Me** has automatic distribution enabled and the account owner added (1 tester, 0 builds). Saved the existing team, key and issuer identifiers as GitHub repository secrets. Only the existing private key (`ASC_KEY_P8`) is still missing; GitHub cannot reveal it from another repository. No new key was created or existing access changed.
+Build 1.0 (6.1) successfully cloud-signed and uploaded at 2026-09-30 22:50:38 UTC: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36787522322 . Logs explicitly confirm Upload succeeded and EXPORT SUCCEEDED. Apple processing and internal availability of 6.1 remain unverified: the browser's App Store Connect login expired. Previous 5.1 is the last confirmed Testing build in the Me group. Open TestFlight on iPhone to check for 6.1, or sign in to App Store Connect to verify its status.
 
-Delivery update: the owner added the private key directly to GitHub. Build 5.1 passed all 964 tests across 105 files, compiled and uploaded successfully. Apple processing completed; TestFlight shows Testing and Me with one internal tester. Testing notes are saved. No private-key contents were read or committed.
+All four repository secrets are configured. No Mac or certificate/profile management is needed. The native app bundles all chapters and artwork; native and Safari saves remain separate. See [TESTFLIGHT.md](../TESTFLIGHT.md).
 
-Next step: open TestFlight on iPhone, install Sliding Stars 1.0 (5.1), and check first rescues and progress after relaunch. Continue in this task for device-specific issues; no new task is required.
-
-## Direct-touch update (September 30, 2026)
-
-Tiles and their riders now track finger movement continuously. Invalid or cancelled drags return smoothly; accepted swaps continue from the release position. Hints highlight two tiles instead of drawing an arrow. A clear completion celebration automatically opens the next mission after 1.3 seconds, with save failures stopping safely for retry.
-
-Bundled Fredoka and Nunito replace the generic UI lettering, including canvas labels. The first three missions start with stranded crew; untouched older starts are refreshed. Active crew on breathable ground still ask for help until actually rescued. Six portal missions were removed; saved portal missions move to an available mission while preserving account progress and inventory. The release now has 102 fixed missions and 20 mechanics.
-
-Verified in the browser at 390x844: drag to win mission 1 automatically opened mission 2 without clicking. At 320x568, board and controls remained separated and readable. Automated checks cover partial-drag positions, riding crew, smooth release, return, masked cells, auto-advance, background pauses and save-failure handling. All remaining authored mission proofs pass.
-
-Reference: https://www.slidingseas.com/ and https://www.gamezebo.com/reviews/sliding-seas-review-a-gorgeous-entertaining-match-stuff-puzzler/ . Core reference loop: sliding/matching terrain into land and shelter to rescue stranded guests; changes above implement the user's direct-touch and clear-completion requirements.
-
-Delivery confirmed: build 1.0 (5.1), GitHub run 36725952629, passed all 981 tests across 107 files on macOS, cloud-signed and uploaded. Apple shows Testing in Me (1 internal tester). Update notes saved. Web preview updated at https://next--sliding-stars.netlify.app (deploy 6abd165f4466950d3c555d4b). Next: update the app through TestFlight and try slow dragging and automatic rescue progression. No new thread required.
+Next step: check for 6.1 in TestFlight, install and play on iPhone, then use CLAUDE-HANDOFF.md for continued development. No new Codex thread is required.

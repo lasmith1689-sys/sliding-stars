@@ -2,11 +2,11 @@
 
 A cozy space rescue puzzle game for iPhone, starring Zena and Pepper.
 
-The current beta contains **102 fixed authored missions and 20 implemented mechanics**, with changing board shapes, animated creatures, hints, boosters, mission selection/replay, sound and reduced-motion preferences. The full 1000-mission campaign, four later mechanics and expanded station rewards remain unfinished.
+The current web beta contains **1,000 proof-verified missions and 20 implemented mechanics**: 102 authored teaching boards plus 898 deterministic terrain variations. It includes changing board shapes, animated creatures, rescue-aware hints and chapter selection. Four planned mechanics, a replacement for removed portals, deeper procedural variety and expanded station rewards remain unfinished. See [the research crosscheck](docs/2026-09-30-CAMPAIGN-CROSSCHECK.md) and [Claude Code handoff](CLAUDE-HANDOFF.md).
 
 ## Install on iPhone
 
-**Version 1.0 (5.1) is available to the account owner through internal TestFlight**, verified September 30, 2026. Open TestFlight on iPhone and install Sliding Stars. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases; all 981 tests passed. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
+**Version 1.0 (6.1) uploaded successfully to Apple** on September 30, 2026; all 994 tests passed. Apple processing and internal availability still require confirmation because the browser login expired. Version 5.1 is the last independently confirmed available build. Open TestFlight on iPhone and check for the 6.1 update. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
 
 Bundle ID: `com.lasmith1689.SlidingStars`. The iOS app bundles game/art locally and stores saves through native Preferences. Safari progress and native-app progress are separate.
 

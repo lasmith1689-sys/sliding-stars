@@ -61,4 +61,11 @@ Continue development of Sliding Stars in this folder. First read CLAUDE-HANDOFF.
 
 ## Current release verification
 
-Updated by Codex after the final checks and publication of this checkpoint.
+- Parent source checkpoint `36beb03`; public release source `1fd78f0dc999830a57d0be4010b43c09d6629a4e`.
+- Web alias is live, deploy `6abd917f9a40900b6eebd98d`. Its production browser shows 1,000 missions. Local production at 390x844 loaded mission 1000, won through two real drag gestures, and automatically advanced to the first unfinished mission with saved rewards.
+- Typecheck/build/iOS sync passed. Production boundary audit: 839 modules, 41 chunks, zero forbidden development campaign modules. All 994 tests / 109 files passed on both Linux CI and macOS TestFlight runners.
+- CI success: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36787522319 .
+- TestFlight build **1.0 (6.1)** successfully cloud-signed and uploaded at 2026-09-30 22:50:38 UTC: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36787522322 . Logs explicitly say Upload succeeded and EXPORT SUCCEEDED.
+- **Apple processing/internal availability of 6.1 has not been verified.** App Store Connect browser session expired and now requires account-holder sign-in. Earlier 5.1 remains the last independently confirmed Testing build. Next device step: open TestFlight and check for 6.1, or sign in to App Store Connect and verify Me has 6.1. Never report upload alone as installability.
+- No private keys were read or committed. Original app and production preserved. Temporary preview server stopped and phone viewport reset. Only unrelated parent `docs/reviews/` was left untouched.
+- Approximately 13% of the user's weekly Codex allowance remained at handoff. The user explicitly wants to continue efficiently in Claude Code; the copy-paste prompt above supplies the task and safeguards. No additional Codex thread is required.
