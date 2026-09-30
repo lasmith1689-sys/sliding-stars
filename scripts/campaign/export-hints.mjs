@@ -1,0 +1,10 @@
+import {rolldown} from 'rolldown';
+import {readFile,writeFile} from 'node:fs/promises';
+const bundle=await rolldown({input:'src/campaign/hint-authoring.ts'}),built=await bundle.generate({format:'esm'});await bundle.close();
+const code=built.output.find(item=>item.type==='chunk')?.code;if(!code)throw Error('No hint authoring bundle');
+const {buildHintRoutes}=await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+const levels=(await Promise.all(Array.from({length:20},(_,i)=>readFile(`src/campaign/content/chapter-${String(i+1).padStart(2,'0')}.json`,'utf8')))).flatMap(JSON.parse);
+const proofs=JSON.parse(await readFile('validation/campaign/generated/proofs.json','utf8'));
+const chapters=buildHintRoutes(levels,proofs);
+for(let i=0;i<chapters.length;i++)await writeFile(`src/campaign/content/hints-${String(i+1).padStart(2,'0')}.json`,JSON.stringify(chapters[i])+'\n');
+console.log(`Published ${chapters.reduce((n,map)=>n+Object.keys(map).length,0)} verified next-move hints for ${levels.length} missions`);

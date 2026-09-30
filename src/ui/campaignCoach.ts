@@ -9,6 +9,16 @@ import {canMoveActor} from '../campaign/engine/transport';
 import {sameCell} from '../campaign/engine/geometry';
 import {portalReceiverBlocked} from '../campaign/mechanics/portals';
 import {terrainName} from '../campaign/terrainLabels';
+export function basicCoachCopy(state:CampaignState):string|null {
+ if(state.status!=='playing')return null;
+ const reactor=state.fixtures.find(f=>f.kind==='reactor');
+ if(reactor)return `Match beside the reactor to cool it. Its eruption countdown ticks with moves, not seconds.`;
+ if(state.fixtures.some(f=>f.kind==='comet'))return 'Match beside any part of the comet. Its shared hit count clears the whole frozen shape.';
+ if(state.fixtures.some(f=>f.kind==='ice'))return 'Match beside the ice to thaw it. The number shows hits left; then the tile can slide again.';
+ if(state.fixtures.some(f=>f.kind==='crate'))return 'Match beside the supply crate to unpack it. Each match removes one hit from its number.';
+ if(state.actors.some(a=>a.kind==='rover'))return 'The rover carries its guests one dotted stop per move. Clear its route and guide it to a station door.';
+ return null;
+}
 export function phaseCoachCopy(state:CampaignState):string|null {
  const doors=state.fixtures.filter(f=>f.kind==='phase-door');if(!doors.length)return null;
  if(state.status==='won')return 'The timed passages helped everyone reach safety.';

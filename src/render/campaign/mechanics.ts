@@ -85,7 +85,7 @@ export function fixtureTexture(f:CampaignFixture,textures:TextureSet){
 }
 export function fixtureLabel(f:CampaignFixture):string {
  switch(f.kind){case 'crate':case 'ice':case 'comet':return `${f.hp} hit${f.hp===1?'':'s'}`;case 'reactor':return `${f.fuse} turns · ${f.hp} hit${f.hp===1?'':'s'}`;
-  case 'portal':return 'Portal';case 'bridge':return f.active?'OPEN · 2/2':`HINGE · ${f.hits}/2`;case 'gate':return f.open?'Open':'Closed';case 'phase-door':return f.closingPending?'WAIT TO CLOSE':f.open?'OPEN · CLOSE NEXT':'CLOSED · OPEN NEXT';
+  case 'portal':return 'Portal';case 'bridge':return f.active?'OPEN · 2/2':`HINGE · ${f.hits}/2`;case 'gate':return f.open?'Open':'Closed';case 'phase-door':return f.closingPending?'WAIT':f.open?'OPEN':'CLOSED';
   case 'garden':return `GROW ${f.stage}/3`;case 'solar':return `T${f.tier} · ${f.charge}/${f.quota}`;case 'gravity-switch':return f.direction==='down'?'↓':'←';case 'relay':return `Relay ${f.order}`;case 'jelly':return 'Jelly';case 'lock':return 'Locked';}
 }
 

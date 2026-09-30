@@ -21,3 +21,14 @@ it('never suggests a move after completion',()=>{
  const state=loadCampaignLevel(authoredLessonLevels[0]!);state.status='won';
  expect(campaignHint(state)).toBeNull();
 });
+it.each([5,9,16,56,81,516,661])('hints advance an unfinished obstacle in mission %s',async id=>{
+ const {getCampaignLevel}=await import('../../src/campaign/catalog');
+ const state=loadCampaignLevel(await getCampaignLevel(id)),action=campaignHint(state);
+ expect(action).not.toBeNull();
+ const result=transition(state,action!);
+ expect(result.state.status).not.toBe('lost');
+ const progress=result.state.status==='won'||result.events.some(e=>
+  e.type==='fixture'&&e.before&&'hp'in e.before&&(!e.after||'hp'in e.after&&e.after.hp<e.before.hp)||
+  e.type==='garden'&&e.phase==='grown'||e.type==='solar');
+ expect(progress,`hint should advance the obstacle in ${id}`).toBe(true);
+});

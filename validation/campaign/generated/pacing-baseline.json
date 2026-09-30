@@ -1,0 +1,476 @@
+{
+  "adjacentTemplateRepeats": 221,
+  "longestTemplateRun": 6,
+  "adjacentMaskRepeats": 202,
+  "proofHistogram": {
+    "1": 87,
+    "2": 387,
+    "3": 251,
+    "4": 215,
+    "5": 27,
+    "6": 24,
+    "7": 8,
+    "9": 1
+  },
+  "windows": [
+    {
+      "from": 1,
+      "to": 50,
+      "templates": 18,
+      "mechanicFamilies": 4,
+      "families": {
+        "foundation": 5,
+        "crates": 23,
+        "ice": 7,
+        "rovers": 15
+      },
+      "dominantFamilyShare": 0.46,
+      "proofHistogram": {
+        "1": 5,
+        "2": 24,
+        "3": 13,
+        "4": 6,
+        "5": 2
+      },
+      "meanProofLength": 2.52
+    },
+    {
+      "from": 51,
+      "to": 100,
+      "templates": 19,
+      "mechanicFamilies": 5,
+      "families": {
+        "rovers": 29,
+        "crates": 9,
+        "reactors": 6,
+        "ice": 1,
+        "comets": 5
+      },
+      "dominantFamilyShare": 0.58,
+      "proofHistogram": {
+        "1": 13,
+        "2": 21,
+        "3": 4,
+        "4": 8,
+        "5": 3,
+        "7": 1
+      },
+      "meanProofLength": 2.42
+    },
+    {
+      "from": 101,
+      "to": 150,
+      "templates": 22,
+      "mechanicFamilies": 7,
+      "families": {
+        "rovers": 7,
+        "foundation": 1,
+        "reactors": 7,
+        "crates": 3,
+        "comets": 8,
+        "exits": 19,
+        "waves": 5
+      },
+      "dominantFamilyShare": 0.38,
+      "proofHistogram": {
+        "1": 4,
+        "2": 9,
+        "3": 16,
+        "4": 14,
+        "5": 5,
+        "6": 2
+      },
+      "meanProofLength": 3.26
+    },
+    {
+      "from": 151,
+      "to": 200,
+      "templates": 14,
+      "mechanicFamilies": 7,
+      "families": {
+        "waves": 32,
+        "reactors": 1,
+        "rovers": 3,
+        "exits": 3,
+        "ice": 1,
+        "crates": 1,
+        "moonwhales": 9
+      },
+      "dominantFamilyShare": 0.64,
+      "proofHistogram": {
+        "1": 2,
+        "2": 35,
+        "3": 2,
+        "4": 10,
+        "5": 1
+      },
+      "meanProofLength": 2.46
+    },
+    {
+      "from": 201,
+      "to": 250,
+      "templates": 13,
+      "mechanicFamilies": 5,
+      "families": {
+        "moonwhales": 21,
+        "crates": 2,
+        "waves": 17,
+        "rovers": 3,
+        "pups": 7
+      },
+      "dominantFamilyShare": 0.42,
+      "proofHistogram": {
+        "1": 2,
+        "2": 20,
+        "3": 2,
+        "4": 24,
+        "7": 2
+      },
+      "meanProofLength": 3.16
+    },
+    {
+      "from": 251,
+      "to": 300,
+      "templates": 13,
+      "mechanicFamilies": 6,
+      "families": {
+        "moonwhales": 20,
+        "crates": 1,
+        "pups": 2,
+        "rovers": 2,
+        "waves": 2,
+        "currents": 23
+      },
+      "dominantFamilyShare": 0.46,
+      "proofHistogram": {
+        "1": 15,
+        "2": 4,
+        "3": 8,
+        "4": 22,
+        "5": 1
+      },
+      "meanProofLength": 2.8
+    },
+    {
+      "from": 301,
+      "to": 350,
+      "templates": 12,
+      "mechanicFamilies": 7,
+      "families": {
+        "currents": 32,
+        "rovers": 2,
+        "pups": 1,
+        "crates": 1,
+        "foundation": 1,
+        "pirates": 12,
+        "ice": 1
+      },
+      "dominantFamilyShare": 0.64,
+      "proofHistogram": {
+        "1": 12,
+        "2": 14,
+        "3": 22,
+        "4": 1,
+        "5": 1
+      },
+      "meanProofLength": 2.3
+    },
+    {
+      "from": 351,
+      "to": 400,
+      "templates": 6,
+      "mechanicFamilies": 3,
+      "families": {
+        "pirates": 24,
+        "currents": 24,
+        "waves": 2
+      },
+      "dominantFamilyShare": 0.48,
+      "proofHistogram": {
+        "1": 12,
+        "2": 26,
+        "3": 12
+      },
+      "meanProofLength": 2
+    },
+    {
+      "from": 401,
+      "to": 450,
+      "templates": 16,
+      "mechanicFamilies": 6,
+      "families": {
+        "currents": 14,
+        "rovers": 6,
+        "pirates": 7,
+        "ice": 1,
+        "bridges": 21,
+        "foundation": 1
+      },
+      "dominantFamilyShare": 0.42,
+      "proofHistogram": {
+        "1": 5,
+        "2": 18,
+        "3": 26,
+        "4": 1
+      },
+      "meanProofLength": 2.46
+    },
+    {
+      "from": 451,
+      "to": 500,
+      "templates": 9,
+      "mechanicFamilies": 5,
+      "families": {
+        "bridges": 17,
+        "rovers": 2,
+        "currents": 2,
+        "shelter": 27,
+        "waves": 2
+      },
+      "dominantFamilyShare": 0.54,
+      "proofHistogram": {
+        "1": 4,
+        "2": 4,
+        "3": 18,
+        "4": 24
+      },
+      "meanProofLength": 3.24
+    },
+    {
+      "from": 501,
+      "to": 550,
+      "templates": 13,
+      "mechanicFamilies": 7,
+      "families": {
+        "shelter": 35,
+        "bridges": 2,
+        "waves": 2,
+        "rovers": 3,
+        "gardens": 6,
+        "currents": 1,
+        "pirates": 1
+      },
+      "dominantFamilyShare": 0.7,
+      "proofHistogram": {
+        "2": 6,
+        "3": 4,
+        "4": 35,
+        "5": 4,
+        "6": 1
+      },
+      "meanProofLength": 3.8
+    },
+    {
+      "from": 551,
+      "to": 600,
+      "templates": 13,
+      "mechanicFamilies": 8,
+      "families": {
+        "shelter": 8,
+        "pirates": 2,
+        "gardens": 1,
+        "crates": 1,
+        "keys": 35,
+        "waves": 1,
+        "exits": 1,
+        "currents": 1
+      },
+      "dominantFamilyShare": 0.7,
+      "proofHistogram": {
+        "1": 1,
+        "2": 3,
+        "3": 24,
+        "4": 8,
+        "6": 11,
+        "7": 3
+      },
+      "meanProofLength": 3.96
+    },
+    {
+      "from": 601,
+      "to": 650,
+      "templates": 14,
+      "mechanicFamilies": 6,
+      "families": {
+        "keys": 40,
+        "ice": 2,
+        "gravity": 4,
+        "waves": 1,
+        "rovers": 2,
+        "currents": 1
+      },
+      "dominantFamilyShare": 0.8,
+      "proofHistogram": {
+        "1": 2,
+        "2": 4,
+        "3": 30,
+        "4": 1,
+        "5": 1,
+        "6": 10,
+        "7": 2
+      },
+      "meanProofLength": 3.66
+    },
+    {
+      "from": 651,
+      "to": 700,
+      "templates": 14,
+      "mechanicFamilies": 8,
+      "families": {
+        "keys": 7,
+        "gardens": 1,
+        "rovers": 3,
+        "crates": 1,
+        "solar": 34,
+        "exits": 1,
+        "moonwhales": 2,
+        "comets": 1
+      },
+      "dominantFamilyShare": 0.68,
+      "proofHistogram": {
+        "1": 4,
+        "2": 28,
+        "3": 9,
+        "4": 3,
+        "5": 5,
+        "9": 1
+      },
+      "meanProofLength": 2.66
+    },
+    {
+      "from": 701,
+      "to": 750,
+      "templates": 13,
+      "mechanicFamilies": 6,
+      "families": {
+        "solar": 12,
+        "crates": 2,
+        "rovers": 3,
+        "jelly": 31,
+        "currents": 1,
+        "waves": 1
+      },
+      "dominantFamilyShare": 0.62,
+      "proofHistogram": {
+        "1": 2,
+        "2": 16,
+        "4": 28,
+        "5": 4
+      },
+      "meanProofLength": 3.32
+    },
+    {
+      "from": 751,
+      "to": 800,
+      "templates": 12,
+      "mechanicFamilies": 6,
+      "families": {
+        "jelly": 11,
+        "docks": 34,
+        "pirates": 1,
+        "shelter": 1,
+        "currents": 2,
+        "bridges": 1
+      },
+      "dominantFamilyShare": 0.68,
+      "proofHistogram": {
+        "1": 2,
+        "2": 27,
+        "3": 9,
+        "4": 12
+      },
+      "meanProofLength": 2.62
+    },
+    {
+      "from": 801,
+      "to": 850,
+      "templates": 13,
+      "mechanicFamilies": 6,
+      "families": {
+        "phase": 16,
+        "docks": 29,
+        "waves": 2,
+        "reactors": 1,
+        "rovers": 1,
+        "shelter": 1
+      },
+      "dominantFamilyShare": 0.58,
+      "proofHistogram": {
+        "2": 37,
+        "3": 9,
+        "4": 4
+      },
+      "meanProofLength": 2.34
+    },
+    {
+      "from": 851,
+      "to": 900,
+      "templates": 15,
+      "mechanicFamilies": 9,
+      "families": {
+        "phase": 22,
+        "rovers": 1,
+        "docks": 20,
+        "moonwhales": 1,
+        "shelter": 2,
+        "bridges": 1,
+        "waves": 1,
+        "keys": 1,
+        "crates": 1
+      },
+      "dominantFamilyShare": 0.44,
+      "proofHistogram": {
+        "1": 1,
+        "2": 23,
+        "3": 20,
+        "4": 6
+      },
+      "meanProofLength": 2.62
+    },
+    {
+      "from": 901,
+      "to": 950,
+      "templates": 13,
+      "mechanicFamilies": 7,
+      "families": {
+        "docks": 28,
+        "phase": 15,
+        "rovers": 1,
+        "keys": 1,
+        "moonwhales": 2,
+        "waves": 1,
+        "jelly": 2
+      },
+      "dominantFamilyShare": 0.56,
+      "proofHistogram": {
+        "2": 34,
+        "3": 11,
+        "4": 5
+      },
+      "meanProofLength": 2.42
+    },
+    {
+      "from": 951,
+      "to": 1000,
+      "templates": 15,
+      "mechanicFamilies": 7,
+      "families": {
+        "phase": 20,
+        "docks": 22,
+        "pirates": 3,
+        "jelly": 1,
+        "keys": 1,
+        "crates": 1,
+        "rovers": 2
+      },
+      "dominantFamilyShare": 0.44,
+      "proofHistogram": {
+        "1": 1,
+        "2": 34,
+        "3": 12,
+        "4": 3
+      },
+      "meanProofLength": 2.34
+    }
+  ]
+}

@@ -17,6 +17,7 @@ h1,.panel-heading h1,.campaign-top,.campaign-turns>b,.wordmark{font-family:Fredo
 .campaign-controls button{border-radius:18px;border-bottom:3px solid #081325;background:#263d59;font-weight:800}
 .campaign-compact .campaign-top{font-size:18px}
 .campaign-compact .eyebrow{font-size:10px}
+.guide-welcome{display:flex;gap:14px;align-items:center;margin:12px 0}.guide-welcome img{width:72px;height:72px;object-fit:contain}.guide-welcome h2{margin:0 0 6px}.guide-welcome ul{margin:0;padding-left:20px}.guide-reassurance{background:#24483f88;border:1px solid #8bdfbf55;border-radius:12px;padding:12px;color:#d6ffe7}.guide-steps{padding-left:22px;line-height:1.55}.guide-steps li{padding:3px 0}.guide-topic{border-left:3px solid #8ecfd4;padding:1px 0 1px 12px;margin:12px 0}.guide-topic h3{margin:7px 0 3px;font-size:15px;color:#ffe6b0}.guide-topic p{margin:4px 0 8px}.guide-supplies{margin:16px 0}summary{cursor:pointer;min-height:44px;padding:10px 0}
 .mission-complete{position:absolute;inset:0;display:grid;place-items:center;background:#09172ab8;z-index:12;pointer-events:auto;text-align:center}
 .mission-complete>div{width:88%;padding:20px 12px 28px;border:3px solid #bdffe3;border-radius:32px;background:linear-gradient(150deg,#274563,#15243f);box-shadow:0 18px 70px #02091488;animation:rescue-pop .35s ease-out}
 .mission-complete img{width:130px;height:130px;object-fit:contain}

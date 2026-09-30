@@ -1,5 +1,15 @@
 # Continue Sliding Stars in Claude Code
 
+## Latest QC update — read first
+
+The follow-up quality pass supersedes the pacing/hint limitations described in the earlier checkpoint below where specifically noted. Read `docs/2026-09-30-QUALITY-CONTROL.md` and its before/after reports.
+
+- Neighboring generated boards no longer repeat templates or masks in the committed campaign. The weighted rotation spreads learned mechanics through late chapters; proof sequences of at least five moves increased from 60 to 146. All 1,000 proofs still pass, all 102 authored boards are unchanged, and there are now 62 masks.
+- Runtime `src/campaign/hintRoutes.ts` loads twenty compact `content/hints-XX.json` maps with 3,041 verified state-to-next-action entries. All 1,000 missions finish when following their route advice. The same 41-mission QC sample improved from 26 wins/six cycles to 41 wins/no cycles. `campaignHint` remains a one-turn fallback after deviations and now recognizes partial obstacle progress.
+- Full development proof objects and authoring/solver tools remain outside production. Purpose-built player advice IS shipped. Regenerate advice whenever definitions/proofs change; use `generate.mjs` or `export-hints.mjs`. Never reuse hints for a different saved definition or skip transition checks.
+- `src/ui/campaignGuide.ts` teaches only mechanics on the current board. Early obstacle coaching added. Optional supplies collapsed. Existing art preserved with clearer tile borders; compact phase labels no longer spill across cells. Save-retry UI cannot strand the player by being dismissed.
+- Tests and release verification for this QC update are recorded at the end of this file. Earlier build 6.1 information is historical. Do not claim subjective fun is proved by autoplay or that off-route hinting is solved.
+
 ## User intent and constraints
 
 Build a cute space adaptation of the core Sliding Seas rescue/terrain puzzle experience. The user wants 1,000 winnable procedurally authored levels, varied size and shape, gradual new mechanics, relaxed but thoughtful play and generous retries. Cute nonviolent threats are welcome. Do not reintroduce portals, arrow-driven dragging, a mandatory Continue button, generic typography, or characters labeled safe before rescue. Preserve the original game in the parent directory. Work only in this improved app folder.
@@ -28,7 +38,7 @@ See `docs/2026-09-30-CAMPAIGN-CROSSCHECK.md` for findings, evidence and limitati
 ## Next useful work, in order
 
 1. Read this handoff, research crosscheck, current release status below, and `git status`. Preserve ongoing user changes. Run targeted tests before editing.
-2. Improve procedural variety and purpose: multiple causal rescue steps, alternate masks/topologies, genuinely interacting mechanics. Keep deterministic generation, exact definition proofs, duplicate rejection and bounded work. Do not claim cosmetic terrain changes alone deliver 1,000 distinct strategic experiences. Consider improving recurring mechanics selection in late chapters; current generator favors recent templates heavily.
+2. Improve procedural variety and purpose: multiple causal rescue steps, alternate masks/topologies, genuinely interacting mechanics. Keep deterministic generation, exact definition proofs, duplicate rejection and bounded work. Do not claim cosmetic terrain changes alone deliver 1,000 distinct strategic experiences. Preserve the QC rotation/variety improvements; late chapters now deliberately revisit the learned catalog.
 3. Implement the four planned modules one at a time: relays at 841, tethers at 881, repair at 921, rendezvous at 961. Add original art/animation, five progressive teaching boards, rules/save validation, independent winning traces and a causal test that disabling the new mechanic prevents the intended solution. Add a suitable fifth original mechanic in the retired portal introduction slot to reach 25. Never restore portals without user direction.
 4. Regenerate affected content only deliberately, preserve all authored IDs and in-progress immutable saved definitions, rerun all 1,000 exact proofs, then build and publish. Validate actual mobile interactions, end-of-chapter/1000 progression, save upgrade and offline reopening on iPhone.
 5. Assess shelter pacing and station/home rewards against reference evidence. Do not blindly implement every old plan item; the old superpowers plan is aspirational and has stale counts.

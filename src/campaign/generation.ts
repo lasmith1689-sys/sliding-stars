@@ -9,7 +9,7 @@ import {transition} from './engine/turn';
 import {hashState} from './engine/hash';
 
 const EXCLUDED=new Set<MechanicId>(['portals','relays','tethers','repair','rendezvous']);
-export const GENERATOR_VERSION='terrain-replay-1';
+export const GENERATOR_VERSION='terrain-replay-2';
 export interface GeneratedManifestEntry {
  id:number;seed:number;templateId:number;source:'authored'|'generated';proofLength:number;
  mechanics:MechanicId[];shape:string;rows:number;cols:number;activeCells:number;
@@ -81,19 +81,43 @@ export function generateCampaign(options:{seed:number;throughLevel?:number;maxAt
  for(let id=1;id<=through;id++){
   const fixed=authored.get(id),rng=createRng((options.seed^Math.imul(id,0x9e3779b1))>>>0);
   const available=templates.filter(level=>level.id<id&&level.geometry.rows>=4&&level.geometry.cols>=4&&level.mechanics.every(m=>first(m.id)+4<id));
-  const newest=Math.max(0,...available.flatMap(level=>level.mechanics.map(m=>first(m.id))));
-  const recent=available.filter(level=>level.mechanics.some(m=>first(m.id)>=newest-60));
+  const previous=result.manifest.at(-1),previousMask=JSON.stringify(result.levels.at(-1)?.geometry.mask);
+  const rotated=available.filter(level=>level.id!==previous?.templateId);
+  const candidates=rotated.length?rotated:available;
+  const family=(mechanics:readonly {id:MechanicId}[])=>[...mechanics].sort((a,b)=>first(b.id)-first(a.id))[0]?.id;
+  const history=result.manifest.slice(-30),familyHistory=history.slice(-20);
+  // A thoughtful board every sixth mission is followed by a gentler breather.
+  // These are inherited proven action lengths, never arbitrary tighter timers.
+  const thoughtful=id%6===0,recovery=id%6===1;
+  const paced=candidates.filter(level=>thoughtful?proofs.get(level.id)!.actions.length>=5:recovery?proofs.get(level.id)!.actions.length<=3:true);
+  const candidateWeights=new Map(candidates.map(level=>{
+   const main=family(level.mechanics),introduced=main?first(main):0;
+   const repetitions=history.filter(entry=>entry.templateId===level.id).length;
+   const familiarity=familyHistory.filter(entry=>family(entry.mechanics.map(id=>({id})))===main).length;
+   const practice=id-introduced<=20?2:1,shape=level.metadata.shapeFamily===previous?.shape?0.45:1;
+   return [level.id,practice*shape/((1+repetitions)*(1+familiarity)**2)] as const;
+  }));
+  const choose=(pool:CampaignLevel[])=>{
+   const weights=pool.map(level=>candidateWeights.get(level.id)!);
+   let ticket=rng.next()*weights.reduce((sum,weight)=>sum+weight,0);
+   for(let index=0;index<pool.length;index++){ticket-=weights[index]!;if(ticket<=0)return pool[index];}
+   return pool.at(-1);
+  };
   let accepted=false,lastReason='No eligible templates';
   for(let attempt=1;attempt<=(fixed?1:maxAttempts);attempt++){
-   const pool=id%6===0||!recent.length?available:recent;
-   const template=fixed??pool[rng.nextInt(pool.length)];if(!template)break;
+   // If a paced pool fails repeatedly, broaden the attempt pool, not the proof standard.
+   const pool=paced.length&&attempt<=Math.floor(maxAttempts*0.5)?paced:candidates;
+   const template=fixed??choose(pool);if(!template)break;
    let level=structuredClone(template),actions=structuredClone(proofs.get(template.id)!.actions),mirrored=false,changedTiles=0;
    if(!fixed){
     level.id=id;level.chapter=Math.ceil(id/50);level.seed=rng.nextInt(0x100000000);level.lessonId=null;
+    // Some proofs depend on their refill stream. Regularly retain that stream
+    // while still requiring a new, independently verified terrain arrangement.
+    if(attempt%3===0)level.seed=template.seed;
     level.presentationId=`generated-${id}`;level.rewardId=`mission-${id}`;
     const proofLength=actions.length;
     level.metadata.difficulty=proofLength<=4?'gentle':'standard';delete level.metadata.failurePolicy;
-    level.metadata.purposeTags=['seeded-terrain-variation',`template-${template.id}`,id%6===0?'familiar-rest':'recent-mechanic-practice'];
+    level.metadata.purposeTags=['seeded-terrain-variation',`template-${template.id}`,thoughtful?'thoughtful-practice':recovery?'gentle-recovery':'varied-mechanic-practice'];
     level.needMoves=Math.max(30,template.needMoves);level.moveLimit=template.moveLimit===null?null:Math.max(30,proofLength*4);
     for(const crew of [...level.crew,...level.arrivals.flatMap(arrival=>arrival.crew)])if(crew.rescueMoves!==null)crew.rescueMoves=Math.max(30,crew.rescueMoves);
     if(rng.next()<0.5&&level.geometry.chambers.every(chamber=>chamber.directions.every(direction=>direction==='down'))&&!level.mechanics.some(m=>m.id==='gravity')){
@@ -108,6 +132,9 @@ export function generateCampaign(options:{seed:number;throughLevel?:number;maxAt
      if(piece.kind==='tile'){piece.tier=(1+(piece.tier+rng.nextInt(2))%3) as 1|2|3;changedTiles++;}
     }
     if(!changedTiles){reject('no-mutable-terrain');continue;}
+    if(JSON.stringify(level.geometry.mask)===previousMask&&attempt<=Math.floor(maxAttempts*0.8)){
+     lastReason='repeated-mask';reject(lastReason);continue;
+    }
    }
    try{
     const checked=replay(level,actions);

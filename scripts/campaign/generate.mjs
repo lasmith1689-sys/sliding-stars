@@ -17,6 +17,7 @@ else if(through===1000){
  for(let chapter=1;chapter<=20;chapter++)await writeFile(`src/campaign/content/chapter-${String(chapter).padStart(2,'0')}.json`,JSON.stringify(result.levels.filter(l=>l.chapter===chapter))+'\n');
  await writeFile(`${out}/proofs.json`,JSON.stringify(result.proofs)+'\n');
  await writeFile(`${out}/manifest.json`,JSON.stringify(result.manifest,null,2)+'\n');
+ await import('./export-hints.mjs');
  const hash=createHash('sha256').update(JSON.stringify(result.levels)).digest('hex');console.log(`Published 1000 proof-checked boards; SHA-256 ${hash}`);
 }
 console.log(JSON.stringify({generated:report.generated,uniquePuzzles:report.uniquePuzzles,uniqueMasks:report.uniqueMasks,seconds:report.elapsedMs/1000,unresolved:report.unresolved}));

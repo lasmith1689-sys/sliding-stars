@@ -10,6 +10,7 @@ import {dragFrame} from './input/campaignDrag';
 import {MissionCompletion} from './ui/missionCompletion';
 import type {Pos} from './core/types';
 import {campaignHint} from './campaign/hints';
+import {getRouteHint} from './campaign/hintRoutes';
 import {transition} from './campaign/engine/turn';
 import type {CampaignAction} from './campaign/types';
 import {CampaignShell} from './ui/campaignShell';
@@ -42,8 +43,14 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  };
  const input=new CampaignInput(state,()=>game.locked||shell.dialog.open,a=>{void dispatch(a);});
  const recover=()=>{presentation++;input.cancel();pointerId=null;dragOrigin=null;animator.cancel();board.sync(makeScene(state()));game.finishPresentation();shell.update();diagnostics();checkCompletion();};
- const hint=()=>{
-  const action=campaignHint(state());if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
+ let hintRequest=0;
+ const hint=()=>{void showHint();};
+ const showHint=async()=>{
+  const request=++hintRequest,snapshot=state(),generation=presentation;
+  const route=await getRouteHint(snapshot);
+  // Loading a chapter must never paint a stale hint over a new move or dialog.
+  if(request!==hintRequest||state()!==snapshot||generation!==presentation||game.locked||pointerId!==null||shell.dialog.open||document.hidden)return;
+  const action=route??campaignHint(snapshot);if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
   const preview=transition(state(),action),departures=preview.events.flatMap(e=>e.type==='remove'&&e.reason==='departure'&&e.piece.kind==='cargo'?[e.piece.destinationId]:[]),gravity=preview.events.filter(e=>e.type==='gravity');
   board.hint(action,departures);const direction=directionHint(action);shell.preview(`Slide ${direction.word.toLowerCase()} between the glowing tiles${gravity.length?` · Gravity next: ${gravity.map(e=>e.after).join(' then ')}`:departures.length?' to evacuate safely':state().levelId===1?' to join three habitats':''}.`);
  };

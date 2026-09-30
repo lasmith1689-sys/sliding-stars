@@ -65,3 +65,20 @@ it('repeats deterministic seeded authoring and reports capped failures without s
  expect(capped.levels.length+capped.unresolved.length).toBe(50);
  for(const gap of capped.unresolved){expect(gap.attempts).toBe(1);expect(capped.levels.some(level=>level.id===gap.id)).toBe(false);}
 },15000);
+
+it('rotates templates and revisits a broad mix of learned mechanics throughout the late campaign',()=>{
+ for(let i=1;i<manifest.length;i++)expect(manifest[i]!.templateId).not.toBe(manifest[i-1]!.templateId);
+ const primary=(entry:GeneratedManifestEntry)=>[...entry.mechanics].sort((a,b)=>first(b)-first(a))[0]!;
+ for(let start=800;start<1000;start+=50){
+  const window=manifest.slice(start,start+50),counts=new Map<string,number>();
+  for(const entry of window){const mechanic=primary(entry);counts.set(mechanic,(counts.get(mechanic)??0)+1);}
+  expect(counts.size).toBeGreaterThanOrEqual(10);
+  expect(Math.max(...counts.values())/window.length).toBeLessThanOrEqual(0.3);
+ }
+ const late=manifest.filter(entry=>entry.id>805&&entry.source==='generated');
+ const thoughtful=late.filter(entry=>entry.id%6===0),recovery=late.filter(entry=>entry.id%6===1);
+ expect(thoughtful.filter(entry=>entry.proofLength>=5).length/thoughtful.length).toBeGreaterThan(0.6);
+ expect(recovery.filter(entry=>entry.proofLength<=3).length/recovery.length).toBeGreaterThan(0.8);
+ const repeatedMasks=levels.slice(1).filter((level,index)=>JSON.stringify(level.geometry.mask)===JSON.stringify(levels[index]!.geometry.mask));
+ expect(repeatedMasks.length/levels.length).toBeLessThan(0.05);
+});

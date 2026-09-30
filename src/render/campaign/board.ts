@@ -114,6 +114,11 @@ export class CampaignBoard {
    const texture=p.kind==='tile'?this.textures.tile[p.tier]:p.kind==='station'?this.textures.dome:p.kind==='cargo'&&p.cargoKind==='key'?this.textures.campaign?.['key-idle']:p.kind==='cargo'&&p.cargoKind==='harvest'?this.textures.campaign?.['garden-harvest']:this.textures.pod;
    const onBridge=scene.fixtures.some(f=>f.kind==='bridge'&&f.active&&f.cells.some(c=>c.r===p.at.r&&c.c===p.at.c));
    const node=this.entity(p.id,p.at,texture,p.kind==='cargo'&&p.cargoKind==='key'?.72:onBridge?.78:1);
+   // Keep playable dark terrain distinct from genuine holes without replacing art.
+   if(p.kind==='tile'&&!onBridge){
+    const edge=new Graphics(),color=[0,0x7187ba,0xa58cce,0xc1cde3,0x75ddb9,0xf6df8c][p.tier]!;
+    edge.roundRect(-ts*.49,-ts*.49,ts*.98,ts*.98,ts*.07).stroke({color,width:1.4,alpha:p.tier<=2?.68:.46});node.addChild(edge);
+   }
    if(onBridge&&node.children[0])node.children[0].y=-ts*.18;
    if(p.kind==='station'){
     const dir=p.facing==='left'?-1:1,g=new Graphics();g.roundRect(dir*ts*.43-ts*.07,-ts*.2,ts*.14,ts*.4,3).fill(0x102a3c).stroke({color:0xb3ffe3,width:2});node.addChild(g);
