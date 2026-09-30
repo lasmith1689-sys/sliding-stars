@@ -58,7 +58,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
    shell.panel('Every beta mission complete!', '<img class="result-portrait" src="/optimized/pepper.webp" alt="Pepper"><p>You brought a little more life to the stars. Your progress is saved; revisit any mission while the full campaign grows.</p><button class="primary wide" id="all-missions">Replay a mission</button>',()=>shell.dialog.querySelector('#all-missions')!.addEventListener('click',()=>{shell.dialog.close();openBetaMissionPicker(game.save,storage,()=>{void reloadSavedMission();});}));return;
   }await advanceToCampaign(game.save,storage,provider);await reloadSavedMission();},
   preferences:()=>{if(!game.save.preferences.sound)void audio?.suspend();saveInBackground();},
-  power:kind=>{input.cancel();if(!game.save.wallet.inventory[kind]){const bought=game.purchase(kind);shell.preview(bought?'Charge purchased. Open Guide to select it.':'More credits needed. Earn them by merging and rescuing.');shell.update();return;}
+  power:kind=>{input.cancel();if(!game.save.wallet.inventory[kind]){const bought=game.purchase(kind);if(bought)saveInBackground();shell.preview(bought?'Charge purchased. Open Guide to select it.':'More credits needed. Earn them by merging and rescuing.');shell.update();return;}
    if(kind==='wormhole'){void dispatch({type:'booster',kind,at:{r:0,c:0}});return;}shell.selected=shell.selected===kind?null:kind;shell.preview(shell.selected?`${kind==='demo'?'Demolition: tap empty terrain':'Tractor: tap safe terrain or a pod'}. Open Guide to change selection.`:'Selection cancelled.');},
  },previewMode);
  const missions=document.createElement('button');missions.textContent='Missions';missions.setAttribute('aria-label','Choose or replay a mission');
