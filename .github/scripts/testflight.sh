@@ -12,7 +12,9 @@ if [[ ! "$BUILD_NUMBER" =~ ^[1-9][0-9]*\.[1-9][0-9]*$ ]]; then
   echo '::error::BUILD_NUMBER must be run_number.run_attempt, such as 12.1.'
   exit 1
 fi
-if ! xcodebuild -version | grep -q '^Xcode 26'; then
+xcode_version=$(xcodebuild -version)
+printf '%s\n' "$xcode_version"
+if [[ "$xcode_version" != 'Xcode 26'* ]]; then
   echo '::error::This project requires Xcode 26 on macos-26.'
   exit 1
 fi
