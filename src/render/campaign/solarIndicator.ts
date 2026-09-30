@@ -18,6 +18,6 @@ export function addSolarIndicator(node:Container,collector:SolarCollector,terrai
  const icon=new Sprite(terrain);icon.label='solar-requested-terrain';icon.anchor.set(.5);icon.width=icon.height=size;icon.position.set(x,y);node.addChild(icon);
  const strip=new Graphics();strip.label='solar-terrain-name-strip';
  strip.roundRect(x-size/2,y+size*.19,size,size*.31,tileSize*.04).fill({color:0x101d32,alpha:.93});node.addChild(strip);
- const name=new Text({text:terrainName(collector.tier).toUpperCase(),style:{fontFamily:'system-ui',fontSize:Math.max(8,Math.min(10,tileSize*.13)),fontWeight:'800',fill:0xffffff,stroke:{color:0x101d32,width:2}}});
+ const name=new Text({text:terrainName(collector.tier).toUpperCase(),style:{fontFamily:'Nunito',fontSize:Math.max(8,Math.min(10,tileSize*.13)),fontWeight:'800',fill:0xffffff,stroke:{color:0x101d32,width:2}}});
  name.label='solar-terrain-name';name.anchor.set(.5);name.position.set(x,y+size*.34);node.addChild(name);
 }

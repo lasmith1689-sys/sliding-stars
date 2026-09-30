@@ -3,3 +3,24 @@
 .boot-error{pointer-events:auto;position:absolute;inset:20% 20px auto;padding:24px;background:#17243a;border-radius:20px}
 #rotate-note{display:none;position:fixed;inset:0;padding:30px;background:#0b1426;text-align:center;place-content:center}#rotate-note>span{font-size:48px;color:#bcf7dd}#rotate-note h1{font-size:25px;margin-bottom:0}@media(max-height:460px) and (min-width:600px){#rotate-note{display:grid}#frame{visibility:hidden}}
 .campaign-header,.campaign-footer{position:absolute;left:0;right:0;padding:10px 14px;pointer-events:none;background:linear-gradient(#0b1227f5,#0b1227e0 80%,transparent)}.campaign-header{top:0;height:var(--campaign-top)}.campaign-footer{bottom:0;height:var(--campaign-bottom);background:linear-gradient(transparent,#0b1227f5 25%);display:flex;flex-direction:column;justify-content:end;gap:4px}.campaign-top{display:flex;justify-content:space-between;align-items:center;font-size:14px;letter-spacing:1.5px}.campaign-top b{color:#b9fce1}.campaign-top>span:last-child{color:#ffdc99;letter-spacing:0}.campaign-mission{display:flex;align-items:center;justify-content:space-between;margin-top:7px;gap:8px}#campaign-goals{display:flex;gap:12px;font-size:14px;margin-top:3px}#campaign-goals>span{white-space:nowrap}#campaign-goals b{color:#c3f6e8}.campaign-turns{text-align:right;flex-shrink:0}.campaign-turns>b{font-size:23px;color:#b9fce1;line-height:1}.campaign-turns>span{display:block;font-size:8px;letter-spacing:.8px}#campaign-waves,#campaign-status{font-size:10px;line-height:15px;color:#b9cce1}#campaign-status{color:#c3f6e8;min-height:15px}#campaign-coach{font-size:11px;line-height:15px;min-height:15px;text-align:center;color:#d5f6e8}.campaign-controls{display:flex;gap:8px}.campaign-controls button{pointer-events:auto;flex:1;padding:6px;min-height:44px;font-size:12px}#campaign-save{text-align:center;font-size:9px;line-height:12px;color:#a9bcd6}.campaign-compact .campaign-header{padding:6px 12px}.campaign-compact .campaign-top{font-size:11px}.campaign-compact .campaign-mission{margin-top:3px}.campaign-compact #campaign-goals{font-size:12px;margin-top:1px}.campaign-compact .campaign-turns>b{font-size:19px}.campaign-compact #campaign-waves,.campaign-compact #campaign-status{font-size:9px;line-height:12px}.campaign-compact .campaign-footer{padding:0 12px 4px;gap:2px}.campaign-compact #campaign-coach{font-size:10px;line-height:12px;min-height:12px}.campaign-compact #campaign-save{font-size:8px;line-height:10px}.campaign-compact .campaign-controls{gap:6px}
+
+/* Rounded lettering is bundled with the game for the same feel offline on iPhone. */
+:root{font-family:Nunito,ui-rounded,sans-serif;font-weight:600}
+button,h2{font-weight:800}
+h1,.panel-heading h1,.campaign-top,.campaign-turns>b,.wordmark{font-family:Fredoka,ui-rounded,sans-serif;font-weight:600;letter-spacing:0}
+.campaign-top{font-size:23px;line-height:1.1;color:#ffe6b0}
+.campaign-top b{font-weight:600;color:#b9fce1}
+.campaign-top>span:last-child{font-family:Nunito,sans-serif;font-size:16px;font-weight:800}
+.eyebrow{font-size:12px;letter-spacing:0;font-weight:800;color:#c9dcf3}
+.campaign-turns>span{letter-spacing:0;font-size:9px}
+#campaign-goals{font-weight:800}
+.campaign-controls button{border-radius:18px;border-bottom:3px solid #081325;background:#263d59;font-weight:800}
+.campaign-compact .campaign-top{font-size:18px}
+.campaign-compact .eyebrow{font-size:10px}
+.mission-complete{position:absolute;inset:0;display:grid;place-items:center;background:#09172ab8;z-index:12;pointer-events:auto;text-align:center}
+.mission-complete>div{width:88%;padding:20px 12px 28px;border:3px solid #bdffe3;border-radius:32px;background:linear-gradient(150deg,#274563,#15243f);box-shadow:0 18px 70px #02091488;animation:rescue-pop .35s ease-out}
+.mission-complete img{width:130px;height:130px;object-fit:contain}
+.mission-complete h1{font-size:32px;margin:0;color:#ffe5a7;line-height:1.1}
+.mission-complete p{font-size:20px;color:#d0ffe9;margin:10px 0}
+.mission-complete span{font-size:14px;color:#c5d8ee}
+@keyframes rescue-pop{from{opacity:0;transform:scale(.85) translateY(12px)}to{opacity:1;transform:none}}

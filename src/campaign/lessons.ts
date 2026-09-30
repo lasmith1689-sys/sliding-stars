@@ -31,7 +31,7 @@ const teachingCopy={
   comets:{title:'One connected comet',instruction:'Match beside any part to weaken the whole comet. All its cells clear together.',artId:'comet'},
 } as const;
 const foundationCopy=[
-  'Welcome, Commander. Slide the bottom flowering habitat to join three habitats. Crew ride the match into their new station.',
+  'Welcome, Commander. Your stranded explorer needs a home. Slide the bottom flowering habitat left to join three habitats and build a rescue station.',
   'Build a way home. Match three biospheres to grow a flowering habitat, then three habitats to make a station.',
   'Rescue our botanist and the drifter. Raise terrain beneath crew or make a pod. Your first greenhouse is almost earned.',
 ];

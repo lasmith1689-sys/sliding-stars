@@ -43,7 +43,7 @@ After an upload succeeds, open the app's **TestFlight** tab and wait for Apple p
 
 ## Beta scope
 
-108 authored missions and 21 implemented mechanics, including varied board geometry, rescue creatures, currents, portals, keys, gravity switches, shuttle docks and phase doors. The 1000-mission campaign and four later mechanics remain unfinished. See [the beta status](docs/TESTFLIGHT-BETA.md) for validation and limitations.
+102 authored missions and 20 implemented mechanics, including varied board geometry, rescue creatures, currents, keys, gravity switches, shuttle docks and phase doors. The 1000-mission campaign and four later mechanics remain unfinished. See [the beta status](docs/TESTFLIGHT-BETA.md) for validation and limitations.
 
 The app bundles its game/art and uses native save storage. Safari progress is separate from app progress. No App Store submission is requested; this workflow marks uploads for internal TestFlight testing.
 

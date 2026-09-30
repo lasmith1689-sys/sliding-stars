@@ -1,7 +1,7 @@
 import { GameSession,RUN_KEY,type RunData } from '../meta/run';
 import type { LevelDef,Pos } from '../core/types';
 import type { PowerUpKind } from '../core/powerups';
-import { BETA_CAMPAIGN_IDS,getCampaignLevel,isBetaCampaignId } from '../campaign/catalog';
+import { BETA_CAMPAIGN_IDS,RETIRED_BETA_CAMPAIGN_IDS,getCampaignLevel,isBetaCampaignId } from '../campaign/catalog';
 import { loadCampaignLevel } from '../campaign/engine/load';
 import { parseSaveV2,saveSnapshot } from './storage';
 import { nextAvailableCampaignId,nextCampaignId } from './migrate';
@@ -62,13 +62,29 @@ export async function selectBetaCampaignMission(save:SaveV2,storage:SaveStorage,
  if(!isBetaCampaignId(id))throw Error(`Mission ${id} is not in this beta release`);
  return startCampaignLevel(save,checked,storage,id,getCampaignLevel);
 }
-async function startCampaignLevel(save:SaveV2,checked:SaveV2,storage:SaveStorage,id:number,provider:LevelProvider):Promise<SaveV2> {
+/** Retired boards never replay on launch. Carry every account field forward,
+ * without awarding a completion for the removed board or replaying its events. */
+export async function migrateRetiredBetaMission(save:SaveV2,storage:SaveStorage):Promise<SaveV2> {
+ const checked=parseSaveV2(save);
+ if(checked.active.kind!=='campaign')return save;
+ const current=checked.active.state;
+ if(current.turn===0&&current.status==='playing'&&current.levelId<=3){
+  const revised=await getCampaignLevel(current.levelId);
+  if(JSON.stringify(current.level.crew)!==JSON.stringify(revised.crew))return startCampaignLevel(save,checked,storage,current.levelId,async()=>revised,false);
+ }
+ if(!RETIRED_BETA_CAMPAIGN_IDS.includes(current.levelId))return save;
+ const retiredId=checked.active.state.levelId;
+ const id=BETA_CAMPAIGN_IDS.find(candidate=>candidate>retiredId&&!checked.completedCampaignIds.includes(candidate))
+  ??BETA_CAMPAIGN_IDS.find(candidate=>!checked.completedCampaignIds.includes(candidate))??BETA_CAMPAIGN_IDS[0]!;
+ return startCampaignLevel(save,checked,storage,id,getCampaignLevel);
+}
+async function startCampaignLevel(save:SaveV2,checked:SaveV2,storage:SaveStorage,id:number,provider:LevelProvider,countAttempt=true):Promise<SaveV2> {
  const fingerprint=JSON.stringify(save),level=await provider(id);
  if(level.id!==id)throw Error('Level provider returned the wrong campaign number');
  if(JSON.stringify(save)!==fingerprint)throw Error('Save changed while loading campaign content; retry');
  const state=loadCampaignLevel(level),prior=checked.attempts[String(id)]??{started:0,failed:0};
  const next:SaveV2={...checked,revision:checked.revision+1,active:{kind:'campaign',state,events:[]},activeAssisted:false,
-  attempts:{...checked.attempts,[String(id)]:{...prior,started:prior.started+1}}};
+  attempts:{...checked.attempts,[String(id)]:{...prior,started:prior.started+(countAttempt?1:0)}}};
  // No legacy station reward is paid here: claimed legacy boards already paid it.
  const result=saveSnapshot(storage,next);if(!result.ok)throw Error(result.error??'Could not save campaign start');return next;
 }

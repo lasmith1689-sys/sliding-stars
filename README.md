@@ -2,7 +2,7 @@
 
 A cozy space rescue puzzle game for iPhone, starring Zena and Pepper.
 
-The current beta contains **108 fixed authored missions and 21 implemented mechanics**, with changing board shapes, animated creatures, hints, boosters, mission selection/replay, sound and reduced-motion preferences. The full 1000-mission campaign, four later mechanics and expanded station rewards remain unfinished.
+The current beta contains **102 fixed authored missions and 20 implemented mechanics**, with changing board shapes, animated creatures, hints, boosters, mission selection/replay, sound and reduced-motion preferences. The full 1000-mission campaign, four later mechanics and expanded station rewards remain unfinished.
 
 ## Install on iPhone
 

@@ -1,12 +1,16 @@
 import {readSave,saveSnapshot} from './session/storage';
 import {createCampaignSave} from './session/campaignSession';
-import {openExecutor} from './session/adapter';
+import {openExecutor,migrateRetiredBetaMission} from './session/adapter';
 import {getCampaignLevel} from './campaign/catalog';
 import type {SaveStorage,SaveV2,LevelProvider} from './session/types';
 import './ui/style.css';
+import '@fontsource/nunito/latin-600.css';
+import '@fontsource/nunito/latin-800.css';
+import '@fontsource/fredoka/latin-600.css';
 import {platformStorage,registerNativeLifecycle,installWebOfflinePack} from './platform';
 import {flushStorage} from './session/nativeStorage';
 async function boot(){
+ await Promise.all([document.fonts.load('600 16px Nunito'),document.fonts.load('800 16px Nunito'),document.fonts.load('600 24px Fredoka')]);
  let storage:SaveStorage=await platformStorage();
  let provider:LevelProvider=getCampaignLevel,previewMode=false,initial:(()=>Promise<SaveV2>)|undefined;
  if(import.meta.env.DEV&&new URLSearchParams(location.search).has('campaign-preview')){
@@ -14,6 +18,7 @@ async function boot(){
  }
  const read=readSave(storage);let save=read.save;
  if(!save){if(read.status!=='empty')throw Error(read.error??`Saved progress is ${read.status}; it has been preserved.`);save=initial?await initial():createCampaignSave(await provider(1));save.preferences.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;}
+ if(provider===getCampaignLevel)save=await migrateRetiredBetaMission(save,storage);
  const result=saveSnapshot(storage,save);if(!result.ok)throw Error(result.error??'Could not save initial progress');
  await flushStorage(storage);await registerNativeLifecycle();
  const executor=openExecutor(save,storage);

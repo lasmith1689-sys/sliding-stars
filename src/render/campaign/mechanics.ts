@@ -68,7 +68,7 @@ export function waveVisualState(scene:CampaignScene):'scheduled'|'ready'|'waitin
 }
 export function crewGroupLabel(group:readonly CampaignCrew[],riding=false):string {
  const needs=group.flatMap(c=>[...(c.rescueMoves===null?[]:[{count:c.rescueMoves,label:'O₂'}]),...(c.shelterMoves===null?[]:[{count:c.shelterMoves,label:'⌂'}])]).sort((a,b)=>a.count-b.count);
- const urgent=needs[0],need=urgent?`${urgent.label} ${urgent.count}`:'SAFE';
+ const urgent=needs[0],need=urgent?`${urgent.label} ${urgent.count}`:'HELP!';
  if(riding&&!urgent)return group.length>1?`${group.length} RIDING`:'RIDING';
  return group.length>1?`${group.length} crew · ${need}`:need;
 }

@@ -27,6 +27,28 @@ export class CampaignBoard {
  private parcel(node:Container,ts:number){const g=new Graphics();g.roundRect(-ts*.16,-ts*.1,ts*.32,ts*.22,3).fill(0xffebbb).stroke({color:0xeda532,width:2});g.rect(-ts*.03,-ts*.1,ts*.06,ts*.22).fill(0xf4a62e);node.addChild(g);}
  private waveSprite:Sprite|null=null;
  private moving=false;private breathTime=0;
+ private dragPositions=new Map<string,{x:number;y:number}>();private dragGeneration=0;
+ /** Move terrain and its riders together; gameplay stays unchanged until release. */
+ drag(from:Pos,to:Pos,progress:number):void {
+  this.resetDrag(0);this.moving=true;
+  for(const [a,b] of [[from,to],[to,from]]){
+   const start=this.cellCenter(a!),end=this.cellCenter(b!);
+   const ids=[...this.scene.pieces,...this.scene.crew.filter(c=>c.status==='active'&&!this.scene.actors.some(actor=>actor.id===c.carrierId))]
+    .filter(p=>p.at.r===a!.r&&p.at.c===a!.c).map(p=>p.id);
+   for(const id of ids){const node=this.nodes.get(id);if(!node)continue;
+    const position={x:start.x+(end.x-start.x)*progress,y:start.y+(end.y-start.y)*progress};
+    node.position.set(position.x,position.y);this.dragPositions.set(id,position);
+   }
+  }
+ }
+ resetDrag(duration=130):void {
+  const positions=new Map(this.dragPositions),token=++this.dragGeneration;
+  const start=performance.now();
+  const step=()=>{if(token!==this.dragGeneration)return;const t=duration&&!this.reducedMotion()?Math.min(1,(performance.now()-start)/duration):1,ease=1-(1-t)**3;
+   for(const [id,a] of positions){const node=this.nodes.get(id),at=this.scene.entityPositions[id];if(node&&at){const b=this.cellCenter(at),p={x:a.x+(b.x-a.x)*ease,y:a.y+(b.y-a.y)*ease};node.position.set(p.x,p.y);this.dragPositions.set(id,p);}}
+   if(t<1)requestAnimationFrame(step);else{this.moving=false;this.dragPositions.clear();}
+  };step();
+ }
  private exitFrame(id:string,state:'idle'|'ready'|'waiting'|'departure'):void {
   const sprite=this.exitSprites.get(id),assetId:CampaignAssetId=`exit-${state}`,texture=this.textures.campaign?.[assetId];
   if(sprite&&texture)sprite.texture=texture;
@@ -49,7 +71,7 @@ export class CampaignBoard {
  cellCenter(p:Pos){const l=this.layout;return {x:l.originX+p.c*(l.tileSize+l.gap)+l.tileSize/2,y:l.originY+p.r*(l.tileSize+l.gap)+l.tileSize/2};}
  cellAt(x:number,y:number):Pos|null{return campaignCellAt(this.layout,this.scene.geometry.mask,this.scene.geometry.inactiveCells,x,y);}
  get renderedEntityPositions():Record<string,Pos>{const l=this.layout;return Object.fromEntries([...this.nodes].map(([id,node])=>[id,{r:(node.y-l.originY-l.tileSize/2)/(l.tileSize+l.gap),c:(node.x-l.originX-l.tileSize/2)/(l.tileSize+l.gap)}]));}
- private label(text:string,node:Container,y:number,size=11):void {const label=new Text({text,style:{fontFamily:'system-ui',fontSize:size,fontWeight:'800',fill:0xffffff,stroke:{color:0x111832,width:4}}});label.anchor.set(.5);label.y=y;node.addChild(label);}
+ private label(text:string,node:Container,y:number,size=11):void {const label=new Text({text,style:{fontFamily:'Nunito',fontSize:size,fontWeight:'800',fill:0xffffff,stroke:{color:0x111832,width:4}}});label.anchor.set(.5);label.y=y;node.addChild(label);}
  private entity(id:string,at:Pos,texture:Texture|undefined,scale:number,label?:string):Container {
   const node=new Container(),p=this.cellCenter(at),ts=this.layout.tileSize;node.position.set(p.x,p.y);this.nodes.set(id,node);this.content.addChild(node);
   if(texture){const sprite=new Sprite(texture);sprite.anchor.set(.5);sprite.width=ts*scale;sprite.height=ts*scale;node.addChild(sprite);}
@@ -60,6 +82,7 @@ export class CampaignBoard {
   const texture=this.textures.campaign?.[`shelter-${state}`];if(!texture)return;const badge=new Sprite(texture);badge.label='shelter-badge';badge.anchor.set(.5);badge.width=badge.height=ts*.33;badge.position.set(ts*.3,-ts*.17);node.addChild(badge);
  }
  sync(scene:CampaignScene):void {
+  this.dragGeneration++;this.dragPositions.clear();
   this.moving=false;
   this.scene=scene;this.hints.clear();for(const child of this.content.removeChildren())child.destroy({children:true});this.nodes.clear();this.exitSprites.clear();this.cargoLabels.clear();
   this.returningParcels.clear();this.bridgePanels.clear();this.dockMarkers.clear();
@@ -325,7 +348,7 @@ export class CampaignBoard {
   }
   const departures=events.filter(e=>e.type==='remove'&&e.reason==='departure');
   for(const event of departures)if(event.type==='remove'&&event.piece.kind==='cargo')this.exitFrame(event.piece.destinationId,'departure');
-  for(const [id,node] of this.nodes){const a=from.entityPositions[id],b=to.entityPositions[id];if(a&&b){const start=this.cellCenter(a),end=this.cellCenter(b);node.position.set(start.x+(end.x-start.x)*eased,start.y+(end.y-start.y)*eased);}else if(a&&!b)node.alpha=1-progress;
+  for(const [id,node] of this.nodes){const a=from.entityPositions[id],b=to.entityPositions[id];if(a&&b){const start=this.dragPositions?.get(id)??this.cellCenter(a),end=this.cellCenter(b);node.position.set(start.x+(end.x-start.x)*eased,start.y+(end.y-start.y)*eased);}else if(a&&!b)node.alpha=1-progress;
    const portal=events.find(e=>e.type==='portal'&&e.phase==='transferred'&&(e.pieceId===id||e.passengerIds.includes(id)));
    if(portal?.type==='portal'){
     const at=this.cellCenter(progress<.5?portal.from:portal.to);node.position.set(at.x,at.y);
@@ -358,7 +381,6 @@ export class CampaignBoard {
   const from=action.type==='swap'?action.from:this.scene.actors.find(a=>a.id===action.actorId)?.at;if(!from)return;
   const to=action.type==='swap'?action.to:{r:from.r+action.dr,c:from.c+action.dc},a=this.cellCenter(from),b=this.cellCenter(to),ts=this.layout.tileSize;
   this.hints.roundRect(a.x-ts*.46,a.y-ts*.46,ts*.92,ts*.92,8).stroke({color:0xe4ffce,width:3});
-  const dx=Math.sign(b.x-a.x),dy=Math.sign(b.y-a.y);this.hints.moveTo(a.x,a.y).lineTo(b.x,b.y).stroke({color:0xffffff,width:4});
-  this.hints.moveTo(b.x-dx*10+dy*6,b.y-dy*10-dx*6).lineTo(b.x,b.y).lineTo(b.x-dx*10-dy*6,b.y-dy*10+dx*6).stroke({color:0xffffff,width:4});
+  this.hints.roundRect(b.x-ts*.46,b.y-ts*.46,ts*.92,ts*.92,8).fill({color:0xffe3a3,alpha:.13}).stroke({color:0xffe3a3,width:3});
  }
 }

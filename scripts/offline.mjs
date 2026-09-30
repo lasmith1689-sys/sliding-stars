@@ -2,7 +2,7 @@ import {cp,readdir,readFile,writeFile} from 'node:fs/promises';
 import {resolve,relative} from 'node:path';
 import {createHash} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),dist=resolve(root,'dist');
-for(const name of ['optimized','manifest.webmanifest','icon-192.png','icon-512.png','icon-512-maskable.png','apple-touch-icon.png'])await cp(resolve(root,'public',name),resolve(dist,name),{recursive:true});
+for(const name of ['optimized','font-licenses','manifest.webmanifest','icon-192.png','icon-512.png','icon-512-maskable.png','apple-touch-icon.png'])await cp(resolve(root,'public',name),resolve(dist,name),{recursive:true});
 async function walk(dir){const out=[];for(const item of await readdir(dir,{withFileTypes:true})){const p=resolve(dir,item.name);if(item.isDirectory())out.push(...await walk(p));else out.push(p);}return out;}
 const files=(await walk(dist)).filter(p=>!p.endsWith('sw.js')).sort();
 const hash=createHash('sha256');for(const file of files)hash.update(await readFile(file));
