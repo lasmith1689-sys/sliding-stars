@@ -4,6 +4,8 @@ This app uses the account owner's existing Ai-sky distribution method: macos-26/
 
 ## 1. Register the app
 
+Setup completed September 30, 2026: App ID and [App Store Connect app 6817778193](https://appstoreconnect.apple.com/apps/6817778193/distribution) exist. Internal group **Me** has automatic distribution enabled and the account owner added. GitHub secrets `APPLE_TEAM_ID`, `ASC_KEY_ID` and `ASC_ISSUER_ID` are saved. Only `ASC_KEY_P8` remains before running the upload workflow. Use the existing key's original `.p8` file directly in GitHub; saved GitHub secrets cannot be read back.
+
 1. Open [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list).
 2. Click **+ → App IDs → Continue → App → Continue**.
 3. Enter description **Sliding Stars**, choose **Explicit**, and enter **com.lasmith1689.SlidingStars**.

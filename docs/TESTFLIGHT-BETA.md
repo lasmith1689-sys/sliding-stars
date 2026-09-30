@@ -1,6 +1,6 @@
 # Sliding Stars — first iOS beta
 
-Status: the iOS archive compiled successfully on GitHub using Xcode 26.6 (build 3.1, September 30, 2026). **Not yet distribution-signed, uploaded or available on TestFlight**; the run reported missing repository secrets. The account owner uses Windows and an iPhone, with GitHub Actions macos-26/Xcode 26 for builds. CI follows the existing Ai-sky ad-hoc-archive/cloud-signing method. The public repository is https://github.com/lasmith1689-sys/sliding-stars. The four repository secrets and the new Apple app record are still required for upload.
+Status: the iOS archive compiled successfully on GitHub using Xcode 26.6 (build 3.1, September 30, 2026). **Not yet distribution-signed, uploaded or available on TestFlight**. Apple app registration, the internal tester group and three signing-identifier secrets are configured; only the private-key secret `ASC_KEY_P8` remains before upload. The account owner uses Windows and an iPhone, with GitHub Actions macos-26/Xcode 26 for builds. CI follows the existing Ai-sky ad-hoc-archive/cloud-signing method. The public repository is https://github.com/lasmith1689-sys/sliding-stars.
 
 ## Included
 
@@ -30,4 +30,6 @@ After Apple processing, attach the build to an internal TestFlight group contain
 
 Suggested “What to Test”: “Play the first rescues, try the later mechanics through Missions, and check that progress and settings survive closing and reopening the app. Please note any unclear rules, cramped controls, animation problems or unexpectedly hard missions. This beta includes 108 authored missions; numbered gaps are planned content.”
 
-Next step: finish the new repository and Apple app record, add the same four signing secrets to that repository, then run and verify TestFlight delivery in this task. No new task is required.
+Setup update, September 30, 2026: registered the bundle ID and created App Store Connect app **6817778193**. Internal group **Me** has automatic distribution enabled and the account owner added (1 tester, 0 builds). Saved the existing team, key and issuer identifiers as GitHub repository secrets. Only the existing private key (`ASC_KEY_P8`) is still missing; GitHub cannot reveal it from another repository. No new key was created or existing access changed.
+
+Next step: the account owner enters the original `.p8` contents directly in GitHub, then run and verify TestFlight delivery in this task. No new task is required.

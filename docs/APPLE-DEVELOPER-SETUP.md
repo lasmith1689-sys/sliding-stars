@@ -10,5 +10,5 @@ Provided by the user September 29, 2026. Use these for future work on this app.
 - Existing Admin Team API key stays only in GitHub repository secrets: `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8`. Never request private-key text in chat or copy it into source/logs.
 - Build numbers use `github.run_number.github.run_attempt`. Upload only from a `[ship]` commit or manual workflow run; other pushes only check CI.
 - `ITSAppUsesNonExemptEncryption=NO`; each target includes PrivacyInfo.xcprivacy.
-- The user performs Apple website registration and setup. Provide exact click-by-click instructions; do not take those steps over in a browser.
+- The user initially preferred doing Apple website setup personally, then authorized completing as much setup as possible autonomously on September 30, 2026. App registration and internal TestFlight configuration are now complete. Private-key text must go directly into GitHub, never chat.
 - A new app needs its own App ID, App Store Connect app record, internal TestFlight group, repository and the four secrets. This app needs no App Group or extra capabilities.
