@@ -11,7 +11,7 @@ User issue: the gold ring looked like an outer-space raft, could swap without ma
 
 ## Verification
 
-1,024 tests / 114 files passed. Typecheck, production build, production bundle audit and Capacitor iOS sync passed. All 1,000 exact proof routes and hint maps replayed. The 41-board hint QC sample won 41/41. At 390x844, physically dragged a loaded shuttle in lesson 473 twice and rescued the guest; lesson 758 rejected an empty-shuttle nonmatch with zero moves spent and explanatory feedback. This is desktop browser verification, not physical iPhone testing.
+1,026 tests / 114 files passed. Typecheck, production build, production bundle audit and Capacitor iOS sync passed. All 1,000 exact proof routes and hint maps replayed. The 41-board hint QC sample won 41/41. At 390x844, physically dragged a loaded shuttle in lesson 473 twice and rescued the guest; lesson 758 rejected an empty-shuttle nonmatch with zero moves spent and explanatory feedback. This is desktop browser verification, not physical iPhone testing.
 
 ## Art provenance
 
@@ -22,3 +22,5 @@ Prompt: Create one production game sprite on a genuinely transparent background.
 ## Next work
 
 Test the new empty-versus-occupied distinction on the physical iPhone. Decide from that playtest whether powered shuttle flight remains enjoyable; do not silently restore unlimited empty-piece swaps. The broader backlog in CLAUDE-HANDOFF.md remains: deeper procedural strategy, off-route hints and remaining genuinely new mechanics. No new Codex thread is required.
+
+Web-cache follow-up: confirmed the live browser was loading obsolete index-BQ4cP84v.js even after refresh. The service worker now activates only after its complete offline pack has downloaded, without waiting indefinitely for old tabs to close. A subsequent reload receives the new build. Claimed legacy victories and unfinished legacy sessions enter the campaign while preserving wallet/station data; unclaimed victory rewards are left accessible. Final deploy ID: 6abda624cb21a77e899952fa.
