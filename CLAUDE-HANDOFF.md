@@ -95,3 +95,14 @@ Continue development of Sliding Stars in this folder. First read CLAUDE-HANDOFF.
 - Start the next development increment with the prioritized QC follow-ups above. Approximately 7% of weekly Codex allowance remained near the end of QC, within the user-authorized ten-percentage-point spend. This is a tested beta checkpoint, not a declaration of all 25 mechanics or thousand-session fun.
 
 Web-cache follow-up: confirmed the live browser was loading obsolete index-BQ4cP84v.js even after refresh. The service worker now activates only after its complete offline pack has downloaded, without waiting indefinitely for old tabs to close. A subsequent reload receives the new build. Claimed legacy victories and unfinished legacy sessions enter the campaign while preserving wallet/station data; unclaimed victory rewards are left accessible. Final deploy ID: 6abda624cb21a77e899952fa.
+
+Live verification: the existing web installation required one hard refresh to escape its old cache. It then loaded index-DO7Sc56M.js, advanced a claimed legacy mission 1 to campaign mission 2, retained all 650 credits, and stayed on the corrected campaign after a subsequent normal reload. Advise returning web players to fully close/reopen or refresh once; do not clear site data. Native TestFlight packages bundle assets and do not use this web service worker.
+
+## Verified release: rescue shuttles, build 9.1
+
+- Public source commit: e94ec3a; parent commit: 177059a. Core shuttle change: public bfced4d / parent ba17b28.
+- Live improved web: https://next--sliding-stars.netlify.app/ . Final deploy: 6abda624cb21a77e899952fa. Original production remains preserved.
+- TestFlight 1.0 (9.1): https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36795323896 . Job 110157362733 completed successfully. Logs at 2026-10-01 00:23:06 UTC report Upload succeeded, EXPORT SUCCEEDED and Uploaded Sliding Stars 9.1. All 1,026 tests / 114 files passed on the macOS runner. CI run 36795324000 also succeeded.
+- Earlier core-only build 8.1 uploaded successfully as well; install 9.1 when Apple finishes processing because it includes returning-player migration.
+- Apple processing, internal-testing availability and physical-iPhone install/play remain unverified. Do not describe upload success as confirmed TestFlight availability. Existing Apple browser session requires user sign-in for that check.
+- Next concrete step: on the iPhone install 9.1 when it appears, then test a four-tile crew merge, empty-shuttle rejection, loaded flight and station rescue. In the web app, fully close/reopen or refresh if it still shows the old interface; do not clear saved data. No new Codex thread is required. Continue broader development using the existing handoff after this physical-device check.
