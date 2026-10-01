@@ -110,3 +110,7 @@ Live verification: the existing web installation required one hard refresh to es
 - Earlier core-only build 8.1 uploaded successfully as well; install 9.1 when Apple finishes processing because it includes returning-player migration.
 - Apple processing, internal-testing availability and physical-iPhone install/play remain unverified. Do not describe upload success as confirmed TestFlight availability. Existing Apple browser session requires user sign-in for that check.
 - Next concrete step: on the iPhone install 9.1 when it appears, then test a four-tile crew merge, empty-shuttle rejection, loaded flight and station rescue. In the web app, fully close/reopen or refresh if it still shows the old interface; do not clear saved data. No new Codex thread is required. Continue broader development using the existing handoff after this physical-device check.
+
+## Release verification
+
+Public source a535b69 / parent a787300. Build 1.0 (10.1) uploaded successfully at 2026-10-01 00:38:28 UTC. Workflow https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36796750211 and job 110161832225 succeeded; 1,034 tests passed on macOS. Apple processing/installability remains unconfirmed. Web deploy 6abda9fe989d2e839f14030f. Next: physical-device interruption/save/offline checks, then the documented gameplay-depth backlog. No new thread required.

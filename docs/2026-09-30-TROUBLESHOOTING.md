@@ -22,3 +22,7 @@ Web deploy: 6abda9fe989d2e839f14030f at https://next--sliding-stars.netlify.app/
 - Apple upload success is not confirmed TestFlight processing or installability.
 
 The account reached 99% weekly use. Preserve this handoff. Next concrete step is the physical-device checklist, then deeper procedural strategy and the remaining mechanics. Continue in the existing task; a new Codex thread is not required.
+
+## Release verification
+
+Public source a535b69 / parent a787300. Build 1.0 (10.1) uploaded successfully at 2026-10-01 00:38:28 UTC. Workflow https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36796750211 and job 110161832225 succeeded; 1,034 tests passed on macOS. Apple processing/installability remains unconfirmed. Web deploy 6abda9fe989d2e839f14030f. Next: physical-device interruption/save/offline checks, then the documented gameplay-depth backlog. No new thread required.
