@@ -10,7 +10,7 @@ const topics:Partial<Record<MechanicId,{title:string;body:string}>>={
  exits:{title:'Capsule departures',body:'Match beneath a capsule to lower it into its numbered exit. Capsules cannot slide directly; passengers stay safe aboard.'},
  waves:{title:'Incoming travelers',body:'The arrival counter shows moves until the next group lands. Keep their entry clear, prepare safe terrain, then guide them home.'},
  moonwhales:{title:'Moonwhale hops',body:'Match beside the whale to request a hop. It moves one loop stop each turn. Keep its marked LAND square clear and safe; the request waits until the whale reaches it.'},
- pups:{title:'Moon-pup nursery',body:'Build a connected path of biospheres or habitats to the nursery. Each move lets the pup take one safe step. Pods, stations and occupied cells block paws.'},
+ pups:{title:'Moon-pup nursery',body:'Build a connected path of biospheres or habitats to the nursery. Each move lets the pup take one safe step. Shuttles, stations and occupied cells block paws.'},
  currents:{title:'Orbital currents',body:'Plan one marked step ahead. After each move, the loop carries terrain and riders together. Amber means something blocks the whole loop; clear the lane to restart it.'},
  pirates:{title:'Playful pirate drones',body:'Make two matches beside the drone to return its parcel before it reaches the dock. It advances one route stop per move. You can retry freely; losing never takes your saved possessions.'},
  bridges:{title:'Fold-out bridges',body:'Make two separate matches beside the hinge to light both lamps. The outlined gap becomes playable terrain, letting waiting rovers cross.'},

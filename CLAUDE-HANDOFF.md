@@ -1,3 +1,7 @@
+# Latest revision: rescue shuttles
+
+Read docs/2026-09-30-RESCUE-SHUTTLES.md first. It supersedes older pod/raft rules and earlier campaign counts below. Empty shuttles now need a terrain match; only occupied shuttles have powered flight. New spacecraft art, touch guidance, MATCH/ABOARD badges, repaired authored lessons, 1,000 regenerated winning boards, 63 masks and 3,023 hint entries. One-time upgrade resets only the unfinished current mission; earned progress is preserved. 1,024 tests passed. Web/native release verification follows at the end after upload. Next: physical-iPhone playtest of this distinction, then the existing strategic-depth backlog. Continue here; a new Codex thread is not required.
+
 # Continue Sliding Stars in Claude Code
 
 ## Latest QC update — read first

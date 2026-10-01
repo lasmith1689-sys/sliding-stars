@@ -2,7 +2,7 @@
   "summary": {
     "sampleCount": 41,
     "maxMovesPerMission": 12,
-    "elapsedMs": 503,
+    "elapsedMs": 539,
     "mechanics": [
       "crates",
       "ice",
@@ -33,9 +33,9 @@
     "mutatedStateIds": [],
     "repeatedLayoutIds": [],
     "proofsPassBeforeAndAfter": true,
-    "hintMedianMs": 0.8208999999999946,
-    "hintP95Ms": 1.473300000000009,
-    "hintMaximumMs": 2.119799999999941
+    "hintMedianMs": 0.8850999999999942,
+    "hintP95Ms": 1.6706000000000358,
+    "hintMaximumMs": 2.334000000000003
   },
   "limitations": [
     "Hint-only play follows production route advice with heuristic fallback; it is not representative human playtesting.",
@@ -65,12 +65,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.7493999999999943,
-      "maxHintMs": 0.7493999999999943,
+      "initialHintMs": 1.420899999999989,
+      "maxHintMs": 1.420899999999989,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.7493999999999943,
+          "hintMs": 1.420899999999989,
           "action": {
             "type": "swap",
             "from": {
@@ -112,12 +112,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.473300000000009,
-      "maxHintMs": 1.473300000000009,
+      "initialHintMs": 1.5641999999999996,
+      "maxHintMs": 1.7781000000000233,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.473300000000009,
+          "hintMs": 1.5641999999999996,
           "action": {
             "type": "swap",
             "from": {
@@ -136,7 +136,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.940400000000011,
+          "hintMs": 1.7781000000000233,
           "action": {
             "type": "swap",
             "from": {
@@ -178,12 +178,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.9932000000000016,
-      "maxHintMs": 1.153899999999993,
+      "initialHintMs": 2.0095000000000027,
+      "maxHintMs": 2.0095000000000027,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.9932000000000016,
+          "hintMs": 2.0095000000000027,
           "action": {
             "type": "swap",
             "from": {
@@ -202,7 +202,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.153899999999993,
+          "hintMs": 1.9968999999999824,
           "action": {
             "type": "swap",
             "from": {
@@ -221,7 +221,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 0.716700000000003,
+          "hintMs": 1.2228000000000065,
           "action": {
             "type": "swap",
             "from": {
@@ -263,12 +263,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.9124000000000194,
-      "maxHintMs": 1.2741000000000042,
+      "initialHintMs": 1.124900000000025,
+      "maxHintMs": 1.124900000000025,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.9124000000000194,
+          "hintMs": 1.124900000000025,
           "action": {
             "type": "swap",
             "from": {
@@ -287,7 +287,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.2741000000000042,
+          "hintMs": 0.8850999999999942,
           "action": {
             "type": "swap",
             "from": {
@@ -306,7 +306,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 1.259699999999981,
+          "hintMs": 0.9612000000000194,
           "action": {
             "type": "swap",
             "from": {
@@ -325,7 +325,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 0.7124000000000024,
+          "hintMs": 0.6876000000000033,
           "action": {
             "type": "swap",
             "from": {
@@ -367,12 +367,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.6898999999999944,
-      "maxHintMs": 0.6898999999999944,
+      "initialHintMs": 0.6043999999999983,
+      "maxHintMs": 0.6043999999999983,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.6898999999999944,
+          "hintMs": 0.6043999999999983,
           "action": {
             "type": "swap",
             "from": {
@@ -414,12 +414,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.8114999999999952,
-      "maxHintMs": 0.8114999999999952,
+      "initialHintMs": 0.8083999999999776,
+      "maxHintMs": 0.8390000000000271,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.8114999999999952,
+          "hintMs": 0.8083999999999776,
           "action": {
             "type": "swap",
             "from": {
@@ -438,7 +438,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.5982000000000198,
+          "hintMs": 0.8390000000000271,
           "action": {
             "type": "swap",
             "from": {
@@ -480,12 +480,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.6461000000000183,
-      "maxHintMs": 1.6461000000000183,
+      "initialHintMs": 0.9524999999999864,
+      "maxHintMs": 1.2267999999999972,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.6461000000000183,
+          "hintMs": 0.9524999999999864,
           "action": {
             "type": "swap",
             "from": {
@@ -504,7 +504,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.8566999999999894,
+          "hintMs": 1.2267999999999972,
           "action": {
             "type": "swap",
             "from": {
@@ -523,7 +523,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 1.2650999999999897,
+          "hintMs": 0.7257999999999925,
           "action": {
             "type": "swap",
             "from": {
@@ -542,7 +542,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 0.9604999999999961,
+          "hintMs": 0.6822999999999979,
           "action": {
             "type": "swap",
             "from": {
@@ -584,12 +584,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.8660000000000139,
-      "maxHintMs": 1.8660000000000139,
+      "initialHintMs": 1.1297999999999888,
+      "maxHintMs": 1.5900999999999783,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.8660000000000139,
+          "hintMs": 1.1297999999999888,
           "action": {
             "type": "swap",
             "from": {
@@ -608,7 +608,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.6733000000000118,
+          "hintMs": 1.0879999999999939,
           "action": {
             "type": "swap",
             "from": {
@@ -627,7 +627,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 1.1588999999999885,
+          "hintMs": 1.5900999999999783,
           "action": {
             "type": "swap",
             "from": {
@@ -646,7 +646,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 0.7994999999999948,
+          "hintMs": 0.7571999999999832,
           "action": {
             "type": "swap",
             "from": {
@@ -668,9 +668,9 @@
     {
       "id": 100,
       "mechanics": [
-        "ice"
+        "rovers"
       ],
-      "proofMoves": 3,
+      "proofMoves": 1,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -680,67 +680,29 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 28,
+      "initialLegalActions": 14,
       "outcome": "won",
-      "moves": 3,
+      "moves": 1,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.1410999999999945,
-      "maxHintMs": 1.1410999999999945,
+      "initialHintMs": 0.4878999999999678,
+      "maxHintMs": 0.4878999999999678,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.1410999999999945,
+          "hintMs": 0.4878999999999678,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
+              "r": 3,
               "c": 2
             },
             "to": {
               "r": 3,
-              "c": 2
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 1,
-          "hintMs": 0.7504999999999882,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 3,
-              "c": 1
-            },
-            "to": {
-              "r": 4,
-              "c": 1
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 2,
-          "hintMs": 0.6387,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 3,
-              "c": 1
-            },
-            "to": {
-              "r": 3,
-              "c": 0
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -773,12 +735,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.4701000000000022,
-      "maxHintMs": 0.4701000000000022,
+      "initialHintMs": 0.44580000000001974,
+      "maxHintMs": 0.44580000000001974,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.4701000000000022,
+          "hintMs": 0.44580000000001974,
           "action": {
             "type": "swap",
             "from": {
@@ -820,12 +782,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.43729999999999336,
-      "maxHintMs": 0.43729999999999336,
+      "initialHintMs": 0.42619999999999436,
+      "maxHintMs": 0.42619999999999436,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.43729999999999336,
+          "hintMs": 0.42619999999999436,
           "action": {
             "type": "swap",
             "from": {
@@ -859,7 +821,7 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 24,
+      "initialLegalActions": 20,
       "outcome": "won",
       "moves": 2,
       "hintNull": false,
@@ -867,21 +829,21 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.9158999999999935,
-      "maxHintMs": 0.9158999999999935,
+      "initialHintMs": 0.8822000000000116,
+      "maxHintMs": 0.8822000000000116,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.9158999999999935,
+          "hintMs": 0.8822000000000116,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 2
+              "r": 2,
+              "c": 3
             },
             "to": {
               "r": 3,
-              "c": 1
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -891,16 +853,16 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.7882999999999925,
+          "hintMs": 0.7368000000000166,
           "action": {
             "type": "swap",
             "from": {
               "r": 1,
-              "c": 2
+              "c": 3
             },
             "to": {
-              "r": 1,
-              "c": 1
+              "r": 2,
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -933,12 +895,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.49500000000000455,
-      "maxHintMs": 0.49500000000000455,
+      "initialHintMs": 0.532100000000014,
+      "maxHintMs": 0.532100000000014,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.49500000000000455,
+          "hintMs": 0.532100000000014,
           "action": {
             "type": "swap",
             "from": {
@@ -960,9 +922,9 @@
     {
       "id": 225,
       "mechanics": [
-        "rovers"
+        "waves"
       ],
-      "proofMoves": 1,
+      "proofMoves": 2,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -972,20 +934,39 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 14,
+      "initialLegalActions": 10,
       "outcome": "won",
-      "moves": 1,
+      "moves": 2,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 1,
-      "initialHintMs": 0.5722000000000094,
-      "maxHintMs": 0.5722000000000094,
+      "completedGoals": 2,
+      "initialHintMs": 0.991299999999967,
+      "maxHintMs": 0.991299999999967,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.5722000000000094,
+          "hintMs": 0.991299999999967,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 3,
+              "c": 2
+            },
+            "to": {
+              "r": 3,
+              "c": 3
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 1,
+          "hintMs": 0.863399999999956,
           "action": {
             "type": "swap",
             "from": {
@@ -994,13 +975,13 @@
             },
             "to": {
               "r": 3,
-              "c": 0
+              "c": 2
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "won",
-          "goalsAdded": 1
+          "goalsAdded": 2
         }
       ]
     },
@@ -1027,12 +1008,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.7695999999999685,
-      "maxHintMs": 0.7695999999999685,
+      "initialHintMs": 0.8953999999999951,
+      "maxHintMs": 0.8953999999999951,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.7695999999999685,
+          "hintMs": 0.8953999999999951,
           "action": {
             "type": "swap",
             "from": {
@@ -1051,7 +1032,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.49509999999997945,
+          "hintMs": 0.45179999999999154,
           "action": {
             "type": "swap",
             "from": {
@@ -1073,9 +1054,9 @@
     {
       "id": 275,
       "mechanics": [
-        "crates"
+        "rovers"
       ],
-      "proofMoves": 3,
+      "proofMoves": 2,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -1085,29 +1066,29 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 12,
+      "initialLegalActions": 16,
       "outcome": "won",
-      "moves": 3,
+      "moves": 2,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.140800000000013,
-      "maxHintMs": 1.2793000000000347,
+      "initialHintMs": 0.9562999999999988,
+      "maxHintMs": 1.3765000000000214,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.140800000000013,
+          "hintMs": 0.9562999999999988,
           "action": {
             "type": "swap",
             "from": {
-              "r": 1,
-              "c": 2
+              "r": 2,
+              "c": 3
             },
             "to": {
-              "r": 2,
-              "c": 2
+              "r": 3,
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -1117,35 +1098,16 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.2793000000000347,
+          "hintMs": 1.3765000000000214,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
-              "c": 1
-            },
-            "to": {
-              "r": 2,
-              "c": 0
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 2,
-          "hintMs": 0.6533999999999764,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 0,
-              "c": 4
-            },
-            "to": {
               "r": 1,
-              "c": 4
+              "c": 3
+            },
+            "to": {
+              "r": 2,
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -1178,12 +1140,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.44559999999995625,
-      "maxHintMs": 0.44559999999995625,
+      "initialHintMs": 0.48380000000003065,
+      "maxHintMs": 0.48380000000003065,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.44559999999995625,
+          "hintMs": 0.48380000000003065,
           "action": {
             "type": "swap",
             "from": {
@@ -1205,10 +1167,9 @@
     {
       "id": 325,
       "mechanics": [
-        "crates",
-        "rovers"
+        "currents"
       ],
-      "proofMoves": 2,
+      "proofMoves": 1,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -1218,54 +1179,35 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 20,
+      "initialLegalActions": 8,
       "outcome": "won",
-      "moves": 2,
+      "moves": 1,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 2,
-      "initialHintMs": 1.31940000000003,
-      "maxHintMs": 1.31940000000003,
+      "completedGoals": 1,
+      "initialHintMs": 0.5251999999999839,
+      "maxHintMs": 0.5251999999999839,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.31940000000003,
+          "hintMs": 0.5251999999999839,
           "action": {
             "type": "swap",
             "from": {
-              "r": 0,
-              "c": 1
+              "r": 2,
+              "c": 0
             },
             "to": {
-              "r": 1,
-              "c": 1
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 1,
-          "hintMs": 0.9127000000000294,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 0,
-              "c": 1
-            },
-            "to": {
-              "r": 1,
-              "c": 1
+              "r": 3,
+              "c": 0
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "won",
-          "goalsAdded": 2
+          "goalsAdded": 1
         }
       ]
     },
@@ -1292,12 +1234,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.581100000000049,
-      "maxHintMs": 0.581100000000049,
+      "initialHintMs": 1.0194999999999936,
+      "maxHintMs": 1.0194999999999936,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.581100000000049,
+          "hintMs": 1.0194999999999936,
           "action": {
             "type": "swap",
             "from": {
@@ -1316,7 +1258,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.5065999999999917,
+          "hintMs": 0.7554000000000087,
           "action": {
             "type": "swap",
             "from": {
@@ -1338,10 +1280,10 @@
     {
       "id": 375,
       "mechanics": [
-        "ice",
-        "exits"
+        "rovers",
+        "moonwhales"
       ],
-      "proofMoves": 3,
+      "proofMoves": 4,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -1351,48 +1293,48 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 8,
+      "initialLegalActions": 6,
       "outcome": "won",
-      "moves": 3,
+      "moves": 4,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 1,
-      "initialHintMs": 0.8500000000000227,
-      "maxHintMs": 1.2380999999999744,
+      "completedGoals": 2,
+      "initialHintMs": 0.8722000000000207,
+      "maxHintMs": 1.091099999999983,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.8500000000000227,
+          "hintMs": 0.8722000000000207,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
-              "c": 2
+              "r": 3,
+              "c": 1
             },
             "to": {
-              "r": 2,
-              "c": 1
+              "r": 3,
+              "c": 0
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "playing",
-          "goalsAdded": 0
+          "goalsAdded": 1
         },
         {
           "turn": 1,
-          "hintMs": 0.7654999999999745,
+          "hintMs": 0.7728000000000179,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 3
+              "r": 2,
+              "c": 1
             },
             "to": {
               "r": 3,
-              "c": 2
+              "c": 1
             }
           },
           "source": "verified-route",
@@ -1402,16 +1344,35 @@
         },
         {
           "turn": 2,
-          "hintMs": 1.2380999999999744,
+          "hintMs": 1.091099999999983,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
+              "r": 0,
+              "c": 2
+            },
+            "to": {
+              "r": 1,
+              "c": 2
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 3,
+          "hintMs": 0.7023000000000366,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 1,
               "c": 1
             },
             "to": {
-              "r": 3,
-              "c": 1
+              "r": 1,
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -1424,9 +1385,9 @@
     {
       "id": 425,
       "mechanics": [
-        "rovers"
+        "crates"
       ],
-      "proofMoves": 2,
+      "proofMoves": 3,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -1438,27 +1399,27 @@
       "definitionUnchanged": true,
       "initialLegalActions": 14,
       "outcome": "won",
-      "moves": 2,
+      "moves": 3,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.0617000000000303,
-      "maxHintMs": 1.0617000000000303,
+      "initialHintMs": 1.0323999999999955,
+      "maxHintMs": 1.0323999999999955,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.0617000000000303,
+          "hintMs": 1.0323999999999955,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 2
+              "r": 2,
+              "c": 1
             },
             "to": {
-              "r": 3,
-              "c": 3
+              "r": 2,
+              "c": 2
             }
           },
           "source": "verified-route",
@@ -1468,16 +1429,35 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.7633999999999901,
+          "hintMs": 0.9421999999999571,
           "action": {
             "type": "swap",
             "from": {
-              "r": 1,
+              "r": 0,
               "c": 2
             },
             "to": {
-              "r": 1,
+              "r": 0,
               "c": 3
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 2,
+          "hintMs": 0.5914999999999964,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 0,
+              "c": 1
+            },
+            "to": {
+              "r": 1,
+              "c": 1
             }
           },
           "source": "verified-route",
@@ -1510,12 +1490,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.7810000000000059,
-      "maxHintMs": 0.7810000000000059,
+      "initialHintMs": 0.6766999999999825,
+      "maxHintMs": 0.6766999999999825,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.7810000000000059,
+          "hintMs": 0.6766999999999825,
           "action": {
             "type": "swap",
             "from": {
@@ -1534,7 +1514,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.5564999999999714,
+          "hintMs": 0.5461999999999989,
           "action": {
             "type": "swap",
             "from": {
@@ -1576,12 +1556,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.7097999999999729,
-      "maxHintMs": 0.950300000000027,
+      "initialHintMs": 0.8863000000000056,
+      "maxHintMs": 0.8863000000000056,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.7097999999999729,
+          "hintMs": 0.8863000000000056,
           "action": {
             "type": "swap",
             "from": {
@@ -1600,7 +1580,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.7493000000000052,
+          "hintMs": 0.7883999999999673,
           "action": {
             "type": "swap",
             "from": {
@@ -1619,7 +1599,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 0.950300000000027,
+          "hintMs": 0.6146999999999707,
           "action": {
             "type": "swap",
             "from": {
@@ -1638,7 +1618,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 0.6184000000000083,
+          "hintMs": 0.4626999999999839,
           "action": {
             "type": "swap",
             "from": {
@@ -1659,9 +1639,7 @@
     },
     {
       "id": 500,
-      "mechanics": [
-        "waves"
-      ],
+      "mechanics": [],
       "proofMoves": 2,
       "proofBefore": {
         "won": true,
@@ -1672,29 +1650,29 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 10,
+      "initialLegalActions": 12,
       "outcome": "won",
       "moves": 2,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 2,
-      "initialHintMs": 0.9856000000000336,
-      "maxHintMs": 0.9856000000000336,
+      "completedGoals": 1,
+      "initialHintMs": 1.1925999999999704,
+      "maxHintMs": 1.1925999999999704,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.9856000000000336,
+          "hintMs": 1.1925999999999704,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 2
+              "r": 2,
+              "c": 1
             },
             "to": {
               "r": 3,
-              "c": 3
+              "c": 1
             }
           },
           "source": "verified-route",
@@ -1704,22 +1682,22 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.7485000000000355,
+          "hintMs": 1.0101999999999975,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
+              "r": 5,
               "c": 1
             },
             "to": {
-              "r": 3,
+              "r": 5,
               "c": 2
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "won",
-          "goalsAdded": 2
+          "goalsAdded": 1
         }
       ]
     },
@@ -1747,12 +1725,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.8109000000000037,
-      "maxHintMs": 0.8653999999999655,
+      "initialHintMs": 0.8106999999999971,
+      "maxHintMs": 0.9583000000000084,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.8109000000000037,
+          "hintMs": 0.8106999999999971,
           "action": {
             "type": "swap",
             "from": {
@@ -1771,7 +1749,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.7598000000000411,
+          "hintMs": 0.7777000000000385,
           "action": {
             "type": "swap",
             "from": {
@@ -1790,7 +1768,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 0.7124999999999773,
+          "hintMs": 0.7452999999999861,
           "action": {
             "type": "swap",
             "from": {
@@ -1809,7 +1787,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 0.7223000000000184,
+          "hintMs": 0.7561000000000035,
           "action": {
             "type": "swap",
             "from": {
@@ -1828,7 +1806,7 @@
         },
         {
           "turn": 4,
-          "hintMs": 0.8653999999999655,
+          "hintMs": 0.9583000000000084,
           "action": {
             "type": "swap",
             "from": {
@@ -1850,9 +1828,9 @@
     {
       "id": 550,
       "mechanics": [
-        "currents"
+        "moonwhales"
       ],
-      "proofMoves": 1,
+      "proofMoves": 4,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -1862,20 +1840,39 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 14,
+      "initialLegalActions": 2,
       "outcome": "won",
-      "moves": 1,
+      "moves": 4,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.48279999999999745,
-      "maxHintMs": 0.48279999999999745,
+      "initialHintMs": 0.7210000000000036,
+      "maxHintMs": 0.7796999999999912,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.48279999999999745,
+          "hintMs": 0.7210000000000036,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 0,
+              "c": 2
+            },
+            "to": {
+              "r": 1,
+              "c": 2
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 1,
+          "hintMs": 0.7796999999999912,
           "action": {
             "type": "swap",
             "from": {
@@ -1885,6 +1882,44 @@
             "to": {
               "r": 3,
               "c": 3
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 2,
+          "hintMs": 0.654200000000003,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 0,
+              "c": 1
+            },
+            "to": {
+              "r": 1,
+              "c": 1
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 3,
+          "hintMs": 0.5075999999999681,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 0,
+              "c": 1
+            },
+            "to": {
+              "r": 0,
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -1909,7 +1944,7 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 6,
+      "initialLegalActions": 2,
       "outcome": "won",
       "moves": 3,
       "hintNull": false,
@@ -1917,12 +1952,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 2,
-      "initialHintMs": 0.8607999999999834,
-      "maxHintMs": 1.0208999999999833,
+      "initialHintMs": 1.217899999999986,
+      "maxHintMs": 1.217899999999986,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.8607999999999834,
+          "hintMs": 1.217899999999986,
           "action": {
             "type": "swap",
             "from": {
@@ -1941,26 +1976,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.6021000000000072,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 3,
-              "c": 0
-            },
-            "to": {
-              "r": 3,
-              "c": 1
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 2,
-          "hintMs": 1.0208999999999833,
+          "hintMs": 0.6214999999999691,
           "action": {
             "type": "swap",
             "from": {
@@ -1970,6 +1986,25 @@
             "to": {
               "r": 3,
               "c": 3
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 2,
+          "hintMs": 0.4899000000000342,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 3,
+              "c": 1
+            },
+            "to": {
+              "r": 3,
+              "c": 2
             }
           },
           "source": "verified-route",
@@ -1982,9 +2017,10 @@
     {
       "id": 600,
       "mechanics": [
-        "comets"
+        "bridges",
+        "keys"
       ],
-      "proofMoves": 5,
+      "proofMoves": 6,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -1994,48 +2030,48 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 12,
+      "initialLegalActions": 6,
       "outcome": "won",
-      "moves": 5,
+      "moves": 6,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 1,
-      "initialHintMs": 1.219600000000014,
-      "maxHintMs": 1.219600000000014,
+      "completedGoals": 3,
+      "initialHintMs": 1.3199000000000183,
+      "maxHintMs": 1.4975000000000023,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.219600000000014,
+          "hintMs": 1.3199000000000183,
           "action": {
             "type": "swap",
             "from": {
-              "r": 4,
-              "c": 2
+              "r": 1,
+              "c": 1
             },
             "to": {
-              "r": 4,
-              "c": 1
+              "r": 1,
+              "c": 2
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "playing",
-          "goalsAdded": 0
+          "goalsAdded": 1
         },
         {
           "turn": 1,
-          "hintMs": 1.0260000000000105,
+          "hintMs": 0.9937000000000467,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
-              "c": 1
+              "r": 0,
+              "c": 2
             },
             "to": {
-              "r": 2,
-              "c": 0
+              "r": 0,
+              "c": 1
             }
           },
           "source": "verified-route",
@@ -2045,35 +2081,35 @@
         },
         {
           "turn": 2,
-          "hintMs": 1.1610999999999763,
+          "hintMs": 1.4975000000000023,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
+              "r": 1,
               "c": 3
             },
             "to": {
               "r": 2,
-              "c": 2
+              "c": 3
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "playing",
-          "goalsAdded": 0
+          "goalsAdded": 1
         },
         {
           "turn": 3,
-          "hintMs": 1.0833000000000084,
+          "hintMs": 0.9286000000000172,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
-              "c": 3
+              "r": 3,
+              "c": 1
             },
             "to": {
               "r": 3,
-              "c": 3
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -2083,7 +2119,7 @@
         },
         {
           "turn": 4,
-          "hintMs": 0.6462000000000216,
+          "hintMs": 1.0106000000000108,
           "action": {
             "type": "swap",
             "from": {
@@ -2093,6 +2129,25 @@
             "to": {
               "r": 3,
               "c": 1
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 5,
+          "hintMs": 1.0766999999999598,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 3,
+              "c": 3
+            },
+            "to": {
+              "r": 3,
+              "c": 2
             }
           },
           "source": "verified-route",
@@ -2125,12 +2180,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.6278000000000361,
-      "maxHintMs": 0.6278000000000361,
+      "initialHintMs": 0.6881999999999948,
+      "maxHintMs": 0.6881999999999948,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.6278000000000361,
+          "hintMs": 0.6881999999999948,
           "action": {
             "type": "swap",
             "from": {
@@ -2152,9 +2207,10 @@
     {
       "id": 650,
       "mechanics": [
-        "pirates"
+        "crates",
+        "reactors"
       ],
-      "proofMoves": 2,
+      "proofMoves": 4,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -2164,28 +2220,28 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 12,
+      "initialLegalActions": 20,
       "outcome": "won",
-      "moves": 2,
+      "moves": 4,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 1,
-      "initialHintMs": 0.8208999999999946,
-      "maxHintMs": 0.8208999999999946,
+      "completedGoals": 2,
+      "initialHintMs": 1.3088999999999942,
+      "maxHintMs": 2.334000000000003,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.8208999999999946,
+          "hintMs": 1.3088999999999942,
           "action": {
             "type": "swap",
             "from": {
-              "r": 1,
-              "c": 0
+              "r": 5,
+              "c": 2
             },
             "to": {
-              "r": 1,
+              "r": 5,
               "c": 1
             }
           },
@@ -2196,16 +2252,54 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.5801999999999907,
+          "hintMs": 1.4895999999999958,
           "action": {
             "type": "swap",
             "from": {
               "r": 1,
-              "c": 0
+              "c": 2
             },
             "to": {
-              "r": 1,
+              "r": 2,
+              "c": 2
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 2,
+          "hintMs": 2.334000000000003,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 5,
               "c": 1
+            },
+            "to": {
+              "r": 5,
+              "c": 0
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 1
+        },
+        {
+          "turn": 3,
+          "hintMs": 0.76400000000001,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 4,
+              "c": 1
+            },
+            "to": {
+              "r": 4,
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -2238,12 +2332,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 2,
-      "initialHintMs": 0.6134000000000128,
-      "maxHintMs": 0.6134000000000128,
+      "initialHintMs": 0.9230000000000018,
+      "maxHintMs": 0.9230000000000018,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.6134000000000128,
+          "hintMs": 0.9230000000000018,
           "action": {
             "type": "swap",
             "from": {
@@ -2277,7 +2371,7 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 8,
+      "initialLegalActions": 16,
       "outcome": "won",
       "moves": 1,
       "hintNull": false,
@@ -2285,21 +2379,21 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.5374000000000478,
-      "maxHintMs": 0.5374000000000478,
+      "initialHintMs": 0.5155000000000882,
+      "maxHintMs": 0.5155000000000882,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.5374000000000478,
+          "hintMs": 0.5155000000000882,
           "action": {
             "type": "swap",
             "from": {
               "r": 2,
-              "c": 3
+              "c": 0
             },
             "to": {
               "r": 3,
-              "c": 3
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -2332,12 +2426,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.2527000000000044,
-      "maxHintMs": 2.116899999999987,
+      "initialHintMs": 1.218900000000076,
+      "maxHintMs": 1.6706000000000358,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.2527000000000044,
+          "hintMs": 1.218900000000076,
           "action": {
             "type": "swap",
             "from": {
@@ -2356,7 +2450,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.0427999999999997,
+          "hintMs": 1.0271000000000186,
           "action": {
             "type": "swap",
             "from": {
@@ -2375,7 +2469,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 0.9467999999999961,
+          "hintMs": 1.0026000000000295,
           "action": {
             "type": "swap",
             "from": {
@@ -2394,7 +2488,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 2.116899999999987,
+          "hintMs": 1.6706000000000358,
           "action": {
             "type": "swap",
             "from": {
@@ -2413,7 +2507,7 @@
         },
         {
           "turn": 4,
-          "hintMs": 0.5441999999999894,
+          "hintMs": 0.5318999999999505,
           "action": {
             "type": "swap",
             "from": {
@@ -2435,9 +2529,9 @@
     {
       "id": 750,
       "mechanics": [
-        "reactors"
+        "waves"
       ],
-      "proofMoves": 5,
+      "proofMoves": 2,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -2447,20 +2541,20 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 18,
+      "initialLegalActions": 10,
       "outcome": "won",
-      "moves": 5,
+      "moves": 2,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 1,
-      "initialHintMs": 1.29789999999997,
-      "maxHintMs": 1.29789999999997,
+      "completedGoals": 2,
+      "initialHintMs": 1.0228000000000748,
+      "maxHintMs": 1.0228000000000748,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.29789999999997,
+          "hintMs": 1.0228000000000748,
           "action": {
             "type": "swap",
             "from": {
@@ -2469,7 +2563,7 @@
             },
             "to": {
               "r": 3,
-              "c": 1
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -2479,79 +2573,22 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.2156999999999698,
+          "hintMs": 0.5071000000000367,
           "action": {
             "type": "swap",
             "from": {
-              "r": 4,
-              "c": 3
-            },
-            "to": {
-              "r": 4,
-              "c": 2
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 2,
-          "hintMs": 0.8768000000000029,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 1,
+              "r": 3,
               "c": 1
             },
             "to": {
-              "r": 1,
-              "c": 0
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 3,
-          "hintMs": 1.11749999999995,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 2,
-              "c": 3
-            },
-            "to": {
-              "r": 2,
+              "r": 3,
               "c": 2
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 4,
-          "hintMs": 0.622099999999989,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 4,
-              "c": 2
-            },
-            "to": {
-              "r": 4,
-              "c": 1
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "won",
-          "goalsAdded": 1
+          "goalsAdded": 2
         }
       ]
     },
@@ -2578,12 +2615,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.9160999999999717,
-      "maxHintMs": 0.9160999999999717,
+      "initialHintMs": 0.800200000000018,
+      "maxHintMs": 0.800200000000018,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.9160999999999717,
+          "hintMs": 0.800200000000018,
           "action": {
             "type": "swap",
             "from": {
@@ -2602,7 +2639,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.6087999999999738,
+          "hintMs": 0.6008000000000493,
           "action": {
             "type": "swap",
             "from": {
@@ -2621,7 +2658,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 0.5905999999999949,
+          "hintMs": 0.5422000000000935,
           "action": {
             "type": "swap",
             "from": {
@@ -2663,12 +2700,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 2.119799999999941,
-      "maxHintMs": 2.119799999999941,
+      "initialHintMs": 2.015600000000063,
+      "maxHintMs": 2.015600000000063,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 2.119799999999941,
+          "hintMs": 2.015600000000063,
           "action": {
             "type": "swap",
             "from": {
@@ -2687,7 +2724,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.206299999999942,
+          "hintMs": 1.304899999999975,
           "action": {
             "type": "swap",
             "from": {
@@ -2709,7 +2746,7 @@
     {
       "id": 825,
       "mechanics": [
-        "docks"
+        "rovers"
       ],
       "proofMoves": 2,
       "proofBefore": {
@@ -2721,7 +2758,7 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 10,
+      "initialLegalActions": 20,
       "outcome": "won",
       "moves": 2,
       "hintNull": false,
@@ -2729,20 +2766,20 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.9279000000000224,
-      "maxHintMs": 0.9279000000000224,
+      "initialHintMs": 0.9400999999999158,
+      "maxHintMs": 0.9400999999999158,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.9279000000000224,
+          "hintMs": 0.9400999999999158,
           "action": {
             "type": "swap",
             "from": {
-              "r": 1,
-              "c": 2
+              "r": 2,
+              "c": 1
             },
             "to": {
-              "r": 1,
+              "r": 3,
               "c": 1
             }
           },
@@ -2753,16 +2790,16 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.6895999999999276,
+          "hintMs": 0.8693999999999278,
           "action": {
             "type": "swap",
             "from": {
-              "r": 0,
+              "r": 2,
               "c": 1
             },
             "to": {
-              "r": 1,
-              "c": 1
+              "r": 2,
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -2775,9 +2812,9 @@
     {
       "id": 850,
       "mechanics": [
-        "jelly"
+        "rovers"
       ],
-      "proofMoves": 4,
+      "proofMoves": 2,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -2787,29 +2824,29 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 18,
+      "initialLegalActions": 14,
       "outcome": "won",
-      "moves": 4,
+      "moves": 2,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.1429000000000542,
-      "maxHintMs": 1.3582999999999856,
+      "initialHintMs": 0.891399999999976,
+      "maxHintMs": 0.891399999999976,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.1429000000000542,
+          "hintMs": 0.891399999999976,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 0
+              "r": 2,
+              "c": 3
             },
             "to": {
-              "r": 4,
-              "c": 0
+              "r": 3,
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -2819,26 +2856,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.3582999999999856,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 4,
-              "c": 2
-            },
-            "to": {
-              "r": 5,
-              "c": 2
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 2,
-          "hintMs": 1.2791999999999462,
+          "hintMs": 0.5715000000000146,
           "action": {
             "type": "swap",
             "from": {
@@ -2846,27 +2864,8 @@
               "c": 3
             },
             "to": {
-              "r": 1,
-              "c": 2
-            }
-          },
-          "source": "verified-route",
-          "accepted": true,
-          "status": "playing",
-          "goalsAdded": 0
-        },
-        {
-          "turn": 3,
-          "hintMs": 0.7554999999999836,
-          "action": {
-            "type": "swap",
-            "from": {
-              "r": 3,
-              "c": 2
-            },
-            "to": {
-              "r": 3,
-              "c": 1
+              "r": 2,
+              "c": 3
             }
           },
           "source": "verified-route",
@@ -2879,7 +2878,7 @@
     {
       "id": 900,
       "mechanics": [
-        "comets"
+        "ice"
       ],
       "proofMoves": 5,
       "proofBefore": {
@@ -2891,7 +2890,7 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 14,
+      "initialLegalActions": 12,
       "outcome": "won",
       "moves": 5,
       "hintNull": false,
@@ -2899,20 +2898,20 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 1.1841999999999189,
-      "maxHintMs": 1.1841999999999189,
+      "initialHintMs": 1.249900000000025,
+      "maxHintMs": 1.2738000000000511,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 1.1841999999999189,
+          "hintMs": 1.249900000000025,
           "action": {
             "type": "swap",
             "from": {
-              "r": 4,
+              "r": 3,
               "c": 2
             },
             "to": {
-              "r": 4,
+              "r": 3,
               "c": 1
             }
           },
@@ -2923,15 +2922,15 @@
         },
         {
           "turn": 1,
-          "hintMs": 1.070100000000025,
+          "hintMs": 1.0259000000000924,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
+              "r": 1,
               "c": 1
             },
             "to": {
-              "r": 2,
+              "r": 1,
               "c": 0
             }
           },
@@ -2942,15 +2941,15 @@
         },
         {
           "turn": 2,
-          "hintMs": 1.1632000000000744,
+          "hintMs": 1.2738000000000511,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
+              "r": 1,
               "c": 3
             },
             "to": {
-              "r": 2,
+              "r": 1,
               "c": 2
             }
           },
@@ -2961,16 +2960,16 @@
         },
         {
           "turn": 3,
-          "hintMs": 1.066599999999994,
+          "hintMs": 0.9506000000000085,
           "action": {
             "type": "swap",
             "from": {
-              "r": 2,
-              "c": 3
+              "r": 3,
+              "c": 0
             },
             "to": {
-              "r": 3,
-              "c": 3
+              "r": 4,
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -2980,16 +2979,16 @@
         },
         {
           "turn": 4,
-          "hintMs": 0.6500999999999522,
+          "hintMs": 0.5798999999999523,
           "action": {
             "type": "swap",
             "from": {
               "r": 3,
-              "c": 2
+              "c": 1
             },
             "to": {
               "r": 3,
-              "c": 1
+              "c": 0
             }
           },
           "source": "verified-route",
@@ -3022,12 +3021,12 @@
       "mutatedState": false,
       "repeatLayouts": 0,
       "completedGoals": 1,
-      "initialHintMs": 0.5615000000000236,
-      "maxHintMs": 0.6690000000000964,
+      "initialHintMs": 0.6473000000000866,
+      "maxHintMs": 0.7232000000000198,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.5615000000000236,
+          "hintMs": 0.6473000000000866,
           "action": {
             "type": "swap",
             "from": {
@@ -3046,7 +3045,7 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.6690000000000964,
+          "hintMs": 0.7232000000000198,
           "action": {
             "type": "swap",
             "from": {
@@ -3065,7 +3064,7 @@
         },
         {
           "turn": 2,
-          "hintMs": 0.46620000000007167,
+          "hintMs": 0.5181999999999789,
           "action": {
             "type": "swap",
             "from": {
@@ -3084,7 +3083,7 @@
         },
         {
           "turn": 3,
-          "hintMs": 0.5149000000000115,
+          "hintMs": 0.3751999999999498,
           "action": {
             "type": "swap",
             "from": {
@@ -3106,9 +3105,9 @@
     {
       "id": 1000,
       "mechanics": [
-        "waves"
+        "crates"
       ],
-      "proofMoves": 2,
+      "proofMoves": 3,
       "proofBefore": {
         "won": true,
         "issues": []
@@ -3118,29 +3117,29 @@
         "issues": []
       },
       "definitionUnchanged": true,
-      "initialLegalActions": 8,
+      "initialLegalActions": 18,
       "outcome": "won",
-      "moves": 2,
+      "moves": 3,
       "hintNull": false,
       "illegal": false,
       "mutatedState": false,
       "repeatLayouts": 0,
-      "completedGoals": 2,
-      "initialHintMs": 0.6560000000000628,
-      "maxHintMs": 0.6560000000000628,
+      "completedGoals": 1,
+      "initialHintMs": 0.9009000000000924,
+      "maxHintMs": 1.3263000000000602,
       "steps": [
         {
           "turn": 0,
-          "hintMs": 0.6560000000000628,
+          "hintMs": 0.9009000000000924,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 1
+              "r": 1,
+              "c": 2
             },
             "to": {
-              "r": 3,
-              "c": 0
+              "r": 2,
+              "c": 2
             }
           },
           "source": "verified-route",
@@ -3150,22 +3149,41 @@
         },
         {
           "turn": 1,
-          "hintMs": 0.5016999999999143,
+          "hintMs": 1.3263000000000602,
           "action": {
             "type": "swap",
             "from": {
-              "r": 3,
-              "c": 2
+              "r": 2,
+              "c": 1
             },
             "to": {
-              "r": 3,
-              "c": 1
+              "r": 2,
+              "c": 0
+            }
+          },
+          "source": "verified-route",
+          "accepted": true,
+          "status": "playing",
+          "goalsAdded": 0
+        },
+        {
+          "turn": 2,
+          "hintMs": 0.9057000000000244,
+          "action": {
+            "type": "swap",
+            "from": {
+              "r": 0,
+              "c": 4
+            },
+            "to": {
+              "r": 1,
+              "c": 4
             }
           },
           "source": "verified-route",
           "accepted": true,
           "status": "won",
-          "goalsAdded": 2
+          "goalsAdded": 1
         }
       ]
     }

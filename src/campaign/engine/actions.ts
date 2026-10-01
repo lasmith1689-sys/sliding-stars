@@ -13,7 +13,10 @@ export function isLegalSwap(state:CampaignState,from:Pos,to:Pos):boolean {
   if(state.status!=='playing'||Math.abs(from.r-to.r)+Math.abs(from.c-to.c)!==1||!canSlide(state,from)||!canSlide(state,to))return false;
   const a=pieceAt(state,from)!,b=pieceAt(state,to)!;
   if(a.kind==='cargo'||b.kind==='cargo')return false;
-  if(a.kind!=='tile'||b.kind!=='tile')return true;
+  // Only occupied rescue shuttles have powered flight. Empty shuttles must
+  // participate in a terrain-making swap, rather than acting as free wait buttons.
+  if([a,b].some(p=>p.kind==='pod'&&p.passengerIds.some(id=>state.crew.some(c=>c.id===id&&c.status==='active'&&c.carrierId===p.id))))return true;
+  if(a.kind!=='pod'&&b.kind!=='pod'&&(a.kind==='station'||b.kind==='station'))return true;
   const candidate={...state,pieces:state.pieces.map(p=>p.id===a.id?{...p,at:to}:p.id===b.id?{...p,at:from}:p)};
   return terrainMatches(candidate).some(m=>m.cells.some(p=>sameCell(p,from)||sameCell(p,to)));
 }

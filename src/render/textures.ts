@@ -509,7 +509,7 @@ const IMAGE_ASSETS: Array<{ file: string; apply: (set: TextureSet, tex: Texture)
   { file: 'tile-4-biosphere', apply: (s, t) => { s.tile[4] = t; } },
   { file: 'tile-5-pad', apply: (s, t) => { s.tile[5] = t; } },
   { file: 'home', apply: (s, t) => { s.dome = t; } }, // rescue destination = a HOME, not a rocket
-  { file: 'pod', apply: (s, t) => { s.pod = t; } },
+  { file: 'rescue-shuttle', apply: (s, t) => { s.pod = t; } },
   { file: 'astronaut', apply: (s, t) => { s.survivor = t; } },
   { file: 'canister', apply: (s, t) => { s.canisterOverlay = t; } },
   { file: 'canister-cracked', apply: (s, t) => { s.canisterCracked = t; } },

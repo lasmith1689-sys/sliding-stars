@@ -1,13 +1,13 @@
 {
-  "generatorVersion": "terrain-replay-2",
+  "generatorVersion": "terrain-replay-3",
   "seed": 20260930,
   "through": 1000,
   "maxAttemptsPerLevel": 180,
-  "elapsedMs": 31283,
+  "elapsedMs": 27729,
   "generated": 1000,
   "authored": 102,
   "uniquePuzzles": 1000,
-  "uniqueMasks": 62,
+  "uniqueMasks": 63,
   "shapes": [
     "compact-rectangle",
     "diamond",
@@ -32,6 +32,7 @@
     "8x4",
     "2x3",
     "3x4",
+    "2x7",
     "4x3",
     "5x3",
     "3x5"
@@ -59,9 +60,9 @@
     "phase"
   ],
   "rejections": {
-    "proof-rejected": 14799,
-    "repeated-mask": 293,
-    "duplicate-board": 203
+    "proof-rejected": 15304,
+    "repeated-mask": 321,
+    "duplicate-board": 227
   },
   "unresolved": [],
   "limitations": [

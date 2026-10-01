@@ -17,6 +17,8 @@ export function basicCoachCopy(state:CampaignState):string|null {
  if(state.fixtures.some(f=>f.kind==='ice'))return 'Match beside the ice to thaw it. The number shows hits left; then the tile can slide again.';
  if(state.fixtures.some(f=>f.kind==='crate'))return 'Match beside the supply crate to unpack it. Each match removes one hit from its number.';
  if(state.actors.some(a=>a.kind==='rover'))return 'The rover carries its guests one dotted stop per move. Clear its route and guide it to a station door.';
+ if(state.pieces.some(p=>p.kind==='pod'&&p.passengerIds.length))return 'Guest aboard! Fly the rescue shuttle one square at a time to a station\'s glowing entrance. Each flight costs a move.';
+ if(state.pieces.some(p=>p.kind==='pod'))return 'Empty rescue shuttles need a match to move. Make a four-tile match with a guest to launch a shuttle carrying them home.';
  return null;
 }
 export function phaseCoachCopy(state:CampaignState):string|null {
@@ -126,7 +128,7 @@ export function pupCoachCopy(state:CampaignState):string|null {
  if(!state.level.mechanics.some(m=>m.id==='pups'))return null;
  if(state.status==='won')return 'Happy paws! Every pup reached its nursery.';
  const pup=state.actors.find(a=>a.kind==='pup');if(pup?.kind!=='pup')return 'Pups are cozy. Finish the remaining crew rescue.';
- const next=pupNextStep(state,pup);if(!next)return 'Pup waiting: build a connected safe path to the nursery. Biospheres and habitats are safe; pods, stations and occupied cells block paws.';
+ const next=pupNextStep(state,pup);if(!next)return 'Pup waiting: build a connected safe path to the nursery. Biospheres and habitats are safe; shuttles, stations and occupied cells block paws.';
  if(state.levelId===231&&state.turn===0)return 'Slide row 1, column 2 DOWN. Each move lets the pup take one safe step toward its nursery.';
  return `Next paw step: row ${next.r+1}, column ${next.c+1}. Make a move to walk there; the pup takes the shortest safe route.`;
 }
@@ -135,7 +137,7 @@ export function moonwhaleCoachCopy(state:CampaignState):string|null {
  if(state.status==='won')return 'A happy hop! The marked transfer is complete.';
  if(!whale.passengerIds.length)return 'The guest is safely ashore. Finish the remaining rescue.';
  const mark=`row ${whale.landing.r+1}, column ${whale.landing.c+1}`;
- if(whale.transferRequested)return whaleLandingSafe(state,whale)?`Hop queued at ${mark}. Take a move to arrive safely.`:`Hop queued. Keep ${mark} safe or place a pod there; the whale circles until it can land beside the mark.`;
+ if(whale.transferRequested)return whaleLandingSafe(state,whale)?`Hop queued at ${mark}. Take a move to arrive safely.`:`Hop queued. Keep ${mark} safe or place a rescue shuttle there; the whale circles until it can land beside the mark.`;
  if(state.levelId===186)return 'Slide row 1, column 2 DOWN. The nearby match asks the whale to hop to the marked safe landing.';
  return `Match beside the whale to request a hop. Its marked landing is ${mark}; each move advances one loop stop.`;
 }

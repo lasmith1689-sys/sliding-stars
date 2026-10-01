@@ -9,7 +9,7 @@ import {transition} from './engine/turn';
 import {hashState} from './engine/hash';
 
 const EXCLUDED=new Set<MechanicId>(['portals','relays','tethers','repair','rendezvous']);
-export const GENERATOR_VERSION='terrain-replay-2';
+export const GENERATOR_VERSION='terrain-replay-3';
 export interface GeneratedManifestEntry {
  id:number;seed:number;templateId:number;source:'authored'|'generated';proofLength:number;
  mechanics:MechanicId[];shape:string;rows:number;cols:number;activeCells:number;
@@ -106,7 +106,7 @@ export function generateCampaign(options:{seed:number;throughLevel?:number;maxAt
   let accepted=false,lastReason='No eligible templates';
   for(let attempt=1;attempt<=(fixed?1:maxAttempts);attempt++){
    // If a paced pool fails repeatedly, broaden the attempt pool, not the proof standard.
-   const pool=paced.length&&attempt<=Math.floor(maxAttempts*0.5)?paced:candidates;
+   const pool=paced.length&&attempt<=Math.floor(maxAttempts*0.75)?paced:candidates;
    const template=fixed??choose(pool);if(!template)break;
    let level=structuredClone(template),actions=structuredClone(proofs.get(template.id)!.actions),mirrored=false,changedTiles=0;
    if(!fixed){
