@@ -1,4 +1,4 @@
-import {campaignHint} from '../../src/campaign/hints';
+import {campaignHint,hintPositionKey} from '../../src/campaign/hints';
 import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {legalActions} from '../../src/campaign/engine/actions';
 import {transition} from '../../src/campaign/engine/turn';
@@ -17,11 +17,12 @@ const layout=(state:CampaignState)=>JSON.stringify({
 export function auditHintPlay(level:CampaignLevel,proof:SolutionTrace,maxMoves=12,routes:Readonly<Record<string,CampaignAction>>={}){
  const before=replayTrace(level,proof),definitionBefore=JSON.stringify(level);
  let state=loadCampaignLevel(level),hintNull=false,illegal=false,mutatedState=false,repeatLayouts=0;
+ const adviceVisited=new Set([hintPositionKey(state)]);
  const initialLegalActions=legalActions(state).length,seen=new Set([layout(state)]),steps=[];
  for(let move=0;move<maxMoves&&state.status==='playing';move++){
   const start=performance.now(),hash=hashState(state),route=routes[hash];
   const verifiedRoute=route&&transition(state,route).accepted?route:null;
-  const hint=verifiedRoute??campaignHint(state),hintMs=performance.now()-start;
+  const hint=verifiedRoute??campaignHint(state,adviceVisited),hintMs=performance.now()-start;
   mutatedState ||= hash!==hashState(state);
   if(!hint){
    hintNull=true;const actions=legalActions(state),nonLosing=actions.filter(action=>{const next=transition(state,action);return next.accepted&&next.state.status!=='lost';}).length;
@@ -30,7 +31,7 @@ export function auditHintPlay(level:CampaignLevel,proof:SolutionTrace,maxMoves=1
   const next=transition(state,hint);
   steps.push({turn:state.turn,hintMs,action:hint,source:verifiedRoute?'verified-route':'heuristic',accepted:next.accepted,status:next.state.status,goalsAdded:completed(next.state)-completed(state)});
   if(!next.accepted){illegal=true;break;}
-  state=next.state;const key=layout(state);if(seen.has(key))repeatLayouts++;seen.add(key);
+  state=next.state;adviceVisited.add(hintPositionKey(state));const key=layout(state);if(seen.has(key))repeatLayouts++;seen.add(key);
  }
  const after=replayTrace(level,proof);
  return {id:level.id,mechanics:level.mechanics.map(m=>m.id),proofMoves:proof.actions.length,

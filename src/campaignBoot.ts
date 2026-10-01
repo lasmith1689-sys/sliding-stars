@@ -9,7 +9,7 @@ import {CampaignInput,directionHint,actionBetween} from './input/campaign';
 import {dragFrame} from './input/campaignDrag';
 import {MissionCompletion} from './ui/missionCompletion';
 import type {Pos} from './core/types';
-import {campaignHint} from './campaign/hints';
+import {campaignHint,hintPositionKey} from './campaign/hints';
 import {getRouteHint} from './campaign/hintRoutes';
 import {transition} from './campaign/engine/turn';
 import type {CampaignAction} from './campaign/types';
@@ -28,7 +28,9 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  let presentation=0,audio:AudioContext|undefined,pointerId:number|null=null;
  let dragOrigin:{at:Pos;x:number;y:number;axis:'h'|'v'|null}|null=null;
  let completion:MissionCompletion|undefined;
- const checkCompletion=()=>completion?.update(String(state().levelId),state().status==='won',!game.locked&&!document.hidden);
+ let nativeActive=true,pageActive=true;
+ const hintVisited=new Set([hintPositionKey(state())]);
+ const checkCompletion=()=>completion?.update(String(state().levelId),state().status==='won',!game.locked&&!document.hidden&&nativeActive&&pageActive);
  const diagnostics=()=>{if(import.meta.env.DEV&&previewMode){const expected=makeScene(state()).entityPositions,rendered=board.renderedEntityPositions;
   app.canvas.dataset.campaignLayout=JSON.stringify(board.layout);app.canvas.dataset.campaignTurn=String(state().turn);app.canvas.dataset.campaignLocked=String(game.locked);
   app.canvas.dataset.campaignSynchronized=String(Object.keys(expected).length===Object.keys(rendered).length&&Object.entries(expected).every(([id,p])=>rendered[id]&&Math.abs(rendered[id]!.r-p.r)<.00001&&Math.abs(rendered[id]!.c-p.c)<.00001));
@@ -36,6 +38,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  const sound=()=>{if(!game.save.preferences.sound||document.hidden)return;try{audio??=new AudioContext();void audio.resume();const osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.value=state().status==='won'?784:523;gain.gain.setValueAtTime(.03,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.2);osc.connect(gain);gain.connect(audio.destination);osc.start();osc.stop(audio.currentTime+.22);}catch{/* Sound remains optional. */}};
  const dispatch=async(action:CampaignAction)=>{
   const result=game.dispatch(action);if(!result)return;if(!result.accepted){shell.preview(result.rejection??'Try another neighboring tile.');return;}
+  hintVisited.add(hintPositionKey(result.state));if(hintVisited.size>32)hintVisited.delete(hintVisited.values().next().value!);
   const token=++presentation;shell.selected=null;input.cancel();board.hint(null);shell.preview(null);shell.update();diagnostics();
   try{await flushStorage(storage);await animator.play(result.events,makeScene(result.state));}
   catch(error){game.saveError=error instanceof Error?error.message:'Could not save progress';shell.preview('Progress is still here. Keep the app open and retry saving from Guide.');}
@@ -50,7 +53,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
   const route=await getRouteHint(snapshot);
   // Loading a chapter must never paint a stale hint over a new move or dialog.
   if(request!==hintRequest||state()!==snapshot||generation!==presentation||game.locked||pointerId!==null||shell.dialog.open||document.hidden)return;
-  const action=route??campaignHint(snapshot);if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
+  const action=route??campaignHint(snapshot,hintVisited);if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
   const preview=transition(state(),action),departures=preview.events.flatMap(e=>e.type==='remove'&&e.reason==='departure'&&e.piece.kind==='cargo'?[e.piece.destinationId]:[]),gravity=preview.events.filter(e=>e.type==='gravity');
   board.hint(action,departures);const direction=directionHint(action);shell.preview(`Slide ${direction.word.toLowerCase()} between the glowing tiles${gravity.length?` · Gravity next: ${gravity.map(e=>e.after).join(' then ')}`:departures.length?' to evacuate safely':state().levelId===1?' to join three habitats':''}.`);
  };
@@ -66,7 +69,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
   }
  };
  const shell=new CampaignShell(game,{
-  hint,retrySave:saveNow,restart:()=>{recover();game.restart();saveInBackground();board.relayout(makeScene(state()));shell.layout(board.layout);shell.preview('A fresh route. Tap two neighbors or drag.');shell.update();diagnostics();},
+  hint,retrySave:saveNow,restart:()=>{recover();game.restart();hintVisited.clear();hintVisited.add(hintPositionKey(state()));saveInBackground();board.relayout(makeScene(state()));shell.layout(board.layout);shell.preview('A fresh route. Tap two neighbors or drag.');shell.update();diagnostics();},
   next:async()=>{await saveNow();if(!previewMode&&BETA_CAMPAIGN_IDS.every(id=>game.save.completedCampaignIds.includes(id))){
    shell.panel('All 1,000 missions complete!', '<img class="result-portrait" src="/optimized/pepper.webp" alt="Pepper"><p>You brought a little more life to the stars. Your progress is saved. Choose any constellation to play again.</p><button class="primary wide" id="all-missions">Replay a mission</button>',()=>shell.dialog.querySelector('#all-missions')!.addEventListener('click',()=>{shell.dialog.close();openBetaMissionPicker(game.save,storage,()=>{void reloadSavedMission();});}));return;
   }await advanceToCampaign(game.save,storage,provider);await reloadSavedMission();},
@@ -95,8 +98,8 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  const resize=()=>{recover();app.resize();background.scale.set(app.screen.width/original.w,app.screen.height/original.h);board.relayout(makeScene(state()));shell.layout(board.layout);if(state().turn===0&&state().levelId===1)hint();diagnostics();};
  new ResizeObserver(resize).observe(document.getElementById('game')!);
  document.addEventListener('visibilitychange',()=>{recover();if(document.hidden){app.stop();void audio?.suspend();}else{app.start();resize();}});
- window.addEventListener('pagehide',()=>{recover();app.stop();void audio?.suspend();});window.addEventListener('pageshow',()=>{app.start();resize();});window.addEventListener('blur',()=>{recover();void audio?.suspend();});
- window.addEventListener('native-app-state',event=>{recover();const active=(event as CustomEvent<{isActive:boolean}>).detail.isActive;if(active){app.start();resize();}else{app.stop();void audio?.suspend();void flushStorage(storage).catch(error=>{game.saveError=String(error);shell.update();});}});
+ window.addEventListener('pagehide',()=>{pageActive=false;recover();app.stop();void audio?.suspend();});window.addEventListener('pageshow',()=>{pageActive=true;app.start();resize();});window.addEventListener('blur',()=>{recover();void audio?.suspend();});
+ window.addEventListener('native-app-state',event=>{const active=(event as CustomEvent<{isActive:boolean}>).detail.isActive;nativeActive=active;recover();if(active){app.start();resize();}else{app.stop();void audio?.suspend();void flushStorage(storage).catch(error=>{game.saveError=String(error);shell.update();});}});
  shell.layout(board.layout);shell.update();if(state().turn===0&&state().levelId===1)hint();diagnostics();checkCompletion();
  // Diagnostics are read-only and exist only on the isolated development route.
  if(import.meta.env.DEV&&previewMode)Object.defineProperty(window,'__campaign',{configurable:true,value:{snapshot:()=>structuredClone(game.save),layout:()=>({...board.layout}),rendered:()=>structuredClone(board.renderedEntityPositions),locked:()=>game.locked}});

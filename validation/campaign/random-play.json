@@ -1,0 +1,15 @@
+{
+  "seed": 314159,
+  "levels": 1000,
+  "trialsPerLevel": 3,
+  "maxMoves": 15,
+  "transitions": 29969,
+  "won": 1612,
+  "lost": 40,
+  "playing": 1348,
+  "failures": [],
+  "limitations": [
+    "Deterministic randomized legal play, not exhaustive search or human fun verification.",
+    "Each accepted boundary was serialized and schema-validated."
+  ]
+}

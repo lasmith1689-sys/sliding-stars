@@ -1,5 +1,5 @@
 import {expect,it} from 'vitest';
-import {campaignHint} from '../../src/campaign/hints';
+import {campaignHint,hintPositionKey} from '../../src/campaign/hints';
 import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {transition} from '../../src/campaign/engine/turn';
 import {authoredLessonLevels} from '../../src/campaign/lessons';
@@ -31,4 +31,18 @@ it.each([5,9,16,56,81,516,661])('hints advance an unfinished obstacle in mission
   e.type==='fixture'&&e.before&&'hp'in e.before&&(!e.after||'hp'in e.after&&e.after.hp<e.before.hp)||
   e.type==='garden'&&e.phase==='grown'||e.type==='solar');
  expect(progress,`hint should advance the obstacle in ${id}`).toBe(true);
+});
+
+it.each([16,56,225,471,711,750,950])('fallback advice makes useful progress to victory in mission %s',async id=>{
+ const {getCampaignLevel}=await import('../../src/campaign/catalog');let state=loadCampaignLevel(await getCampaignLevel(id));
+ const visited=new Set([hintPositionKey(state)]);
+ for(let i=0;i<12&&state.status==='playing';i++){
+  const hint=campaignHint(state,visited);expect(hint).not.toBeNull();const result=transition(state,hint!);expect(result.accepted).toBe(true);
+  state=result.state;visited.add(hintPositionKey(state));
+ }
+ expect(state.status).toBe('won');
+});
+it('does not repeatedly suggest a visited nonterminal arrangement in mission 900',async()=>{
+ const {getCampaignLevel}=await import('../../src/campaign/catalog');let state=loadCampaignLevel(await getCampaignLevel(900));const visited=new Set([hintPositionKey(state)]);
+ for(let i=0;i<20&&state.status==='playing';i++){const action=campaignHint(state,visited);if(!action)break;const result=transition(state,action);const key=hintPositionKey(result.state);if(result.state.status!=='won')expect(visited.has(key)).toBe(false);visited.add(key);state=result.state;}
 });

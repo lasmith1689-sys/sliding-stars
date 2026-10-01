@@ -1,3 +1,7 @@
+# Latest: troubleshooting checkpoint
+
+Read docs/2026-09-30-TROUBLESHOOTING.md first. 29,969 off-route transitions passed; 1,034 tests passed. Fixed native background completion ordering and cycling fallback hints. 38/41 fallback sample wins, no cycles. Physical iPhone, strategic depth and remaining mechanics are NOT complete. Weekly usage reached 99%. No new Codex thread required.
+
 # Latest revision: rescue shuttles
 
 Read docs/2026-09-30-RESCUE-SHUTTLES.md first. It supersedes older pod/raft rules and earlier campaign counts below. Empty shuttles now need a terrain match; only occupied shuttles have powered flight. New spacecraft art, touch guidance, MATCH/ABOARD badges, repaired authored lessons, 1,000 regenerated winning boards, 63 masks and 3,023 hint entries. One-time upgrade resets only the unfinished current mission; earned progress is preserved. 1,026 tests passed. Web/native release verification follows at the end after upload. Next: physical-iPhone playtest of this distinction, then the existing strategic-depth backlog. Continue here; a new Codex thread is not required.
