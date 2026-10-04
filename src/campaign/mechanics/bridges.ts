@@ -3,6 +3,7 @@ import {emit,stableIds} from '../engine/context';
 import {activeCell,cellKey,gravitySegments,sameCell,validateGravityCoverage} from '../engine/geometry';
 import {creditGoal} from '../engine/goals';
 import {touches} from './wear';
+import {completedRepairCells} from './repair';
 export interface BridgesDef {id:'bridges';fixtureIds:string[]}
 export interface BridgesRuntime {id:'bridges';activatedIds:string[]}
 export type Bridge=Extract<CampaignFixture,{kind:'bridge'}>;
@@ -59,6 +60,7 @@ export function bridgeStateError(state:CampaignState):string|null {
   }
  }
  for(const gate of state.fixtures.filter(f=>f.kind==='gate'))if(gate.open){gate.cells.forEach(p=>opened.add(cellKey(p)));gate.connectionIds.forEach(id=>openedLinks.add(id));}
+ for(const cell of completedRepairCells(state))opened.add(cell);
  const expected=structuredClone(state.level.geometry);expected.inactiveCells=expected.inactiveCells.filter(p=>!opened.has(cellKey(p)));
  expected.connections=expected.connections.map(c=>openedLinks.has(c.id)?{...c,active:true}:c);
  if(JSON.stringify(state.geometry.inactiveCells)!==JSON.stringify(expected.inactiveCells)||JSON.stringify(state.geometry.connections)!==JSON.stringify(expected.connections))return 'activation changed unrelated absent cells or connections';

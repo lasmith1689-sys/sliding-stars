@@ -12,11 +12,11 @@ const levels=Array.from({length:20},(_,index)=>parseCampaignChapter(JSON.parse(r
 const manifest:GeneratedManifestEntry[]=JSON.parse(readFileSync(new URL('../../validation/campaign/generated/manifest.json',import.meta.url),'utf8'));
 const proofs:SolutionTrace[]=JSON.parse(readFileSync(new URL('../../validation/campaign/generated/proofs.json',import.meta.url),'utf8'));
 
-it('commits 1000 consecutive schema-valid boards and preserves all 102 authored boards exactly',()=>{
+it('commits 1000 consecutive schema-valid boards and preserves all 127 authored boards exactly',()=>{
  expect(levels.map(level=>level.id)).toEqual(Array.from({length:1000},(_,index)=>index+1));
  expect(manifest).toHaveLength(1000);expect(proofs).toHaveLength(1000);
  for(const authored of beta)expect(levels[authored.id-1]).toEqual(authored);
- expect(manifest.filter(entry=>entry.source==='authored')).toHaveLength(102);
+ expect(manifest.filter(entry=>entry.source==='authored')).toHaveLength(127);
 });
 
 it('independently replays every shipped board to victory without a consumable',()=>{
@@ -45,7 +45,7 @@ it('has 1000 distinct real opening puzzles and diverse geometry, independent of 
 });
 
 it('practices only fully introduced mechanics and removes demonstration immunity from generated missions',()=>{
- const excluded=['portals','relays','tethers','repair','rendezvous'];
+ const excluded=['portals'];
  for(const entry of manifest){
   const level=levels[entry.id-1]!;
   expect(entry.mechanics.some(mechanic=>excluded.includes(mechanic))).toBe(false);
@@ -76,7 +76,7 @@ it('rotates templates and revisits a broad mix of learned mechanics throughout t
   expect(Math.max(...counts.values())/window.length).toBeLessThanOrEqual(0.3);
  }
  const late=manifest.filter(entry=>entry.id>805&&entry.source==='generated');
- const thoughtful=late.filter(entry=>entry.id%6===0),recovery=late.filter(entry=>entry.id%6===1);
+ const thoughtful=late.filter(entry=>entry.id%3===0),recovery=late.filter(entry=>entry.id%3===1);
  expect(thoughtful.filter(entry=>entry.proofLength>=5).length/thoughtful.length).toBeGreaterThan(0.6);
  expect(recovery.filter(entry=>entry.proofLength<=3).length/recovery.length).toBeGreaterThan(0.8);
  const repeatedMasks=levels.slice(1).filter((level,index)=>JSON.stringify(level.geometry.mask)===JSON.stringify(levels[index]!.geometry.mask));

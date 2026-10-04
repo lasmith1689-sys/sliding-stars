@@ -44,8 +44,8 @@ it.each(obstacleLessons)('lesson %s has no station-slide rescue path while its t
   if(process.env.TASK8_FRONTIER_COUNTS)console.info(`lesson ${id} depth ${depth+1}: ${next.length} paths -> ${frontier.length} complete states`);
  }
 });
-it('supplies exactly the authored foundations and twenty teaching sequences, separate from release chapters',()=>{
- expect(authoredLessonLevels.map(l=>l.id)).toEqual([1,2,3,4,5,6,7,8,16,17,18,19,20,31,32,33,34,35,56,57,58,59,60,81,82,83,84,85,111,112,113,114,115,146,147,148,149,150,186,187,188,189,190,231,232,233,234,235,276,277,278,279,280,326,327,328,329,330,376,377,378,379,380,426,427,428,429,430,471,472,473,474,475,516,517,518,519,520,561,562,563,564,565,611,612,613,614,615,661,662,663,664,665,711,712,713,714,715,756,757,758,759,760,801,802,803,804,805]);
+it('supplies exactly the authored foundations and all twenty-five teaching sequences, separate from release chapters',()=>{
+ expect(authoredLessonLevels.map(l=>l.id)).toEqual([1,2,3,4,5,6,7,8,16,17,18,19,20,31,32,33,34,35,56,57,58,59,60,81,82,83,84,85,111,112,113,114,115,146,147,148,149,150,186,187,188,189,190,231,232,233,234,235,276,277,278,279,280,326,327,328,329,330,376,377,378,379,380,426,427,428,429,430,471,472,473,474,475,516,517,518,519,520,561,562,563,564,565,611,612,613,614,615,661,662,663,664,665,711,712,713,714,715,756,757,758,759,760,801,802,803,804,805,841,842,843,844,845,881,882,883,884,885,921,922,923,924,925,961,962,963,964,965]);
  for(const level of authoredLessonLevels){expect(parseCampaignLevel(level)).toEqual(level);expect(campaignLessons.some(l=>l.id===level.lessonId&&l.levelId===level.id)).toBe(true);}
  expect(()=>parseCampaignChapter(authoredLessonLevels.filter(l=>l.chapter===1),1)).toThrow();
  expect(getAuthoredLessonLevel(9)).toBeUndefined();
@@ -53,7 +53,7 @@ it('supplies exactly the authored foundations and twenty teaching sequences, sep
 });
 it('consecutive authored lessons have different masks and each five-lesson sequence has five board shapes',()=>{
  for(let i=1;i<authoredLessonLevels.length;i++)expect(authoredLessonLevels[i]!.geometry.mask).not.toEqual(authoredLessonLevels[i-1]!.geometry.mask);
- for(const first of [4,16,31,56,81,111,146,186,231,276,326,376,426,471,516,561,611,661,711,756,801])expect(new Set(authoredLessonLevels.filter(l=>l.id>=first&&l.id<first+5).map(l=>JSON.stringify(l.geometry.mask))).size).toBe(5);
+ for(const first of [4,16,31,56,81,111,146,186,231,276,326,376,426,471,516,561,611,661,711,756,801,841,881,921,961])expect(new Set(authoredLessonLevels.filter(l=>l.id>=first&&l.id<first+5).map(l=>JSON.stringify(l.geometry.mask))).size).toBe(5);
 });
 it('optional absent failure policy retains the same replay fingerprint after JSON omission',()=>{
  const decoded=loadCampaignLevel(getAuthoredLessonLevel(2)!);
@@ -101,7 +101,7 @@ it.each(authoredLessonLevels)('level $id wins by its committed booster-free teac
   }
   state=result.state;
  }
- expect(state.status).toBe('won');expect(state.fixtures.filter(f=>f.kind!=='jelly')).toEqual(level.fixtures.filter(f=>f.kind==='portal'||f.kind==='bridge'||f.kind==='garden'||f.kind==='gate'||f.kind==='lock'||f.kind==='gravity-switch'||f.kind==='solar'||f.kind==='phase-door').map(f=>f.kind==='bridge'?{...f,hits:2,active:true}:f.kind==='garden'?{...f,stage:3}:f.kind==='gate'?{...f,open:true}:f.kind==='gravity-switch'?{...f,direction:state.mechanics.find(m=>m.id==='gravity')!.flippedIds.includes(f.id)?f.direction==='down'?'left':'down':f.direction}:f.kind==='solar'?{...f,charge:f.quota}:f.kind==='phase-door'?{...f,open:![802,804,805].includes(level.id),closingPending:[801,803].includes(level.id)}:f));
+ expect(state.status).toBe('won');expect(state.fixtures.filter(f=>f.kind!=='jelly')).toEqual(level.fixtures.filter(f=>f.kind==='portal'||f.kind==='magnet'||f.kind==='relay'||f.kind==='bridge'||f.kind==='garden'||f.kind==='gate'||f.kind==='lock'||f.kind==='gravity-switch'||f.kind==='solar'||f.kind==='phase-door').map(f=>f.kind==='relay'?{...f,active:true}:f.kind==='bridge'?{...f,hits:2,active:true}:f.kind==='garden'?{...f,stage:3}:f.kind==='gate'?{...f,open:true}:f.kind==='gravity-switch'?{...f,direction:state.mechanics.find(m=>m.id==='gravity')!.flippedIds.includes(f.id)?f.direction==='down'?'left':'down':f.direction}:f.kind==='solar'?{...f,charge:f.quota}:f.kind==='phase-door'?{...f,open:![802,804,805].includes(level.id),closingPending:[801,803,965].includes(level.id)}:f));
  for(const fixture of state.fixtures.filter(f=>f.kind==='jelly')){
   expect(level.fixtures.some(f=>f.id===fixture.id&&f.kind==='jelly')).toBe(true);
   if(fixture.preview)expect(state.pieces.some(p=>p.kind==='tile'&&p.at.r===fixture.preview!.r&&p.at.c===fixture.preview!.c)).toBe(true);

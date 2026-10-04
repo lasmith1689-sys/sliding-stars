@@ -19,8 +19,13 @@ import type { SolarDef,SolarRuntime } from './solar';
 import type { JellyDef,JellyRuntime } from './jelly';
 import type { DocksDef,DocksRuntime } from './docks';
 import type { PhaseDef,PhaseRuntime } from './phase';
+import type {MagnetsDef,MagnetsRuntime} from './magnets';
+import type {RelaysDef,RelaysRuntime} from './relays';
+import type {TethersDef,TethersRuntime} from './tethers';
+import type {RepairDef,RepairRuntime} from './repair';
+import type {RendezvousDef,RendezvousRuntime} from './rendezvous';
 /** Module-owned contracts are aggregated without importing behavior at runtime. */
-export const MECHANIC_IDS = ['crates','ice','rovers','reactors','comets','exits','waves','moonwhales','pups','currents','pirates','portals','bridges','shelter','gardens','keys','gravity','solar','jelly','docks','phase','relays','tethers','repair','rendezvous'] as const;
+export const MECHANIC_IDS = ['crates','ice','rovers','reactors','comets','exits','waves','moonwhales','pups','currents','pirates','portals','magnets','bridges','shelter','gardens','keys','gravity','solar','jelly','docks','phase','relays','tethers','repair','rendezvous'] as const;
 export type MechanicId = typeof MECHANIC_IDS[number];
 
 export type MechanicDef =
@@ -41,10 +46,7 @@ export type MechanicDef =
   | JellyDef
   | DocksDef
   | PhaseDef
-  | {id:'relays';fixtureIds:string[]}
-  | {id:'tethers';actorIds:string[]}
-  | {id:'repair';actorIds:string[]}
-  | {id:'rendezvous';endpointIds:[string,string];passengerIds:[string,string]};
+  | MagnetsDef | RelaysDef | TethersDef | RepairDef | RendezvousDef;
 
 /** Feature-wide state only; per-entity counters live on actors and fixtures. */
 export type MechanicRuntime =
@@ -65,7 +67,4 @@ export type MechanicRuntime =
   | JellyRuntime
   | DocksRuntime
   | PhaseRuntime
-  | {id:'relays';nextNode:number}
-  | {id:'tethers';releasedIds:string[]}
-  | {id:'repair';completedJobIds:string[]}
-  | {id:'rendezvous';departed:boolean};
+  | MagnetsRuntime | RelaysRuntime | TethersRuntime | RepairRuntime | RendezvousRuntime;

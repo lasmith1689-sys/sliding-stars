@@ -20,7 +20,7 @@ it('composes existing reference and finite-source checks with engine refill cove
   const dry=structuredClone(valid);dry.geometry.refillSources=[];
   expect(validateCandidate(dry)[0]?.message).toMatch(/refill/);
 });
-it('rejects an off-board carrier route and unavailable mechanic before search',()=>{
+it('rejects an off-board carrier route and validates the implemented relay before search',()=>{
   const route=getAuthoredLessonLevel(31)!;
   route.geometry.routes.push({id:'bad',loop:true,cells:[{r:999,c:0}]});
   expect(validateCandidate(route)[0]?.message).toMatch(/footprint/);
@@ -28,5 +28,5 @@ it('rejects an off-board carrier route and unavailable mechanic before search',(
   future.geometry.endpoints.push({id:'future-home',kind:'station',at:{r:1,c:0},active:false});
   future.fixtures=[{id:'future-relay',kind:'relay',at:{r:0,c:1},order:1,active:false,endpointId:'future-home'}];
   future.mechanics=[{id:'relays',fixtureIds:['future-relay']}];
-  expect(validateCandidate(future)[0]?.message).toMatch(/not implemented/);
+  expect(validateCandidate(future)).toEqual([]);
 });

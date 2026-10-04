@@ -26,7 +26,8 @@ export function resolveCrewSafety(context:TurnContext):boolean {
     const actor=state.actors.find(a=>a.id===crew.carrierId);
     const cargo=state.pieces.find(p=>p.id===crew.carrierId&&p.kind==='cargo');
     const solarHome=state.fixtures.some(f=>f.kind==='solar'&&f.charge===f.quota&&state.geometry.endpoints.some(e=>e.id===f.endpointId&&e.active&&sameCell(e.at,crew.at)));
-    const home=!cargo&&(!actor||actor.kind==='rover')&&(solarHome||stations.some(s=>sameCell(s.at,crew.at)||sameCell(doorCell(s.at.r,s.at.c,s.facing),crew.at)));
+    const relayHome=state.fixtures.some(f=>f.kind==='relay'&&f.active&&state.geometry.endpoints.some(e=>e.id===f.endpointId&&e.active&&sameCell(e.at,crew.at)));
+    const home=!cargo&&(!actor||actor.kind==='rover')&&(solarHome||relayHome||stations.some(s=>sameCell(s.at,crew.at)||sameCell(doorCell(s.at.r,s.at.c,s.facing),crew.at)));
     if(home&&activeCell(state.geometry,crew.at)){
       const before=structuredClone(crew);
       const carrier=[...state.pieces,...state.actors].find(c=>c.id===crew.carrierId);

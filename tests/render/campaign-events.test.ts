@@ -8,7 +8,7 @@ import {lessonSolutionTraces} from '../../src/campaign/content/lesson-solutions.
 import {futureWaveCopy} from '../../src/ui/campaignCoach';
 it('renders every foundation/mechanic winning event sequence to its canonical entity positions',()=>{
  for(const trace of lessonSolutionTraces){let state=loadCampaignLevel(getAuthoredLessonLevel(trace.levelId)!);let scene=makeScene(state);
-  for(const action of trace.actions){const result=transition(state,action);expect(result.accepted).toBe(true);scene=applySceneEvents(scene,result.events);expect(scene.entityPositions).toEqual(makeScene(result.state).entityPositions);state=result.state;}
+  for(const action of trace.actions){const result=transition(state,action);expect(result.accepted,`mission ${trace.levelId}, turn ${state.turn}: ${result.rejection??'accepted'}`).toBe(true);scene=applySceneEvents(scene,result.events);expect(scene.entityPositions).toEqual(makeScene(result.state).entityPositions);state=result.state;}
  }
 });
 it('cancels pending presentation, resolves it and cannot overwrite a newer scene',async()=>{

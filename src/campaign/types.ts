@@ -53,6 +53,7 @@ export type CampaignFixture = {id:string;at:Pos} & (
   | {kind:'jelly';coatedCells:Pos[];preview:Pos|null}
   | {kind:'phase-door';open:boolean;closingPending:boolean}
   | {kind:'relay';order:number;active:boolean;endpointId:string}
+  | {kind:'magnet';routeId:string;cargoId:string;dockId:string}
 );
 export interface CampaignArrival {id:string;turn:number;entry:Pos;crew:CampaignCrew[];status:'pending'|'admitted'}
 export type GoalEligibility={type:'ids';ids:string[]}|{type:'sources';sourceIds:string[];target:number};
@@ -119,6 +120,11 @@ export type CampaignEvent = {sequenceId:number;timingGroup:number} & (
   | {type:'jelly';fixtureId:string;phase:'preview'|'coated'|'cleared'|'waiting'|'practice-assisted'|'practice-waited';at:Pos|null}
   | {type:'dock';actorId:string;phase:'moving'|'waiting'|'boarded';at:Pos;entrance:Pos;crewId?:string}
   | {type:'phase';doorId:string;at:Pos;phase:'opened'|'closed'|'pending';open:boolean;closingPending:boolean}
+  | {type:'relay';relayId:string;order:number;phase:'activated'|'waiting';mergeId:string}
+  | {type:'magnet';magnetId:string;cargoId:string;phase:'pulled'|'waiting'|'delivered';from:Pos;to:Pos;mergeId:string}
+  | {type:'tether';actorId:string;phase:'released';passengerIds:[string,string];cells:[Pos,Pos]}
+  | {type:'repair';actorId:string;phase:'collected'|'waiting'|'repaired';jobId:string|null;kitId:string|null;at:Pos}
+  | {type:'rendezvous';phase:'waiting'|'departed';endpointIds:[string,string];passengerIds:[string,string]}
 );
 export interface CampaignTransition {accepted:boolean;state:CampaignState;events:CampaignEvent[];rejection?:string}
 export interface SolutionTrace {levelId:number;campaignVersion:typeof CAMPAIGN_VERSION;rulesVersion:typeof CAMPAIGN_RULES_VERSION;initialHash:string;actions:CampaignAction[];finalHash:string}

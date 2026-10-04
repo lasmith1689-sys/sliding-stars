@@ -41,3 +41,60 @@ jobs:
           path: ${{ runner.temp }}/sliding-stars-testflight-*/archive.log
           if-no-files-found: ignore
           retention-days: 7
+  distribution:
+    name: Public TestFlight review
+    needs: testflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Prepare public TestFlight and App Store metadata
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          RELEASE_MODE: testflight
+          BUILD_NUMBER: ${{ github.run_number }}.${{ github.run_attempt }}
+        run: node .github/scripts/app-store-connect.mjs
+      - name: Retain Apple release status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apple-release-status
+          path: ${{ runner.temp }}/sliding-stars-release/status.json
+          if-no-files-found: ignore
+          retention-days: 14
+  screenshots:
+    name: iPhone release screenshots
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[ship]')
+    runs-on: macos-26
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run ios:sync
+      - run: bash .github/scripts/screenshots.sh
+      - name: Upload actual iPhone gameplay screenshot
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          RELEASE_MODE: prepare
+          SCREENSHOT_PATH: ${{ runner.temp }}/sliding-stars-screenshots/iphone-gameplay.png
+        run: node .github/scripts/app-store-connect.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iphone-release-screenshot
+          path: |
+            ${{ runner.temp }}/sliding-stars-screenshots/iphone-gameplay.png
+            ${{ runner.temp }}/sliding-stars-screenshots/simulator-build.log
+          if-no-files-found: ignore
+          retention-days: 14

@@ -11,9 +11,10 @@ import { MemoryStorage } from '../session/fixtures/legacy';
 import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {safeTerrain} from '../../src/campaign/engine/needs';
 import {transition} from '../../src/campaign/engine/turn';
+import {retiredPortalLessonSeeds} from '../../src/campaign/content/lesson-seeds';
 
-it('ships 1000 missions while preserving 102 authored teaching boards',async()=>{
- const reviewed=authoredLessonLevels.filter(level=>level.id<=805&&!level.mechanics.some(m=>m.id==='portals'));
+it('ships 1000 missions with 127 authored teaching boards covering 25 nonportal mechanics',async()=>{
+ const reviewed=authoredLessonLevels.filter(level=>!level.mechanics.some(m=>m.id==='portals'));
  expect(AUTHORED_CAMPAIGN_IDS).toEqual(reviewed.map(level=>level.id));
  expect(BETA_CAMPAIGN_IDS).toEqual(Array.from({length:1000},(_,i)=>i+1));
  for(const level of reviewed)expect(await getCampaignLevel(level.id)).toEqual(level);
@@ -30,7 +31,7 @@ it.each([1,2,3])('opening mission %s starts with every explorer still needing re
 });
 
 it.each(RETIRED_BETA_CAMPAIGN_IDS)('moves saved portal mission %s to a playable board without losing account progress',async id=>{
- const store=new MemoryStorage(),level=authoredLessonLevels.find(level=>level.id===id)!,save=createCampaignSave(level);
+ const store=new MemoryStorage(),level=retiredPortalLessonSeeds.find(level=>level.id===id)!,save=createCampaignSave(level);
  save.wallet.coins=812;save.completedCampaignIds=[1,2,376];save.rewardLedger=['2026.1:376:prior-reward'];save.preferences.sound=true;save.seenTips=['rescue'];
  const original=structuredClone(save);expect(saveSnapshot(store,save).ok).toBe(true);
  const migrated=await migrateRetiredBetaMission(save,store);
@@ -64,7 +65,7 @@ it('preserves an opening mission already in progress and never overwrites a fail
  const action=lessonSolutionTraces.find(trace=>trace.levelId===3)!.actions[0]!;
  save.active.state=transition(save.active.state,action).state;
  expect(save.active.state.turn).toBe(1);expect(await migrateRetiredBetaMission(save,store)).toBe(save);
- const retired=createCampaignSave(authoredLessonLevels.find(level=>level.id===376)!);
+ const retired=createCampaignSave(retiredPortalLessonSeeds.find(level=>level.id===376)!);
  expect(saveSnapshot(store,retired).ok).toBe(true);store.failKey=SAVE_KEY;
  await expect(migrateRetiredBetaMission(retired,store)).rejects.toThrow();
  expect(loadSave(store)).toEqual(retired);

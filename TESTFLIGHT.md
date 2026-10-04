@@ -4,7 +4,7 @@ This app uses the account owner's existing Ai-sky distribution method: macos-26/
 
 ## 1. Register the app
 
-Delivery completed September 30, 2026: **1.0 (5.1)** is marked **Testing** in the Me internal group, with the account owner added. All four GitHub secrets are configured. [Upload run](https://github.com/lasmith1689-sys/sliding-stars/actions/runs/36725952629) passed. Open TestFlight on iPhone and install Sliding Stars. The instructions below are retained for maintenance; do not repeat registration or create duplicate keys.
+The app is registered and all four GitHub secrets are configured. Apple API inspection October 4 confirmed **1.0 (10.1)** is VALID and IN_BETA_TESTING internally. Earlier uploads are internal-only. The new campaign export permits both public TestFlight and App Store distribution. Do not repeat registration or create duplicate keys. See [release instructions](docs/app-store/RELEASE.md) for current sharing status and remaining Apple fields.
 
 1. Open [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list).
 2. Click **+ → App IDs → Continue → App → Continue**.
@@ -43,8 +43,10 @@ After an upload succeeds, open the app's **TestFlight** tab and wait for Apple p
 
 ## Beta scope
 
-1,000 verified missions (102 authored plus 898 generated variations) and 20 implemented mechanics, including varied board geometry, rescue creatures, currents, keys, gravity switches, shuttle docks and phase doors. Four later mechanics, a portal replacement and deeper procedural variety remain unfinished. See [the beta status](docs/TESTFLIGHT-BETA.md) for validation and limitations.
+1,000 verified missions (127 authored plus 873 generated variations), 25 implemented nonportal mechanics, 68 masks and 16 board bounding sizes. Magnets replace retired portals; relays, tethers, repair bots and rendezvous now have rules, original graphics and five lessons each. See [the current QC](docs/2026-10-04-RELEASE-QC.md) for validation and playtesting limits.
 
-The app bundles its game/art and uses native save storage. Safari progress is separate from app progress. No App Store submission is requested; this workflow marks uploads for internal TestFlight testing.
+The app bundles game/art and uses native storage. Safari progress is separate. Public TestFlight and App Store release are authorized. The upload exports an App Store eligible build; a separate distribution job verifies Apple processing and submits external review when contact information exists. The screenshot job captures the actual release app in an iPhone simulator. Upload success and Apple approval are separate.
+
+Next: verify the new build, complete any missing Apple fields and submit review. Continue in the current thread; no new thread is required.
 
 Reference: the owner's [Ai-sky workflow and cloud-signing script](https://github.com/lasmith1689-sys/Ai-sky/tree/4bcc9a424a10b09adfd9410c6ec107554e85c5e0/.github), read September 29, 2026.

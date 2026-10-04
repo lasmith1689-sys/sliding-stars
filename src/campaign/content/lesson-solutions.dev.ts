@@ -1,6 +1,7 @@
 import type { CampaignAction,SolutionTrace } from '../types';
+import finishProofs from './finish-solutions.dev.json';
 /** Development artifacts only: never import these through the release catalog. */
-export const lessonSolutionTraces:readonly SolutionTrace[]=[
+const retainedLessonSolutionTraces:readonly SolutionTrace[]=[
   {"levelId":801,"campaignVersion":"2026.1","rulesVersion":"campaign-1","initialHash":"abf0582c62170cab","actions":[{"type":"swap","from":{"r":2,"c":1},"to":{"r":3,"c":1}},{"type":"swap","from":{"r":5,"c":1},"to":{"r":5,"c":2}}],"finalHash":"efe9949110e1ac10"},
   {"levelId":802,"campaignVersion":"2026.1","rulesVersion":"campaign-1","initialHash":"f89a7ae7b8963395","actions":[{"type":"swap","from":{"r":2,"c":3},"to":{"r":3,"c":3}},{"type":"swap","from":{"r":2,"c":2},"to":{"r":2,"c":3}}],"finalHash":"57d2fc0446d9a797"},
   {"levelId":803,"campaignVersion":"2026.1","rulesVersion":"campaign-1","initialHash":"c16d3f50a8dcd5c3","actions":[{"type":"swap","from":{"r":0,"c":1},"to":{"r":1,"c":1}},{"type":"swap","from":{"r":3,"c":1},"to":{"r":3,"c":2}}],"finalHash":"f5edf68d0d466df3"},
@@ -110,4 +111,6 @@ export const lessonSolutionTraces:readonly SolutionTrace[]=[
   {"levelId":664,"campaignVersion":"2026.1","rulesVersion":"campaign-1","initialHash":"338dd784ae196a50","actions":[{"type":"swap","from":{"r":2,"c":2},"to":{"r":2,"c":3}},{"type":"swap","from":{"r":2,"c":1},"to":{"r":1,"c":1}}],"finalHash":"24a3b9da7218d69c"},
   {"levelId":665,"campaignVersion":"2026.1","rulesVersion":"campaign-1","initialHash":"ba39721ea9a71a60","actions":[{"type":"swap","from":{"r":0,"c":1},"to":{"r":1,"c":1}},{"type":"swap","from":{"r":1,"c":1},"to":{"r":1,"c":2}},{"type":"swap","from":{"r":0,"c":1},"to":{"r":1,"c":1}},{"type":"swap","from":{"r":0,"c":3},"to":{"r":1,"c":3}},{"type":"swap","from":{"r":2,"c":1},"to":{"r":3,"c":1}}],"finalHash":"cf5a4b3011cf399d"},
 ];
+export const lessonSolutionTraces:readonly SolutionTrace[]=retainedLessonSolutionTraces.filter(trace=>trace.levelId<376||trace.levelId>380).concat(finishProofs as SolutionTrace[]);
+export const retiredPortalTeachingActions:Readonly<Record<number,readonly CampaignAction[]>>=Object.fromEntries(retainedLessonSolutionTraces.filter(trace=>trace.levelId>=376&&trace.levelId<=380||trace.levelId===615).map(trace=>[trace.levelId,trace.actions]));
 export const lessonTeachingActions:Readonly<Record<number,readonly CampaignAction[]>>=Object.fromEntries(lessonSolutionTraces.map(trace=>[trace.levelId,trace.actions]));

@@ -1,5 +1,7 @@
 import {stateFixture} from '../fixtures';
 import type {CampaignState} from '../../../src/campaign/types';
+import {retiredPortalLessonSeeds} from '../../../src/campaign/content/lesson-seeds';
+export function getRetiredPortalLevel(id:number){const level=retiredPortalLessonSeeds.find(l=>l.id===id);return level?structuredClone(level):undefined;}
 export function portalState():CampaignState {
  const s=stateFixture(),l=s.level;l.id=377;l.chapter=8;l.actors=[];l.geometry.endpoints=[];
  l.geometry.chambers[0]!.cells=l.geometry.mask.flatMap((row,r)=>row.map((_,c)=>({r,c})));

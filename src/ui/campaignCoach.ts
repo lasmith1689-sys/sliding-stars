@@ -9,6 +9,47 @@ import {canMoveActor} from '../campaign/engine/transport';
 import {sameCell} from '../campaign/engine/geometry';
 import {portalReceiverBlocked} from '../campaign/mechanics/portals';
 import {terrainName} from '../campaign/terrainLabels';
+import {canPullMagnet,magnetTarget} from '../campaign/mechanics/magnets';
+import {repairStep} from '../campaign/mechanics/repair';
+
+export function relayCoachCopy(state:CampaignState):string|null {
+ if(!state.level.mechanics.some(m=>m.id==='relays'))return null;
+ const next=state.fixtures.filter((f):f is Extract<typeof f,{kind:'relay'}>=>f.kind==='relay'&&!f.active).sort((a,b)=>a.order-b.order)[0];
+ if(!next)return state.status==='won'?'The numbered relays are glowing. Mission complete.':'All beacons are lit. Bring each guest onto the outlined HOME entrance.';
+ return `Match beside NEXT beacon ${next.order}. Light the numbered beacons in order; each separate match lights one. All lights open HOME.`;
+}
+export function magnetCoachCopy(state:CampaignState):string|null {
+ const definition=state.level.mechanics.find(m=>m.id==='magnets');if(!definition)return null;
+ const delivered=state.mechanics.find(m=>m.id==='magnets')?.deliveredIds??[];
+ const winch=state.fixtures.find(f=>f.kind==='magnet'&&!delivered.includes(f.cargoId));
+ if(winch?.kind!=='magnet')return state.status==='won'?'Every marked supply parcel reached its dock.':'Parcels delivered. Finish the remaining mission goal.';
+ const next=magnetTarget(state,winch),index=state.geometry.endpoints.filter(e=>e.kind==='supply-dock'&&e.active).findIndex(e=>e.id===winch.dockId)+1;
+ if(next&&!canPullMagnet(state,winch))return `BOX ${index} is waiting. Clear row ${next.r+1}, column ${next.c+1}, then match beside its winch again to pull one stop.`;
+ return `Match beside the horseshoe winch to pull BOX ${index} one dotted stop toward DOCK ${index}. Parcels cannot slide directly.`;
+}
+export function tetherCoachCopy(state:CampaignState):string|null {
+ if(!state.level.mechanics.some(m=>m.id==='tethers'))return null;
+ if(!state.actors.some(a=>a.kind==='tether'))return state.status==='won'?'The paired guests reached safe terrain together.':'The pair is unclipped. Bring each guest home if your mission still needs it.';
+ return 'Drag either gold harness to move the pair one square. Both ends need biospheres or habitats together to unclip.';
+}
+export function repairCoachCopy(state:CampaignState):string|null {
+ if(!state.level.mechanics.some(m=>m.id==='repair'))return null;
+ const bot=state.actors.find(a=>a.kind==='repair'&&a.nextJob<a.jobs.length);
+ if(bot?.kind!=='repair')return state.status==='won'?'The bot restored its route. Mission complete.':'All FIX cells are restored. Finish the remaining rescue.';
+ const index=state.actors.filter(a=>a.kind==='repair').findIndex(a=>a.id===bot.id)+1;
+ if(!bot.kitId)return `Match below KIT ${index} to lower it beside its bot. The bot collects an adjacent kit; kits cannot slide directly.`;
+ const next=repairStep(state,bot);
+ if(next&&!canMoveActor(state,bot.id,next))return `Kit aboard! Clear the bot's next stop at row ${next.r+1}, column ${next.c+1}. It is waiting to reach FIX ${bot.nextJob+1}.`;
+ return `Kit aboard! Each valid move takes the bot one dotted stop. It repairs neighboring FIX ${bot.nextJob+1} in order.`;
+}
+export function rendezvousCoachCopy(state:CampaignState):string|null {
+ const definition=state.level.mechanics.find(m=>m.id==='rendezvous');if(!definition)return null;
+ if(state.mechanics.some(m=>m.id==='rendezvous'&&m.departed))return state.status==='won'?'Both occupied shuttles departed together. Mission complete.':'Both occupied shuttles departed together. Finish the remaining mission goal.';
+ const ready=definition.endpointIds.map((id,index)=>{const pad=state.geometry.endpoints.find(e=>e.id===id);return !!pad?.active&&state.pieces.some(p=>p.kind==='pod'&&sameCell(p.at,pad.at)&&p.passengerIds.includes(definition.passengerIds[index]!));});
+ const first=ready.findIndex(Boolean);
+ if(first>=0)return `SHIP ${first+1} is ready at PAD ${first+1}. Fly SHIP ${2-first} to PAD ${2-first} to launch both together. The first can wait safely.`;
+ return 'Fly SHIP 1 to PAD 1 and SHIP 2 to PAD 2. Both occupied shuttles depart together after a move with both pads ready.';
+}
 export function basicCoachCopy(state:CampaignState):string|null {
  if(state.status!=='playing')return null;
  const reactor=state.fixtures.find(f=>f.kind==='reactor');

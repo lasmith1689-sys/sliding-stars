@@ -9,7 +9,8 @@ import {CampaignInput,directionHint,actionBetween} from './input/campaign';
 import {dragFrame} from './input/campaignDrag';
 import {MissionCompletion} from './ui/missionCompletion';
 import type {Pos} from './core/types';
-import {campaignHint,hintPositionKey} from './campaign/hints';
+import {hintPositionKey} from './campaign/hints';
+import {detourHint} from './advice/detourHint';
 import {getRouteHint} from './campaign/hintRoutes';
 import {transition} from './campaign/engine/turn';
 import type {CampaignAction} from './campaign/types';
@@ -53,9 +54,11 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
   const route=await getRouteHint(snapshot);
   // Loading a chapter must never paint a stale hint over a new move or dialog.
   if(request!==hintRequest||state()!==snapshot||generation!==presentation||game.locked||pointerId!==null||shell.dialog.open||document.hidden)return;
-  const action=route??campaignHint(snapshot,hintVisited);if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
-  const preview=transition(state(),action),departures=preview.events.flatMap(e=>e.type==='remove'&&e.reason==='departure'&&e.piece.kind==='cargo'?[e.piece.destinationId]:[]),gravity=preview.events.filter(e=>e.type==='gravity');
-  board.hint(action,departures);const direction=directionHint(action);shell.preview(`Slide ${direction.word.toLowerCase()} between the glowing tiles${gravity.length?` · Gravity next: ${gravity.map(e=>e.after).join(' then ')}`:departures.length?' to evacuate safely':state().levelId===1?' to join three habitats':''}.`);
+  const stale=()=>request!==hintRequest||state()!==snapshot||generation!==presentation||game.locked||pointerId!==null||shell.dialog.open||document.hidden;
+  const action=route??await detourHint(snapshot,hintVisited,stale);if(stale())return;
+  if(!action){shell.preview('No safe suggestion found. You can try another route or restart freely.');return;}
+  const preview=transition(state(),action),cargo=preview.events.flatMap(e=>e.type==='remove'&&e.reason==='departure'&&e.piece.kind==='cargo'?[e.piece]:[]),departures=cargo.map(p=>p.destinationId),gravity=preview.events.filter(e=>e.type==='gravity');
+  board.hint(action,departures);const direction=directionHint(action),instruction=action.type==='translate'?`Move the tethered pair ${direction.word.toLowerCase()} onto the glowing cells`:`Slide ${direction.word.toLowerCase()} between the glowing tiles`;shell.preview(`${instruction}${gravity.length?` · Gravity next: ${gravity.map(e=>e.after).join(' then ')}`:cargo.some(p=>p.passengerIds.length)?' to evacuate safely':departures.length?' to deliver the supplies':state().levelId===1?' to join three habitats':''}.`);
  };
  const saveNow=async()=>{const result=game.persist();if(!result.ok)throw Error(result.error);await flushStorage(storage);game.saveError=null;shell.update();};
  const saveInBackground=()=>{void flushStorage(storage).catch(error=>{game.saveError=String(error);shell.update();});};

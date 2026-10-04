@@ -1,23 +1,23 @@
 {
-  "generatorVersion": "terrain-replay-3",
+  "generatorVersion": "terrain-replay-4",
   "seed": 20260930,
   "through": 1000,
-  "maxAttemptsPerLevel": 180,
-  "elapsedMs": 27729,
+  "maxAttemptsPerLevel": 360,
+  "elapsedMs": 71884,
   "generated": 1000,
-  "authored": 102,
+  "authored": 127,
   "uniquePuzzles": 1000,
-  "uniqueMasks": 63,
+  "uniqueMasks": 68,
   "shapes": [
     "compact-rectangle",
     "diamond",
     "wide-shelf",
     "tall-corridor",
     "stepped-terraces",
+    "offset-chambers",
     "u",
     "linked-lobes",
-    "l",
-    "offset-chambers"
+    "l"
   ],
   "boardSizes": [
     "3x3",
@@ -49,6 +49,7 @@
     "pups",
     "currents",
     "pirates",
+    "magnets",
     "bridges",
     "shelter",
     "gardens",
@@ -57,18 +58,31 @@
     "solar",
     "jelly",
     "docks",
-    "phase"
+    "phase",
+    "relays",
+    "tethers",
+    "repair",
+    "rendezvous"
   ],
+  "proofDepth": {
+    "minimum": 1,
+    "maximum": 9,
+    "mean": 3.364,
+    "generatedFrom100": 802,
+    "atLeastThreeFrom100": 544,
+    "atLeastFiveFrom100": 226
+  },
   "rejections": {
-    "proof-rejected": 15304,
-    "repeated-mask": 321,
-    "duplicate-board": 227
+    "proof-rejected": 36042,
+    "repeated-mask": 435,
+    "duplicate-board": 454,
+    "Invalid campaign content": 2
   },
   "unresolved": [],
   "limitations": [
     "Proofs establish at least one winning booster-free path, not subjective balance or all-path safety.",
     "Variations reuse authored mechanics and objective structures; terrain and optional horizontal mirroring vary.",
     "Difficulty labels estimate proof length; human playtesting is still needed.",
-    "No new mechanics beyond the 20 implemented nonportal mechanics are claimed."
+    "All 25 nonportal mechanics have real modules and five authored booster-free teaching proofs; legacy portals are retained only for older immutable definitions."
   ]
 }

@@ -15,6 +15,24 @@ import type {SolarCollector} from '../../campaign/mechanics/solar';
 import type {Garden} from '../../campaign/mechanics/gardens';
 import {dockCanStep,dockNextStep,type Dock} from '../../campaign/mechanics/docks';
 import type {PhaseDoor} from '../../campaign/mechanics/phase';
+import {canPullMagnet} from '../../campaign/mechanics/magnets';
+import type {BeaconPhase,PadPhase} from './specialMarkers';
+
+export function relayVisualState(scene:CampaignScene,relay:Extract<CampaignFixture,{kind:'relay'}>):BeaconPhase {
+ if(relay.active)return 'lit';
+ const next=scene.fixtures.filter((f):f is Extract<CampaignFixture,{kind:'relay'}>=>f.kind==='relay'&&!f.active).sort((a,b)=>a.order-b.order)[0];
+ return next?.id===relay.id?'next':'waiting';
+}
+export function magnetVisualState(scene:CampaignScene,magnet:Extract<CampaignFixture,{kind:'magnet'}>):'ready'|'waiting'|'delivered' {
+ if(scene.magnetDeliveredIds.includes(magnet.cargoId))return 'delivered';
+ return canPullMagnet({...scene,pieces:[...scene.pieces],crew:[...scene.crew],actors:[...scene.actors],fixtures:[...scene.fixtures]},magnet)?'ready':'waiting';
+}
+export function rendezvousPadState(scene:CampaignScene,index:number):PadPhase {
+ const rendezvous=scene.rendezvous;if(!rendezvous)return 'waiting';if(rendezvous.departed)return 'departed';
+ const endpoint=scene.geometry.endpoints.find(e=>e.id===rendezvous.endpointIds[index]),guest=scene.crew.find(c=>c.id===rendezvous.passengerIds[index]&&c.status==='active');
+ if(!endpoint?.active||!guest)return 'waiting';
+ return scene.pieces.some(p=>p.kind==='pod'&&p.id===guest.carrierId&&p.passengerIds.includes(guest.id)&&sameCell(p.at,endpoint.at))?'ready':'waiting';
+}
 export function dockVisualState(scene:CampaignScene,dock:Dock):'cruising'|'inviting'|'waiting'|'farewell' {
  if(scene.docksComplete)return 'farewell';
  const next=dockNextStep(scene,dock);
@@ -86,7 +104,7 @@ export function fixtureTexture(f:CampaignFixture,textures:TextureSet){
 export function fixtureLabel(f:CampaignFixture):string {
  switch(f.kind){case 'crate':case 'ice':case 'comet':return `${f.hp} hit${f.hp===1?'':'s'}`;case 'reactor':return `${f.fuse} turns · ${f.hp} hit${f.hp===1?'':'s'}`;
   case 'portal':return 'Portal';case 'bridge':return f.active?'OPEN · 2/2':`HINGE · ${f.hits}/2`;case 'gate':return f.open?'Open':'Closed';case 'phase-door':return f.closingPending?'WAIT':f.open?'OPEN':'CLOSED';
-  case 'garden':return `GROW ${f.stage}/3`;case 'solar':return `T${f.tier} · ${f.charge}/${f.quota}`;case 'gravity-switch':return f.direction==='down'?'↓':'←';case 'relay':return `Relay ${f.order}`;case 'jelly':return 'Jelly';case 'lock':return 'Locked';}
+  case 'garden':return `GROW ${f.stage}/3`;case 'solar':return `T${f.tier} · ${f.charge}/${f.quota}`;case 'gravity-switch':return f.direction==='down'?'↓':'←';case 'relay':return `${f.order} ${f.active?'LIT':'WAIT'}`;case 'magnet':return 'WINCH';case 'jelly':return 'Jelly';case 'lock':return 'Locked';}
 }
 
 export function shelterVisualState(crew:CampaignCrew):'waiting'|'calm'|'urgent'|'complete' {

@@ -10,7 +10,7 @@ moonwhales,Moon-whale transfers,186,4,false,A,rovers
 pups,Moon-pup herding,231,5,false,A,rovers
 currents,Orbital currents,276,6,false,A,moonwhales
 pirates,Pirate-drone interception,326,7,false,A,rovers|reactors
-portals,Paired portals,376,8,false,O,exits|currents
+magnets,Magnetic supply winches,376,8,false,O,crates|currents
 bridges,Fold-out bridges,426,9,false,O,ice|rovers
 shelter,Shelter requests,471,10,false,A,waves
 gardens,Moon gardens,516,11,false,O,crates|exits

@@ -1,8 +1,8 @@
 import {expect,it} from 'vitest';
-import {getAuthoredLessonLevel} from '../../src/campaign/lessons';
+import {getRetiredPortalLevel as getAuthoredLessonLevel} from '../campaign/fixtures/portals';
 import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {transition} from '../../src/campaign/engine/turn';
-import {lessonTeachingActions} from '../../src/campaign/content/lesson-solutions.dev';
+import {retiredPortalTeachingActions as lessonTeachingActions} from '../../src/campaign/content/lesson-solutions.dev';
 import {makeScene,applySceneEvents} from '../../src/render/campaign/snapshot';
 import {portalVisualState,portalSpriteLayout} from '../../src/render/campaign/mechanics';
 import {CampaignInput} from '../../src/input/campaign';

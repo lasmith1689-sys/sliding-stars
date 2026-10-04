@@ -41,6 +41,7 @@ export const fixture:Decoder<CampaignFixture>=union<CampaignFixture>('kind',{
   jelly:object({...placed,kind:oneOf(['jelly']),coatedCells:array(pos),preview:nullable(pos)}),
   'phase-door':object({...placed,kind:oneOf(['phase-door']),open:boolean,closingPending:boolean}),
   relay:object({...placed,kind:oneOf(['relay']),order:positive,active:boolean,endpointId:id}),
+  magnet:object({...placed,kind:oneOf(['magnet']),routeId:id,cargoId:id,dockId:id}),
 });
 export const arrival:Decoder<CampaignArrival>=object({id,turn:positive,entry:pos,crew:array(crew,1),status:oneOf(['pending','admitted'])});
 const eligible:Decoder<GoalEligibility>=union<GoalEligibility>('type',{
@@ -61,6 +62,7 @@ export const mechanic:Decoder<MechanicDef>=union<MechanicDef>('id',{
   phase:object({id:oneOf(['phase']),fixtureIds:array(id,1)}),relays:object({id:oneOf(['relays']),fixtureIds:array(id,1)}),
   tethers:object({id:oneOf(['tethers']),actorIds:array(id,1)}),repair:object({id:oneOf(['repair']),actorIds:array(id,1)}),
   rendezvous:object({id:oneOf(['rendezvous']),endpointIds:pair(id),passengerIds:pair(id)}),
+  magnets:object({id:oneOf(['magnets']),fixtureIds:array(id,1)}),
 });
 export const runtime:Decoder<MechanicRuntime>=union<MechanicRuntime>('id',{
   crates:object({id:oneOf(['crates']),openedIds:ids}),ice:object({id:oneOf(['ice']),thawedIds:ids}),
@@ -76,6 +78,7 @@ export const runtime:Decoder<MechanicRuntime>=union<MechanicRuntime>('id',{
   docks:object({id:oneOf(['docks']),boardedIds:ids}),phase:object({id:oneOf(['phase']),waitingDoorIds:ids}),
   relays:object({id:oneOf(['relays']),nextNode:positive}),tethers:object({id:oneOf(['tethers']),releasedIds:ids}),
   repair:object({id:oneOf(['repair']),completedJobIds:ids}),rendezvous:object({id:oneOf(['rendezvous']),departed:boolean}),
+  magnets:object({id:oneOf(['magnets']),deliveredIds:ids}),
 });
 export const level:Decoder<CampaignLevel>=object({
   id:integer(1,1000),...versions,chapter:integer(1,20),seed:integer(0,0xffffffff),geometry,

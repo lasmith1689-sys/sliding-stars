@@ -2,6 +2,14 @@ import type {CampaignEvent} from '../../campaign/types';
 import {applySceneEvents,type CampaignScene} from './snapshot';
 export interface CampaignRenderTarget {readonly scene:CampaignScene;sync(scene:CampaignScene):void;interpolate(from:CampaignScene,to:CampaignScene,progress:number,events:readonly CampaignEvent[]):void}
 export function eventDuration(kind:'swap'|'merge'|'transport'|'rescue',reduced:boolean):number {return reduced?70:{swap:160,merge:320,transport:240,rescue:500}[kind];}
+function groupDuration(group:CampaignEvent[],index:number,reduced:boolean):number {
+ if(group.some(e=>e.type==='shelter'||e.type==='tether'||e.type==='relay'&&e.phase==='activated'))return reduced?70:400;
+ if(group.some(e=>(e.type==='bridge'||e.type==='key')&&e.phase==='opened'||e.type==='solar'&&e.phase==='activated'||e.type==='repair'&&e.phase==='repaired'))return reduced?70:480;
+ if(group.some(e=>e.type==='pirate'&&e.phase==='returned'||e.type==='magnet'&&e.phase==='delivered'||e.type==='rendezvous'&&e.phase==='departed'||e.type==='remove'&&e.reason==='departure'||e.type==='crew'&&(e.after?.status==='housed'||e.after?.status==='evacuated')||e.type==='arrival'||e.type==='actor'&&e.before?.kind==='pup'&&e.after===null))return eventDuration('rescue',reduced);
+ if(group.some(e=>e.type==='merge'))return eventDuration('merge',reduced);
+ if(group.some(e=>e.type==='move'||e.type==='transfer'||e.type==='magnet'&&e.phase==='pulled'||e.type==='repair'&&e.phase==='collected'))return eventDuration(index===0?'swap':'transport',reduced);
+ return group.some(e=>['spawn','terrain','fixture','actor'].includes(e.type))?100:0;
+}
 /** Owns cancellable timers, independent of the Pixi ticker. cancel synchronously restores final state. */
 export class CampaignAnimator {
  private generation=0;private timer:ReturnType<typeof setTimeout>|undefined;private resolve:(()=>void)|undefined;private final:CampaignScene|undefined;
@@ -11,7 +19,7 @@ export class CampaignAnimator {
   this.cancel();const token=this.generation;this.final=finalScene;
   const groups:CampaignEvent[][]=[];
   for(const event of [...events].sort((a,b)=>a.sequenceId-b.sequenceId)){const last=groups.at(-1);if(last?.[0]?.timingGroup===event.timingGroup)last.push(event);else groups.push([event]);}
-  const duration=(group:CampaignEvent[],index:number)=>group.some(e=>e.type==='shelter')?(this.reduced()?70:400):group.some(e=>(e.type==='bridge'||e.type==='key')&&e.phase==='opened'||e.type==='solar'&&e.phase==='activated')?(this.reduced()?70:480):group.some(e=>e.type==='pirate'&&e.phase==='returned'||e.type==='remove'&&e.reason==='departure'||e.type==='crew'&&(e.after?.status==='housed'||e.after?.status==='evacuated')||e.type==='arrival'||e.type==='actor'&&e.before?.kind==='pup'&&e.after===null)?eventDuration('rescue',this.reduced()):group.some(e=>e.type==='merge')?eventDuration('merge',this.reduced()):group.some(e=>e.type==='move'||e.type==='transfer')?eventDuration(index===0?'swap':'transport',this.reduced()):group.some(e=>['spawn','terrain','fixture','actor'].includes(e.type))?100:0;
+  const duration=(group:CampaignEvent[],index:number)=>groupDuration(group,index,this.reduced());
   const total=groups.reduce((sum,g,i)=>sum+duration(g,i),0),speed=Math.min(1,3000/Math.max(total,1));
   for(let i=0;i<groups.length;i++){
    if(token!==this.generation)return;

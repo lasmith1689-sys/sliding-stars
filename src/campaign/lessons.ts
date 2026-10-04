@@ -5,9 +5,14 @@ import { authoredLessonSeeds } from './content/lesson-seeds';
 export interface CampaignLesson {
   id:string;levelId:number;mechanicId:MechanicId|null;
   stage:'foundation'|typeof TEACHING_STAGES[number];title:string;instruction:string;
-  artId:'terrain'|'canister'|'crystal'|'rover'|'reactor'|'comet'|'exit'|'wave'|'whale'|'pup'|'current'|'pirate'|'portal'|'bridge'|'shelter'|'garden'|'key'|'gravity'|'solar'|'jelly'|'dock'|'phase';
+  artId:'terrain'|'canister'|'crystal'|'rover'|'reactor'|'comet'|'exit'|'wave'|'whale'|'pup'|'current'|'pirate'|'portal'|'bridge'|'shelter'|'garden'|'key'|'gravity'|'solar'|'jelly'|'dock'|'phase'|'magnet'|'relay'|'tether'|'repair'|'rendezvous';
 }
 const teachingCopy={
+  magnets:{title:'A little magnetic winch',instruction:'Make a real combination beside the coil and clear the next marked lane cell. The winch pulls its own supply capsule one stop toward the matching dock before new terrain falls in. A full or blocked cell waits. Supply capsules cannot slide directly.',artId:'magnet'},
+  relays:{title:'A little signal chain',instruction:'Light the numbered relays in order. A real combination beside the NEXT relay lights one node; later nodes wait for their turn. Each separate combination lights at most one node, even in a big match. Finish the chain to open its rescue entrance.',artId:'relay'},
+  tethers:{title:'Two friends, one tether',instruction:'Drag either friend one cell to move both together. Their short tether keeps the same direction, and both destination cells must hold ordinary ground. Bring both friends onto biospheres or habitats at the same time to release them safely. A blocked end keeps the pair still.',artId:'tether'},
+  repair:{title:'A little repair delivery',instruction:'Match beneath the repair kit to lower it beside the bot. The bot collects only its own kit, then moves one marked track stop after each real move. It repairs its numbered broken cells in order when beside them, opening new ground. A blocked stop waits safely.',artId:'repair'},
+  rendezvous:{title:'A departure together',instruction:'Drag the occupied shuttles onto their matching numbered pads. The first shuttle waits safely until both exact guests are on their own pads at the same time. Then both depart together automatically. An empty shuttle or the wrong guest cannot complete the departure.',artId:'rendezvous'},
   phase:{title:'The patient phase door',instruction:'The passage opens and closes after valid moves. A guest or special piece in it keeps the door open with an amber WAIT cue; it closes on the first move after they leave. Ordinary ground beneath it stays in place. Closed doors open on the next valid move. Boosters and rejected gestures never change its phase.',artId:'phase'},
   docks:{title:'The visiting shuttle',instruction:'The shuttle moves one marked track stop each move. Its glowing BOARD square is the real entrance. Guests wait on their own safe terrain until that exact square reaches them; the shuttle never pulls tiles or guests along. A blocked stop waits, and the shuttle can meet a current as its lane turns.',artId:'dock'},
   jelly:{title:'A friendly space jelly',instruction:'Every third move the jelly coats one neighboring ordinary tile. The outlined cell is its next eligible target; a warm outline means spreading is due next move. A combination beside a coating clears it and stops spreading on that move. Crew, special pieces, cargo and important pathways stay safe.',artId:'jelly'},
@@ -47,7 +52,8 @@ export const campaignLessons:readonly CampaignLesson[]=authoredLessonLevels.map(
   const teaching=teachingAt(level.id);
   if(teaching&&teaching.mechanicId in teachingCopy){
     const id=teaching.mechanicId;
-    if(id==='crates'||id==='ice'||id==='rovers'||id==='reactors'||id==='comets'||id==='exits'||id==='waves'||id==='moonwhales'||id==='pups'||id==='currents'||id==='pirates'||id==='portals'||id==='bridges'||id==='shelter'||id==='gardens'||id==='keys'||id==='gravity'||id==='solar'||id==='jelly'||id==='docks'||id==='phase')return {id:level.lessonId!,levelId:level.id,mechanicId:id,stage:teaching.stage,...teachingCopy[id],instruction:`${teachingCopy[id].instruction} ${stageCopy[teaching.stage]}`};
+    const copy=teachingCopy[id as keyof typeof teachingCopy];
+    return {id:level.lessonId!,levelId:level.id,mechanicId:id,stage:teaching.stage,...copy,instruction:`${copy.instruction} ${stageCopy[teaching.stage]}`};
   }
   return {id:level.lessonId!,levelId:level.id,mechanicId:null,stage:'foundation',title:level.id===3?'Our first botanist':'Build a way home',instruction:foundationCopy[level.id-1]!,artId:'terrain'};
 });

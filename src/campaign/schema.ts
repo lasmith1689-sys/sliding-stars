@@ -16,6 +16,11 @@ import {validatePhase,phaseStateError} from './mechanics/phase';
 import { shelter,shelterStateError } from './mechanics/shelter';
 import { validateGardens,gardenStateError } from './mechanics/gardens';
 import { activeCell } from './engine/geometry';
+import {validateMagnets,magnetStateError} from './mechanics/magnets';
+import {validateRelays,relayStateError} from './mechanics/relays';
+import {validateTethers,tetherStateError} from './mechanics/tethers';
+import {validateRepair,repairStateError} from './mechanics/repair';
+import {validateRendezvous,rendezvousStateError} from './mechanics/rendezvous';
 import type { CampaignAction,CampaignEvent,CampaignLevel,CampaignState,CampaignTransition,SolutionTrace,ValidationIssue } from './types';
 
 export function parseCampaignLevel(input:unknown):CampaignLevel{
@@ -35,7 +40,7 @@ export function parseCampaignLevel(input:unknown):CampaignLevel{
     if(arrival.crew.length>caps.activeCrew||arrival.crew.some(c=>c.status!=='active'||c.carrierId!==null||c.at.r!==arrival.entry.r||c.at.c!==arrival.entry.c||c.shelterStarted||c.shelterMoves!==null))fail('level.arrivals','scheduled crew must be active, unattached, at entry, with unstarted shelter needs and fit the active cap');
   }
   if(level.crew.filter(c=>c.status==='active').length>caps.activeCrew)fail('level.crew','active crew cap exceeded');
-  if(level.actors.filter(a=>a.kind==='rover'||a.kind==='moonwhale'||a.kind==='tether').length>caps.movingCarriers)fail('level.actors','moving carrier cap exceeded');
+  if(level.actors.filter(a=>a.kind==='rover'||a.kind==='moonwhale'||a.kind==='tether'||a.kind==='repair').length>caps.movingCarriers)fail('level.actors','moving carrier cap exceeded');
   if(level.fixtures.filter(f=>f.kind==='jelly').length>caps.spreadingSystems)fail('level.fixtures','spreading system cap exceeded');
   const conflicts=validateCompatibility(level);if(conflicts.length)fail('level.compatibility',conflicts.map(c=>c.message).join('; '));
   const currentIssues=currents.validate(level);if(currentIssues.length)fail('level.currents',currentIssues.map(issue=>issue.message).join('; '));
@@ -49,6 +54,7 @@ export function parseCampaignLevel(input:unknown):CampaignLevel{
   const gravityIssues=validateGravity(level);if(gravityIssues.length)fail('level.gravity',gravityIssues.map(i=>i.message).join('; '));
   const dockIssues=validateDocks(level);if(dockIssues.length)fail('level.docks',dockIssues.map(i=>i.message).join('; '));
   const phaseIssues=validatePhase(level);if(phaseIssues.length)fail('level.phase',phaseIssues.map(i=>i.message).join('; '));
+  for(const [id,validate] of [['magnets',validateMagnets],['relays',validateRelays],['tethers',validateTethers],['repair',validateRepair],['rendezvous',validateRendezvous]] as const){const issues=validate(level);if(issues.length)fail(`level.${id}`,issues.map(i=>i.message).join('; '));}
   return level;
 }
 const action:Decoder<CampaignAction>=union<CampaignAction>('type',{
@@ -132,6 +138,7 @@ export function parseCampaignState(input:unknown):CampaignState{
       case 'shelter':allowed=new Set(definition.id==='shelter'?definition.crewIds:[]);break;
       case 'moonwhales':case 'docks':allowed=crewIds;break;
       case 'gardens':allowed=new Set(level.fixtures.flatMap(f=>f.kind==='garden'?[f.harvestId]:[]));break;
+      case 'magnets':allowed=new Set(level.fixtures.flatMap(f=>f.kind==='magnet'?[f.cargoId]:[]));break;
       case 'repair':allowed=new Set(level.actors.flatMap(a=>a.kind==='repair'?a.jobs.map(j=>j.id):[]));break;
       case 'exits':allowed=known;break;
       case 'portals':allowed=new Set([...permittedPieceIds,...parsed.pieces.map(p=>p.id),...mechanic.transferredPieceIds.filter(allocated)]);break;
@@ -169,6 +176,7 @@ export function parseCampaignState(input:unknown):CampaignState{
   const gravityError=gravityStateError(parsed);if(gravityError)fail('state.gravity',gravityError);
   const jellyError=jellyStateError(parsed);if(jellyError)fail('state.jelly',jellyError);
   const phaseError=phaseStateError(parsed);if(phaseError)fail('state.phase',phaseError);
+  for(const [id,check] of [['magnets',magnetStateError],['relays',relayStateError],['tethers',tetherStateError],['repair',repairStateError],['rendezvous',rendezvousStateError]] as const){const error=check(parsed);if(error)fail(`state.${id}`,error);}
   return parsed;
 }
 const envelope={sequenceId:value.count,timingGroup:value.count};
@@ -202,6 +210,11 @@ const event:Decoder<CampaignEvent>=union<CampaignEvent>('type',{
   pirate:object({...envelope,type:oneOf(['pirate']),actorId:value.id,parcelId:value.id,dockId:value.id,at:value.pos,phase:oneOf(['distracted','waiting','practice-paused','returned','dock-reached'])}),
   dock:object({...envelope,type:oneOf(['dock']),actorId:value.id,phase:oneOf(['moving','waiting','boarded']),at:value.pos,entrance:value.pos,crewId:(v,p)=>v===undefined?undefined:value.id(v,p)}),
   phase:object({...envelope,type:oneOf(['phase']),doorId:value.id,at:value.pos,phase:oneOf(['opened','closed','pending']),open:boolean,closingPending:boolean}),
+  relay:object({...envelope,type:oneOf(['relay']),relayId:value.id,order:value.positive,phase:oneOf(['activated','waiting']),mergeId:value.id}),
+  magnet:object({...envelope,type:oneOf(['magnet']),magnetId:value.id,cargoId:value.id,phase:oneOf(['pulled','waiting','delivered']),from:value.pos,to:value.pos,mergeId:value.id}),
+  tether:object({...envelope,type:oneOf(['tether']),actorId:value.id,phase:oneOf(['released']),passengerIds:array(value.id,2,2) as Decoder<[string,string]>,cells:array(value.pos,2,2) as Decoder<[{r:number;c:number},{r:number;c:number}]>}),
+  repair:object({...envelope,type:oneOf(['repair']),actorId:value.id,phase:oneOf(['collected','waiting','repaired']),jobId:nullable(value.id),kitId:nullable(value.id),at:value.pos}),
+  rendezvous:object({...envelope,type:oneOf(['rendezvous']),phase:oneOf(['waiting','departed']),endpointIds:array(value.id,2,2) as Decoder<[string,string]>,passengerIds:array(value.id,2,2) as Decoder<[string,string]>}),
   jelly:object({...envelope,type:oneOf(['jelly']),fixtureId:value.id,phase:oneOf(['preview','coated','cleared','waiting','practice-assisted','practice-waited']),at:nullable(value.pos)}),
 });
 export function parseCampaignEvent(input:unknown):CampaignEvent{

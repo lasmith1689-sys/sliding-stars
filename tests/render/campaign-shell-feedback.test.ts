@@ -10,17 +10,26 @@ function setup(levelId=111){
  const elements=new Map<string,{textContent:string;innerHTML:string;disabled:boolean;addEventListener:()=>void}>();
  const element=(selector:string)=>{let value=elements.get(selector);if(!value){value={textContent:'',innerHTML:'',disabled:false,addEventListener(){}};elements.set(selector,value);}return value;};
  const root={classList:{add(){}},innerHTML:'',querySelector:element,querySelectorAll:()=>[element('#campaign-hint'),element('#campaign-guide'),element('#campaign-result')]};
- const dialog={addEventListener(){}};
+ const guideInsertions:{selector:string;html:string}[]=[];
+ const dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},querySelector:(selector:string)=>({addEventListener(){},insertAdjacentHTML(_position:string,html:string){guideInsertions.push({selector,html});}}),querySelectorAll:()=>[]};
  vi.stubGlobal('document',{getElementById:(id:string)=>id==='ui'?root:dialog});
  const game=new CampaignSession(createCampaignSave(getAuthoredLessonLevel(levelId)!),new MemoryStorage());
  const shell=new CampaignShell(game,{hint(){},restart(){},async next(){},power(){},preferences(){}},true);
- return {game,shell,coach:()=>element('#campaign-coach').textContent,practiceBanner:()=>element('#campaign-waves').textContent};
+ return {game,shell,dialog,guideInsertions,coach:()=>element('#campaign-coach').textContent,practiceBanner:()=>element('#campaign-waves').textContent};
 }
 afterEach(()=>vi.unstubAllGlobals());
 it('retains explicit preview ownership over pirate contextual coaching until reset',()=>{
  const {shell,coach}=setup(327);expect(coach()).toContain('Match beside the drone');
  shell.preview('One distraction point will clear.');shell.update();shell.update();expect(coach()).toBe('One distraction point will clear.');
  shell.preview(null);shell.update();expect(coach()).toContain('Match beside the drone');
+});
+it('keeps a solar terrain request beside its own guide topic on a combined board',()=>{
+ const {shell,dialog,guideInsertions}=setup(665);
+ shell.state.level.mechanics.reverse();shell.guide();
+ expect(dialog.innerHTML).toContain('data-guide-topic="solar"');
+ const detail=guideInsertions.find(i=>i.selector==='[data-guide-topic="solar"]');
+ expect(detail?.html).toContain('Requested Void terrain');
+ expect(guideInsertions.some(i=>i.selector==='.guide-topic')).toBe(false);
 });
 it('retains owned targeted booster instructions through UI refreshes',()=>{
  const {game,shell,coach}=setup();expect(game.save.wallet.inventory.demo).toBe(1);

@@ -94,7 +94,7 @@ export function layerReferences(layers:Layers,definition?:CampaignLevel):void {
   const carriers=[...pieces.filter(p=>p.kind==='pod'||p.kind==='cargo'),...actors.filter(a=>'passengerIds'in a)];
   const carrierIds=new Set(carriers.map(c=>c.id)),passengers=new Set<string>();
   for(const p of pieces){check(p.at,'piece.at');if(p.kind==='cargo'){
-    const destinations=p.cargoKind==='key'?fixtureIds('lock'):p.cargoKind==='kit'?new Set(knownActors.filter(a=>a.kind==='repair').map(a=>a.id)):endpointIds('exit');
+    const destinations=p.cargoKind==='key'?fixtureIds('lock'):p.cargoKind==='kit'?new Set(knownActors.filter(a=>a.kind==='repair').map(a=>a.id)):new Set([...endpointIds('exit'),...knownFixtures.flatMap(f=>f.kind==='magnet'&&f.cargoId===p.id?[f.dockId]:[])]);
     reference(p.destinationId,destinations,'cargo.destinationId');
     if(p.cargoKind!=='capsule'&&p.passengerIds.length)fail('cargo.passengerIds','only capsules carry crew');
   }}
@@ -126,6 +126,7 @@ export function layerReferences(layers:Layers,definition?:CampaignLevel):void {
     if(f.kind==='gravity-switch'){reference(f.chamberId,new Set(g.chambers.map(c=>c.id)),'gravity.chamberId');if(!g.chambers.find(c=>c.id===f.chamberId)!.directions.includes(f.direction))fail('gravity.direction','not allowed by chamber');}
     if(f.kind==='solar'){reference(f.endpointId,endpointIds('station'),'solar.endpointId');if(f.charge>f.quota)fail('solar.charge','charge exceeds quota');}
     if(f.kind==='relay')reference(f.endpointId,endpointIds('station'),'relay.endpointId');
+    if(f.kind==='magnet'){reference(f.routeId,new Set(routes.keys()),'magnet.routeId');reference(f.cargoId,cargoIds('capsule'),'magnet.cargoId');reference(f.dockId,endpointIds('supply-dock'),'magnet.dockId');}
     if(f.kind==='jelly'){unique(f.coatedCells.map(cellKey),'jelly.coatedCells');f.coatedCells.forEach(p=>check(p,'jelly.coatedCell'));if(f.preview)check(f.preview,'jelly.preview');}
     if(f.kind==='reactor'&&f.fuse>f.period)fail('reactor.fuse','fuse exceeds period');
   }
@@ -151,7 +152,7 @@ export function goalReferences(level:CampaignLevel):void {
     expanded.forEach(id=>reference(id,allowed,'goal.eligible kind'));
   }
 }
-export const FIXTURE_MECHANIC:Record<CampaignFixture['kind'],MechanicDef['id']>={crate:'crates',ice:'ice',reactor:'reactors',comet:'comets',portal:'portals',bridge:'bridges',garden:'gardens',gate:'keys',lock:'keys','gravity-switch':'gravity',solar:'solar',jelly:'jelly','phase-door':'phase',relay:'relays'};
+export const FIXTURE_MECHANIC:Record<CampaignFixture['kind'],MechanicDef['id']>={crate:'crates',ice:'ice',reactor:'reactors',comet:'comets',portal:'portals',magnet:'magnets',bridge:'bridges',garden:'gardens',gate:'keys',lock:'keys','gravity-switch':'gravity',solar:'solar',jelly:'jelly','phase-door':'phase',relay:'relays'};
 export const ACTOR_MECHANIC:Record<CampaignActor['kind'],MechanicDef['id']>={rover:'rovers',moonwhale:'moonwhales',pup:'pups',pirate:'pirates',dock:'docks',tether:'tethers',repair:'repair'};
 export function mechanicReferences(level:CampaignLevel):void{
   unique(level.mechanics.map(m=>m.id),'mechanics');

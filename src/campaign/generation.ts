@@ -8,8 +8,8 @@ import {loadCampaignLevel} from './engine/load';
 import {transition} from './engine/turn';
 import {hashState} from './engine/hash';
 
-const EXCLUDED=new Set<MechanicId>(['portals','relays','tethers','repair','rendezvous']);
-export const GENERATOR_VERSION='terrain-replay-3';
+const EXCLUDED=new Set<MechanicId>(['portals']);
+export const GENERATOR_VERSION='terrain-replay-4';
 export interface GeneratedManifestEntry {
  id:number;seed:number;templateId:number;source:'authored'|'generated';proofLength:number;
  mechanics:MechanicId[];shape:string;rows:number;cols:number;activeCells:number;
@@ -69,9 +69,9 @@ function replay(level:CampaignLevel,actions:readonly CampaignAction[]):{trace:So
  return {initial,trace:{levelId:level.id,campaignVersion:level.campaignVersion,rulesVersion:level.rulesVersion,initialHash:hashState(initial),actions:structuredClone([...actions]),finalHash:hashState(state)}};
 }
 export function generateCampaign(options:{seed:number;throughLevel?:number;maxAttemptsPerLevel?:number;onProgress?:(done:number,result:GenerationResult)=>void}):GenerationResult {
- const through=options.throughLevel??1000,maxAttempts=options.maxAttemptsPerLevel??180;
+ const through=options.throughLevel??1000,maxAttempts=options.maxAttemptsPerLevel??360;
  if(!Number.isInteger(through)||through<1||through>1000||!Number.isInteger(maxAttempts)||maxAttempts<1)throw Error('Invalid generation limits');
- const templates=authoredLessonSeeds.filter(level=>level.id<=805&&!level.mechanics.some(m=>EXCLUDED.has(m.id)));
+ const templates=authoredLessonSeeds.filter(level=>!level.mechanics.some(m=>EXCLUDED.has(m.id)));
  const authored=new Map(templates.map(level=>[level.id,level])),proofs=new Map(lessonSolutionTraces.map(trace=>[trace.levelId,trace]));
  const result:GenerationResult={levels:[],proofs:[],manifest:[],unresolved:[],rejections:{}};
  const reject=(reason:string)=>{result.rejections[reason]=(result.rejections[reason]??0)+1;};
@@ -86,10 +86,10 @@ export function generateCampaign(options:{seed:number;throughLevel?:number;maxAt
   const candidates=rotated.length?rotated:available;
   const family=(mechanics:readonly {id:MechanicId}[])=>[...mechanics].sort((a,b)=>first(b.id)-first(a.id))[0]?.id;
   const history=result.manifest.slice(-30),familyHistory=history.slice(-20);
-  // A thoughtful board every sixth mission is followed by a gentler breather.
+  // After the foundation, each third mission is thoughtful, followed by a breather.
   // These are inherited proven action lengths, never arbitrary tighter timers.
-  const thoughtful=id%6===0,recovery=id%6===1;
-  const paced=candidates.filter(level=>thoughtful?proofs.get(level.id)!.actions.length>=5:recovery?proofs.get(level.id)!.actions.length<=3:true);
+  const thoughtful=id>=100?id%3===0:id%6===0,recovery=id>=100?id%3===1:id%6===1;
+  const paced=candidates.filter(level=>thoughtful?proofs.get(level.id)!.actions.length>=5:recovery?proofs.get(level.id)!.actions.length<=3:id>=100?proofs.get(level.id)!.actions.length>=3:true);
   const candidateWeights=new Map(candidates.map(level=>{
    const main=family(level.mechanics),introduced=main?first(main):0;
    const repetitions=history.filter(entry=>entry.templateId===level.id).length;
@@ -120,7 +120,7 @@ export function generateCampaign(options:{seed:number;throughLevel?:number;maxAt
     level.metadata.purposeTags=['seeded-terrain-variation',`template-${template.id}`,thoughtful?'thoughtful-practice':recovery?'gentle-recovery':'varied-mechanic-practice'];
     level.needMoves=Math.max(30,template.needMoves);level.moveLimit=template.moveLimit===null?null:Math.max(30,proofLength*4);
     for(const crew of [...level.crew,...level.arrivals.flatMap(arrival=>arrival.crew)])if(crew.rescueMoves!==null)crew.rescueMoves=Math.max(30,crew.rescueMoves);
-    if(rng.next()<0.5&&level.geometry.chambers.every(chamber=>chamber.directions.every(direction=>direction==='down'))&&!level.mechanics.some(m=>m.id==='gravity')){
+    if(rng.next()<0.5&&level.geometry.chambers.every(chamber=>chamber.directions.every(direction=>direction==='down'))&&!level.mechanics.some(m=>m.id==='gravity'||m.id==='tethers')){
      level=mirror(level,level.geometry.cols);level.geometry.mask=level.geometry.mask.map(row=>[...row].reverse());
      actions=mirror(actions,level.geometry.cols);mirrored=true;
     }

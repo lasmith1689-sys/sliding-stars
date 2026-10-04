@@ -25,3 +25,18 @@ h1,.panel-heading h1,.campaign-top,.campaign-turns>b,.wordmark{font-family:Fredo
 .mission-complete p{font-size:20px;color:#d0ffe9;margin:10px 0}
 .mission-complete span{font-size:14px;color:#c5d8ee}
 @keyframes rescue-pop{from{opacity:0;transform:scale(.85) translateY(12px)}to{opacity:1;transform:none}}
+
+/* Keep board-specific help inside the space reserved above and below the board. */
+.campaign-mission>div:first-child{min-width:0;flex:1}
+#campaign-goals{flex-wrap:wrap;column-gap:8px;row-gap:0}
+#campaign-waves,#campaign-status{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#campaign-status:empty{display:none}
+#campaign-coach{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;max-height:45px;text-wrap:pretty}
+.campaign-compact .campaign-header{padding:4px 12px}
+.campaign-compact .campaign-top{line-height:18px}
+.campaign-compact .campaign-mission{margin-top:2px}
+.campaign-compact #campaign-level{line-height:12px}
+.campaign-compact #campaign-goals{font-size:11px;line-height:14px}
+.campaign-compact #campaign-status{min-height:12px}
+.campaign-compact #campaign-coach{max-height:36px}
+@media(max-width:350px){#campaign-goals{font-size:11px}}

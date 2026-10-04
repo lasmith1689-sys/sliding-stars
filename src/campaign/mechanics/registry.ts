@@ -21,9 +21,14 @@ import { solar } from './solar';
 import { jelly } from './jelly';
 import { docks } from './docks';
 import { phase } from './phase';
+import {magnets} from './magnets';
+import {relays} from './relays';
+import {tethers} from './tethers';
+import {repair} from './repair';
+import {rendezvous} from './rendezvous';
 
 /** Add implemented modules here. Missing modules fail visibly, never act as no-ops. */
-export const campaignModules:readonly MechanicModule[]=[crates,ice,rovers,reactors,comets,exits,waves,moonwhales,pups,currents,pirates,portals,bridges,shelter,gardens,keys,gravity,solar,jelly,docks,phase];
+export const campaignModules:readonly MechanicModule[]=[crates,ice,rovers,reactors,comets,exits,waves,moonwhales,pups,currents,pirates,portals,magnets,bridges,shelter,gardens,keys,gravity,solar,jelly,docks,phase,relays,tethers,repair,rendezvous];
 export function selectModules(level:CampaignLevel,available:readonly MechanicModule[]=campaignModules):MechanicModule[] {
   if(new Set(available.map(m=>m.id)).size!==available.length)throw new CampaignContentError('duplicate mechanic module');
   return MECHANIC_IDS.filter(id=>level.mechanics.some(m=>m.id===id)).map(id=>{
@@ -43,5 +48,6 @@ export function initialRuntime(id:MechanicRuntime['id']):MechanicRuntime {
     case 'jelly':return {id,turnsUntilSpread:3,cancelledThisTurn:false};case 'docks':return {id,boardedIds:[]};
     case 'phase':return {id,waitingDoorIds:[]};case 'relays':return {id,nextNode:1};case 'tethers':return {id,releasedIds:[]};
     case 'repair':return {id,completedJobIds:[]};case 'rendezvous':return {id,departed:false};
+    case 'magnets':return {id,deliveredIds:[]};
   }
 }

@@ -6,7 +6,7 @@ import {hashState} from '../../src/campaign/engine/hash';
 import {replayTrace} from '../../src/campaign/validator';
 import type {CampaignAction,CampaignLevel,CampaignState,SolutionTrace} from '../../src/campaign/types';
 
-export const QC_SAMPLE_IDS=[1,4,9,16,31,50,56,81,100,111,146,175,186,225,231,275,276,325,326,375,425,426,471,500,516,550,561,600,611,650,661,700,711,750,756,801,825,850,900,950,1000];
+export const QC_SAMPLE_IDS=[1,4,9,16,31,50,56,81,100,111,146,175,186,225,231,275,276,325,326,375,376,380,425,426,471,500,516,550,561,600,611,650,661,700,711,750,756,801,825,841,845,850,881,883,885,900,921,925,950,961,965,1000];
 const completed=(state:CampaignState)=>state.goalProgress.reduce((sum,goal)=>sum+goal.completedIds.length,0);
 // Exclude clocks/RNG so a tile moved back and forth is recognizable despite time passing.
 const layout=(state:CampaignState)=>JSON.stringify({

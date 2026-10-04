@@ -1,4 +1,4 @@
-import type {CampaignState,MechanicId} from '../campaign/types';
+import type {CampaignState,CampaignCrew,MechanicId} from '../campaign/types';
 
 /** Only teach rules present on this board. Future mechanics stay out of the guide. */
 const topics:Partial<Record<MechanicId,{title:string;body:string}>>={
@@ -22,9 +22,21 @@ const topics:Partial<Record<MechanicId,{title:string;body:string}>>={
  jelly:{title:'Friendly space jelly',body:'Jelly coats a neighboring tile every third move. Match beside a coating to clear it and pause that turn’s spreading. Its outlined square shows the next target.'},
  docks:{title:'Visiting shuttle',body:'The shuttle moves one track stop per move. Bring a guest onto the safe BOARD square at its side. That entrance moves with the shuttle; blocked stops make it wait.'},
  phase:{title:'Phase doors',body:'The passage alternates open and closed after valid moves. An occupant holds an open door until the cell clears. Make a move elsewhere to reopen a closed passage.'},
+ magnets:{title:'Magnetic supply winches',body:'Match beside the horseshoe winch to pull its BOX one dotted stop toward the matching numbered DOCK. Clear the next stop first. A blocked pull needs another match; it does not stay queued. Supply parcels cannot slide directly.'},
+ relays:{title:'Numbered star relays',body:'Make separate matches beside the numbered beacons in order. NEXT marks the beacon that can light; one match lights at most one beacon. Light the full chain to open the outlined HOME entrance, then bring a guest onto it.'},
+ tethers:{title:'A little help together',body:'The gold tether holds two guests at a fixed spacing. Drag either harness one neighboring square to move the pair over ordinary terrain. Tiles stay in place. Both guests need biospheres or habitats at once to unclip; then finish any remaining home goal.'},
+ repair:{title:'Friendly repair bots',body:'Match below a numbered KIT to lower it beside its bot. The bot collects its adjacent kit, carries it one dotted stop per valid move, and restores the numbered FIX cells in order when beside them. Blocked stops make it wait. Fixed cells become playable terrain; kits cannot slide directly.'},
+ rendezvous:{title:'Shuttles leave together',body:'Fly SHIP 1 to PAD 1 and SHIP 2 to PAD 2. The first shuttle waits safely while you position the other. Both guests depart together only when their occupied shuttles are on their matching pads at the end of the same move.'},
 };
 export function campaignGuideTopics(state:Pick<CampaignState,'level'>){
  return state.level.mechanics.flatMap(mechanic=>{
   const topic=topics[mechanic.id];return topic?[{id:mechanic.id,...topic}]:[];
  });
+}
+/** A missing oxygen clock alone never means that an unrescued guest is safe. */
+export function crewOxygenDescription(state:Pick<CampaignState,'pieces'|'actors'>,crew:CampaignCrew):string {
+ if(crew.rescueMoves!==null)return `${crew.rescueMoves} moves`;
+ const carrier=[...state.pieces,...state.actors].find(p=>p.id===crew.carrierId);
+ if(carrier&&'passengerIds'in carrier&&carrier.kind!=='tether'&&carrier.passengerIds.includes(crew.id))return 'safe aboard';
+ return state.pieces.some(p=>p.kind==='tile'&&p.tier>=4&&p.at.r===crew.at.r&&p.at.c===crew.at.c)?'on safe ground':'no countdown';
 }

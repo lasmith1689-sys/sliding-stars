@@ -3,6 +3,7 @@ import type { CampaignFixture,CampaignLevel,GeometryDef,MechanicDef } from '../t
 import { parseCampaignLevel } from '../schema';
 import { teachingAt } from '../schedule';
 import {gravityTopology} from '../mechanics/gravity';
+import {finishLessonSeeds} from './finish-seeds';
 
 interface Seed {id:number;phase?:{at:Pos;open:boolean};dock?:{route:Pos[];entrance:Pos};jelly?:Pos;jellyCoated?:Pos[];gravity?:{at:Pos;minColumn?:number};rightStations?:boolean;keys?:{keyAt:Pos;lockAt:Pos;at:Pos;cells:Pos[]}[];gardens?:{at:Pos;outputAt:Pos;exitAt:Pos}[];shelter?:string[];bridges?:{at:Pos;cells:Pos[]}[];solar?:{at:Pos;entrance:Pos;tier:Tier;quota:number};rows:string[];portals?:{at:Pos;receiver:Pos}[];pirateRoute?:Pos[];currents?:Pos[][];whaleHome?:boolean;pups?:{at:Pos;nursery:Pos}[];crew?:Pos[];fixtures?:CampaignFixture[];rover?:Pos;route?:Pos[];whale?:{route:Pos[];landing:Pos};seed?:number;exits?:{at:Pos;capsuleAt:Pos}[];waves?:{id:string;turn:number;entry:Pos;count:number}[];purpose?:string;shape?:CampaignLevel['metadata']['shapeFamily']}
 // Fixed authored rows, not a level generator. A dot is a mask gap, X an empty crate cell,
@@ -238,4 +239,6 @@ const seeds:Seed[]=[
  {"id":84,"rows":["...1.","...2.",".312.","12313","31212","213S1",".231."],"crew":[{"r":0,"c":3}],"fixtures":[{"id":"comet","kind":"comet","at":{"r":0,"c":3},"cells":[{"r":0,"c":3},{"r":1,"c":3}],"hp":2}],"seed":19},
  {"id":85,"rows":["1...","2..1","1213","2132","3213","132S","2132","1321"],"crew":[{"r":0,"c":0},{"r":1,"c":3}],"fixtures":[{"id":"comet","kind":"comet","at":{"r":0,"c":0},"cells":[{"r":0,"c":0},{"r":1,"c":0}],"hp":2},{"id":"ice","kind":"ice","at":{"r":1,"c":3},"hp":1}],"seed":23},
 ];
-export const authoredLessonSeeds:readonly CampaignLevel[]=seeds.map(expand).sort((a,b)=>a.id-b.id);
+export const authoredLessonSeeds:readonly CampaignLevel[]=seeds.filter(seed=>seed.id<376||seed.id>380).map(expand).concat(finishLessonSeeds).sort((a,b)=>a.id-b.id);
+/** Compatibility fixtures preserve exact retired definitions for save migration. */
+export const retiredPortalLessonSeeds:readonly CampaignLevel[]=seeds.filter(seed=>seed.id>=376&&seed.id<=380||seed.id===615).map(expand).sort((a,b)=>a.id-b.id);

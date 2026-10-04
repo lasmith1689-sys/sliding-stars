@@ -12,7 +12,7 @@ export const MECHANIC_SCHEDULE:MechanicIntroduction[] = [
   {id:'pups',name:'Moon-pup herding',firstLevel:231,chapter:5,existing:false,evidence:'A',prerequisites:['rovers']},
   {id:'currents',name:'Orbital currents',firstLevel:276,chapter:6,existing:false,evidence:'A',prerequisites:['moonwhales']},
   {id:'pirates',name:'Pirate-drone interception',firstLevel:326,chapter:7,existing:false,evidence:'A',prerequisites:['rovers','reactors']},
-  {id:'portals',name:'Paired portals',firstLevel:376,chapter:8,existing:false,evidence:'O',prerequisites:['exits','currents']},
+  {id:'magnets',name:'Magnetic supply winches',firstLevel:376,chapter:8,existing:false,evidence:'O',prerequisites:['crates','currents']},
   {id:'bridges',name:'Fold-out bridges',firstLevel:426,chapter:9,existing:false,evidence:'O',prerequisites:['ice','rovers']},
   {id:'shelter',name:'Shelter requests',firstLevel:471,chapter:10,existing:false,evidence:'A',prerequisites:['waves']},
   {id:'gardens',name:'Moon gardens',firstLevel:516,chapter:11,existing:false,evidence:'O',prerequisites:['crates','exits']},
@@ -27,7 +27,8 @@ export const MECHANIC_SCHEDULE:MechanicIntroduction[] = [
   {id:'repair',name:'Repair bots',firstLevel:921,chapter:19,existing:false,evidence:'O',prerequisites:['keys','rovers']},
   {id:'rendezvous',name:'Shuttle rendezvous',firstLevel:961,chapter:20,existing:false,evidence:'O',prerequisites:['docks','phase','moonwhales']},
 ];
-export function first(id:MechanicId):number {return MECHANIC_SCHEDULE.find(entry=>entry.id===id)!.firstLevel;}
+/** Retired portal definitions remain readable in immutable older saves. */
+export function first(id:MechanicId):number {return id==='portals'?376:MECHANIC_SCHEDULE.find(entry=>entry.id===id)!.firstLevel;}
 export const TEACHING_STAGES=['demonstration','guided','independent-1','independent-2','combination'] as const;
 export function teachingAt(level:number):{mechanicId:MechanicId;stage:typeof TEACHING_STAGES[number]}|null {
   const entry=MECHANIC_SCHEDULE.find(m=>level>=m.firstLevel&&level<=m.firstLevel+4);

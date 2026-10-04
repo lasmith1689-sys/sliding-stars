@@ -63,7 +63,7 @@ cat > "$OUT/ExportOptions.plist" <<EOF
 <key>destination</key><string>upload</string>
 <key>signingStyle</key><string>automatic</string>
 <key>teamID</key><string>$APPLE_TEAM_ID</string>
-<key>testFlightInternalTestingOnly</key><true/>
+<key>testFlightInternalTestingOnly</key><false/>
 <key>uploadSymbols</key><true/>
 <key>manageAppVersionAndBuildNumber</key><false/>
 </dict></plist>
@@ -80,5 +80,5 @@ if ! xcodebuild -exportArchive -archivePath "$ARCHIVE" \
   exit 1
 fi
 grep -iE 'upload|success|export' "$OUT/export.log" | tail -n 5 || true
-echo "::notice::Uploaded Sliding Stars $BUILD_NUMBER. Apple processing and internal tester availability still need confirmation."
-[[ -z "${GITHUB_STEP_SUMMARY:-}" ]] || printf '## Upload succeeded\nSliding Stars build %s uploaded. Confirm processing and the Me internal tester group in App Store Connect.\n' "$BUILD_NUMBER" >> "$GITHUB_STEP_SUMMARY"
+echo "::notice::Uploaded Sliding Stars $BUILD_NUMBER for TestFlight and App Store distribution. Apple processing and review still need confirmation."
+[[ -z "${GITHUB_STEP_SUMMARY:-}" ]] || printf '## Upload succeeded\nSliding Stars build %s uploaded for public TestFlight and App Store distribution. Confirm processing and review in App Store Connect.\n' "$BUILD_NUMBER" >> "$GITHUB_STEP_SUMMARY"

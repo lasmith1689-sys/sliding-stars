@@ -1,0 +1,805 @@
+{
+  "lessons": 25,
+  "boosterFree": true,
+  "proofs": [
+    {
+      "levelId": 376,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "a66b02f11ea3dc6f",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 2
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        }
+      ],
+      "finalHash": "48ff923099a2836b"
+    },
+    {
+      "levelId": 377,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "ba1f27dd622ef388",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 2
+          },
+          "to": {
+            "r": 1,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "b7289f83887eff12"
+    },
+    {
+      "levelId": 378,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "1500fd2462dbd28e",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 0
+          },
+          "to": {
+            "r": 4,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 2
+          },
+          "to": {
+            "r": 3,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "890efc5dbbe3d544"
+    },
+    {
+      "levelId": 379,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "eec69da9563ffef5",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 3
+          },
+          "to": {
+            "r": 3,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "3bc4a26203693c86"
+    },
+    {
+      "levelId": 380,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "5d24d14993cbfce3",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 2
+          },
+          "to": {
+            "r": 1,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "6862de3097d98ec8"
+    },
+    {
+      "levelId": 841,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "a1b7bee77fe0abbc",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 0
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 2
+          },
+          "to": {
+            "r": 2,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "2371c5dc17f23be7"
+    },
+    {
+      "levelId": 842,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "4fbe92b9a022f7c7",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 3
+          },
+          "to": {
+            "r": 2,
+            "c": 4
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 0
+          }
+        }
+      ],
+      "finalHash": "8aed765737ce0bec"
+    },
+    {
+      "levelId": 843,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "2820424655bc7939",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 1
+          },
+          "to": {
+            "r": 4,
+            "c": 0
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 2
+          },
+          "to": {
+            "r": 4,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "55b87dce31faedc0"
+    },
+    {
+      "levelId": 844,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "25715b9caf81788a",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 0
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 4
+          },
+          "to": {
+            "r": 2,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "59374c18f61611d9"
+    },
+    {
+      "levelId": 845,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "f8c2a6ad703f87f1",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 0
+          }
+        }
+      ],
+      "finalHash": "6b0942502f980736"
+    },
+    {
+      "levelId": 881,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "10c1e219050a0ad3",
+      "actions": [
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 0,
+          "dc": 1
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 0,
+          "dc": 1
+        }
+      ],
+      "finalHash": "66e1d31c7fde06b8"
+    },
+    {
+      "levelId": 882,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "c5a4bd9d900e9e3e",
+      "actions": [
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 0,
+          "dc": 1
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 0,
+          "dc": 1
+        }
+      ],
+      "finalHash": "8918ceeca868d3ef"
+    },
+    {
+      "levelId": 883,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "e442f1eb2ec14ef6",
+      "actions": [
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 0,
+          "dc": 1
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 0,
+          "dc": 1
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        }
+      ],
+      "finalHash": "bb0ddcd6b05b2cb6"
+    },
+    {
+      "levelId": 884,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "ff68468e18aa2afd",
+      "actions": [
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        }
+      ],
+      "finalHash": "63d3ab415c2688f0"
+    },
+    {
+      "levelId": 885,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "2c5c5ea960add744",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 3
+          },
+          "to": {
+            "r": 2,
+            "c": 4
+          }
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        },
+        {
+          "type": "translate",
+          "actorId": "tether-pair",
+          "dr": 1,
+          "dc": 0
+        }
+      ],
+      "finalHash": "10d5c7e3b60c8c79"
+    },
+    {
+      "levelId": 921,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "269c73e37156cff7",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 0
+          },
+          "to": {
+            "r": 0,
+            "c": 1
+          }
+        }
+      ],
+      "finalHash": "5200031aff376802"
+    },
+    {
+      "levelId": 922,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "230c72c5ad1c4458",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 0
+          },
+          "to": {
+            "r": 0,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 3
+          },
+          "to": {
+            "r": 1,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "916086bec212e409"
+    },
+    {
+      "levelId": 923,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "e24117d6304804d8",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 1
+          },
+          "to": {
+            "r": 4,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 0
+          },
+          "to": {
+            "r": 0,
+            "c": 1
+          }
+        }
+      ],
+      "finalHash": "28379302082380c0"
+    },
+    {
+      "levelId": 924,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "5db42ebaed72b351",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 2,
+            "c": 1
+          },
+          "to": {
+            "r": 3,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 1
+          },
+          "to": {
+            "r": 0,
+            "c": 2
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 1
+          },
+          "to": {
+            "r": 1,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "12f9bb2e966938d3"
+    },
+    {
+      "levelId": 925,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "36fadc4ec344f67e",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 1
+          },
+          "to": {
+            "r": 2,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 0,
+            "c": 1
+          },
+          "to": {
+            "r": 1,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 1
+          },
+          "to": {
+            "r": 1,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "3bef9c5ab1e1af74"
+    },
+    {
+      "levelId": 961,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "265dc00422b0946d",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 0
+          },
+          "to": {
+            "r": 3,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 3
+          },
+          "to": {
+            "r": 3,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "df4f0cc467dc9669"
+    },
+    {
+      "levelId": 962,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "033b4b6486c7acc8",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 0
+          },
+          "to": {
+            "r": 3,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 1
+          },
+          "to": {
+            "r": 3,
+            "c": 2
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 3,
+            "c": 4
+          },
+          "to": {
+            "r": 3,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "2339246585dc21ae"
+    },
+    {
+      "levelId": 963,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "8ea2cda900d54126",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 5,
+            "c": 0
+          },
+          "to": {
+            "r": 5,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 5,
+            "c": 3
+          },
+          "to": {
+            "r": 5,
+            "c": 2
+          }
+        }
+      ],
+      "finalHash": "105cb4fc6c99b8ba"
+    },
+    {
+      "levelId": 964,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "ecff26b4669aeb2f",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 1
+          },
+          "to": {
+            "r": 4,
+            "c": 2
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 4
+          },
+          "to": {
+            "r": 4,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "414bd3721f0996fd"
+    },
+    {
+      "levelId": 965,
+      "campaignVersion": "2026.1",
+      "rulesVersion": "campaign-1",
+      "initialHash": "8eb17950850d7e94",
+      "actions": [
+        {
+          "type": "swap",
+          "from": {
+            "r": 1,
+            "c": 1
+          },
+          "to": {
+            "r": 1,
+            "c": 0
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 0
+          },
+          "to": {
+            "r": 4,
+            "c": 1
+          }
+        },
+        {
+          "type": "swap",
+          "from": {
+            "r": 4,
+            "c": 4
+          },
+          "to": {
+            "r": 4,
+            "c": 3
+          }
+        }
+      ],
+      "finalHash": "2645fedf334ff1db"
+    }
+  ]
+}

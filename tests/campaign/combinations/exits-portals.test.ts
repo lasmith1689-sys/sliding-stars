@@ -1,8 +1,8 @@
 import {expect,it} from 'vitest';
 import {loadCampaignLevel} from '../../../src/campaign/engine/load';
 import {transition} from '../../../src/campaign/engine/turn';
-import {getAuthoredLessonLevel} from '../../../src/campaign/lessons';
-import {lessonTeachingActions} from '../../../src/campaign/content/lesson-solutions.dev';
+import {getRetiredPortalLevel as getAuthoredLessonLevel} from '../fixtures/portals';
+import {retiredPortalTeachingActions as lessonTeachingActions} from '../../../src/campaign/content/lesson-solutions.dev';
 import {parseCampaignState} from '../../../src/campaign/schema';
 it('capsule waits for the unsourced remote exit, then transports its passenger before departure and final move expiry',()=>{
  const l=getAuthoredLessonLevel(380)!;l.moveLimit=2;let s=loadCampaignLevel(l);

@@ -16,6 +16,7 @@ export function validateExits(level:CampaignLevel):ValidationIssue[] {
  }
  for(const cargo of level.pieces.filter(p=>p.kind==='cargo'&&(p.cargoKind==='capsule'||p.cargoKind==='harvest'))){
   if(cargo.kind!=='cargo')continue;
+  if(level.fixtures.some(f=>f.kind==='magnet'&&f.cargoId===cargo.id))continue;
   const exit=level.geometry.endpoints.find(e=>e.id===cargo.destinationId);
   if(!exit||!definition.endpointIds.includes(exit.id)){add('exit-destination',cargo.id,'Cargo destination must be a declared evacuation exit');continue;}
   // Necessary reachability only: removable fixtures are optimistic. Solver/replay proves the actual route.

@@ -2,6 +2,7 @@ import type {CampaignFixture,CampaignLevel,CampaignState,MechanicModule,Validati
 import {emit,stableIds} from '../engine/context';
 import {activeCell,cellKey,gravitySegments,sameCell,validateGravityCoverage} from '../engine/geometry';
 import {creditGoal} from '../engine/goals';
+import {completedRepairCells} from './repair';
 export interface KeysDef {id:'keys';fixtureIds:string[]}
 export interface KeysRuntime {id:'keys';unlockedIds:string[]}
 export type Gate=Extract<CampaignFixture,{kind:'gate'}>;
@@ -67,7 +68,7 @@ export function keyStateError(state:CampaignState):string|null{
  // Bridges perform the same combined ownership check when present. Keys also
  // need this protection on their own; neither feature may activate another's cells.
  const activated=state.fixtures.filter(f=>(f.kind==='gate'&&f.open)||(f.kind==='bridge'&&f.active));
- const cells=new Set(activated.flatMap(f=>'cells'in f?f.cells.map(cellKey):[])),links=new Set(activated.flatMap(f=>'connectionIds'in f?f.connectionIds:[]));
+ const cells=new Set([...activated.flatMap(f=>'cells'in f?f.cells.map(cellKey):[]),...completedRepairCells(state)]),links=new Set(activated.flatMap(f=>'connectionIds'in f?f.connectionIds:[]));
  const expected=structuredClone(state.level.geometry);expected.inactiveCells=expected.inactiveCells.filter(p=>!cells.has(cellKey(p)));expected.connections=expected.connections.map(c=>links.has(c.id)?{...c,active:true}:c);
  if(JSON.stringify(state.geometry.inactiveCells)!==JSON.stringify(expected.inactiveCells)||JSON.stringify(state.geometry.connections)!==JSON.stringify(expected.connections))return 'gate changed unrelated activation';
  const owned=new Set(originals.flatMap(f=>f.kind==='gate'?f.cells.map(cellKey):[]));

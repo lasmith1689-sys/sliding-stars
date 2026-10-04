@@ -2,13 +2,14 @@ import type {Pos} from '../core/types';
 import type {CampaignAction,CampaignState} from '../campaign/types';
 import {legalActions} from '../campaign/engine/actions';
 import {transition} from '../campaign/engine/turn';
+import {actorFootprint} from '../campaign/engine/occupancy';
 const same=(a:Pos,b:Pos)=>a.r===b.r&&a.c===b.c;
 export function directionHint(action:CampaignAction):{word:string;arrow:string} {
  const dr=action.type==='swap'?action.to.r-action.from.r:action.type==='translate'?action.dr:0,dc=action.type==='swap'?action.to.c-action.from.c:action.type==='translate'?action.dc:0;
  return dc>0?{word:'RIGHT',arrow:'→'}:dc<0?{word:'LEFT',arrow:'←'}:dr>0?{word:'DOWN',arrow:'↓'}:dr<0?{word:'UP',arrow:'↑'}:{word:'HERE',arrow:'◎'};
 }
 export function actionBetween(state:CampaignState,from:Pos,to:Pos):CampaignAction|null {
- const actor=state.actors.find(a=>a.kind==='tether'&&same(a.at,from));
+ const actor=state.actors.find(a=>a.kind==='tether'&&!a.released&&actorFootprint(a).some(p=>same(p,from)));
  const candidate:CampaignAction=actor?{type:'translate',actorId:actor.id,dr:to.r-from.r,dc:to.c-from.c}:{type:'swap',from,to};
  const legal=legalActions(state).some(a=>a.type==='swap'&&candidate.type==='swap'&&same(a.from,from)&&same(a.to,to)||a.type==='translate'&&candidate.type==='translate'&&a.actorId===candidate.actorId&&a.dr===candidate.dr&&a.dc===candidate.dc);
  return legal?candidate:null;

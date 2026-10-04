@@ -88,6 +88,9 @@ export function fallPieces(context:TurnContext):boolean {
   for(const run of gravitySegments(context.state)){
     for(let index=run.cells.length-2;index>=0;index--){
       const piece=pieceAt(context.state,run.cells[index]!);if(!piece)continue;
+      // A winch holds its own supply capsule; only a real adjacent merge can
+      // pull it along the authored lane. Ordinary gravity cannot skip a stop.
+      if(context.state.fixtures.some(f=>f.kind==='magnet'&&f.cargoId===piece.id))continue;
       if(piece.kind==='cargo'&&piece.cargoKind==='key'&&context.state.fixtures.some(f=>f.kind==='lock'&&f.id===piece.destinationId&&f.keyId===piece.id&&sameCell(f.at,piece.at)))continue;
       let destination=index;
       for(let next=index+1;next<run.cells.length;next++){

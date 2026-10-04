@@ -15,6 +15,8 @@ import {gardenVisualState,gardenWaiting} from './mechanics';
 import {dockVisualState,dockSpriteLayout} from './mechanics';
 import {phaseVisualState,phaseSpriteLayout} from './mechanics';
 import {addSolarIndicator} from './solarIndicator';
+import {relayVisualState,magnetVisualState,rendezvousPadState} from './mechanics';
+import {addRelayBeacon,addMagnetWinch,addSupplyParcel,addRepairKit,addRepairBot,addTetherHarness,addRepairSite,addRendezvousPad,markerPulse} from './specialMarkers';
 export class CampaignBoard {
  layout:CampaignLayout;scene:CampaignScene;
  private frame=new Container();private routes=new Graphics();private content=new Container();private hints=new Graphics();private nodes=new Map<string,Container>();
@@ -24,6 +26,10 @@ export class CampaignBoard {
  private cargoLabels=new Map<string,Container>();
  private returningParcels=new Map<string,Container>();
  private dockMarkers=new Map<string,Container>();
+ private mechanicMarkers=new Map<string,Container>();
+ private repairSites=new Map<string,Container>();
+ private rendezvousPads=new Map<string,Container>();
+ private eventMarkers=new Map<string,Graphics>();
  private parcel(node:Container,ts:number){const g=new Graphics();g.roundRect(-ts*.16,-ts*.1,ts*.32,ts*.22,3).fill(0xffebbb).stroke({color:0xeda532,width:2});g.rect(-ts*.03,-ts*.1,ts*.06,ts*.22).fill(0xf4a62e);node.addChild(g);}
  private waveSprite:Sprite|null=null;
  private moving=false;private breathTime=0;
@@ -31,6 +37,14 @@ export class CampaignBoard {
  /** Move terrain and its riders together; gameplay stays unchanged until release. */
  drag(from:Pos,to:Pos,progress:number):void {
   this.resetDrag(0);this.moving=true;
+  const tether=this.scene.actors.find(a=>a.kind==='tether'&&([a.at,{r:a.at.r+a.offset.r,c:a.at.c+a.offset.c}].some(p=>p.r===from.r&&p.c===from.c)));
+  if(tether?.kind==='tether'){
+   const a=this.cellCenter(from),b=this.cellCenter(to);
+   for(const id of [tether.id,...tether.passengerIds]){const node=this.nodes.get(id),at=this.scene.entityPositions[id];if(!node||!at)continue;
+    const start=this.cellCenter(at),position={x:start.x+(b.x-a.x)*progress,y:start.y+(b.y-a.y)*progress};
+    node.position.set(position.x,position.y);this.dragPositions.set(id,position);
+   }return;
+  }
   for(const [a,b] of [[from,to],[to,from]]){
    const start=this.cellCenter(a!),end=this.cellCenter(b!);
    const ids=[...this.scene.pieces,...this.scene.crew.filter(c=>c.status==='active'&&!this.scene.actors.some(actor=>actor.id===c.carrierId))]
@@ -65,6 +79,12 @@ export class CampaignBoard {
    for(const pup of this.scene.actors)if(pup.kind==='pup'){
     const body=this.nodes.get(pup.id)?.children[0];if(body){body.rotation=this.reducedMotion()?0:Math.sin(this.breathTime/850)*.018;body.y=dy*.6;}
    }
+   for(const actor of this.scene.actors)if(actor.kind==='repair'){
+    const body=this.mechanicMarkers.get(actor.id);if(body)body.y=-this.layout.tileSize*.04+dy*.6;
+   }
+   for(const fixture of this.scene.fixtures)if(fixture.kind==='relay'&&relayVisualState(this.scene,fixture)==='next'){
+    const beacon=this.mechanicMarkers.get(fixture.id);if(beacon)beacon.scale.set(this.reducedMotion()?1:1+.018*Math.sin(this.breathTime/800));
+   }
   });
  }
  relayout(scene:CampaignScene):void {this.layout=computeCampaignLayout(scene.geometry.rows,scene.geometry.cols,this.app.screen.width,this.app.screen.height);this.sync(scene);}
@@ -81,11 +101,16 @@ export class CampaignBoard {
  private shelterBadge(node:Container,state:'waiting'|'happy'|'calm'|'urgent'|'complete',ts:number):void {
   const texture=this.textures.campaign?.[`shelter-${state}`];if(!texture)return;const badge=new Sprite(texture);badge.label='shelter-badge';badge.anchor.set(.5);badge.width=badge.height=ts*.33;badge.position.set(ts*.3,-ts*.17);node.addChild(badge);
  }
+ private eventMarker(id:string):Graphics {
+  let node=this.eventMarkers.get(id);if(!node){node=new Graphics();node.label=`event-cue:${id}`;this.eventMarkers.set(id,node);this.content.addChild(node);}return node;
+ }
  sync(scene:CampaignScene):void {
   this.dragGeneration++;this.dragPositions.clear();
   this.moving=false;
   this.scene=scene;this.hints.clear();for(const child of this.content.removeChildren())child.destroy({children:true});this.nodes.clear();this.exitSprites.clear();this.cargoLabels.clear();
   this.returningParcels.clear();this.bridgePanels.clear();this.dockMarkers.clear();
+  this.mechanicMarkers.clear();this.repairSites.clear();this.rendezvousPads.clear();
+  this.eventMarkers.clear();
   const mask=scene.geometry.mask.map((row,r)=>row.map((yes,c)=>yes&&!scene.geometry.inactiveCells.some(p=>p.r===r&&p.c===c)));
   drawBoardFrame(this.frame,mask,this.layout);this.routes.clear();const ts=this.layout.tileSize;
   for(const child of this.currentArrows.removeChildren())child.destroy();this.currentSprites.clear();
@@ -98,7 +123,8 @@ export class CampaignBoard {
      if(texture){const sprite=new Sprite(texture);sprite.anchor.set(asset.pivot.x,asset.pivot.y);sprite.width=ts*.48;sprite.height=ts*.48;sprite.rotation=Math.atan2(dy,dx);sprite.position.set((a.x+b.x)/2-dy*offset,(a.y+b.y)/2+dx*offset);this.currentArrows.addChild(sprite);sprites.push(sprite);}
     }this.currentSprites.set(route.id,sprites);continue;
    }
-   const cells=route.loop?[...route.cells,route.cells[0]!]:route.cells;for(let i=0;i<cells.length;i++){const p=this.cellCenter(cells[i]!);if(i){const a=this.cellCenter(cells[i-1]!);this.routes.moveTo(a.x,a.y).lineTo(p.x,p.y).stroke({color:0xb9fce1,width:3,alpha:.65});}this.routes.circle(p.x,p.y,4).stroke({color:0xffffff,width:1.5});}}
+   const magnetic=scene.fixtures.some(f=>f.kind==='magnet'&&f.routeId===route.id),cells=route.loop?[...route.cells,route.cells[0]!]:route.cells;
+   for(let i=0;i<cells.length;i++){const p=this.cellCenter(cells[i]!);if(i){const a=this.cellCenter(cells[i-1]!);this.routes.moveTo(a.x,a.y).lineTo(p.x,p.y).stroke({color:magnetic?0xd7b6ff:0xb9fce1,width:magnetic?2:3,alpha:.65});}this.routes.circle(p.x,p.y,magnetic?3:4).stroke({color:magnetic?0xffdeb0:0xffffff,width:1.5});}}
   // One panel per actual authored cell, under its terrain. Never stretch a span.
   for(const bridge of scene.fixtures.filter(f=>f.kind==='bridge')){
    const panels:Sprite[]=[];
@@ -110,13 +136,21 @@ export class CampaignBoard {
     }
    }this.bridgePanels.set(bridge.id,panels);
   }
+  for(const actor of scene.actors)if(actor.kind==='repair')for(const [index,job] of actor.jobs.entries()){
+   const at=this.cellCenter(job.cell),node=new Container();node.position.set(at.x,at.y);this.content.addChild(node);
+   const marker=addRepairSite(node,index+1,index<actor.nextJob,ts);this.repairSites.set(job.id,marker);
+  }
   for(const p of scene.pieces){
-   const texture=p.kind==='tile'?this.textures.tile[p.tier]:p.kind==='station'?this.textures.dome:p.kind==='cargo'&&p.cargoKind==='key'?this.textures.campaign?.['key-idle']:p.kind==='cargo'&&p.cargoKind==='harvest'?this.textures.campaign?.['garden-harvest']:this.textures.pod;
+   const magneticCargo=p.kind==='cargo'&&scene.fixtures.some(f=>f.kind==='magnet'&&f.cargoId===p.id);
+   const texture=p.kind==='tile'?this.textures.tile[p.tier]:p.kind==='station'?this.textures.dome:p.kind==='cargo'&&(p.cargoKind==='kit'||magneticCargo)?undefined:p.kind==='cargo'&&p.cargoKind==='key'?this.textures.campaign?.['key-idle']:p.kind==='cargo'&&p.cargoKind==='harvest'?this.textures.campaign?.['garden-harvest']:this.textures.pod;
    const onBridge=scene.fixtures.some(f=>f.kind==='bridge'&&f.active&&f.cells.some(c=>c.r===p.at.r&&c.c===p.at.c));
    const node=this.entity(p.id,p.at,texture,p.kind==='cargo'&&p.cargoKind==='key'?.72:onBridge?.78:1);
+   if(p.kind==='cargo'&&p.cargoKind==='kit')addRepairKit(node,ts);
+   else if(magneticCargo)addSupplyParcel(node,ts);
    if(p.kind==='pod'){
     const aboard=p.passengerIds.length;
-    this.label(aboard?`${aboard} ABOARD`:'MATCH',node,ts*.36,Math.max(9,Math.min(11,ts*.17)));
+    const rendezvousShip=scene.rendezvous?.passengerIds.findIndex(id=>p.passengerIds.includes(id))??-1;
+    this.label(rendezvousShip>=0?`SHIP ${rendezvousShip+1}`:aboard?`${aboard} ABOARD`:'MATCH',node,ts*.36,Math.max(9,Math.min(11,ts*.17)));
    }
    // Keep playable dark terrain distinct from genuine holes without replacing art.
    if(p.kind==='tile'&&!onBridge){
@@ -162,12 +196,18 @@ export class CampaignBoard {
     if(!scene.crew.some(c=>c.status==='active'&&c.at.r===actor.landing.r&&c.at.c===actor.landing.c)){const label=new Container();label.position.set(mark.x,mark.y);this.content.addChild(label);this.label(actor.transferRequested?'HOP QUEUED':'LAND',label,ts*.33,Math.max(9,ts*.15));}
     const route=scene.geometry.routes.find(r=>r.id===actor.routeId)!,index=route.cells.findIndex(p=>p.r===actor.at.r&&p.c===actor.at.c),next=this.cellCenter(route.cells[(index+1)%route.cells.length]!),at=this.cellCenter(actor.at),dx=Math.sign(next.x-at.x),dy=Math.sign(next.y-at.y),x=(at.x+next.x)/2,y=(at.y+next.y)/2;
     this.routes.moveTo(x-dx*5+dy*4,y-dy*5-dx*4).lineTo(x+dx*5,y+dy*5).lineTo(x-dx*5-dy*4,y-dy*5+dx*4).stroke({color:0xffffff,width:2});
-   }else{const node=this.entity(actor.id,actor.at,actor.kind==='rover'?this.textures.roverOverlay:undefined,.9,actor.kind==='rover'?undefined:actor.kind);if(actor.kind==='rover'&&node.children[0])node.children[0].y=ts*.14;}
+   }else if(actor.kind==='tether'){
+    const node=this.entity(actor.id,actor.at,undefined,1);this.mechanicMarkers.set(actor.id,addTetherHarness(node,actor.offset,ts,this.layout.gap));
+   }else if(actor.kind==='repair'){
+    const node=this.entity(actor.id,actor.at,undefined,1);this.mechanicMarkers.set(actor.id,addRepairBot(node,ts,actor.kitId!==null));
+    this.label(actor.nextJob===actor.jobs.length?'DONE':actor.kitId?`FIX ${actor.nextJob+1}`:'KIT?',node,ts*.34,Math.max(9,ts*.16));
+   }else{const node=this.entity(actor.id,actor.at,this.textures.roverOverlay,.9);if(node.children[0])node.children[0].y=ts*.14;}
   }
-  for(const dock of scene.geometry.endpoints.filter(e=>e.kind==='supply-dock'&&e.active)){
-   const at=this.cellCenter(dock.at),node=new Container();node.position.set(at.x,at.y);this.content.addChild(node);const returned=scene.returnedDockIds.includes(dock.id);
+  for(const [index,dock] of scene.geometry.endpoints.filter(e=>e.kind==='supply-dock'&&e.active).entries()){
+   const magnet=scene.fixtures.find(f=>f.kind==='magnet'&&f.dockId===dock.id);
+   const at=this.cellCenter(dock.at),node=new Container();node.position.set(at.x,at.y);this.content.addChild(node);const returned=scene.returnedDockIds.includes(dock.id)||(magnet?.kind==='magnet'&&scene.magnetDeliveredIds.includes(magnet.cargoId));
    this.routes.roundRect(at.x-ts*.44,at.y-ts*.44,ts*.88,ts*.88,8).stroke({color:returned?0x9fffe0:0xffc46b,width:3});
-   if(returned)this.parcel(node,ts);this.label(returned?'RETURNED':'SUPPLY DOCK',node,ts*.35,Math.max(9,ts*.14));
+   if(returned)this.parcel(node,ts);this.label(magnet?`${returned?'DONE':'DOCK'} ${index+1}`:returned?'RETURNED':'SUPPLY DOCK',node,ts*.35,Math.max(9,ts*.14));
   }
   for(const nursery of scene.geometry.endpoints.filter(e=>e.kind==='nursery'&&e.active)){
    const complete=scene.arrivedNurseryIds.includes(nursery.id),at=this.cellCenter(nursery.at),node=new Container();node.position.set(at.x,at.y);this.content.addChild(node);
@@ -186,7 +226,21 @@ export class CampaignBoard {
     this.label(phase==='waiting'?'WAIT':`+${wave.crew.length} · ${Math.max(0,wave.turn-scene.turn)}`,node,-ts*.19,Math.max(9,Math.min(11,ts*.17)));
    }
   }
+  const relayEntrances=new Set<string>();
   for(const fixture of scene.fixtures){this.entity(fixture.id,fixture.at,fixtureTexture(fixture,this.textures),.82);
+   if(fixture.kind==='magnet'){
+    const node=this.nodes.get(fixture.id)!;this.mechanicMarkers.set(fixture.id,addMagnetWinch(node,ts,magnetVisualState(scene,fixture)==='waiting'));
+   }
+   if(fixture.kind==='relay'){
+    const node=this.nodes.get(fixture.id)!;this.mechanicMarkers.set(fixture.id,addRelayBeacon(node,fixture.order,relayVisualState(scene,fixture),ts));
+    const entrance=scene.geometry.endpoints.find(e=>e.id===fixture.endpointId);
+    if(entrance&&!relayEntrances.has(entrance.id)){
+     relayEntrances.add(entrance.id);const at=this.cellCenter(entrance.at),color=entrance.active?0x9cfff0:0xffd080;
+     this.routes.roundRect(at.x-ts*.46,at.y-ts*.46,ts*.92,ts*.92,8).stroke({color,width:3});
+     const badge=new Container();badge.position.set(at.x,at.y);this.content.addChild(badge);
+     if(!scene.crew.some(c=>c.status==='active'&&c.at.r===entrance.at.r&&c.at.c===entrance.at.c))this.label(entrance.active?'HOME':'LOCKED',badge,ts*.36,Math.max(9,ts*.15));
+    }
+   }
    if(fixture.kind==='phase-door'){
     const visual=phaseVisualState(fixture),id:CampaignAssetId=`phase-${visual}`,asset=CAMPAIGN_ASSETS.find(a=>a.id===id)!,texture=this.textures.campaign?.[id],node=this.nodes.get(fixture.id)!;
     if(texture){const sprite=new Sprite(texture),layout=phaseSpriteLayout(ts,asset);sprite.anchor.set(layout.pivot.x,layout.pivot.y);sprite.width=layout.width;sprite.height=layout.height;sprite.y=ts*.4;sprite.alpha=visual==='pending'?.7:visual==='closed'?.77:.88;node.addChild(sprite);}
@@ -267,12 +321,17 @@ export class CampaignBoard {
    }
    if(fixture.kind==='comet')for(const [i,p] of fixture.cells.entries())if(p.r!==fixture.at.r||p.c!==fixture.at.c){const node=this.entity(`${fixture.id}:part:${i}`,p,this.textures.cometOverlay,.78);this.nodes.delete(`${fixture.id}:part:${i}`);node.alpha=.9;}
   }
+  if(scene.rendezvous)for(const [index,id] of scene.rendezvous.endpointIds.entries()){
+   const endpoint=scene.geometry.endpoints.find(e=>e.id===id);if(!endpoint)continue;
+   const at=this.cellCenter(endpoint.at),node=new Container();node.position.set(at.x,at.y);this.content.addChild(node);
+   this.rendezvousPads.set(id,addRendezvousPad(node,index+1,rendezvousPadState(scene,index),ts));
+  }
   const active=scene.crew.filter(c=>c.status==='active');
-  for(const crew of active){const riding=scene.actors.some(a=>a.id===crew.carrierId&&a.kind==='moonwhale'),group=active.filter(c=>c.at.r===crew.at.r&&c.at.c===crew.at.c),i=group.indexOf(crew),node=this.entity(crew.id,crew.at,(crew.vipId?this.textures.station.vips[crew.vipId]:undefined)??this.textures.survivor,riding?.43:group.length>1?.43:.65);
+  for(const crew of active){const riding=scene.actors.some(a=>a.id===crew.carrierId&&a.kind==='moonwhale'),aboard=scene.pieces.some(p=>p.id===crew.carrierId&&(p.kind==='pod'||p.kind==='cargo')&&p.passengerIds.includes(crew.id)),group=active.filter(c=>c.at.r===crew.at.r&&c.at.c===crew.at.c),i=group.indexOf(crew),node=this.entity(crew.id,crew.at,(crew.vipId?this.textures.station.vips[crew.vipId]:undefined)??this.textures.survivor,riding?.43:group.length>1?.43:.65);
    const body=node.children[0]!;body.x=(Math.min(i,2)-(Math.min(group.length,3)-1)/2)*ts*.22;body.visible=i<3;
    if(riding)body.y=-ts*.35;
    if(scene.shelterCrewIds.includes(crew.id))this.shelterBadge(node,shelterVisualState(crew),ts);
-   if(i===0)this.label(crewGroupLabel(group,riding),node,riding?-ts*.64:-ts*.39,Math.max(10,Math.min(13,ts*.2)));
+   if(i===0)this.label(crewGroupLabel(group,riding||aboard),node,riding?-ts*.64:-ts*.39,Math.max(10,Math.min(13,ts*.2)));
   }
   for(const crew of scene.crew.filter(c=>scene.shelterCrewIds.includes(c.id)&&(c.status==='housed'||c.status==='evacuated'))){const node=new Container(),p=this.cellCenter(crew.at);node.position.set(p.x,p.y);this.content.addChild(node);this.shelterBadge(node,'complete',ts);}
   for(const dock of scene.actors.filter(a=>a.kind==='dock')){
@@ -284,14 +343,49 @@ export class CampaignBoard {
   }
   // Fixture counters stay legible when a crew member occupies the same cell.
   for(const p of scene.pieces)if(p.kind==='cargo'){
-   const node=new Container(),at=this.cellCenter(p.at),index=scene.geometry.endpoints.filter(e=>e.kind==='exit').findIndex(e=>e.id===p.destinationId);
-   node.position.set(at.x+ts*.3,at.y);this.label(p.cargoKind==='key'?`★${scene.fixtures.filter(f=>f.kind==='lock').findIndex(f=>f.id===p.destinationId)+1}`:`↓${index+1}`,node,ts*.3,Math.max(11,ts*.2));this.content.addChild(node);this.cargoLabels.set(p.id,node);
+   const node=new Container(),at=this.cellCenter(p.at),index=scene.geometry.endpoints.filter(e=>e.kind==='exit').findIndex(e=>e.id===p.destinationId),magnet=scene.fixtures.find(f=>f.kind==='magnet'&&f.cargoId===p.id),centered=p.cargoKind==='kit'||!!magnet;
+   const text=p.cargoKind==='kit'?`KIT ${scene.actors.filter(a=>a.kind==='repair').findIndex(a=>a.id===p.destinationId)+1}`:magnet?.kind==='magnet'?`BOX ${scene.geometry.endpoints.filter(e=>e.kind==='supply-dock'&&e.active).findIndex(e=>e.id===magnet.dockId)+1}`:p.cargoKind==='key'?`★${scene.fixtures.filter(f=>f.kind==='lock').findIndex(f=>f.id===p.destinationId)+1}`:`↓${index+1}`;
+   node.label=centered?'cargo-centered':'cargo-destination';node.position.set(at.x+(centered?0:ts*.3),at.y);this.label(text,node,ts*(centered?.36:.3),Math.max(centered?9:11,Math.min(12,ts*.18)));this.content.addChild(node);this.cargoLabels.set(p.id,node);
   }
-  for(const fixture of scene.fixtures){if(fixture.kind==='portal'||fixture.kind==='jelly')continue;const labels=new Container(),p=this.cellCenter(fixture.kind==='gate'?fixture.cells[0]!:fixture.at);labels.position.set(p.x,p.y);this.label(fixture.kind==='lock'?`LOCK ${scene.fixtures.filter(f=>f.kind==='lock').findIndex(f=>f.id===fixture.id)+1}`:fixture.kind==='gate'?`GATE ${scene.fixtures.filter(f=>f.kind==='gate').findIndex(f=>f.id===fixture.id)+1} ${fixture.open?'OPEN':'CLOSED'}`:fixtureLabel(fixture),labels,ts*.39,Math.max(10,Math.min(12,ts*.19)));this.content.addChild(labels);}
+  for(const fixture of scene.fixtures){if(fixture.kind==='portal'||fixture.kind==='jelly')continue;const labels=new Container(),p=this.cellCenter(fixture.kind==='gate'?fixture.cells[0]!:fixture.at);labels.position.set(p.x,p.y);
+   const text=fixture.kind==='relay'?`${fixture.order} ${relayVisualState(scene,fixture)==='next'?'NEXT':fixture.active?'LIT':'WAIT'}`:fixture.kind==='magnet'?`${scene.geometry.endpoints.filter(e=>e.kind==='supply-dock'&&e.active).findIndex(e=>e.id===fixture.dockId)+1} ${{ready:'PULL',waiting:'WAIT',delivered:'DONE'}[magnetVisualState(scene,fixture)]}`:fixture.kind==='lock'?`LOCK ${scene.fixtures.filter(f=>f.kind==='lock').findIndex(f=>f.id===fixture.id)+1}`:fixture.kind==='gate'?`GATE ${scene.fixtures.filter(f=>f.kind==='gate').findIndex(f=>f.id===fixture.id)+1} ${fixture.open?'OPEN':'CLOSED'}`:fixtureLabel(fixture);
+   this.label(text,labels,ts*.39,Math.max(10,Math.min(12,ts*.19)));this.content.addChild(labels);
+  }
  }
  interpolate(from:CampaignScene,to:CampaignScene,progress:number,events:readonly CampaignEvent[]):void {
   this.moving=true;
   const eased=1-(1-progress)**3;
+  for(const event of events)if(event.type==='relay'){
+   const beacon=this.mechanicMarkers?.get(event.relayId);if(!beacon)continue;
+   markerPulse(beacon,progress,this.reducedMotion());
+   if(event.phase==='activated'){
+    beacon.alpha=1;const light=beacon.children.find(child=>child.label==='relay-light');
+    if(light instanceof Graphics)light.clear().circle(0,-this.layout.tileSize*.29,this.layout.tileSize*.045).fill(0x9cfff0);
+   }
+  }
+  for(const event of events)if(event.type==='magnet'){
+   const winch=this.mechanicMarkers?.get(event.magnetId);if(winch)markerPulse(winch,progress,this.reducedMotion());
+   const a=this.cellCenter(event.from),b=this.cellCenter(event.to),ts=this.layout.tileSize,g=this.eventMarker(`magnet:${event.magnetId}`);g.clear();
+   if(event.phase==='waiting')g.roundRect(b.x-ts*.44,b.y-ts*.44,ts*.88,ts*.88,8).stroke({color:0xffd080,width:3,alpha:1-progress*.5});
+   else {g.moveTo(a.x,a.y).lineTo(b.x,b.y).stroke({color:0xd7b6ff,width:2,alpha:.4});g.circle(this.reducedMotion()?b.x:a.x+(b.x-a.x)*eased,this.reducedMotion()?b.y:a.y+(b.y-a.y)*eased,ts*.28).stroke({color:0x9cfff0,width:2,alpha:1-progress*.7});}
+  }
+  for(const event of events)if(event.type==='tether'){
+   const harness=this.mechanicMarkers?.get(event.actorId);if(harness)harness.alpha=1-progress;
+   for(const id of event.passengerIds){const body=this.nodes.get(id)?.children[0];if(body&&!this.reducedMotion())body.y=-this.layout.tileSize*.04*Math.sin(progress*Math.PI);}
+  }
+  for(const event of events)if(event.type==='repair'){
+   const bot=this.mechanicMarkers?.get(event.actorId);if(bot)markerPulse(bot,progress,this.reducedMotion());
+   if(event.phase==='collected'&&bot&&progress>=.5){
+    let kit=bot.children.find(child=>child.label==='repair-carried-kit');if(!kit){kit=addRepairKit(bot,this.layout.tileSize*.38);kit.label='repair-carried-kit';kit.position.set(this.layout.tileSize*.21,this.layout.tileSize*.17);}kit.alpha=(progress-.5)*2;
+   }
+   if(event.phase==='repaired'&&event.jobId){
+    const site=this.repairSites?.get(event.jobId);if(site)markerPulse(site,progress,this.reducedMotion());
+    const at=this.cellCenter(event.at),ts=this.layout.tileSize,g=this.eventMarker(`repair:${event.jobId}`);g.clear();g.roundRect(at.x-ts*.44,at.y-ts*.44,ts*.88,ts*.88,8).stroke({color:0x9cfff0,width:3,alpha:1-progress*.4});
+    g.star(at.x,at.y,4,ts*.13,ts*.055).fill({color:0xffe4a7,alpha:this.reducedMotion()?1-progress:Math.sin(progress*Math.PI)});
+   }
+  }
+  const rendezvousDeparture=events.find((e):e is Extract<CampaignEvent,{type:'rendezvous'}>=>e.type==='rendezvous'&&e.phase==='departed');
+  if(rendezvousDeparture)for(const id of rendezvousDeparture.endpointIds){const pad=this.rendezvousPads?.get(id);if(pad)markerPulse(pad,progress,this.reducedMotion());}
   for(const event of events)if(event.type==='gravity'){
    const body=this.nodes.get(event.switchId)?.children[0],texture=this.textures.campaign?.[`gravity-pressed-${event.after}`];
    if(body instanceof Sprite&&texture){body.texture=texture;if(!this.reducedMotion())body.rotation=.06*Math.sin(progress*Math.PI);}
@@ -358,6 +452,15 @@ export class CampaignBoard {
   const departures=events.filter(e=>e.type==='remove'&&e.reason==='departure');
   for(const event of departures)if(event.type==='remove'&&event.piece.kind==='cargo')this.exitFrame(event.piece.destinationId,'departure');
   for(const [id,node] of this.nodes){const a=from.entityPositions[id],b=to.entityPositions[id];if(a&&b){const start=this.dragPositions?.get(id)??this.cellCenter(a),end=this.cellCenter(b);node.position.set(start.x+(end.x-start.x)*eased,start.y+(end.y-start.y)*eased);}else if(a&&!b)node.alpha=1-progress;
+   const magnetic=events.find((e):e is Extract<CampaignEvent,{type:'magnet'}>=>e.type==='magnet'&&e.cargoId===id&&e.phase!=='waiting');
+   if(magnetic){const start=this.cellCenter(magnetic.from),end=this.cellCenter(magnetic.to);node.position.set(start.x+(end.x-start.x)*eased,start.y+(end.y-start.y)*eased);}
+   const collected=events.find((e):e is Extract<CampaignEvent,{type:'repair'}>=>e.type==='repair'&&e.phase==='collected'&&e.kitId===id);
+   if(collected&&a){const start=this.cellCenter(a),end=this.cellCenter(collected.at);node.position.set(start.x+(end.x-start.x)*eased,start.y+(end.y-start.y)*eased-(this.reducedMotion()?0:this.layout.tileSize*.12*Math.sin(progress*Math.PI)));}
+   const departingPod=from.pieces.find(p=>p.id===id&&p.kind==='pod');
+   if(rendezvousDeparture&&a&&(rendezvousDeparture.passengerIds.includes(id)||(departingPod?.kind==='pod'&&departingPod.passengerIds.some(guest=>rendezvousDeparture.passengerIds.includes(guest))))){
+    if(!this.reducedMotion())node.y=this.cellCenter(a).y-this.layout.tileSize*.35*eased;
+    node.alpha=1-progress;
+   }
    const portal=events.find(e=>e.type==='portal'&&e.phase==='transferred'&&(e.pieceId===id||e.passengerIds.includes(id)));
    if(portal?.type==='portal'){
     const at=this.cellCenter(progress<.5?portal.from:portal.to);node.position.set(at.x,at.y);
@@ -372,21 +475,35 @@ export class CampaignBoard {
     if(arriving&&!this.reducedMotion())node.scale.set(1+Math.sin(progress*Math.PI)*.08);
     }
    }
+   if(from.actors.some(actor=>actor.id===id&&actor.kind==='repair')&&body?.label==='repair-bot'&&events.some(e=>e.type==='move'&&e.entityId===id)){
+    body.y=-this.layout.tileSize*.04-(this.reducedMotion()?0:Math.abs(Math.sin(progress*Math.PI*2))*this.layout.tileSize*.025);
+    body.rotation=this.reducedMotion()?0:Math.sin(progress*Math.PI*2)*.025;
+   }
    const hop=events.find(e=>e.type==='transfer'&&e.crewId===id&&from.actors.some(a=>a.id===e.fromCarrierId&&a.kind==='moonwhale'));
    if(hop?.type==='transfer'){
     const body=node.children[0];if(body){body.y=-this.layout.tileSize*(.35*(1-eased)+.2*Math.sin(Math.PI*progress));body.width=this.layout.tileSize*(.43+.22*eased);body.height=this.layout.tileSize*(.43+.22*eased);}
     for(const label of node.children.slice(1))label.alpha=1-progress;
     const whale=this.nodes.get(hop.fromCarrierId!)?.children[0],texture=this.textures.campaign?.['whale-ready'];if(whale instanceof Sprite&&texture)whale.texture=texture;
    }
-   if(a&&!b&&departures.some(e=>e.type==='remove'&&(e.piece.id===id||e.piece.kind==='cargo'&&e.piece.passengerIds.includes(id))))node.y=this.cellCenter(a).y+this.layout.tileSize*.22*eased;
+   if(a&&!b&&!magnetic&&departures.some(e=>e.type==='remove'&&(e.piece.id===id||e.piece.kind==='cargo'&&e.piece.passengerIds.includes(id))))node.y=this.cellCenter(a).y+this.layout.tileSize*.22*eased;
    const merge=events.find(e=>e.type==='merge'&&e.pieceIds.includes(id));if(merge?.type==='merge'){const at=this.cellCenter(merge.at);node.x+=(at.x-node.x)*eased;node.y+=(at.y-node.y)*eased;node.scale.set(1-progress*.3);}
-   const label=this.cargoLabels.get(id);if(label){label.position.set(node.x+this.layout.tileSize*.3,node.y);label.alpha=node.alpha;}
+   const label=this.cargoLabels.get(id);if(label){label.position.set(node.x+(label.label==='cargo-centered'?0:this.layout.tileSize*.3),node.y);label.alpha=node.alpha;}
   }
   for(const [id,marker] of this.dockMarkers){const a=from.actors.find((x):x is Extract<typeof x,{kind:'dock'}>=>x.id===id&&x.kind==='dock'),b=to.actors.find((x):x is Extract<typeof x,{kind:'dock'}>=>x.id===id&&x.kind==='dock');if(!a||!b)continue;
    const start=this.cellCenter(a.entrance),end=this.cellCenter(b.entrance);marker.position.set(start.x+(end.x-start.x)*eased,start.y+(end.y-start.y)*eased);
   }
  }
  hint(action:CampaignAction|null,departureExitIds:readonly string[]=[]):void {this.hints.clear();for(const id of this.exitSprites.keys())this.exitFrame(id,departureExitIds.includes(id)?'ready':exitVisualState(this.scene,id));if(!action||action.type==='booster')return;
+  if(action.type==='translate'){
+   const actor=this.scene.actors.find(a=>a.id===action.actorId);if(actor?.kind==='tether'){
+    const ts=this.layout.tileSize;
+    for(const cell of [actor.at,{r:actor.at.r+actor.offset.r,c:actor.at.c+actor.offset.c}]){
+     const a=this.cellCenter(cell),b=this.cellCenter({r:cell.r+action.dr,c:cell.c+action.dc});
+     this.hints.roundRect(a.x-ts*.46,a.y-ts*.46,ts*.92,ts*.92,8).stroke({color:0xe4ffce,width:3});
+     this.hints.roundRect(b.x-ts*.46,b.y-ts*.46,ts*.92,ts*.92,8).fill({color:0xffe3a3,alpha:.13}).stroke({color:0xffe3a3,width:3});
+    }return;
+   }
+  }
   const from=action.type==='swap'?action.from:this.scene.actors.find(a=>a.id===action.actorId)?.at;if(!from)return;
   const to=action.type==='swap'?action.to:{r:from.r+action.dr,c:from.c+action.dc},a=this.cellCenter(from),b=this.cellCenter(to),ts=this.layout.tileSize;
   this.hints.roundRect(a.x-ts*.46,a.y-ts*.46,ts*.92,ts*.92,8).stroke({color:0xe4ffce,width:3});

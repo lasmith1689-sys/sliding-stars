@@ -11,8 +11,8 @@ const code = result.output.find(item => item.type === 'chunk')?.code;
 if (!code) throw new Error('Could not bundle lesson definitions');
 const moduleUrl = `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`;
 const { authoredLessonSeeds } = await import(moduleUrl);
-const levels = authoredLessonSeeds.filter(level => level.id <= 805 && !level.mechanics.some(mechanic => mechanic.id === 'portals'));
-if (levels.length !== 102 || levels[0]?.id !== 1 || levels.at(-1)?.id !== 805) {
+const levels = authoredLessonSeeds.filter(level => !level.mechanics.some(mechanic => mechanic.id === 'portals'));
+if (levels.length !== 127 || levels[0]?.id !== 1 || levels.at(-1)?.id !== 965) {
   throw new Error(`Unexpected reviewed beta set: ${levels.length} levels`);
 }
 const json = `${JSON.stringify(levels)}\n`;

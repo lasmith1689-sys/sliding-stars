@@ -46,6 +46,9 @@ try{
  const versions=(await api(`/v1/apps/${appId}/appStoreVersions?filter[platform]=IOS&limit=20`)).data;
  report.storeVersions=versions.map(v=>({id:v.id,version:v.attributes.versionString,state:v.attributes.appStoreState}));
  version=versions.find(v=>v.attributes.versionString==='1.0');
+ const appInfos=(await api(`/v1/apps/${appId}/appInfos`)).data;
+ const editableInfo=appInfos.find(i=>i.attributes.appStoreState==='PREPARE_FOR_SUBMISSION')??appInfos[0];
+ report.appInformation={ageRating:editableInfo?.attributes.appStoreAgeRating,contentRights:app.attributes.contentRightsDeclaration};
  if(mode!=='inspect'){
   await step('Public TestFlight group',async()=>{
    let group=groups.find(g=>!g.attributes.isInternalGroup&&g.attributes.name==='Friends and Explorers');
@@ -72,11 +75,33 @@ try{
    report.storeVersionId=version.id;
   });
   await step('App privacy URL and subtitle',async()=>{
-   const infos=(await api(`/v1/apps/${appId}/appInfos`)).data;
-   const info=infos.find(i=>i.attributes.appStoreState==='PREPARE_FOR_SUBMISSION')??infos[0];
+   const info=editableInfo;
    const categories=(await api('/v1/appCategories?filter[platforms]=IOS&limit=200')).data;
    if(['GAMES','GAMES_PUZZLE','GAMES_CASUAL'].every(id=>categories.some(c=>c.id===id)))await api(`/v1/appInfos/${info.id}`,'PATCH',resource('appInfos',info.id,null,{primaryCategory:rel('appCategories','GAMES'),primarySubcategoryOne:rel('appCategories','GAMES_PUZZLE'),primarySubcategoryTwo:rel('appCategories','GAMES_CASUAL')}));
    for(const locale of (await api(`/v1/appInfos/${info.id}/appInfoLocalizations`)).data)if(locale.attributes.locale==='en-US')await api(`/v1/appInfoLocalizations/${locale.id}`,'PATCH',resource('appInfoLocalizations',locale.id,{subtitle:metadata.subtitle,privacyPolicyUrl:metadata.privacyPolicyUrl}));
+  });
+  await step('Accurate game age-rating answers',async()=>{
+   const rating=(await api(`/v1/appInfos/${editableInfo.id}/ageRatingDeclaration`)).data;
+   const attributes={advertising:false,gambling:false,healthOrWellnessTopics:false,lootBox:false,messagingAndChat:false,parentalControls:false,ageAssurance:false,socialMedia:false,socialMediaAgeRestricted:false,unrestrictedWebAccess:false,userGeneratedContent:false,ageRatingOverrideV2:'NONE'};
+   for(const field of ['alcoholTobaccoOrDrugUseOrReferences','contests','gamblingSimulated','gunsOrOtherWeapons','medicalOrTreatmentInformation','profanityOrCrudeHumor','sexualContentGraphicAndNudity','sexualContentOrNudity','horrorOrFearThemes','matureOrSuggestiveThemes','violenceRealisticProlongedGraphicOrSadistic','violenceRealistic'])attributes[field]='NONE';
+   // The cute pirate drones and space rescue peril are mild cartoon content.
+   attributes.violenceCartoonOrFantasy='INFREQUENT_OR_MILD';
+   await api(`/v1/ageRatingDeclarations/${rating.id}`,'PATCH',resource('ageRatingDeclarations',rating.id,attributes));
+   report.appInformation.ageRating=(await api(`/v1/appInfos/${editableInfo.id}`)).data.attributes.appStoreAgeRating;
+  });
+  await step('Free App Store price',async()=>{
+   let schedule;try{schedule=(await api(`/v1/apps/${appId}/appPriceSchedule`)).data;}catch(error){if(!error.message.includes('HTTP 404'))throw error;}
+   if(schedule){
+    const prices=await api(`/v1/appPriceSchedules/${schedule.id}/manualPrices?include=appPricePoint&limit=200`);
+    const points=(prices.included??[]).filter(p=>p.type==='appPricePoints');
+    if(points.length&&points.every(p=>Number(p.attributes.customerPrice)===0)){report.price='Free';return;}
+    if(prices.data.length)throw Error('Existing price schedule requires owner review; leaving it unchanged');
+   }
+   const free=(await api(`/v1/apps/${appId}/appPricePoints?filter[territory]=USA&limit=200`)).data.find(p=>Number(p.attributes.customerPrice)===0);
+   if(!free)throw Error('Apple did not return a free price point');
+   const inlineId='${free-price}';
+   await api('/v1/appPriceSchedules','POST',{...resource('appPriceSchedules',null,null,{app:rel('apps',appId),baseTerritory:rel('territories','USA'),manualPrices:{data:[{type:'appPrices',id:inlineId}]}}),included:[{type:'appPrices',id:inlineId,attributes:{startDate:null,endDate:null},relationships:{appPricePoint:rel('appPricePoints',free.id)}}]});
+   report.price='Free';
   });
   if(version&&report.betaContactReady)await step('App Store review contact and notes',async()=>{
    const attributes={demoAccountRequired:false,notes:metadata.reviewNotes};
@@ -86,7 +111,11 @@ try{
    else await api('/v1/appStoreReviewDetails','POST',resource('appStoreReviewDetails',null,attributes,{appStoreVersion:rel('appStoreVersions',version.id)}));
   });
   if(version&&process.env.SCREENSHOT_PATH)await step('Actual iPhone gameplay screenshot',async()=>{
-   const bytes=await readFile(process.env.SCREENSHOT_PATH),checksum=createHash('md5').update(bytes).digest('hex');
+   const original=await readFile(process.env.SCREENSHOT_PATH);
+   // Store delivery requires an opaque image. This lossless format conversion
+   // preserves the captured gameplay pixels and removes the PNG alpha channel.
+   const {default:sharp}=await import('sharp');
+   const bytes=await sharp(original).flatten({background:'#071225'}).png().toBuffer(),checksum=createHash('md5').update(bytes).digest('hex');
    // PNG dimensions come directly from the iPhone simulator, without resizing.
    if(bytes.toString('hex',0,8)!=='89504e470d0a1a0a')throw Error('Expected a PNG screenshot');
    const size=`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`;
@@ -118,6 +147,10 @@ try{
    if(report.screenshot.state!=='COMPLETE')throw Error(`Apple screenshot processing: ${report.screenshot.state}`);
   });
  }
+ if(mode!=='inspect'&&version&&build?.attributes.processingState==='VALID'&&build.attributes.buildAudienceType==='APP_STORE_ELIGIBLE'&&['PREPARE_FOR_SUBMISSION','DEVELOPER_REJECTED','REJECTED','METADATA_REJECTED'].includes(version.attributes.appStoreState))await step('Select distribution build for App Store release',async()=>{
+  await api(`/v1/appStoreVersions/${version.id}/relationships/build`,'PATCH',rel('builds',build.id));
+  report.storeBuildNumber=build.attributes.version;
+ });
  if(mode==='testflight')await step('Submit current build for public TestFlight review',async()=>{
   if(!build||build.attributes.processingState!=='VALID')throw Error('Current uploaded build has not finished Apple processing');
   if(build.attributes.buildAudienceType!=='APP_STORE_ELIGIBLE')throw Error('This build is restricted to internal testing; upload a new distribution build');
@@ -128,12 +161,12 @@ try{
   else await api('/v1/betaBuildLocalizations','POST',resource('betaBuildLocalizations',null,{locale:'en-US',whatsNew:metadata.whatsNew},{build:rel('builds',build.id)}));
   await api(`/v1/betaGroups/${report.publicGroupId}/relationships/builds`,'POST',{data:[{type:'builds',id:build.id}]});
   const detail=(await api(`/v1/builds/${build.id}/buildBetaDetail`)).data;
+  await api(`/v1/buildBetaDetails/${detail.id}`,'PATCH',resource('buildBetaDetails',detail.id,{autoNotifyEnabled:true}));
   report.externalState=detail.attributes.externalBuildState;
   if(['READY_FOR_BETA_SUBMISSION','READY_FOR_BETA_TESTING'].includes(report.externalState)){
    if(report.externalState==='READY_FOR_BETA_SUBMISSION')await api('/v1/betaAppReviewSubmissions','POST',resource('betaAppReviewSubmissions',null,null,{build:rel('builds',build.id)}));
    report.externalState=(await api(`/v1/builds/${build.id}/buildBetaDetail`)).data.attributes.externalBuildState;
   }
-  if(version&&['PREPARE_FOR_SUBMISSION','DEVELOPER_REJECTED','REJECTED'].includes(version.attributes.appStoreState))await api(`/v1/appStoreVersions/${version.id}/relationships/build`,'PATCH',rel('builds',build.id));
  });
  if(mode==='store')await step('Submit App Store version for review',async()=>{
   if(!version)throw Error('No App Store version prepared');
