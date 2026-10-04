@@ -109,6 +109,21 @@ try{
    await api('/v1/appPriceSchedules','POST',{...resource('appPriceSchedules',null,null,{app:rel('apps',appId),baseTerritory:rel('territories','USA'),manualPrices:{data:[{type:'appPrices',id:inlineId}]}}),included:[{type:'appPrices',id:inlineId,attributes:{startDate:null,endDate:null},relationships:{appPricePoint:rel('appPricePoints',free.id)}}]});
    report.price='Free';
   });
+  await step('Licensed content declaration',async()=>{
+   // Original game artwork plus bundled Fredoka/Nunito under their retained
+   // SIL Open Font Licenses. No reference-game artwork is included.
+   await api(`/v1/apps/${appId}`,'PATCH',resource('apps',appId,{contentRightsDeclaration:'USES_THIRD_PARTY_CONTENT'}));
+   report.appInformation.contentRights='USES_THIRD_PARTY_CONTENT';
+  });
+  await step('App Store territory availability',async()=>{
+   let availability;try{availability=(await api(`/v1/apps/${appId}/appAvailabilityV2`)).data;}catch(error){if(!error.message.includes('HTTP 404'))throw error;}
+   let territories;try{if(availability)territories=(await api(`/v2/appAvailabilities/${availability.id}/territoryAvailabilities?limit=200`)).data;}catch(error){if(!error.message.includes('HTTP 404'))throw error;}
+   if(territories?.length){report.availableTerritories=territories.filter(t=>t.attributes.available).length;return;}
+   const all=(await api('/v1/territories?limit=200')).data;
+   const included=all.map((territory,index)=>({type:'territoryAvailabilities',id:`${'${territory-'}${index}}`,attributes:{available:true,preOrderEnabled:false},relationships:{territory:rel('territories',territory.id)}}));
+   await api('/v2/appAvailabilities','POST',{...resource('appAvailabilities',null,{availableInNewTerritories:true},{app:rel('apps',appId),territoryAvailabilities:{data:included.map(t=>({type:t.type,id:t.id}))}}),included});
+   report.availableTerritories=all.length;
+  });
   if(version&&report.betaContactReady)await step('App Store review contact and notes',async()=>{
    const attributes={demoAccountRequired:false,notes:metadata.reviewNotes};
    for(const field of ['contactFirstName','contactLastName','contactPhone','contactEmail'])attributes[field]=betaDetail.attributes[field];
