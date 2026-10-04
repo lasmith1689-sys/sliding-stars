@@ -132,7 +132,8 @@ try{
    let set=sets.find(s=>s.attributes.screenshotDisplayType==='APP_IPHONE_67');
    if(!set)set=(await api('/v1/appScreenshotSets','POST',resource('appScreenshotSets',null,{screenshotDisplayType:'APP_IPHONE_67'},{appStoreVersionLocalization:rel('appStoreVersionLocalizations',locale.id)}))).data;
    const fileName=`iphone-gameplay-${checksum.slice(0,10)}.png`;
-   let shot=(await api(`/v1/appScreenshotSets/${set.id}/appScreenshots`)).data.find(s=>s.attributes.fileName===fileName);
+   const existingShots=(await api(`/v1/appScreenshotSets/${set.id}/appScreenshots`)).data;
+   let shot=existingShots.find(s=>s.attributes.fileName===fileName);
    if(!shot)shot=(await api('/v1/appScreenshots','POST',resource('appScreenshots',null,{fileName,fileSize:bytes.length},{appScreenshotSet:rel('appScreenshotSets',set.id)}))).data;
    if(shot.attributes.assetDeliveryState?.state!=='COMPLETE'){
     for(const operation of shot.attributes.uploadOperations??[]){
@@ -151,6 +152,9 @@ try{
    }
    report.screenshot={id:shot.id,size,state:shot.attributes.assetDeliveryState?.state};
    if(report.screenshot.state!=='COMPLETE')throw Error(`Apple screenshot processing: ${report.screenshot.state}`);
+   // Replace only our own known pre-readiness background capture from 13.1.
+   // Its original pixels remain in the retained GitHub QA artifact.
+   if(existingShots.some(s=>s.id==='00c00019-65f0-8a11-800a-0a3dd89788e0')&&shot.id!=='00c00019-65f0-8a11-800a-0a3dd89788e0')await api('/v1/appScreenshots/00c00019-65f0-8a11-800a-0a3dd89788e0','DELETE');
   });
  }
  if(mode!=='inspect'&&version&&build?.attributes.processingState==='VALID'&&build.attributes.buildAudienceType==='APP_STORE_ELIGIBLE'&&['PREPARE_FOR_SUBMISSION','DEVELOPER_REJECTED','REJECTED','METADATA_REJECTED'].includes(version.attributes.appStoreState))await step('Select distribution build for App Store release',async()=>{

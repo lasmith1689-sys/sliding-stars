@@ -1,4 +1,5 @@
 import { Application, Assets, Container, FillGradient, Graphics, Texture } from 'pixi.js';
+import {Capacitor} from '@capacitor/core';
 import type { Tier } from '../core/types';
 import { TIER_FILL } from './palette';
 import { STATIONS } from '../meta/roster';
@@ -531,6 +532,10 @@ const IMAGE_ASSETS: Array<{ file: string; apply: (set: TextureSet, tex: Texture)
  * Returns the merged set. Image loads that fail (missing file) are ignored.
  */
 export async function loadTextures(app: Application, tileSize: number, campaign=false): Promise<TextureSet> {
+  // WKWebView serves bundled files through capacitor://. The worker bitmap
+  // capability probe can stall on that scheme before any board/UI appears.
+  // Native image elements decode the same local artwork without that probe.
+  if(Capacitor.isNativePlatform())Assets.setPreferences({preferWorkers:false,preferCreateImageBitmap:false});
   const set = buildTextures(app, tileSize);
   set.campaign={};
   if(campaign)await Promise.all(CAMPAIGN_ASSETS.map(async asset=>{set.campaign![asset.id]=await Assets.load<Texture>(asset.deliveryPath);}));
