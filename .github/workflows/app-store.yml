@@ -1,0 +1,43 @@
+name: App Store release
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [inspect, prepare, testflight, store]
+        default: inspect
+      build_number:
+        description: Exact uploaded build number (for TestFlight)
+        type: string
+        required: false
+permissions:
+  contents: read
+concurrency:
+  group: apple-release
+  cancel-in-progress: false
+jobs:
+  metadata:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[asc]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Inspect or prepare Apple distribution
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          RELEASE_MODE: ${{ inputs.mode || 'inspect' }}
+          BUILD_NUMBER: ${{ inputs.build_number }}
+        run: node .github/scripts/app-store-connect.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: apple-release-status
+          path: ${{ runner.temp }}/sliding-stars-release/status.json
+          retention-days: 14

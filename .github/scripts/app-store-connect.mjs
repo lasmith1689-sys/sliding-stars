@@ -1,0 +1,112 @@
+import {createPrivateKey,sign,createHash} from 'node:crypto';
+import {readFile,writeFile,appendFile,mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+
+// Runs only on GitHub Actions. The existing team key never leaves memory and is
+// never included in output, artifacts, request errors or repository files.
+const appId='6817778193',base='https://api.appstoreconnect.apple.com';
+const mode=process.env.RELEASE_MODE??'inspect';
+if(!['inspect','prepare','testflight','store'].includes(mode))throw Error('Unknown release mode');
+const metadata=JSON.parse(await readFile(new URL('../../docs/app-store/metadata.json',import.meta.url),'utf8'));
+const report={appId,mode,checkedAt:new Date().toISOString(),steps:[],blockers:[]};
+const b64=value=>Buffer.from(JSON.stringify(value)).toString('base64url');
+let keyText=(process.env.ASC_KEY_P8??'').replaceAll('\r','').trim();
+if(!keyText.includes('BEGIN PRIVATE KEY'))keyText=`-----BEGIN PRIVATE KEY-----\n${keyText.replace(/\s/g,'').match(/.{1,64}/g)?.join('\n')}\n-----END PRIVATE KEY-----`;
+const key=createPrivateKey(keyText);keyText='';delete process.env.ASC_KEY_P8;
+function token(){const now=Math.floor(Date.now()/1000),data=`${b64({alg:'ES256',kid:process.env.ASC_KEY_ID,typ:'JWT'})}.${b64({iss:process.env.ASC_ISSUER_ID,iat:now-10,exp:now+900,aud:'appstoreconnect-v1'})}`;return `${data}.${sign('sha256',Buffer.from(data),{key,dsaEncoding:'ieee-p1363'}).toString('base64url')}`;}
+async function api(path,method='GET',body){
+ const response=await fetch(new URL(path,base),{method,headers:{Authorization:`Bearer ${token()}`,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(45000)});
+ const result=await response.text();let json;try{json=result?JSON.parse(result):{};}catch{throw Error(`${method} ${path.split('?')[0]}: HTTP ${response.status}`);}
+ if(!response.ok)throw Error(`${method} ${path.split('?')[0]}: HTTP ${response.status}: ${(json.errors??[]).map(e=>`${e.code}: ${e.detail??e.title}`).join('; ')}`);
+ return json;
+}
+const rel=(type,id)=>({data:{type,id}});
+const resource=(type,id,attributes,relationships)=>({data:{type,...(id?{id}:{}),...(attributes?{attributes}:{}),...(relationships?{relationships}:{})}});
+async function step(name,fn){try{await fn();report.steps.push(name);console.log(`Completed: ${name}`);}catch(error){report.blockers.push(`${name}: ${error.message}`);console.log(`::warning::${name}: ${error.message}`);}}
+let build,version,betaDetail;
+try{
+ const app=(await api(`/v1/apps/${appId}`)).data;
+ if(app.attributes.bundleId!=='com.lasmith1689.SlidingStars')throw Error('Unexpected app identity');
+ report.appName=app.attributes.name;
+ const builds=(await api(`/v1/builds?filter[app]=${appId}&sort=-uploadedDate&limit=20&include=buildBetaDetail`));
+ report.builds=builds.data.map(b=>({id:b.id,version:b.attributes.version,processingState:b.attributes.processingState,expired:b.attributes.expired,internalOnly:b.attributes.isTestFlightInternalOnly,beta:(builds.included??[]).find(i=>i.type==='buildBetaDetails'&&i.id===b.relationships?.buildBetaDetail?.data?.id)?.attributes}));
+ const selected=process.env.BUILD_NUMBER;
+ build=builds.data.find(b=>selected?b.attributes.version===selected:!b.attributes.expired&&b.attributes.processingState==='VALID'&&!b.attributes.isTestFlightInternalOnly);
+ if(mode==='testflight'&&selected){
+  for(let attempt=0;attempt<24&&(!build||build.attributes.processingState==='PROCESSING');attempt++){
+   console.log(`Waiting for Apple processing: ${selected} (${attempt+1}/24)`);await new Promise(r=>setTimeout(r,45000));
+   build=(await api(`/v1/builds?filter[app]=${appId}&filter[version]=${encodeURIComponent(selected)}&limit=5`)).data.find(b=>b.attributes.version===selected);
+  }
+ }
+ report.selectedBuild=build?{id:build.id,version:build.attributes.version,processingState:build.attributes.processingState,internalOnly:build.attributes.isTestFlightInternalOnly}:null;
+ const groups=(await api(`/v1/apps/${appId}/betaGroups?limit=100`)).data;
+ report.groups=groups.map(g=>({id:g.id,name:g.attributes.name,internal:g.attributes.isInternalGroup,publicLink:g.attributes.publicLink,publicLinkEnabled:g.attributes.publicLinkEnabled}));
+ betaDetail=(await api(`/v1/apps/${appId}/betaAppReviewDetail`)).data;
+ report.betaContactReady=['contactFirstName','contactLastName','contactPhone','contactEmail'].every(k=>!!betaDetail.attributes[k]);
+ const versions=(await api(`/v1/apps/${appId}/appStoreVersions?filter[platform]=IOS&limit=20`)).data;
+ report.storeVersions=versions.map(v=>({id:v.id,version:v.attributes.versionString,state:v.attributes.appStoreState}));
+ version=versions.find(v=>v.attributes.versionString==='1.0');
+ if(mode!=='inspect'){
+  await step('Public TestFlight group',async()=>{
+   let group=groups.find(g=>!g.attributes.isInternalGroup&&g.attributes.name==='Friends and Explorers');
+   if(!group)group=(await api('/v1/betaGroups','POST',resource('betaGroups',null,{name:'Friends and Explorers',isInternalGroup:false,publicLinkEnabled:true,publicLinkLimitEnabled:true,publicLinkLimit:1000,feedbackEnabled:true}, {app:rel('apps',appId)}))).data;
+   else if(!group.attributes.publicLinkEnabled)group=(await api(`/v1/betaGroups/${group.id}`,'PATCH',resource('betaGroups',group.id,{publicLinkEnabled:true,publicLinkLimitEnabled:true,publicLinkLimit:1000}))).data;
+   report.publicGroupId=group.id;report.publicLink=group.attributes.publicLink;
+  });
+  await step('Beta descriptions and review notes',async()=>{
+   const locales=(await api(`/v1/apps/${appId}/betaAppLocalizations`)).data;
+   if(!locales.length)await api('/v1/betaAppLocalizations','POST',resource('betaAppLocalizations',null,{locale:'en-US',description:metadata.betaDescription,privacyPolicyUrl:metadata.privacyPolicyUrl,marketingUrl:metadata.marketingUrl},{app:rel('apps',appId)}));
+   for(const locale of locales)await api(`/v1/betaAppLocalizations/${locale.id}`,'PATCH',resource('betaAppLocalizations',locale.id,{description:metadata.betaDescription,privacyPolicyUrl:metadata.privacyPolicyUrl,marketingUrl:metadata.marketingUrl}));
+   await api(`/v1/betaAppReviewDetails/${betaDetail.id}`,'PATCH',resource('betaAppReviewDetails',betaDetail.id,{demoAccountRequired:false,notes:metadata.reviewNotes}));
+  });
+  await step('App Store description',async()=>{
+   if(!version)version=(await api('/v1/appStoreVersions','POST',resource('appStoreVersions',null,{platform:'IOS',versionString:'1.0',copyright:metadata.copyright,releaseType:'AFTER_APPROVAL',usesIdfa:false},{app:rel('apps',appId)}))).data;
+   if(!['PREPARE_FOR_SUBMISSION','DEVELOPER_REJECTED','REJECTED','METADATA_REJECTED'].includes(version.attributes.appStoreState))throw Error(`Version is already ${version.attributes.appStoreState}; leaving submitted metadata intact`);
+   await api(`/v1/appStoreVersions/${version.id}`,'PATCH',resource('appStoreVersions',version.id,{copyright:metadata.copyright,releaseType:'AFTER_APPROVAL',usesIdfa:false}));
+   const locales=(await api(`/v1/appStoreVersions/${version.id}/appStoreVersionLocalizations`)).data;
+   const attributes={description:metadata.description,keywords:metadata.keywords,supportUrl:metadata.supportUrl,marketingUrl:metadata.marketingUrl,promotionalText:metadata.promotionalText};
+   const en=locales.find(l=>l.attributes.locale==='en-US');
+   if(en)await api(`/v1/appStoreVersionLocalizations/${en.id}`,'PATCH',resource('appStoreVersionLocalizations',en.id,attributes));
+   else await api('/v1/appStoreVersionLocalizations','POST',resource('appStoreVersionLocalizations',null,{locale:'en-US',...attributes},{appStoreVersion:rel('appStoreVersions',version.id)}));
+   report.storeVersionId=version.id;
+  });
+  await step('App privacy URL and subtitle',async()=>{
+   const infos=(await api(`/v1/apps/${appId}/appInfos`)).data;
+   const info=infos.find(i=>i.attributes.appStoreState==='PREPARE_FOR_SUBMISSION')??infos[0];
+   for(const locale of (await api(`/v1/appInfos/${info.id}/appInfoLocalizations`)).data)if(locale.attributes.locale==='en-US')await api(`/v1/appInfoLocalizations/${locale.id}`,'PATCH',resource('appInfoLocalizations',locale.id,{subtitle:metadata.subtitle,privacyPolicyUrl:metadata.privacyPolicyUrl}));
+  });
+ }
+ if(mode==='testflight')await step('Submit current build for public TestFlight review',async()=>{
+  if(!build||build.attributes.processingState!=='VALID')throw Error('Current uploaded build has not finished Apple processing');
+  if(build.attributes.isTestFlightInternalOnly)throw Error('This build is restricted to internal testing; upload a new distribution build');
+  if(!report.betaContactReady)throw Error('Enter the required review contact in App Store Connect → TestFlight → Test Information');
+  const localizations=(await api(`/v1/builds/${build.id}/betaBuildLocalizations`)).data;
+  const en=localizations.find(l=>l.attributes.locale==='en-US');
+  if(en)await api(`/v1/betaBuildLocalizations/${en.id}`,'PATCH',resource('betaBuildLocalizations',en.id,{whatsNew:metadata.whatsNew}));
+  else await api('/v1/betaBuildLocalizations','POST',resource('betaBuildLocalizations',null,{locale:'en-US',whatsNew:metadata.whatsNew},{build:rel('builds',build.id)}));
+  await api(`/v1/betaGroups/${report.publicGroupId}/relationships/builds`,'POST',{data:[{type:'builds',id:build.id}]});
+  const detail=(await api(`/v1/builds/${build.id}/buildBetaDetail`)).data;
+  report.externalState=detail.attributes.externalBuildState;
+  if(['READY_FOR_BETA_SUBMISSION','READY_FOR_BETA_TESTING'].includes(report.externalState)){
+   if(report.externalState==='READY_FOR_BETA_SUBMISSION')await api('/v1/betaAppReviewSubmissions','POST',resource('betaAppReviewSubmissions',null,null,{build:rel('builds',build.id)}));
+   report.externalState=(await api(`/v1/builds/${build.id}/buildBetaDetail`)).data.attributes.externalBuildState;
+  }
+  if(version&&['PREPARE_FOR_SUBMISSION','DEVELOPER_REJECTED','REJECTED'].includes(version.attributes.appStoreState))await api(`/v1/appStoreVersions/${version.id}/relationships/build`,'PATCH',rel('builds',build.id));
+ });
+ if(mode==='store')await step('Submit App Store version for review',async()=>{
+  if(!version)throw Error('No App Store version prepared');
+  const submissions=(await api(`/v1/apps/${appId}/reviewSubmissions?filter[platform]=IOS`)).data;
+  let submission=submissions.find(s=>s.attributes.state==='READY_FOR_REVIEW');
+  if(submissions.some(s=>['WAITING_FOR_REVIEW','IN_REVIEW'].includes(s.attributes.state))){report.storeState='ALREADY_SUBMITTED';return;}
+  if(!submission)submission=(await api('/v1/reviewSubmissions','POST',resource('reviewSubmissions',null,{platform:'IOS'},{app:rel('apps',appId)}))).data;
+  const items=(await api(`/v1/reviewSubmissions/${submission.id}/items`)).data;
+  if(!items.some(i=>i.relationships?.appStoreVersion?.data?.id===version.id))await api('/v1/reviewSubmissionItems','POST',resource('reviewSubmissionItems',null,null,{reviewSubmission:rel('reviewSubmissions',submission.id),appStoreVersion:rel('appStoreVersions',version.id)}));
+  await api(`/v1/reviewSubmissions/${submission.id}`,'PATCH',resource('reviewSubmissions',submission.id,{submitted:true}));
+  report.storeState=(await api(`/v1/appStoreVersions/${version.id}`)).data.attributes.appStoreState;
+ });
+}catch(error){report.blockers.push(error.message);console.log(`::error::${error.message}`);process.exitCode=1;}
+const out=resolve(process.env.RUNNER_TEMP??'.','sliding-stars-release');await mkdir(out,{recursive:true});
+await writeFile(resolve(out,'status.json'),JSON.stringify(report,null,2));
+console.log(JSON.stringify(report,null,2));
+if(process.env.GITHUB_STEP_SUMMARY)await appendFile(process.env.GITHUB_STEP_SUMMARY,`## Sliding Stars release\n\n${report.publicLink?`Public invitation: ${report.publicLink}\n\n`:''}${report.selectedBuild?`Build ${report.selectedBuild.version}: ${report.selectedBuild.processingState}\n\n`:''}${report.externalState?`External TestFlight: ${report.externalState}\n\n`:''}${report.storeState?`App Store: ${report.storeState}\n\n`:''}${report.blockers.map(b=>`- ${b}`).join('\n')}\n`);
+if(report.blockers.length&&mode!=='inspect')process.exitCode=1;
