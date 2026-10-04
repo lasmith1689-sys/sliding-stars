@@ -39,6 +39,10 @@ try{
   }
  }
  report.selectedBuild=build?{id:build.id,version:build.attributes.version,processingState:build.attributes.processingState,audience:build.attributes.buildAudienceType}:null;
+ if(build?.attributes.processingState==='VALID'){
+  const details=(await api(`/v1/builds/${build.id}/buildBetaDetail`)).data;
+  report.currentBetaState={internal:details.attributes.internalBuildState,external:details.attributes.externalBuildState};
+ }
  const groups=(await api(`/v1/apps/${appId}/betaGroups?limit=100`)).data;
  report.groups=groups.map(g=>({id:g.id,name:g.attributes.name,internal:g.attributes.isInternalGroup,publicLink:g.attributes.publicLink,publicLinkEnabled:g.attributes.publicLinkEnabled}));
  betaDetail=(await api(`/v1/apps/${appId}/betaAppReviewDetail`)).data;
@@ -92,10 +96,12 @@ try{
   await step('Free App Store price',async()=>{
    let schedule;try{schedule=(await api(`/v1/apps/${appId}/appPriceSchedule`)).data;}catch(error){if(!error.message.includes('HTTP 404'))throw error;}
    if(schedule){
-    const prices=await api(`/v1/appPriceSchedules/${schedule.id}/manualPrices?include=appPricePoint&limit=200`);
+    let prices;try{prices=await api(`/v1/appPriceSchedules/${schedule.id}/manualPrices?include=appPricePoint&limit=200`);}catch(error){if(!error.message.includes('HTTP 404'))throw error;}
+    if(prices){
     const points=(prices.included??[]).filter(p=>p.type==='appPricePoints');
     if(points.length&&points.every(p=>Number(p.attributes.customerPrice)===0)){report.price='Free';return;}
     if(prices.data.length)throw Error('Existing price schedule requires owner review; leaving it unchanged');
+    }
    }
    const free=(await api(`/v1/apps/${appId}/appPricePoints?filter[territory]=USA&limit=200`)).data.find(p=>Number(p.attributes.customerPrice)===0);
    if(!free)throw Error('Apple did not return a free price point');
