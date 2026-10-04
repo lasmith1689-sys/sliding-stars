@@ -32,7 +32,7 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
-          RELEASE_MODE: ${{ inputs.mode || 'inspect' }}
+          RELEASE_MODE: ${{ inputs.mode || (contains(github.event.head_commit.message, '[prepare]') && 'prepare') || 'inspect' }}
           BUILD_NUMBER: ${{ inputs.build_number }}
         run: node .github/scripts/app-store-connect.mjs
       - uses: actions/upload-artifact@v4

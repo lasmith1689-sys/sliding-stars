@@ -29,16 +29,16 @@ try{
  if(app.attributes.bundleId!=='com.lasmith1689.SlidingStars')throw Error('Unexpected app identity');
  report.appName=app.attributes.name;
  const builds=(await api(`/v1/builds?filter[app]=${appId}&sort=-uploadedDate&limit=20&include=buildBetaDetail`));
- report.builds=builds.data.map(b=>({id:b.id,version:b.attributes.version,processingState:b.attributes.processingState,expired:b.attributes.expired,internalOnly:b.attributes.isTestFlightInternalOnly,beta:(builds.included??[]).find(i=>i.type==='buildBetaDetails'&&i.id===b.relationships?.buildBetaDetail?.data?.id)?.attributes}));
+ report.builds=builds.data.map(b=>({id:b.id,version:b.attributes.version,processingState:b.attributes.processingState,expired:b.attributes.expired,audience:b.attributes.buildAudienceType,beta:(builds.included??[]).find(i=>i.type==='buildBetaDetails'&&i.id===b.relationships?.buildBetaDetail?.data?.id)?.attributes}));
  const selected=process.env.BUILD_NUMBER;
- build=builds.data.find(b=>selected?b.attributes.version===selected:!b.attributes.expired&&b.attributes.processingState==='VALID'&&!b.attributes.isTestFlightInternalOnly);
+ build=builds.data.find(b=>selected?b.attributes.version===selected:!b.attributes.expired&&b.attributes.processingState==='VALID'&&b.attributes.buildAudienceType==='APP_STORE_ELIGIBLE');
  if(mode==='testflight'&&selected){
   for(let attempt=0;attempt<24&&(!build||build.attributes.processingState==='PROCESSING');attempt++){
    console.log(`Waiting for Apple processing: ${selected} (${attempt+1}/24)`);await new Promise(r=>setTimeout(r,45000));
    build=(await api(`/v1/builds?filter[app]=${appId}&filter[version]=${encodeURIComponent(selected)}&limit=5`)).data.find(b=>b.attributes.version===selected);
   }
  }
- report.selectedBuild=build?{id:build.id,version:build.attributes.version,processingState:build.attributes.processingState,internalOnly:build.attributes.isTestFlightInternalOnly}:null;
+ report.selectedBuild=build?{id:build.id,version:build.attributes.version,processingState:build.attributes.processingState,audience:build.attributes.buildAudienceType}:null;
  const groups=(await api(`/v1/apps/${appId}/betaGroups?limit=100`)).data;
  report.groups=groups.map(g=>({id:g.id,name:g.attributes.name,internal:g.attributes.isInternalGroup,publicLink:g.attributes.publicLink,publicLinkEnabled:g.attributes.publicLinkEnabled}));
  betaDetail=(await api(`/v1/apps/${appId}/betaAppReviewDetail`)).data;
@@ -55,8 +55,9 @@ try{
   });
   await step('Beta descriptions and review notes',async()=>{
    const locales=(await api(`/v1/apps/${appId}/betaAppLocalizations`)).data;
-   if(!locales.length)await api('/v1/betaAppLocalizations','POST',resource('betaAppLocalizations',null,{locale:'en-US',description:metadata.betaDescription,privacyPolicyUrl:metadata.privacyPolicyUrl,marketingUrl:metadata.marketingUrl},{app:rel('apps',appId)}));
-   for(const locale of locales)await api(`/v1/betaAppLocalizations/${locale.id}`,'PATCH',resource('betaAppLocalizations',locale.id,{description:metadata.betaDescription,privacyPolicyUrl:metadata.privacyPolicyUrl,marketingUrl:metadata.marketingUrl}));
+   const betaAttributes={description:metadata.betaDescription,privacyPolicyUrl:metadata.privacyPolicyUrl,marketingUrl:metadata.marketingUrl,...(betaDetail.attributes.contactEmail?{feedbackEmail:betaDetail.attributes.contactEmail}:{})};
+   if(!locales.length)await api('/v1/betaAppLocalizations','POST',resource('betaAppLocalizations',null,{locale:'en-US',...betaAttributes},{app:rel('apps',appId)}));
+   for(const locale of locales)await api(`/v1/betaAppLocalizations/${locale.id}`,'PATCH',resource('betaAppLocalizations',locale.id,betaAttributes));
    await api(`/v1/betaAppReviewDetails/${betaDetail.id}`,'PATCH',resource('betaAppReviewDetails',betaDetail.id,{demoAccountRequired:false,notes:metadata.reviewNotes}));
   });
   await step('App Store description',async()=>{
@@ -73,12 +74,53 @@ try{
   await step('App privacy URL and subtitle',async()=>{
    const infos=(await api(`/v1/apps/${appId}/appInfos`)).data;
    const info=infos.find(i=>i.attributes.appStoreState==='PREPARE_FOR_SUBMISSION')??infos[0];
+   const categories=(await api('/v1/appCategories?filter[platforms]=IOS&limit=200')).data;
+   if(['GAMES','GAMES_PUZZLE','GAMES_CASUAL'].every(id=>categories.some(c=>c.id===id)))await api(`/v1/appInfos/${info.id}`,'PATCH',resource('appInfos',info.id,null,{primaryCategory:rel('appCategories','GAMES'),primarySubcategoryOne:rel('appCategories','GAMES_PUZZLE'),primarySubcategoryTwo:rel('appCategories','GAMES_CASUAL')}));
    for(const locale of (await api(`/v1/appInfos/${info.id}/appInfoLocalizations`)).data)if(locale.attributes.locale==='en-US')await api(`/v1/appInfoLocalizations/${locale.id}`,'PATCH',resource('appInfoLocalizations',locale.id,{subtitle:metadata.subtitle,privacyPolicyUrl:metadata.privacyPolicyUrl}));
+  });
+  if(version&&report.betaContactReady)await step('App Store review contact and notes',async()=>{
+   const attributes={demoAccountRequired:false,notes:metadata.reviewNotes};
+   for(const field of ['contactFirstName','contactLastName','contactPhone','contactEmail'])attributes[field]=betaDetail.attributes[field];
+   let detail;try{detail=(await api(`/v1/appStoreVersions/${version.id}/appStoreReviewDetail`)).data;}catch(error){if(!error.message.includes('HTTP 404'))throw error;}
+   if(detail)await api(`/v1/appStoreReviewDetails/${detail.id}`,'PATCH',resource('appStoreReviewDetails',detail.id,attributes));
+   else await api('/v1/appStoreReviewDetails','POST',resource('appStoreReviewDetails',null,attributes,{appStoreVersion:rel('appStoreVersions',version.id)}));
+  });
+  if(version&&process.env.SCREENSHOT_PATH)await step('Actual iPhone gameplay screenshot',async()=>{
+   const bytes=await readFile(process.env.SCREENSHOT_PATH),checksum=createHash('md5').update(bytes).digest('hex');
+   // PNG dimensions come directly from the iPhone simulator, without resizing.
+   if(bytes.toString('hex',0,8)!=='89504e470d0a1a0a')throw Error('Expected a PNG screenshot');
+   const size=`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`;
+   if(!['1260x2736','1290x2796','1320x2868'].includes(size))throw Error(`Unexpected large-iPhone screenshot size ${size}`);
+   const locale=(await api(`/v1/appStoreVersions/${version.id}/appStoreVersionLocalizations`)).data.find(l=>l.attributes.locale==='en-US');
+   if(!locale)throw Error('English store localization is missing');
+   const sets=(await api(`/v1/appStoreVersionLocalizations/${locale.id}/appScreenshotSets`)).data;
+   let set=sets.find(s=>s.attributes.screenshotDisplayType==='APP_IPHONE_67');
+   if(!set)set=(await api('/v1/appScreenshotSets','POST',resource('appScreenshotSets',null,{screenshotDisplayType:'APP_IPHONE_67'},{appStoreVersionLocalization:rel('appStoreVersionLocalizations',locale.id)}))).data;
+   const fileName=`iphone-gameplay-${checksum.slice(0,10)}.png`;
+   let shot=(await api(`/v1/appScreenshotSets/${set.id}/appScreenshots`)).data.find(s=>s.attributes.fileName===fileName);
+   if(!shot)shot=(await api('/v1/appScreenshots','POST',resource('appScreenshots',null,{fileName,fileSize:bytes.length},{appScreenshotSet:rel('appScreenshotSets',set.id)}))).data;
+   if(shot.attributes.assetDeliveryState?.state!=='COMPLETE'){
+    for(const operation of shot.attributes.uploadOperations??[]){
+     const target=new URL(operation.url);
+     if(target.protocol!=='https:'||!/(?:\.apple\.com|\.icloud\.com|\.amazonaws\.com)$/.test(target.hostname))throw Error('Unexpected Apple asset upload destination');
+     if(!Number.isSafeInteger(operation.offset)||!Number.isSafeInteger(operation.length)||operation.offset<0||operation.length<1||operation.offset+operation.length>bytes.length)throw Error('Invalid screenshot upload range');
+     const upload=await fetch(target,{method:operation.method,headers:Object.fromEntries(operation.requestHeaders.map(h=>[h.name,h.value])),body:bytes.subarray(operation.offset,operation.offset+operation.length),signal:AbortSignal.timeout(60000)});
+     if(!upload.ok)throw Error(`Screenshot transfer failed: HTTP ${upload.status}`);
+    }
+    await api(`/v1/appScreenshots/${shot.id}`,'PATCH',resource('appScreenshots',shot.id,{uploaded:true,sourceFileChecksum:checksum}));
+    for(let attempt=0;attempt<12;attempt++){
+     shot=(await api(`/v1/appScreenshots/${shot.id}`)).data;
+     if(['COMPLETE','FAILED'].includes(shot.attributes.assetDeliveryState?.state))break;
+     await new Promise(r=>setTimeout(r,15000));
+    }
+   }
+   report.screenshot={id:shot.id,size,state:shot.attributes.assetDeliveryState?.state};
+   if(report.screenshot.state!=='COMPLETE')throw Error(`Apple screenshot processing: ${report.screenshot.state}`);
   });
  }
  if(mode==='testflight')await step('Submit current build for public TestFlight review',async()=>{
   if(!build||build.attributes.processingState!=='VALID')throw Error('Current uploaded build has not finished Apple processing');
-  if(build.attributes.isTestFlightInternalOnly)throw Error('This build is restricted to internal testing; upload a new distribution build');
+  if(build.attributes.buildAudienceType!=='APP_STORE_ELIGIBLE')throw Error('This build is restricted to internal testing; upload a new distribution build');
   if(!report.betaContactReady)throw Error('Enter the required review contact in App Store Connect → TestFlight → Test Information');
   const localizations=(await api(`/v1/builds/${build.id}/betaBuildLocalizations`)).data;
   const en=localizations.find(l=>l.attributes.locale==='en-US');
