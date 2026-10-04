@@ -10,7 +10,7 @@ Campaign SHA-256: 9896b20b34aa2a3104a698427c709a53a57002cc06ae9b9f083c37b2f7a2a3
 
 All **1,149 tests / 119 files**, TypeScript, production build, Capacitor synchronization and production boundary audit passed October 4. Audit: 869 modules, 61 chunks, zero development campaign modules. Offline pack: 208 files, including every chapter, advice map, art, fonts and public support/privacy pages.
 
-Phone-size browser play completed mission 1 and all five new mechanics, including the tether's second end, collecting a repair kit before repairs, ordered relay matches and simultaneous rendezvous departures. Automatic advancement and compact guidance worked. Physical iPhone touch/save/offline checks remain unverified. Native simulator capture runs in the release workflow.
+Phone-size browser play completed mission 1 and all five new mechanics, including the tether's second end, collecting a repair kit before repairs, ordered relay matches and simultaneous rendezvous departures. Automatic advancement and compact guidance worked. Corrected native build 15.1 passed the actual iPhone simulator readiness check; manual inspection confirmed the full board, cute art, rounded fonts, crew objective and controls. Physical iPhone touch/save/offline checks remain unverified.
 
 Read docs/2026-10-04-RELEASE-QC.md and docs/app-store/RELEASE.md for actual release status. Never equate upload or a public invitation with approval or installability.
 
@@ -58,9 +58,11 @@ Paid individual account holder; Windows/iPhone, no Mac. GitHub macos-26/Xcode 26
 
 Keep working ad-hoc archive → automatic cloud signing/export. Export now uses testFlightInternalTestingOnly=false. Build number run_number.run_attempt. All four existing secrets are configured; never print/read their values into chat, source or artifacts.
 
-.github/scripts/app-store-connect.mjs prepares descriptions, URLs, category, age answers, free pricing, actual simulator screenshots, exact build selection and review submissions inside GitHub. Review contacts stay private in Apple. Support/privacy pages live in public/.
+.github/scripts/app-store-connect.mjs prepares descriptions, URLs, category, age answers, free pricing, territories, actual simulator screenshots, exact build selection and review submissions inside GitHub. Review contacts stay private in Apple. Support/privacy pages live in public/.
 
-Apple browser sign-in is pending and required review contact is blank. Automatic approval review rejected copying Ai Sky's private contact without specific authorization; a user permission question is pending. Do not perform that reuse without the answer. Complete unaffected release work. App Privacy and content-rights/account declarations may need the owner; legal agreements remain the owner's action.
+Corrected **1.0 (15.1)** is VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING internally. External state is READY_FOR_BETA_SUBMISSION, not approved. It is selected for App Store 1.0, which remains PREPARE_FOR_SUBMISSION. The corrected 1320x2868 native screenshot is COMPLETE in Apple; its known background-only predecessor was removed. Free pricing, NINE_PLUS rating, licensed content rights, 175 territories and automatic release after approval are configured. See docs/app-store/release-status-2026-10-04.json for exact IDs and evidence.
+
+Apple browser sign-in is pending and required review contact is blank. Automatic approval review rejected copying Ai Sky's private contact without specific authorization; a user permission question is pending. Do not perform that reuse without the answer. The owner must complete the App Privacy questionnaire on the website. Legal agreements remain the owner's action if Apple requires them. Public TestFlight and App Store reviews have not been submitted; do not offer the invitation as an installable public beta yet.
 
 ## Commands and next step
 
@@ -72,8 +74,10 @@ Use npm.cmd / npx.cmd on Windows:
     node scripts/campaign/audit-bundle.mts
     npx.cmd netlify deploy --dir dist --alias next --no-build --site bc41ec96-bbad-4e56-b0d1-c612c54db038 --json
 
-Next: finish Apple delivery verification and missing fields, then confirm beta/store review state. Continue here; no new thread is required.
+Next: receive the review-contact authorization or owner-entered fields, complete Apple sign-in and App Privacy, then retry testflight/store release modes for build 15.1 and confirm review state. No app rebuild is needed for these metadata steps. Continue here; no new thread is required.
 
 ## Copy-paste Claude Code continuation
 
 Continue Sliding Stars in the improved app folder. Read CLAUDE-HANDOFF.md, docs/2026-10-04-RELEASE-QC.md and docs/app-store/RELEASE.md; inspect Git and actual Apple build status. All 25 mechanics and 1,000 proved missions are implemented, with 127 authored boards and 68 masks. Preserve original parent/production, meaningful shuttle rules, live dragging, automatic advancement, cute art, rounded offline fonts, saves, strict validation, no portals and bounded generation/advice. First finish authorized public TestFlight/App Store delivery through existing GitHub macOS cloud signing; never expose keys or reuse private review contact without explicit authorization. Distinguish upload, processing, approval and installation. Then prioritize actual iPhone save/offline/touch tests and multi-step balance. Work efficiently without new teams or broad redesign, continue routine authorized steps, and report concrete blockers without claiming automated wins prove subjective fun.
+
+Native startup fix: 13.1's first capture showed only the background. src/render/textures.ts now disables the worker bitmap probe on native platforms and uses image elements. Build 15.1's actual simulator screenshot passed the Vision readiness gate at 17:24 UTC and subsequent manual inspection. The screenshot job's remaining failure is Apple's missing contact fields, not capture, image processing or signed upload. Artifact 11310282311 preserves the corrected pixels and simulator log. Do not recommend 13.1.

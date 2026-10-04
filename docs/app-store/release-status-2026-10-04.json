@@ -1,0 +1,67 @@
+{
+  "appId": "6817778193",
+  "appName": "Sliding Stars",
+  "bundleId": "com.lasmith1689.SlidingStars",
+  "checkedAt": "2026-10-04T17:24:19.935Z",
+  "metadataCheckedAt": "2026-10-04T17:19:56.316Z",
+  "build": {
+    "id": "0e22bd1c-9353-43cf-a63b-ddf233144be6",
+    "version": "15.1",
+    "processingState": "VALID",
+    "audience": "APP_STORE_ELIGIBLE"
+  },
+  "beta": {
+    "internal": "IN_BETA_TESTING",
+    "external": "READY_FOR_BETA_SUBMISSION"
+  },
+  "storeVersion": {
+    "id": "8b8f600d-d8f4-4e68-926e-239ba09f1d8a",
+    "version": "1.0",
+    "state": "PREPARE_FOR_SUBMISSION"
+  },
+  "storeBuildNumber": "15.1",
+  "publicTestFlight": {
+    "group": "Friends and Explorers",
+    "invitation": "https://testflight.apple.com/join/7w5XTsgG",
+    "externallyInstallable": false,
+    "reviewSubmitted": false
+  },
+  "appStore": {
+    "reviewSubmitted": false,
+    "price": "Free",
+    "ageRating": "NINE_PLUS",
+    "contentRights": "USES_THIRD_PARTY_CONTENT",
+    "availableTerritories": 175,
+    "releaseAfterApproval": "automatic"
+  },
+  "screenshot": {
+    "id": "a9c00019-65f0-8a11-8027-8e47c92d0ee2",
+    "size": "1320x2868",
+    "state": "COMPLETE"
+  },
+  "verification": {
+    "nativeReadinessGate": "passed",
+    "manualNativeScreenshotInspection": "passed",
+    "physicalIPhoneTouchSaveOffline": "unverified",
+    "testsPassed": 1149,
+    "campaignMissions": 1000,
+    "mechanicFamilies": 25
+  },
+  "blockers": {
+    "reviewContact": "required fields are blank",
+    "appPrivacy": "owner questionnaire not completed or verified",
+    "appleBrowser": "owner sign-in pending"
+  },
+  "code": {
+    "repository": "https://github.com/lasmith1689-sys/sliding-stars",
+    "appCommit": "0f68b5099798f70fa5f6ff860706ea9c4a115284",
+    "metadataCommit": "17c66ef",
+    "nativeRun": "https://github.com/lasmith1689-sys/sliding-stars/actions/runs/37219452569",
+    "nativeScreenshotArtifact": 11310282311
+  },
+  "web": {
+    "url": "https://next--sliding-stars.netlify.app/",
+    "deployId": "6ac28863b86bb8e046adbd01",
+    "originalPreserved": true
+  }
+}
