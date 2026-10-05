@@ -2,11 +2,11 @@
 
 A cozy space rescue puzzle game for iPhone, starring Zena and Pepper.
 
-The current web beta contains **1,000 proof-verified missions and 20 implemented mechanics**: 102 authored teaching boards plus 898 deterministic terrain variations. It includes changing board shapes, animated creatures, rescue-aware hints and chapter selection. Four planned mechanics, a replacement for removed portals, deeper procedural variety and expanded station rewards remain unfinished. See [the research crosscheck](docs/2026-09-30-CAMPAIGN-CROSSCHECK.md) and [Claude Code handoff](CLAUDE-HANDOFF.md).
+The current beta contains **1,000 proof-verified missions and all 25 planned mechanics**: 127 authored teaching boards plus 873 deterministic terrain variations. It includes changing board shapes, animated creatures, rescue-aware hints, chapter selection and two home stations with 24 residents. The October 5 audit corrected falling through permanent gaps, paired departures and home rewards, then replayed every mission. See the [mechanics audit](docs/2026-10-05-MECHANICS-AUDIT.md), [release checkpoint](docs/2026-10-05-RELEASE-QC.md) and [current handoff](CLAUDE-HANDOFF.md). Further human playtesting and deeper procedural variety remain useful follow-ups.
 
 ## Install on iPhone
 
-**Version 1.0 (7.1) uploaded successfully to Apple** on September 30, 2026; all 1,018 tests passed. Apple processing and internal availability still require confirmation because the browser login expired. Version 5.1 is the last independently confirmed available build. Open TestFlight on iPhone and check for the 7.1 update. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases. See [delivery instructions](TESTFLIGHT.md) and [beta scope and status](docs/TESTFLIGHT-BETA.md).
+**Version 1.0 (17.1) is processed and available to internal TestFlight testers**, confirmed by Apple's API on October 5, 2026. All 1,164 tests passed locally and in the macOS release build. Open TestFlight on iPhone and update to 17.1, then retry Mission 3. Public beta and App Store review remain pending required Apple contact/privacy steps. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases. See [delivery instructions](TESTFLIGHT.md) and the [current release checkpoint](docs/2026-10-05-RELEASE-QC.md).
 
 Bundle ID: `com.lasmith1689.SlidingStars`. The iOS app bundles game/art locally and stores saves through native Preferences. Safari progress and native-app progress are separate.
 

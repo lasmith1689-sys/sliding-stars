@@ -9,4 +9,5 @@ release/
 validation/*.log
 validation/physics-audit-*.json
 validation/mechanics-review/
+validation/native-17.1/
 validation/campaign/traces/

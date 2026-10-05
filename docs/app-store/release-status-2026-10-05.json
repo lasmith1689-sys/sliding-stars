@@ -1,0 +1,174 @@
+{
+  "appId": "6817778193",
+  "mode": "testflight",
+  "checkedAt": "2026-10-05T13:04:50.702Z",
+  "steps": [
+    "Public TestFlight group",
+    "App Store description",
+    "App privacy URL and subtitle",
+    "Accurate game age-rating answers",
+    "Free App Store price",
+    "Licensed content declaration",
+    "App Store territory availability",
+    "Select distribution build for App Store release"
+  ],
+  "blockers": [
+    "Beta descriptions and review notes: PATCH /v1/betaAppReviewDetails/6817778193: HTTP 409: ENTITY_ERROR.ATTRIBUTE.REQUIRED: You must provide a value for the attribute 'contactEmail' with this request; ENTITY_ERROR.ATTRIBUTE.REQUIRED: You must provide a value for the attribute 'contactPhone' with this request; ENTITY_ERROR.ATTRIBUTE.REQUIRED: You must provide a value for the attribute 'contactFirstName' with this request; ENTITY_ERROR.ATTRIBUTE.REQUIRED: You must provide a value for the attribute 'contactLastName' with this request",
+    "Submit current build for public TestFlight review: Enter the required review contact in App Store Connect → TestFlight → Test Information"
+  ],
+  "appName": "Sliding Stars",
+  "builds": [
+    {
+      "id": "0e22bd1c-9353-43cf-a63b-ddf233144be6",
+      "version": "15.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "APP_STORE_ELIGIBLE",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "READY_FOR_BETA_SUBMISSION"
+      }
+    },
+    {
+      "id": "2fe1ef77-c9b1-4780-a6e8-f236aac0ba99",
+      "version": "13.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "APP_STORE_ELIGIBLE",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "READY_FOR_BETA_SUBMISSION"
+      }
+    },
+    {
+      "id": "e6855927-e6f4-4e23-9e54-598464146587",
+      "version": "10.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    },
+    {
+      "id": "dcfff2de-1aa2-442e-9e1d-e6b86ba07350",
+      "version": "9.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    },
+    {
+      "id": "7d90b4da-f9af-45f2-ac8d-1a28a16498d1",
+      "version": "8.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    },
+    {
+      "id": "bcb08cbc-0874-471a-bc20-2f864e61daf1",
+      "version": "7.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    },
+    {
+      "id": "9ee78b5c-78c2-4af4-99cc-7cf3b82148df",
+      "version": "6.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    },
+    {
+      "id": "16188daa-2565-43ca-bcaf-58db62920c9e",
+      "version": "5.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    },
+    {
+      "id": "984cffb5-72c0-49d3-ac2b-db73f4a7bc7f",
+      "version": "4.1",
+      "processingState": "VALID",
+      "expired": false,
+      "audience": "INTERNAL_ONLY",
+      "beta": {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "NOT_APPLICABLE"
+      }
+    }
+  ],
+  "selectedBuild": {
+    "id": "05831229-73f2-41b0-a6da-469e0a36c6c2",
+    "version": "17.1",
+    "processingState": "VALID",
+    "audience": "APP_STORE_ELIGIBLE"
+  },
+  "currentBetaState": {
+    "internal": "IN_BETA_TESTING",
+    "external": "READY_FOR_BETA_SUBMISSION"
+  },
+  "groups": [
+    {
+      "id": "a5ef6ea3-a614-48de-a2f6-575d2a89c4f2",
+      "name": "Me",
+      "internal": true,
+      "publicLink": null,
+      "publicLinkEnabled": null
+    },
+    {
+      "id": "9e704e7c-6c37-438b-a127-5259b7bda8ef",
+      "name": "Friends and Explorers",
+      "internal": false,
+      "publicLink": "https://testflight.apple.com/join/7w5XTsgG",
+      "publicLinkEnabled": true
+    }
+  ],
+  "betaContactReady": false,
+  "storeVersions": [
+    {
+      "id": "8b8f600d-d8f4-4e68-926e-239ba09f1d8a",
+      "version": "1.0",
+      "state": "PREPARE_FOR_SUBMISSION"
+    }
+  ],
+  "appInformation": {
+    "ageRating": "NINE_PLUS",
+    "contentRights": "USES_THIRD_PARTY_CONTENT"
+  },
+  "publicGroupId": "9e704e7c-6c37-438b-a127-5259b7bda8ef",
+  "publicLink": "https://testflight.apple.com/join/7w5XTsgG",
+  "storeVersionId": "8b8f600d-d8f4-4e68-926e-239ba09f1d8a",
+  "price": "Free",
+  "availableTerritories": 175,
+  "storeBuildNumber": "17.1"
+}
