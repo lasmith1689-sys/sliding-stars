@@ -41,7 +41,7 @@ it.each(['capsule-a','passenger'])('credits eligible %s and preserves victory th
  expect(session.persist().ok).toBe(true);const before=new CampaignSession(loadSave(store)!,store);
  expect(before.dispatch(exitMove)?.state.status).toBe('won');const saved=loadSave(store)!;
  const reload=new CampaignSession(saved,store);reload.finishPresentation();expect(reload.dispatch(exitMove)).toBeNull();
- expect(reload.save).toEqual(saved);expect(saved.rewardLedger).toHaveLength(1);
+ expect(reload.save).toEqual(saved);expect(saved.rewardLedger).toHaveLength(2);
 });
 it('ignores the wrong destination even when cargo reaches another marked exit',()=>{
  const level=exitLevel();level.geometry.endpoints.push({id:'exit-b',kind:'exit',at:{r:1,c:1},active:true});

@@ -2,7 +2,7 @@ import { Application, Container, FillGradient, Graphics, Sprite, Text } from 'pi
 import type { Layers } from './app';
 import type { TextureSet } from './textures';
 import { stationDef } from '../meta/roster';
-import { buildableModules, canExpand, residentsOf, RESCUES_PER_MODULE, type StationState } from '../meta/station';
+import { buildableModules, buildCost, canExpand, residentsOf, type StationState } from '../meta/station';
 import { outBack, outQuad, tween } from './tween';
 
 /**
@@ -13,12 +13,18 @@ import { outBack, outQuad, tween } from './tween';
  */
 export function showStation(
   app: Application, layers: Layers, textures: TextureSet, station: StationState,
-  opts: { expansion?: boolean; intro?: boolean } = {},
+  opts: { expansion?: boolean; intro?: boolean; reducedMotion?: boolean } = {},
 ): Promise<string | null> {
   const W = app.screen.width, H = app.screen.height;
+  const animate:typeof tween = (target,to,ms,ease) => opts.reducedMotion ? (Object.assign(target,to),Promise.resolve()) : tween(target,to,ms,ease);
   const def = stationDef(station.currentStation);
   const root = new Container();
   layers.hud.addChild(root);
+  const fit = () => {
+    const scale = Math.min(app.screen.width / W, app.screen.height / H);
+    root.scale.set(scale);root.x = (app.screen.width - W * scale) / 2;root.y = (app.screen.height - H * scale) / 2;
+  };
+  app.renderer.on('resize', fit);
 
   // interior backdrop (optional art) over a soft gradient; the backdrop is
   // interactive so taps never bleed through to the board/HUD underneath
@@ -52,7 +58,7 @@ export function showStation(
     const hintText = canExpand(station)
       ? 'A new module is ready — let’s build it!'
       : unbuilt.length > 0
-        ? `Rescue ${(station.builtModules.length + 1) * RESCUES_PER_MODULE - station.stationRescued} more crew to add the next module!`
+        ? `Rescue ${Math.max(0,buildCost(station) - station.stationRescued)} more crew to add the next module!`
         : 'Rescue ⭐ VIP crew to unlock new modules!';
     const hint = new Text({
       text: hintText,
@@ -108,7 +114,7 @@ export function showStation(
     const finish = () => {
       if (done) return; // idempotent: safe if fired by both a chip and the backdrop
       done = true;
-      void tween(root, { alpha: 0 }, 220).then(() => { root.destroy(); resolve(chosen); });
+      void animate(root, { alpha: 0 }, 220).then(() => { app.renderer.off('resize', fit);root.destroy(); resolve(chosen); });
     };
 
     // look-around modes (intro + HUD view): tap ANYWHERE to continue — no tap
@@ -117,7 +123,7 @@ export function showStation(
 
     if (opts.expansion && buildable.length > 0) {
       // Pepper scampers up beside Zena and asks the question
-      if (pepper) void tween(pepper, { x: W * 0.52 }, 520, outQuad);
+      if (pepper) void animate(pepper, { x: W * 0.52 }, 520, outQuad);
       const bubble = new Container();
       const bw = W * 0.56, bh = H * 0.1;
       bubble.addChild(new Graphics().roundRect(0, 0, bw, bh, 16).fill(0xffffff).stroke({ color: 0xe0568c, width: 2 }));
@@ -127,7 +133,7 @@ export function showStation(
       });
       q.x = bw * 0.05; q.y = bh * 0.16; bubble.addChild(q);
       bubble.x = W * 0.4; bubble.y = H * 0.62; bubble.alpha = 0; root.addChild(bubble);
-      void tween(bubble, { alpha: 1 }, 320);
+      void animate(bubble, { alpha: 1 }, 320);
 
       // module choices (drawn from the CURRENT station's catalog)
       const chipH = buildable.length > 4 ? H * 0.07 : H * 0.085; // keep tall lists clear of the bubble
@@ -172,7 +178,7 @@ export function showStation(
       btn.on('pointertap', finish); root.addChild(btn);
     }
 
-    root.alpha = 0; void tween(root, { alpha: 1 }, 260);
-    title.scale.set(0.8); void tween(title.scale, { x: 1, y: 1 }, 400, outBack);
+    root.alpha = 0; void animate(root, { alpha: 1 }, 260);
+    title.scale.set(0.8); void animate(title.scale, { x: 1, y: 1 }, 400, outBack);
   });
 }

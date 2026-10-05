@@ -59,7 +59,11 @@ it('practices only fully introduced mechanics and removes demonstration immunity
 it('repeats deterministic seeded authoring and reports capped failures without substituting duplicate boards',()=>{
  const options={seed:20260930,throughLevel:50,maxAttemptsPerLevel:180};
  const a=generateCampaign(options),b=generateCampaign(options);
- expect(a).toEqual(b);expect(a.unresolved).toEqual([]);expect(a.levels).toEqual(levels.slice(0,50));
+ expect(a).toEqual(b);expect(a.unresolved).toEqual([]);
+ // Frozen release definitions belong to generator 4. Corrected gravity and
+ // teaching routes legitimately change generator 5's candidate acceptance.
+ expect(a.levels.map(l=>l.id)).toEqual(Array.from({length:50},(_,i)=>i+1));
+ for(const level of a.levels){expect(replayTrace(level,a.proofs.find(p=>p.levelId===level.id)!)).toEqual({won:true,issues:[]});if(beta.some(l=>l.id===level.id))expect(level).toEqual(levels[level.id-1]);}
  const capped=generateCampaign({...options,maxAttemptsPerLevel:1});
  expect(capped.unresolved.length).toBeGreaterThan(0);
  expect(capped.levels.length+capped.unresolved.length).toBe(50);

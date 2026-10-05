@@ -3,6 +3,9 @@ import type { CampaignActor,CampaignCrew,CampaignFixture,CampaignState } from '.
 import { sameCell } from './geometry';
 export const pieceAt=(state:Pick<CampaignState,'pieces'>,at:Pos)=>state.pieces.find(p=>sameCell(p.at,at));
 export const crewAt=(state:Pick<CampaignState,'crew'>,at:Pos)=>state.crew.filter(c=>c.status==='active'&&sameCell(c.at,at));
+/** Paired departures own their exact passengers and shuttles until both pads are ready. */
+export const isRendezvousPassenger=(state:Pick<CampaignState,'level'>,id:string)=>state.level.mechanics.some(m=>m.id==='rendezvous'&&m.passengerIds.includes(id));
+export const isRendezvousPod=(state:Pick<CampaignState,'level'>,id:string)=>state.level.crew.some(c=>c.carrierId===id&&isRendezvousPassenger(state,c.id));
 export function actorFootprint(actor:CampaignActor,at=actor.at):Pos[] {
   return actor.kind==='tether'&&!actor.released?[at,{r:at.r+actor.offset.r,c:at.c+actor.offset.c}]:[at];
 }

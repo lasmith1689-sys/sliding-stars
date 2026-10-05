@@ -10,6 +10,7 @@ import '@fontsource/fredoka/latin-600.css';
 import {platformStorage,registerNativeLifecycle,installWebOfflinePack} from './platform';
 import {flushStorage} from './session/nativeStorage';
 import {upgradeRescueShuttles} from './session/rescueUpgrade';
+import {repairCampaignRewards} from './session/campaignRewards';
 async function boot(){
  await Promise.all([document.fonts.load('600 16px Nunito'),document.fonts.load('800 16px Nunito'),document.fonts.load('600 24px Fredoka')]);
  let storage:SaveStorage=await platformStorage();
@@ -19,6 +20,7 @@ async function boot(){
  }
  const read=readSave(storage);let save=read.save;
  if(!save){if(read.status!=='empty')throw Error(read.error??`Saved progress is ${read.status}; it has been preserved.`);save=initial?await initial():createCampaignSave(await provider(1));save.preferences.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;}
+ if(provider===getCampaignLevel)save=await repairCampaignRewards(save,provider);
  if(provider===getCampaignLevel)save=await migrateRetiredBetaMission(save,storage);
  if(provider===getCampaignLevel)save=await upgradeRescueShuttles(save,provider);
  const result=saveSnapshot(storage,save);if(!result.ok)throw Error(result.error??'Could not save initial progress');

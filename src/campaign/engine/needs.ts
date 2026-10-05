@@ -2,7 +2,7 @@ import { doorCell } from '../../core/dome';
 import { POINTS } from '../../core/game';
 import type { CampaignCrew,CampaignState,TurnContext } from '../types';
 import { activeCell,sameCell } from './geometry';
-import { pieceAt } from './occupancy';
+import { isRendezvousPassenger,isRendezvousPod,pieceAt } from './occupancy';
 import { awardPoints,emit,stableIds } from './context';
 
 export function safeTerrain(state:CampaignState,crew:CampaignCrew):boolean {
@@ -28,7 +28,7 @@ export function resolveCrewSafety(context:TurnContext):boolean {
     const solarHome=state.fixtures.some(f=>f.kind==='solar'&&f.charge===f.quota&&state.geometry.endpoints.some(e=>e.id===f.endpointId&&e.active&&sameCell(e.at,crew.at)));
     const relayHome=state.fixtures.some(f=>f.kind==='relay'&&f.active&&state.geometry.endpoints.some(e=>e.id===f.endpointId&&e.active&&sameCell(e.at,crew.at)));
     const home=!cargo&&(!actor||actor.kind==='rover')&&(solarHome||relayHome||stations.some(s=>sameCell(s.at,crew.at)||sameCell(doorCell(s.at.r,s.at.c,s.facing),crew.at)));
-    if(home&&activeCell(state.geometry,crew.at)){
+    if(home&&!isRendezvousPassenger(state,crew.id)&&activeCell(state.geometry,crew.at)){
       const before=structuredClone(crew);
       const carrier=[...state.pieces,...state.actors].find(c=>c.id===crew.carrierId);
       if(carrier&&'passengerIds'in carrier&&carrier.kind!=='tether'){
@@ -56,7 +56,7 @@ export function resolveCrewSafety(context:TurnContext):boolean {
         changed=true;
       }
       const piece=pieceAt(state,crew.at);
-      if(crew.carrierId===null&&piece?.kind==='pod'){
+      if(crew.carrierId===null&&piece?.kind==='pod'&&!isRendezvousPod(state,piece.id)){
         const before=structuredClone(crew);
         crew.carrierId=piece.id;
         piece.passengerIds.push(crew.id);

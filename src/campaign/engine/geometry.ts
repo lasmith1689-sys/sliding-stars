@@ -10,10 +10,36 @@ export function activeCell(geometry:GeometryDef,at:Pos):boolean {
 export function activeMask(geometry:GeometryDef):boolean[][] {return geometry.mask.map((row,r)=>row.map((_,c)=>activeCell(geometry,{r,c})));}
 export interface GravityRun {segmentId:string;cells:Pos[];refill:boolean}
 
+/** A missing footprint cell is empty space to fall through, never a new source.
+ * Keep authored chamber/portal boundaries and save definitions unchanged. */
+function fallLanes(geometry:GeometryDef):GeometryDef['gravitySegments'] {
+  const remaining=geometry.gravitySegments.map(s=>({...s,cells:[...s.cells]})),lanes:GeometryDef['gravitySegments']=[];
+  const sourced=(id:string)=>geometry.refillSources.some(s=>s.segmentId===id);
+  const crossesGap=(a:typeof remaining[number],b:typeof remaining[number])=>{
+    if(a.chamberId!==b.chamberId||a.direction!==b.direction||!sourced(a.id)||!sourced(b.id))return false;
+    const tail=a.cells.at(-1)!,head=b.cells[0]!,down=a.direction==='down';
+    if(down?tail.c!==head.c||head.r<=tail.r+1:tail.r!==head.r||head.c>=tail.c-1)return false;
+    for(let p=down?{r:tail.r+1,c:tail.c}:{r:tail.r,c:tail.c-1};down?p.r<head.r:p.c>head.c;p=down?{r:p.r+1,c:p.c}:{r:p.r,c:p.c-1}){
+      if(geometry.mask[p.r]?.[p.c])return false;
+    }
+    return true;
+  };
+  // Find upstream heads even if a saved definition lists its segments out of order.
+  while(remaining.length){
+    const start=remaining.findIndex(b=>!remaining.some(a=>a!==b&&crossesGap(a,b)));
+    const lane=remaining.splice(start,1)[0]!;
+    for(let next=remaining.findIndex(b=>crossesGap(lane,b));next>=0;next=remaining.findIndex(b=>crossesGap(lane,b))){lane.cells.push(...remaining.splice(next,1)[0]!.cells);}
+    lanes.push(lane);
+  }
+  return lanes;
+}
+
 /** Rebuild on every physics pass: geometry switches/activation cannot leave stale runs. */
 export function gravitySegments(state:Pick<CampaignState,'geometry'|'fixtures'|'pieces'>):GravityRun[] {
   const runs:GravityRun[]=[];
-  for(const segment of state.geometry.gravitySegments){
+  // Retired portal definitions retain their original independently supplied lanes.
+  const lanes=state.fixtures.some(f=>f.kind==='portal')?state.geometry.gravitySegments:fallLanes(state.geometry);
+  for(const segment of lanes){
     const sourced=state.geometry.refillSources.some(s=>s.segmentId===segment.id);
     let cells:Pos[]=[],refill=sourced;
     const flush=()=>{if(cells.length)runs.push({segmentId:segment.id,cells,refill});cells=[];};

@@ -1,64 +1,64 @@
 {
-    "levelId":  665,
-    "campaignVersion":  "2026.1",
-    "rulesVersion":  "campaign-1",
-    "initialHash":  "ba39721ea9a71a60",
-    "actions":  [
-                    {
-                        "type":  "swap",
-                        "from":  {
-                                     "r":  0,
-                                     "c":  1
-                                 },
-                        "to":  {
-                                   "r":  1,
-                                   "c":  1
-                               }
-                    },
-                    {
-                        "type":  "swap",
-                        "from":  {
-                                     "r":  1,
-                                     "c":  1
-                                 },
-                        "to":  {
-                                   "r":  1,
-                                   "c":  2
-                               }
-                    },
-                    {
-                        "type":  "swap",
-                        "from":  {
-                                     "r":  0,
-                                     "c":  1
-                                 },
-                        "to":  {
-                                   "r":  1,
-                                   "c":  1
-                               }
-                    },
-                    {
-                        "type":  "swap",
-                        "from":  {
-                                     "r":  0,
-                                     "c":  3
-                                 },
-                        "to":  {
-                                   "r":  1,
-                                   "c":  3
-                               }
-                    },
-                    {
-                        "type":  "swap",
-                        "from":  {
-                                     "r":  2,
-                                     "c":  1
-                                 },
-                        "to":  {
-                                   "r":  3,
-                                   "c":  1
-                               }
-                    }
-                ],
-    "finalHash":  "cf5a4b3011cf399d"
+  "levelId": 665,
+  "campaignVersion": "2026.1",
+  "rulesVersion": "campaign-1",
+  "initialHash": "ba39721ea9a71a60",
+  "actions": [
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 1
+      },
+      "to": {
+        "r": 1,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 1,
+        "c": 1
+      },
+      "to": {
+        "r": 1,
+        "c": 2
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 1
+      },
+      "to": {
+        "r": 1,
+        "c": 1
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 3
+      },
+      "to": {
+        "r": 1,
+        "c": 3
+      }
+    },
+    {
+      "type": "swap",
+      "from": {
+        "r": 2,
+        "c": 1
+      },
+      "to": {
+        "r": 3,
+        "c": 1
+      }
+    }
+  ],
+  "finalHash": "cf5a4b3011cf399d"
 }

@@ -21,23 +21,28 @@ import type {SaveStorage,LevelProvider} from './session/types';
 import {flushStorage} from './session/nativeStorage';
 import {openBetaMissionPicker} from './ui/releaseNavigation';
 import {BETA_CAMPAIGN_IDS} from './campaign/catalog';
+import {showStation} from './render/station';
+import {canExpand} from './meta/station';
+import {initTweens} from './render/tween';
+import {campaignVip} from './meta/campaignVips';
 export async function bootCampaign(game:CampaignSession,storage:SaveStorage,provider:LevelProvider,previewMode:boolean){
  const state=()=>{const active=game.save.active;if(active.kind!=='campaign')throw Error('Wrong session');return active.state;};
  const {app,layers}=await createApp(),background=new Container();layers.board.addChild(background);addBackground(app,background,()=>game.save.preferences.reducedMotion||document.hidden);
- const original={w:app.screen.width,h:app.screen.height},textures=await loadTextures(app,160,true),board=new CampaignBoard(app,layers,textures,makeScene(state()),()=>game.save.preferences.reducedMotion||document.hidden);
- const animator=new CampaignAnimator(board,()=>game.save.preferences.reducedMotion);
+ const original={w:app.screen.width,h:app.screen.height},textures=await loadTextures(app,160,true),board=new CampaignBoard(app,layers,textures,makeScene(state()),()=>game.save.preferences.reducedMotion||document.hidden,id=>campaignVip(state().levelId,id));
+ initTweens(app);const animator=new CampaignAnimator(board,()=>game.save.preferences.reducedMotion);
  let presentation=0,audio:AudioContext|undefined,pointerId:number|null=null;
  let dragOrigin:{at:Pos;x:number;y:number;axis:'h'|'v'|null}|null=null;
  let completion:MissionCompletion|undefined;
- let nativeActive=true,pageActive=true;
+ let nativeActive=true,pageActive=true,homeOpen=false;
  const hintVisited=new Set([hintPositionKey(state())]);
- const checkCompletion=()=>completion?.update(String(state().levelId),state().status==='won',!game.locked&&!document.hidden&&nativeActive&&pageActive);
+ const checkCompletion=()=>completion?.update(String(state().levelId),state().status==='won',!homeOpen&&!game.locked&&!document.hidden&&nativeActive&&pageActive);
  const diagnostics=()=>{if(import.meta.env.DEV&&previewMode){const expected=makeScene(state()).entityPositions,rendered=board.renderedEntityPositions;
   app.canvas.dataset.campaignLayout=JSON.stringify(board.layout);app.canvas.dataset.campaignTurn=String(state().turn);app.canvas.dataset.campaignLocked=String(game.locked);
   app.canvas.dataset.campaignSynchronized=String(Object.keys(expected).length===Object.keys(rendered).length&&Object.entries(expected).every(([id,p])=>rendered[id]&&Math.abs(rendered[id]!.r-p.r)<.00001&&Math.abs(rendered[id]!.c-p.c)<.00001));
  }};
  const sound=()=>{if(!game.save.preferences.sound||document.hidden)return;try{audio??=new AudioContext();void audio.resume();const osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.value=state().status==='won'?784:523;gain.gain.setValueAtTime(.03,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.2);osc.connect(gain);gain.connect(audio.destination);osc.start();osc.stop(audio.currentTime+.22);}catch{/* Sound remains optional. */}};
  const dispatch=async(action:CampaignAction)=>{
+  if(homeOpen)return;
   const result=game.dispatch(action);if(!result)return;if(!result.accepted){shell.preview(result.rejection??'Try another neighboring tile.');return;}
   hintVisited.add(hintPositionKey(result.state));if(hintVisited.size>32)hintVisited.delete(hintVisited.values().next().value!);
   const token=++presentation;shell.selected=null;input.cancel();board.hint(null);shell.preview(null);shell.update();diagnostics();
@@ -45,8 +50,8 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
   catch(error){game.saveError=error instanceof Error?error.message:'Could not save progress';shell.preview('Progress is still here. Keep the app open and retry saving from Guide.');}
   finally{if(token===presentation){board.sync(makeScene(state()));game.finishPresentation();shell.update();diagnostics();sound();checkCompletion();}}
  };
- const input=new CampaignInput(state,()=>game.locked||shell.dialog.open,a=>{void dispatch(a);});
- const recover=()=>{presentation++;input.cancel();pointerId=null;dragOrigin=null;animator.cancel();board.sync(makeScene(state()));game.finishPresentation();shell.update();diagnostics();checkCompletion();};
+ const input=new CampaignInput(state,()=>homeOpen||game.locked||shell.dialog.open,a=>{void dispatch(a);});
+ const recover=()=>{presentation++;input.cancel();pointerId=null;dragOrigin=null;animator.cancel();board.sync(makeScene(state()));game.finishPresentation();if(homeOpen)game.locked=true;shell.update();diagnostics();checkCompletion();};
  let hintRequest=0;
  const hint=()=>{void showHint();};
  const showHint=async()=>{
@@ -62,6 +67,16 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  };
  const saveNow=async()=>{const result=game.persist();if(!result.ok)throw Error(result.error);await flushStorage(storage);game.saveError=null;shell.update();};
  const saveInBackground=()=>{void flushStorage(storage).catch(error=>{game.saveError=String(error);shell.update();});};
+ const visitHome=async()=>{
+  if(game.locked||homeOpen)return;
+  input.cancel();pointerId=null;dragOrigin=null;board.resetDrag(0);board.hint(null);shell.selected=null;
+  homeOpen=true;game.locked=true;shell.root.hidden=true;shell.update();checkCompletion();
+  try{
+   const module=await showStation(app,layers,textures,game.save.station,{expansion:canExpand(game.save.station),reducedMotion:game.save.preferences.reducedMotion});
+   game.finishPresentation();if(module)game.buildStationModule(module);game.locked=true;await flushStorage(storage);
+  }catch(error){game.saveError=error instanceof Error?error.message:'Could not save station';}
+  finally{homeOpen=false;shell.root.hidden=false;game.finishPresentation();shell.update();diagnostics();checkCompletion();}
+ };
  const reloadSavedMission=async()=>{
   try{await flushStorage(storage);location.reload();}
   catch{
@@ -72,7 +87,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
   }
  };
  const shell=new CampaignShell(game,{
-  hint,retrySave:saveNow,restart:()=>{recover();game.restart();hintVisited.clear();hintVisited.add(hintPositionKey(state()));saveInBackground();board.relayout(makeScene(state()));shell.layout(board.layout);shell.preview('A fresh route. Tap two neighbors or drag.');shell.update();diagnostics();},
+  hint,home:()=>{void visitHome();},retrySave:saveNow,restart:()=>{recover();game.restart();hintVisited.clear();hintVisited.add(hintPositionKey(state()));saveInBackground();board.relayout(makeScene(state()));shell.layout(board.layout);shell.preview('A fresh route. Tap two neighbors or drag.');shell.update();diagnostics();},
   next:async()=>{await saveNow();if(!previewMode&&BETA_CAMPAIGN_IDS.every(id=>game.save.completedCampaignIds.includes(id))){
    shell.panel('All 1,000 missions complete!', '<img class="result-portrait" src="/optimized/pepper.webp" alt="Pepper"><p>You brought a little more life to the stars. Your progress is saved. Choose any constellation to play again.</p><button class="primary wide" id="all-missions">Replay a mission</button>',()=>shell.dialog.querySelector('#all-missions')!.addEventListener('click',()=>{shell.dialog.close();openBetaMissionPicker(game.save,storage,()=>{void reloadSavedMission();});}));return;
   }await advanceToCampaign(game.save,storage,provider);await reloadSavedMission();},
@@ -88,7 +103,7 @@ export async function bootCampaign(game:CampaignSession,storage:SaveStorage,prov
  const point=(event:PointerEvent)=>{const rect=canvas.getBoundingClientRect();return {x:(event.clientX-rect.left)*app.screen.width/rect.width,y:(event.clientY-rect.top)*app.screen.height/rect.height};};
  const cell=(event:PointerEvent)=>{const p=point(event);return board.cellAt(p.x,p.y);};
  const frame=(event:PointerEvent)=>{const p=point(event),start=dragOrigin!,dx=p.x-start.x,dy=p.y-start.y;if(!start.axis&&Math.max(Math.abs(dx),Math.abs(dy))>=6)start.axis=Math.abs(dx)>=Math.abs(dy)?'h':'v';return dragFrame(state(),start.at,start.axis==='v'?0:dx,start.axis==='h'?0:dy,board.layout.tileSize+board.layout.gap);};
- canvas.addEventListener('pointerdown',event=>{if(pointerId!==null||game.locked||shell.dialog.open||state().status!=='playing')return;const at=cell(event);if(!at)return;event.preventDefault();if(shell.selected){void dispatch({type:'booster',kind:shell.selected,at});return;}pointerId=event.pointerId;dragOrigin={at,...point(event),axis:null};canvas.setPointerCapture(event.pointerId);input.start(at);board.hint(null);board.resetDrag(0);const piece=state().pieces.find(p=>p.at.r===at.r&&p.at.c===at.c);shell.preview(piece?.kind==='pod'?(piece.passengerIds.length?'Guest aboard! Fly one square per move to a station entrance.':'Empty shuttle: this swap must make a match. Match four tiles carrying a guest to launch an occupied shuttle.'):null);});
+ canvas.addEventListener('pointerdown',event=>{if(pointerId!==null||homeOpen||game.locked||shell.dialog.open||state().status!=='playing')return;const at=cell(event);if(!at)return;event.preventDefault();if(shell.selected){void dispatch({type:'booster',kind:shell.selected,at});return;}pointerId=event.pointerId;dragOrigin={at,...point(event),axis:null};canvas.setPointerCapture(event.pointerId);input.start(at);board.hint(null);board.resetDrag(0);const piece=state().pieces.find(p=>p.at.r===at.r&&p.at.c===at.c);shell.preview(piece?.kind==='pod'?(piece.passengerIds.length?'Guest aboard! Fly one square per move to a station entrance.':'Empty shuttle: this swap must make a match. Match four tiles carrying a guest to launch an occupied shuttle.'):null);});
  canvas.addEventListener('pointermove',event=>{if(pointerId!==event.pointerId||!dragOrigin)return;event.preventDefault();const f=frame(event);if(f.movable)board.drag(f.from,f.to,f.progress);else board.resetDrag(0);});
  canvas.addEventListener('pointerup',event=>{if(pointerId!==event.pointerId||!dragOrigin)return;const f=frame(event),p=point(event),tap=Math.hypot(p.x-dragOrigin.x,p.y-dragOrigin.y)<6;pointerId=null;dragOrigin=null;
   if(tap){board.resetDrag();input.end(cell(event));}

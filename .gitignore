@@ -6,3 +6,7 @@ dist/
 _deploy_*.bat
 .playwright-mcp/
 release/
+validation/*.log
+validation/physics-audit-*.json
+validation/mechanics-review/
+validation/campaign/traces/

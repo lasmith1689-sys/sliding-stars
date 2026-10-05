@@ -4,7 +4,7 @@ import { campaignModules,selectModules } from '../mechanics/registry';
 import { loadCampaignLevel } from './load';
 import { createContext,emit } from './context';
 import { activeCell } from './geometry';
-import { actorAt,blocksTerrain,crewAt,pieceAt } from './occupancy';
+import { actorAt,blocksTerrain,crewAt,isRendezvousPod,pieceAt } from './occupancy';
 import { isLegalSwap,isLegalTranslation,legalActions } from './actions';
 import { moveActor,movePieces } from './transport';
 import { settle } from './settle';
@@ -32,6 +32,7 @@ function applyBooster(context:TurnContext,action:Extract<CampaignAction,{type:'b
   if(piece.kind!=='pod'&&piece.kind!=='station'&&(piece.kind!=='tile'||piece.tier<4)){
     return false;
   }
+  if(piece.kind==='pod'&&isRendezvousPod(state,piece.id))return false;
   let changed=false;
   for(const crew of state.crew){
     if(crew.status!=='active'||crew.carrierId!==null||safeTerrain(state,crew)||

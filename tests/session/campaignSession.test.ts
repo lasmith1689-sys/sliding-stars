@@ -22,12 +22,12 @@ it('charges accepted boosters once without ticking a turn and preserves rejected
  expect(session.dispatch({type:'booster',kind:'demo',at:{r:0,c:3}})).toBeNull();if(session.save.active.kind==='campaign')expect(session.save.active.state.turn).toBe(0);
 });
 it('banked victory remains exactly once across reload and presentation completion',()=>{
- const {store,session}=setup(true);expect(session.dispatch(win)?.state.status).toBe('won');expect(session.save.completedCampaignIds).toEqual([1]);expect(session.save.rewardLedger).toHaveLength(1);
+ const {store,session}=setup(true);expect(session.dispatch(win)?.state.status).toBe('won');expect(session.save.completedCampaignIds).toEqual([1]);expect(session.save.rewardLedger).toHaveLength(2);
  const saved=structuredClone(session.save),reloaded=new CampaignSession(loadSave(store)!,store);reloaded.finishPresentation();expect(reloaded.dispatch(win)).toBeNull();expect(reloaded.save).toEqual(saved);
 });
 it('quota failure keeps committed in-memory victory locked and exposes retryable warning',()=>{
  const {store,session}=setup(true);store.failKey=SAVE_KEY;expect(session.dispatch(win)?.state.status).toBe('won');expect(session.saveError).toBeTruthy();expect(session.locked).toBe(true);
- session.finishPresentation();expect(session.dispatch(win)).toBeNull();expect(session.save.rewardLedger).toHaveLength(1);store.failKey=null;expect(session.persist().ok).toBe(true);expect(session.saveError).toBeNull();expect(loadSave(store)).toEqual(session.save);
+ session.finishPresentation();expect(session.dispatch(win)).toBeNull();expect(session.save.rewardLedger).toHaveLength(2);store.failKey=null;expect(session.persist().ok).toBe(true);expect(session.saveError).toBeNull();expect(loadSave(store)).toEqual(session.save);
 });
 it('records failed attempts and assisted victories separately',()=>{
  const {session}=setup();if(session.save.active.kind!=='campaign')throw Error();session.save.active.state.level.moveLimit=1;session.save.active.state.movesRemaining=1;
@@ -48,5 +48,5 @@ it('rejects an unowned booster and commits purchases without double spending dur
 });
 it('a replayed victory does not add a second completion reward claim',()=>{
  const {session}=setup(true);session.dispatch(win);session.finishPresentation();session.restart();session.dispatch(win);
- expect(session.save.completedCampaignIds).toEqual([1]);expect(session.save.rewardLedger).toHaveLength(1);
+ expect(session.save.completedCampaignIds).toEqual([1]);expect(session.save.rewardLedger).toHaveLength(2);
 });

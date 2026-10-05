@@ -2,7 +2,7 @@ import {POINTS} from '../../core/game';
 import type {Pos} from '../../core/types';
 import type {CampaignActor,CampaignLevel,CampaignState,MechanicModule,ValidationIssue} from '../types';
 import {activeCell,sameCell} from '../engine/geometry';
-import {actorAt,blocksActor,pieceAt} from '../engine/occupancy';
+import {actorAt,blocksActor,isRendezvousPassenger,pieceAt} from '../engine/occupancy';
 import {canMoveActor,moveActor} from '../engine/transport';
 import {safeTerrain,setNeed} from '../engine/needs';
 import {awardPoints,emit,stableIds} from '../engine/context';
@@ -77,7 +77,7 @@ export const docks:MechanicModule={id:'docks',validate:validateDocks,stepActor(c
  for(const dock of stableIds(state.actors.filter((a):a is Dock=>a.kind==='dock'))){
   if(!dockCanBoard(state,dock))continue;
   for(const crew of stableIds(state.crew.filter(c=>c.status==='active'&&sameCell(c.at,dock.entrance)))){
-   if(runtime.boardedIds.includes(crew.id)||!safeTerrain(state,crew))continue;
+   if(runtime.boardedIds.includes(crew.id)||isRendezvousPassenger(state,crew.id)||!safeTerrain(state,crew))continue;
    const carrier=crew.carrierId===null?null:state.pieces.find(p=>p.id===crew.carrierId&&p.kind==='pod');
    if(crew.carrierId!==null&&!carrier)continue;
    const before=structuredClone(crew),beforeRuntime=structuredClone(runtime),group=context.events.length;

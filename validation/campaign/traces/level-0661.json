@@ -1,20 +1,20 @@
 {
-    "levelId":  661,
-    "campaignVersion":  "2026.1",
-    "rulesVersion":  "campaign-1",
-    "initialHash":  "73ded15ae6b68538",
-    "actions":  [
-                    {
-                        "type":  "swap",
-                        "from":  {
-                                     "r":  0,
-                                     "c":  1
-                                 },
-                        "to":  {
-                                   "r":  1,
-                                   "c":  1
-                               }
-                    }
-                ],
-    "finalHash":  "776b7686124f7bed"
+  "levelId": 661,
+  "campaignVersion": "2026.1",
+  "rulesVersion": "campaign-1",
+  "initialHash": "73ded15ae6b68538",
+  "actions": [
+    {
+      "type": "swap",
+      "from": {
+        "r": 0,
+        "c": 1
+      },
+      "to": {
+        "r": 1,
+        "c": 1
+      }
+    }
+  ],
+  "finalHash": "776b7686124f7bed"
 }

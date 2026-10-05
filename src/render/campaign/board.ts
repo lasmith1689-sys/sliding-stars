@@ -67,7 +67,7 @@ export class CampaignBoard {
   const sprite=this.exitSprites.get(id),assetId:CampaignAssetId=`exit-${state}`,texture=this.textures.campaign?.[assetId];
   if(sprite&&texture)sprite.texture=texture;
  }
- constructor(private app:Application,layers:Layers,private textures:TextureSet,scene:CampaignScene,private reducedMotion:()=>boolean=()=>false){
+ constructor(private app:Application,layers:Layers,private textures:TextureSet,scene:CampaignScene,private reducedMotion:()=>boolean=()=>false,private vipPortrait:(id:string|null)=>string|null=id=>id){
   this.scene=scene;this.layout=computeCampaignLayout(scene.geometry.rows,scene.geometry.cols,app.screen.width,app.screen.height);
   layers.board.addChild(this.frame);layers.actors.addChild(this.content);layers.fx.addChild(this.routes,this.currentArrows,this.hints);this.sync(scene);
   app.ticker.add(ticker=>{this.breathTime+=ticker.deltaMS;if(this.moving)return;
@@ -327,7 +327,7 @@ export class CampaignBoard {
    this.rendezvousPads.set(id,addRendezvousPad(node,index+1,rendezvousPadState(scene,index),ts));
   }
   const active=scene.crew.filter(c=>c.status==='active');
-  for(const crew of active){const riding=scene.actors.some(a=>a.id===crew.carrierId&&a.kind==='moonwhale'),aboard=scene.pieces.some(p=>p.id===crew.carrierId&&(p.kind==='pod'||p.kind==='cargo')&&p.passengerIds.includes(crew.id)),group=active.filter(c=>c.at.r===crew.at.r&&c.at.c===crew.at.c),i=group.indexOf(crew),node=this.entity(crew.id,crew.at,(crew.vipId?this.textures.station.vips[crew.vipId]:undefined)??this.textures.survivor,riding?.43:group.length>1?.43:.65);
+  for(const crew of active){const riding=scene.actors.some(a=>a.id===crew.carrierId&&a.kind==='moonwhale'),aboard=scene.pieces.some(p=>p.id===crew.carrierId&&(p.kind==='pod'||p.kind==='cargo')&&p.passengerIds.includes(crew.id)),group=active.filter(c=>c.at.r===crew.at.r&&c.at.c===crew.at.c),i=group.indexOf(crew),node=this.entity(crew.id,crew.at,(this.vipPortrait(crew.vipId)?this.textures.station.vips[this.vipPortrait(crew.vipId)!]:undefined)??this.textures.survivor,riding?.43:group.length>1?.43:.65);
    const body=node.children[0]!;body.x=(Math.min(i,2)-(Math.min(group.length,3)-1)/2)*ts*.22;body.visible=i<3;
    if(riding)body.y=-ts*.35;
    if(scene.shelterCrewIds.includes(crew.id))this.shelterBadge(node,shelterVisualState(crew),ts);

@@ -109,29 +109,32 @@ export function fallPieces(context:TurnContext):boolean {
 }
 export function refillPieces(context:TurnContext):boolean {
   let changed=false;const {state}=context,rng=createRng(state.rngState);
-  for(const run of gravitySegments(state))for(const at of [...run.cells].reverse()){
-    if(pieceAt(state,at))continue;
+  for(const run of gravitySegments(state)){
+   const segment=state.geometry.gravitySegments.find(s=>s.id===run.segmentId)!;
+   const legacyLocal=state.fixtures.some(f=>f.kind==='portal')&&!state.fixtures.some(f=>f.kind==='gravity-switch'&&f.chamberId===segment.chamberId);
+   // Supply travels from the upstream edge. A stranded rider/actor can leave
+   // a vacancy downstream, but cannot authorize terrain to materialize there.
+   const vacant:Pos[]=[];for(const at of run.cells){if(pieceAt(state,at)){if(legacyLocal)continue;break;}vacant.push(at);}
+   for(const at of vacant.reverse()){
     if(!run.refill){
       if(state.fixtures.some(f=>f.kind==='portal'&&f.segmentId===run.segmentId))continue;
       throw new CampaignContentError(`no refill source reaches ${at.r},${at.c}`);
     }
-    const segment=state.geometry.gravitySegments.find(s=>s.id===run.segmentId)!;
-    const switched=state.fixtures.some(f=>f.kind==='gravity-switch'&&f.chamberId===segment.chamberId);
-    if(switched&&run.cells.slice(0,run.cells.findIndex(p=>sameCell(p,at))).some(p=>pieceAt(state,p)))continue;
     let tier:Tier=rng.next()<0.75?1:2;
     const piece:CampaignPiece={id:allocateId(state),kind:'tile',at:{...at},tier};state.pieces.push(piece);
     const clashes=()=>terrainMatches(state).some(m=>m.cells.some(p=>sameCell(p,at)));
     if(clashes())piece.tier=tier===1?2:1;
     if(clashes())piece.tier=3;
-    if(switched){
-      // Spawn at the live upstream edge, then travel through the cleared run.
-      // Existing station/blocker splits retain the kernel's independently fed runs.
+    if(legacyLocal)emit(context,{type:'spawn',piece});
+    else{
+      // Every refill enters its live upstream edge, including ordinary gravity.
       const head=run.cells[0]!,source=state.geometry.refillSources.find(s=>s.segmentId===run.segmentId)!;
       const destination={...at};piece.at={...head};const group=context.events.length;
       emit(context,{type:'spawn',piece},group);
       emit(context,{type:'refill',pieceId:piece.id,sourceId:source.id,segmentId:segment.id,from:segment.direction==='down'?{r:head.r-1,c:head.c}:{r:head.r,c:head.c+1},to:head,direction:segment.direction},group);
       if(!sameCell(head,destination))movePiece(context,piece.id,destination);
-    }else emit(context,{type:'spawn',piece});changed=true;
+    }changed=true;
+   }
   }
   state.rngState=rng.state();return changed;
 }

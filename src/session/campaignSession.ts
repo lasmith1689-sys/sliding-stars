@@ -2,7 +2,8 @@ import type { CampaignAction,CampaignLevel,CampaignTransition } from '../campaig
 import { transition } from '../campaign/engine/turn';
 import { loadCampaignLevel } from '../campaign/engine/load';
 import { earn,useCharge,buy,canBuy,emptyWallet } from '../meta/wallet';
-import { emptyStation } from '../meta/station';
+import { buildModule,emptyStation,recordWin } from '../meta/station';
+import {campaignRewardClaim,homeRewardClaim,rescuedOutcome} from './campaignRewards';
 import type { PowerUpKind } from '../core/powerups';
 import { parseSaveV2,saveSnapshot } from './storage';
 import type { SaveV2,SaveStorage,SaveResult } from './types';
@@ -33,8 +34,13 @@ export class CampaignSession {
   if(result.state.status==='lost')attempts.failed++;
   if(result.state.status==='won'){
    if(!next.completedCampaignIds.includes(result.state.levelId))next.completedCampaignIds.push(result.state.levelId);
-   const claim=`${result.state.campaignVersion}:${result.state.levelId}:${result.state.level.rewardId}`;
+   const claim=campaignRewardClaim(result.state.level),homeClaim=homeRewardClaim(claim);
    if(!next.rewardLedger.includes(claim))next.rewardLedger.push(claim);
+   if(!next.rewardLedger.includes(homeClaim)){
+    const rescued=rescuedOutcome(result.state);
+    next.station=recordWin(next.station,rescued.vips,rescued.count);
+    next.rewardLedger.push(homeClaim);
+   }
    if(next.activeAssisted&&!next.assistedCompletions.includes(result.state.levelId))next.assistedCompletions.push(result.state.levelId);
   }
   next.revision++;this.save=next;this.persist();return result;
@@ -60,5 +66,10 @@ export class CampaignSession {
  purchase(kind:PowerUpKind):boolean {
   if(this.locked||!canBuy(this.save.wallet,kind))return false;
   this.save.wallet=buy(this.save.wallet,kind);this.save.revision++;this.persist();return true;
+ }
+ buildStationModule(id:string):boolean {
+  if(this.locked)return false;
+  const built=buildModule(this.save.station,id);if(built.state===this.save.station)return false;
+  this.save.station=built.state;this.save.revision++;this.persist();return true;
  }
 }
