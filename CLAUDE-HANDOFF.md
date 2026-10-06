@@ -12,7 +12,7 @@ The permanent-hole repair remains: compatible same-chamber fall lanes connect ac
 
 A narrow boot recovery peels minimum practice jelly coatings only for playing no-failure campaign boards with no non-consumable legal move. It refuses exposed pending matches; preserves crew, station, points, turn, RNG, objectives, supplies, wallet and progress; and leaves already playable saves unchanged. Do not broaden into reset or arbitrary board mutation.
 
-October 6 checks: **1,176 tests / 126 files**, typecheck, build and Capacitor sync passed. All **1,000 corrected proof routes** replay, with **3,983 verified advice positions**, depth 1-12, mean 3.983. Independent final review checked every station at every move, all advice, recovery edges and fixed-station coaching; no findings remained. Production: **873 modules / 61 chunks / zero development campaign modules**, **208 offline files**.
+October 6 checks: **1,181 tests / 126 files**, typecheck, build and Capacitor sync passed. All **1,000 corrected proof routes** replay, with **3,984 verified advice positions**, depth 1-12, mean 3.984. Independent final review checked every station at every move, all advice, recovery edges and fixed-station coaching; no findings remained. Production: **873 modules / 61 chunks / zero development campaign modules**, **208 offline files**.
 
 Real local 390-by-844 browser play completed Mission 3 in seven moves, verified original astronaut gravity through the hole, and rejected both station drag directions without spending a move. Physical iPhone touch, save/reopen and offline checks still need device playtesting.
 
@@ -24,15 +24,15 @@ Preserve original parent game and original Netlify production. Work only in slid
 
 Stations never move. Empty shuttles require a terrain match; occupied shuttles have one-cell flight. Cargo cannot be dragged freely. Do not restore portals, rafts, arrows, mandatory Continue or false safety labels.
 
-The user also reported empty MATCH ships feeling dead. An optional question about adjacent-crew pickup versus only creating crew-carrying ships is pending. Neither option has been authorized by an answer. Preserve existing empty-shuttle rules meanwhile. Reconstructed screenshot routes cannot be guaranteed for the actual save because RNG/passenger IDs are unknown.
+Empty MATCH ships now load the unowned crew on their displaced terrain in a valid matching swap. Boarding shares the swap animation group, preserves exact passenger identity and reservations, and makes the ship eligible for ordinary occupied flight. Both UI input directions work. Nonmatching pickup still rejects without spending a move. Five new regressions and an independent review cover oxygen/shelter clocks, stacked guests, animation and save continuation. The repair revised five more proof records without changing opening hashes.
 
 Public source, next-preview publishing, public TestFlight and App Store release are authorized. Continue routine work without stopping at phase boundaries. Do not expand into new teams, broad redesign or research without applicable authorization.
 
 ## Generation and advice
 
-Keep strict validation, immutable release definitions and save compatibility. Future generator version is **terrain-replay-6**. Generation has a finite 360-attempt cap, deterministic mutation, replay acceptance and duplicate rejection. Never fabricate a win or substitute exhausted candidates.
+Keep strict validation, immutable release definitions and save compatibility. Future generator version is **terrain-replay-7**. Generation has a finite 360-attempt cap, deterministic mutation, replay acceptance and duplicate rejection. Never fabricate a win or substitute exhausted candidates.
 
-The 3,983 advice positions were rebuilt against anchored stations. detourHint remains bounded at 128 transitions / 180 ms, depth four, beam five with cancellation/yielding. It consumes no supply and never mutates live state. The offline solver can complete verified teaching prefixes; it remains outside production. Shelter, jelly and reactor routes retain causal teaching coverage. Retired portal 379's only teaching route required moving a station; historical parsing survives, but that obsolete teaching claim was removed. Live campaign portals remain disabled.
+The 3,984 advice positions were rebuilt against anchored stations. detourHint remains bounded at 128 transitions / 180 ms, depth four, beam five with cancellation/yielding. It consumes no supply and never mutates live state. The offline solver can complete verified teaching prefixes; it remains outside production. Shelter, jelly and reactor routes retain causal teaching coverage. Retired portal 379's only teaching route required moving a station; historical parsing survives, but that obsolete teaching claim was removed. Live campaign portals remain disabled.
 
 Completed introductions: magnets 376-380, relays 841-845, tethers 881-885, repair 921-925 and rendezvous 961-965. Each has strict state, objectives, art, animation and five teaching missions. Practice uses introduced mechanics only.
 
@@ -44,7 +44,7 @@ Completed introductions: magnets 376-380, relays 841-845, tethers 881-885, repai
 - Web `https://next--sliding-stars.netlify.app/`, site `bc41ec96-bbad-4e56-b0d1-c612c54db038`. Use **--alias next**, never --prod.
 - `[ship]` uploads iOS and captures native gameplay. `[asc] [prepare]` retries metadata without rebuilding. Documentation-only pushes use `[skip ci]`.
 
-The fixed-station web/native delivery is in progress. Previous **1.0 (17.1)** is VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING internally, but does not contain this correction. Its app commit is `fef92d8`, native run `37313575860`, web deploy `6ac39eca91789b6cb5fdcf1b`. Use the current QC for the new exact commit, deployment and processed build when verified.
+Fixed stations are live in web deployment 6ac557a762dff6d515f511e0 and internal TestFlight **18.1**, confirmed VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING by Apple. Public app commit 0579d12, native run 37525523526. The subsequent empty-shuttle pickup repair is locally verified and being delivered; use current QC for its exact new deployment/commit/build. Do not claim 18.1 contains that later boarding repair.
 
 ## Apple constraints
 

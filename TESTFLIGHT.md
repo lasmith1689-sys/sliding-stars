@@ -4,7 +4,7 @@ This app uses the account owner's existing Ai-sky distribution method: macos-26/
 
 ## 1. Register the app
 
-The app is registered and all four GitHub secrets are configured. Do not repeat registration or create duplicate keys. October 6 correction: stations now stay fixed. The new native release is pending exact-build verification; 17.1 is the previous release and still allows station movement. See [current QC](docs/2026-10-06-RELEASE-QC.md). See [release instructions](docs/app-store/RELEASE.md) for sharing status and remaining Apple fields.
+The app is registered and all four GitHub secrets are configured. Do not repeat registration or create duplicate keys. October 6 correction: stations now stay fixed. 18.1 is processed and available internally with fixed stations. The subsequent empty-shuttle boarding update is pending exact-build verification. See [current QC](docs/2026-10-06-RELEASE-QC.md). See [release instructions](docs/app-store/RELEASE.md) for sharing status and remaining Apple fields.
 
 1. Open [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list).
 2. Click **+ → App IDs → Continue → App → Continue**.

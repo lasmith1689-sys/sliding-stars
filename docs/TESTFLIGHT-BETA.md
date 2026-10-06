@@ -2,9 +2,9 @@
 
 Stations are fixed. Dragging a station or swapping another tile into it spends no move; bring crew to its glowing side entrance. Existing saved stations remain in their saved positions. Permanent holes stay empty while terrain and passengers above fall through the lane before upstream refill.
 
-The improved app has **1,000 immutable missions and 25 planned nonportal mechanics**. All **1,176 tests / 126 files** passed, and all 1,000 winning routes replay under fixed-station rules. Advice contains 3,983 verified positions; proof depth is 1-12, mean 3.983. Typecheck, build, offline packaging, bundle boundary and iOS sync passed. Independent review checked every station across every proof move and all hints, with no remaining findings.
+The improved app has **1,000 immutable missions and 25 planned nonportal mechanics**. All **1,181 tests / 126 files** passed, and all 1,000 winning routes replay under fixed-station rules. Advice contains 3,984 verified positions; proof depth is 1-12, mean 3.984. Typecheck, build, offline packaging, bundle boundary and iOS sync passed. Independent review checked every station across every proof move and all hints, with no remaining findings.
 
-Real local phone-size browser play completed Mission 3 in seven moves with the station anchored. Automated wins establish solvability, not every possible detour or subjective balance. Physical iPhone touch, save/reopen and offline checks still need device playtesting. The empty MATCH shuttle complaint remains a separate unresolved usability question; existing match requirements are preserved pending the user's optional choice.
+Real local phone-size browser play completed Mission 3 in seven moves with the station anchored. Automated wins establish solvability, not every possible detour or subjective balance. Physical iPhone touch, save/reopen and offline checks still need device playtesting. The empty MATCH shuttle now picks up the crew on the tile it swaps with when that move makes a terrain match. Nonmatching swaps still spend no move.
 
 The new fixed-station release is being delivered. **1.0 (17.1)** is the previous processed internal build and does not contain this correction. See [current QC](2026-10-06-RELEASE-QC.md), [fixed station audit](2026-10-06-FIXED-STATIONS-AUDIT.md) and [release instructions](app-store/RELEASE.md) for the exact new web/native status.
 

@@ -4,7 +4,7 @@ Continue in the current Codex thread; a new thread is not required.
 
 App: **Sliding Stars** · bundle ID `com.lasmith1689.SlidingStars` · Apple app ID `6817778193`.
 
-The October 6 fixed-station native release is being delivered. **1.0 (17.1)** remains the previous internally available build and still permits station movement. Read the [current checkpoint](../2026-10-06-RELEASE-QC.md) for the exact newly processed build and its own native screenshot. Do not claim upload alone means processing or testing availability.
+The October 6 fixed-station **1.0 (18.1)** is processed, eligible for App Store distribution and available internally. A subsequent empty-shuttle boarding update is being delivered. Read the [current checkpoint](../2026-10-06-RELEASE-QC.md) for that exact newly processed build and its own native screenshot. Upload, processing, internal availability and public approval are separate states.
 
 The public TestFlight invitation is [testflight.apple.com/join/7w5XTsgG](https://testflight.apple.com/join/7w5XTsgG). It does **not yet offer public installation**. Review contact is blank, external testing has not been submitted, and the owner must publish the App Privacy questionnaire before store submission. The exact current states are [recorded here](release-status-2026-10-05.json).
 

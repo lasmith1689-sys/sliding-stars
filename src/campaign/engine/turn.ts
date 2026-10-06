@@ -2,9 +2,9 @@ import type { CampaignAction,CampaignLevel,CampaignState,CampaignTransition,Mech
 import { parseCampaignAction,parseCampaignEvents,parseCampaignState } from '../schema';
 import { campaignModules,selectModules } from '../mechanics/registry';
 import { loadCampaignLevel } from './load';
-import { createContext,emit } from './context';
+import { createContext,emit,stableIds } from './context';
 import { activeCell } from './geometry';
-import { actorAt,blocksTerrain,crewAt,isRendezvousPod,pieceAt } from './occupancy';
+import { actorAt,blocksTerrain,crewAt,isRendezvousPassenger,isRendezvousPod,pieceAt,pieceRiders } from './occupancy';
 import { isLegalSwap,isLegalTranslation,legalActions } from './actions';
 import { moveActor,movePieces } from './transport';
 import { settle } from './settle';
@@ -13,6 +13,22 @@ import { creditGoals,goalsComplete,setStatus } from './goals';
 import { ensureLegalActions,shuffleTerrain } from './recovery';
 import { hashState } from './hash';
 import { stepActors } from './actors';
+
+/** A valid matching swap loads the empty shuttle from its displaced crew tile.
+ * Keep boarding in the swap's animation group: the guest meets the arriving
+ * shuttle instead of visibly riding away with the outgoing terrain first. */
+function pickupShuttleSwap(context:TurnContext,firstId:string,secondId:string,group:number):void {
+  const {state}=context,pieces=state.pieces.filter(p=>p.id===firstId||p.id===secondId);
+  const pod=pieces.find(p=>p.kind==='pod'),tile=pieces.find(p=>p.kind==='tile');
+  if(!pod||!tile||pod.passengerIds.length||isRendezvousPod(state,pod.id))return;
+  for(const crew of stableIds(pieceRiders(state,tile.id))){
+    if(crew.carrierId!==null||isRendezvousPassenger(state,crew.id))continue;
+    const before=structuredClone(crew);
+    crew.at={...pod.at};crew.carrierId=pod.id;pod.passengerIds.push(crew.id);
+    emit(context,{type:'transfer',crewId:crew.id,fromCarrierId:null,toCarrierId:pod.id,from:before.at,to:crew.at},group);
+    emit(context,{type:'crew',crewId:crew.id,before,after:crew},group);
+  }
+}
 
 function applyBooster(context:TurnContext,action:Extract<CampaignAction,{type:'booster'}>):boolean {
   const {state}=context;
@@ -64,7 +80,9 @@ function runTransition(state:CampaignState,input:CampaignAction,available:readon
   // 1. Apply one player action. Rejections return the exact original snapshot.
   if(action.type==='swap'){
     const from=pieceAt(draft,action.from)!,to=pieceAt(draft,action.to)!;
+    const group=context.events.length;
     if(!movePieces(context,[{id:from.id,to:action.to},{id:to.id,to:action.from}]))return reject('Destination is occupied');
+    pickupShuttleSwap(context,from.id,to.id,group);
   }else if(action.type==='translate'){
     const actor=draft.actors.find(a=>a.id===action.actorId)!;
     if(!moveActor(context,actor.id,{r:actor.at.r+action.dr,c:actor.at.c+action.dc}))return reject('Carrier destination is blocked');
