@@ -40,14 +40,14 @@
     {
       "type": "swap",
       "from": {
-        "r": 3,
-        "c": 3
+        "r": 4,
+        "c": 1
       },
       "to": {
         "r": 4,
-        "c": 3
+        "c": 2
       }
     }
   ],
-  "finalHash": "4910cb9e174287ee"
+  "finalHash": "a8ea7f595ce34345"
 }

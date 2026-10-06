@@ -89,10 +89,12 @@ test('a survivor grounded on a fixed station door cell is rescued', () => {
   expect(res.state.status).toBe('won');
 });
 
-test('a Space Station (dome) can be slid even though it makes no match', () => {
+test('a Space Station stays fixed for swaps in both directions', () => {
   const s = make({ tiles: ['4D3', '132', '245'] });
-  const res = trySwap(s, { r: 0, c: 1 }, { r: 0, c: 0 }); // slide the station left
-  expect(res.legal).toBe(true);
-  // the station moved to (0,0); shuffles only permute tiles, so a dome never moves on its own
-  expect(res.state.grid[0]![0]).toMatchObject({ kind: 'dome' });
+  const before=structuredClone(s);
+  for(const [from,to] of [[{r:0,c:1},{r:0,c:0}],[{r:0,c:0},{r:0,c:1}]]){
+    const res=trySwap(s,from!,to!);
+    expect(res.legal).toBe(false);expect(res.events).toEqual([{type:'swapRejected',a:from,b:to}]);expect(res.state).toBe(s);
+  }
+  expect(s).toEqual(before);
 });

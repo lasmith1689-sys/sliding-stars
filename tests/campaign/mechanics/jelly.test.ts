@@ -9,9 +9,16 @@ import {hashState} from '../../../src/campaign/engine/hash';
 import {jelly,jellyEligible,nextJellyTarget,peelPracticeCoating,practiceRouteDisconnected} from '../../../src/campaign/mechanics/jelly';
 import {createContext} from '../../../src/campaign/engine/context';
 import {terrainMatches} from '../../../src/campaign/engine/matches';
+import {ensureLegalActions} from '../../../src/campaign/engine/recovery';
+import {settle} from '../../../src/campaign/engine/settle';
+import {selectModules} from '../../../src/campaign/mechanics/registry';
+import {createCampaignSave} from '../../../src/session/campaignSession';
+import {recoverPracticeMoves} from '../../../src/session/campaignRecovery';
 import {validateCandidate} from '../../../src/campaign/validator';
 import {lessonTeachingActions} from '../../../src/campaign/content/lesson-solutions.dev';
 import {priorJellyWarningState} from '../fixtures/jelly-prior-warning';
+
+const swap=(from:[number,number],to:[number,number])=>({type:'swap' as const,from:{r:from[0],c:from[1]},to:{r:to[0],c:to[1]}});
 
 it('coats once on the third accepted turn, with a serialized next-cell preview',()=>{
  const level=getAuthoredLessonLevel(711)!;
@@ -36,20 +43,25 @@ it('does not advance the spread on rejected actions or boosters',()=>{
  if(booster.accepted)expect(booster.state.mechanics.find(m=>m.id==='jelly')).toEqual(state.mechanics.find(m=>m.id==='jelly'));
 });
 
-it('clears an adjacent coating on the third turn and cancels that turn spread',()=>{
+it('clears an adjacent coating when spreading is due, cancels that spread, and completes the lesson',()=>{
  const level=getAuthoredLessonLevel(714)!;
- let state=loadCampaignLevel(level);
- for(const action of lessonTeachingActions[714]!.slice(0,2)){const result=transition(state,action);expect(result.accepted).toBe(true);state=result.state;}
- expect(state.mechanics.find(m=>m.id==='jelly')).toMatchObject({turnsUntilSpread:1});
- expect(canSlide(state,{r:4,c:2})).toBe(false);
- const third=transition(state,lessonTeachingActions[714]![2]!);expect(third.accepted).toBe(true);
- expect(third.events.some(e=>e.type==='jelly'&&e.phase==='cleared'&&e.at?.r===4&&e.at.c===2)).toBe(true);
- expect(third.events.filter(e=>e.type==='jelly'&&e.phase==='coated')).toHaveLength(0);
- const fixture=third.state.fixtures.find(f=>f.kind==='jelly')!;
- expect(fixture.coatedCells).toHaveLength(0);
- expect(canSlide(third.state,{r:4,c:2})).toBe(true);
- expect(third.state.status).toBe('playing');
- expect(transition(third.state,lessonTeachingActions[714]![3]!).state.status).toBe('won');
+ let state=loadCampaignLevel(level),cancelled=false;
+ const station=structuredClone(state.pieces.find(p=>p.kind==='station')!);
+ for(const action of lessonTeachingActions[714]!){
+  const due=state.mechanics.find(m=>m.id==='jelly')!.turnsUntilSpread===1;
+  const blocked=!canSlide(state,{r:4,c:2});
+  const result=transition(state,action);expect(result.accepted).toBe(true);
+  if(due&&result.events.some(e=>e.type==='jelly'&&e.phase==='cleared'&&e.at?.r===4&&e.at.c===2)){
+   expect(blocked).toBe(true);
+   expect(result.events.filter(e=>e.type==='jelly'&&e.phase==='coated')).toHaveLength(0);
+   expect(result.state.fixtures.find(f=>f.kind==='jelly')!.coatedCells).toHaveLength(0);
+   expect(canSlide(result.state,{r:4,c:2})).toBe(true);
+   expect(result.state.mechanics.find(m=>m.id==='jelly')).toMatchObject({turnsUntilSpread:3,cancelledThisTurn:true});
+   expect(result.state.status).toBe('playing');cancelled=true;
+  }
+  state=result.state;expect(state.pieces.find(p=>p.id===station.id)).toEqual(station);
+ }
+ expect(cancelled).toBe(true);expect(state.status).toBe('won');
 });
 
 it('suppresses a due third-turn coating when that turn clears a neighboring cell',()=>{
@@ -78,13 +90,17 @@ it('suppresses a due third-turn coating when that turn clears a neighboring cell
 
 it('resets a prior clear only at the next accepted ordinary-turn boundary',()=>{
  let state=loadCampaignLevel(getAuthoredLessonLevel(714)!);
- for(const action of lessonTeachingActions[714]!.slice(0,3))state=transition(state,action).state;
+ // This legal terrain prefix deliberately keeps the coating until its due turn.
+ for(const action of [swap([2,3],[3,3]),swap([1,1],[2,1]),swap([1,1],[2,1])]){
+  const result=transition(state,action);expect(result.accepted).toBe(true);state=result.state;
+ }
  expect(state.mechanics.find(m=>m.id==='jelly')).toMatchObject({cancelledThisTurn:true});
  const rejected=transition(state,{type:'swap',from:{r:99,c:99},to:{r:99,c:98}});
  expect(rejected.state).toBe(state);
  const booster=transition(state,{type:'booster',kind:'wormhole',at:{r:0,c:0}});
- if(booster.accepted)expect(booster.state.mechanics.find(m=>m.id==='jelly')).toMatchObject({cancelledThisTurn:true});
- const next=transition(state,lessonTeachingActions[714]![3]!);
+ expect(booster.accepted).toBe(true);
+ expect(booster.state.mechanics.find(m=>m.id==='jelly')).toMatchObject({turnsUntilSpread:3,cancelledThisTurn:true});
+ const next=transition(state,swap([1,1],[1,2]));
  expect(next.accepted).toBe(true);
  expect(next.state.mechanics.find(m=>m.id==='jelly')).toMatchObject({cancelledThisTurn:false});
 });
@@ -132,18 +148,27 @@ it('requires clearing the guided coating before using its tile, then spreads bef
 });
 
 it('makes a forecasted tall-board coating remove a formerly legal move before the alternate rescue path',()=>{
- let state=loadCampaignLevel(getAuthoredLessonLevel(713)!);
- for(const action of lessonTeachingActions[713]!.slice(0,2))state=transition(state,action).state;
- const target=state.fixtures.find(f=>f.kind==='jelly')!.preview!;
- const third=transition(state,lessonTeachingActions[713]![2]!);
- expect(third.state.status).toBe('playing');
- expect(third.events.some(e=>e.type==='jelly'&&e.phase==='coated'&&e.at?.r===target.r&&e.at.c===target.c)).toBe(true);
- const uncovered=structuredClone(third.state);uncovered.fixtures.find(f=>f.kind==='jelly')!.coatedCells=[];
- const open=legalActions(uncovered),blocked=legalActions(third.state);
- expect(open.some(action=>action.type==='swap'&&[action.from,action.to].some(p=>p.r===target.r&&p.c===target.c)&&
-  !blocked.some(other=>JSON.stringify(other)===JSON.stringify(action)))).toBe(true);
- state=third.state;for(const action of lessonTeachingActions[713]!.slice(3))state=transition(state,action).state;
- expect(state.status).toBe('won');
+ let state=loadCampaignLevel(getAuthoredLessonLevel(713)!),obstructed=false;
+ const station=structuredClone(state.pieces.find(p=>p.kind==='station')!);
+ for(const action of lessonTeachingActions[713]!){
+  const forecast=state.fixtures.find(f=>f.kind==='jelly')!.preview;
+  const result=transition(state,action);expect(result.accepted).toBe(true);
+  for(const event of result.events.filter(e=>e.type==='jelly'&&e.phase==='coated')){
+   if(event.type!=='jelly'||!event.at||result.state.status!=='playing')continue;
+   const target=event.at,uncovered=structuredClone(result.state);
+   uncovered.fixtures.find(f=>f.kind==='jelly')!.coatedCells=[];
+   const blocked=legalActions(result.state);
+   const lost=legalActions(uncovered).find(candidate=>candidate.type==='swap'&&[candidate.from,candidate.to].some(p=>p.r===target.r&&p.c===target.c)&&
+    !blocked.some(other=>JSON.stringify(other)===JSON.stringify(candidate)));
+   if(!lost)continue;
+   expect(target).toEqual(forecast);expect(canSlide(result.state,target)).toBe(false);
+   expect(transition(uncovered,lost).accepted).toBe(true);
+   const rejected=transition(result.state,lost);expect(rejected).toMatchObject({accepted:false,state:result.state,events:[]});
+   obstructed=true;
+  }
+  state=result.state;expect(state.pieces.find(p=>p.id===station.id)).toEqual(station);
+ }
+ expect(obstructed).toBe(true);expect(state.status).toBe('won');
 });
 
 it('never targets riders, specials, cargo, fixtures, exits or routes',()=>{
@@ -175,23 +200,26 @@ it('rejects a jelly coating over a crew tile before search',()=>{
  expect(validateCandidate(level).some(i=>i.message.includes('Jelly requires'))).toBe(true);
 });
 
-it('protects the historical forty-one-swap prefix before coatings sever the rescue route',()=>{
+it('stops the historical forty-one-swap prefix at its obsolete station input without changing the board',()=>{
  const original=parseCampaignLevel(JSON.parse(readFileSync(new URL('../fixtures/jelly-711-original.json',import.meta.url),'utf8')));
  const repeated:[number,number,number,number,number][]=[
   [3,3,4,3,1],[2,3,3,3,1],[1,3,2,3,10],[2,2,2,3,1],
   [2,1,2,2,1],[2,0,2,1,1],[2,0,3,0,3],[3,0,3,1,6],
   [3,0,4,0,3],[4,0,4,1,9],[4,1,4,2,3],[4,2,4,3,2],
  ];
- let state=loadCampaignLevel(original),practiceWaits=0;
- for(const [fromR,fromC,toR,toC,count] of repeated)for(let i=0;i<count;i++){
-  const result=transition(state,{type:'swap',from:{r:fromR,c:fromC},to:{r:toR,c:toC}});
-  expect(result.accepted).toBe(true);
-  practiceWaits+=result.events.filter(e=>e.type==='jelly'&&e.phase==='practice-waited').length;
-  state=parseCampaignState(JSON.parse(JSON.stringify(result.state)));
+ const actions=repeated.flatMap(([fromR,fromC,toR,toC,count])=>Array.from({length:count},()=>swap([fromR,fromC],[toR,toC])));
+ expect(actions).toHaveLength(41);
+ let state=loadCampaignLevel(original),accepted=0,rejectedAt:null|number=null;
+ const before=structuredClone(state),station=state.pieces.find(p=>p.kind==='station')!;
+ for(const action of actions){
+  const result=transition(state,action);
+  if(!result.accepted){
+   expect([action.from,action.to]).toContainEqual(station.at);
+   expect(result.state).toBe(state);expect(result.events).toEqual([]);rejectedAt=accepted+1;break;
+  }
+  accepted++;state=parseCampaignState(JSON.parse(JSON.stringify(result.state)));
  }
- expect(state.turn).toBe(41);
- expect(hashState(state)).toBe('293d7d2363c56bcb');
- expect(practiceWaits).toBeGreaterThan(0);
+ expect(accepted).toBe(0);expect(rejectedAt).toBe(1);expect(state).toEqual(before);expect(state.turn).toBe(0);
  expect(practiceRouteDisconnected(state)).toBe(false);
  expect(state.status).toBe('playing');
  expect(legalActions(state).length).toBeGreaterThan(0);
@@ -245,21 +273,25 @@ it('repairs the exact historical forty-one-turn saved practice state beyond ordi
  expect(hashState(saved.state)).toBe('60457b136cc44c7c');
  expect(state.fixtures.find(f=>f.kind==='jelly')?.preview).toBeNull();
  expect(practiceRouteDisconnected(state)).toBe(true);
- const next=transition(state,legalActions(state)[0]!);
+ expect(legalActions(state)).toEqual([]);
+ const station=structuredClone(state.pieces.find(p=>p.kind==='station')!);
+ const save=createCampaignSave(state.level);save.active={kind:'campaign',state,events:[]};
+ const repaired=recoverPracticeMoves(save);if(repaired.active.kind!=='campaign')throw Error('Expected campaign');
+ expect({...repaired.active.state,fixtures:state.fixtures}).toEqual(state);
+ expect(repaired.active.state.fixtures.find(f=>f.kind==='jelly')!.coatedCells).toHaveLength(5);
+ expect(legalActions(repaired.active.state).length).toBeGreaterThan(0);
+ const next=transition(repaired.active.state,legalActions(repaired.active.state)[0]!);
  expect(next.accepted).toBe(true);
  expect(next.events.filter(e=>e.type==='jelly'&&e.phase==='practice-assisted').length).toBeGreaterThan(3);
  expect(next.events.some((event,index)=>event.type==='merge'&&next.events.slice(0,index).some(prior=>prior.type==='jelly'&&prior.phase==='practice-assisted'))).toBe(true);
  let recovered=parseCampaignState(JSON.parse(JSON.stringify(next.state)));
  expect(practiceRouteDisconnected(recovered)).toBe(false);
  for(const action of [
-  {type:'swap' as const,from:{r:2,c:0},to:{r:2,c:1}},
-  {type:'swap' as const,from:{r:3,c:0},to:{r:3,c:1}},
-  {type:'swap' as const,from:{r:3,c:1},to:{r:3,c:2}},
-  {type:'swap' as const,from:{r:2,c:1},to:{r:2,c:2}},
- ]){const move=transition(recovered,action);expect(move.accepted).toBe(true);recovered=parseCampaignState(JSON.parse(JSON.stringify(move.state)));}
+  swap([2,0],[2,1]),swap([2,1],[3,1]),swap([1,0],[2,0]),swap([4,0],[4,1]),
+ ]){const move=transition(recovered,action);expect(move.accepted).toBe(true);recovered=parseCampaignState(JSON.parse(JSON.stringify(move.state)));expect(recovered.pieces.find(p=>p.id===station.id)).toEqual(station);}
  expect(recovered.status).toBe('won');
  expect(recovered.crew[0]?.status).toBe('housed');
- expect(hashState(recovered)).toBe('a773715a4b84d65d');
+ expect(hashState(recovered)).toBe('9a335819ce2408fa');
 });
 
 it('settles a line exposed only by practice peeling before saving the next boundary',()=>{
@@ -269,12 +301,18 @@ it('settles a line exposed only by practice peeling before saving the next bound
   if(piece.kind==='tile'&&piece.at.r===1&&piece.at.c<3)piece.tier=1;
  }
  expect(terrainMatches(state)).toHaveLength(0);
- const next=transition(state,legalActions(state)[0]!);
- expect(next.accepted).toBe(true);
- expect(next.events.some(e=>e.type==='jelly'&&e.phase==='practice-assisted')).toBe(true);
- expect(next.events.some(e=>e.type==='merge'&&e.cells.some(p=>p.r===1&&p.c<=2))).toBe(true);
- expect(terrainMatches(next.state)).toHaveLength(0);
- expect(parseCampaignState(JSON.parse(JSON.stringify(next.state)))).toEqual(next.state);
+ const save=createCampaignSave(state.level);save.active={kind:'campaign',state,events:[]};
+ expect(recoverPracticeMoves(save)).toBe(save);
+ const context=createContext(structuredClone(state)),modules=selectModules(state.level);
+ expect(ensureLegalActions(context)).toBe(true);
+ expect(terrainMatches(context.state).some(match=>match.cells.filter(p=>p.r===1&&p.c<=2).length===3)).toBe(true);
+ settle(context,modules);for(const module of modules)module.snapshot?.(context);
+ expect(context.events.some(e=>e.type==='jelly'&&e.phase==='practice-assisted')).toBe(true);
+ expect(context.events.some(e=>e.type==='merge'&&e.cells.some(p=>p.r===1&&p.c<=2))).toBe(true);
+ expect(terrainMatches(context.state)).toHaveLength(0);
+ expect(context.state.turn).toBe(41);
+ expect(context.state.pieces.filter(p=>p.kind==='station')).toEqual(state.pieces.filter(p=>p.kind==='station'));
+ expect(parseCampaignState(JSON.parse(JSON.stringify(context.state)))).toEqual(context.state);
 });
 
 it('replays the historical reauthored adverse prefix until prevention changes its next legal move',()=>{

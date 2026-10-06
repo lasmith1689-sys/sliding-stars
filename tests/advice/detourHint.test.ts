@@ -13,3 +13,8 @@ it('returns no stale advice after input cancels the request',async()=>{
  const state=loadCampaignLevel(await getCampaignLevel(1));
  expect(await detourHint(state,new Set(),()=>true)).toBeNull();
 });
+it.each([{maxTransitions:0,maxMilliseconds:180},{maxTransitions:128,maxMilliseconds:0}])('returns no advice when its bounded budget is exhausted (%j)',async limits=>{
+ const state=loadCampaignLevel(await getCampaignLevel(3)),before=JSON.stringify(state);
+ expect(await detourHint(state,new Set(),()=>false,limits)).toBeNull();
+ expect(JSON.stringify(state)).toBe(before);
+});

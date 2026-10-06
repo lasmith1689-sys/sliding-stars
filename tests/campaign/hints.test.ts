@@ -5,6 +5,7 @@ import {transition} from '../../src/campaign/engine/turn';
 import {authoredLessonLevels} from '../../src/campaign/lessons';
 import {lessonSolutionTraces} from '../../src/campaign/content/lesson-solutions.dev';
 import {hashState} from '../../src/campaign/engine/hash';
+import {detourHint} from '../../src/advice/detourHint';
 
 it('suggests a winning move on short rescue lessons without altering state',()=>{
  const traces=lessonSolutionTraces.filter(trace=>trace.actions.length===1).slice(0,12);
@@ -37,7 +38,9 @@ it.each([16,56,225,471,711,750,950])('fallback advice makes useful progress to v
  const {getCampaignLevel}=await import('../../src/campaign/catalog');let state=loadCampaignLevel(await getCampaignLevel(id));
  const visited=new Set([hintPositionKey(state)]);
  for(let i=0;i<12&&state.status==='playing';i++){
-  const hint=campaignHint(state,visited);expect(hint).not.toBeNull();const result=transition(state,hint!);expect(result.accepted).toBe(true);
+  // Hold the transition budget fixed; concurrent test workers must not choose a
+  // different search path merely because they share the responsiveness deadline.
+  const hint=await detourHint(state,visited,()=>false,{maxTransitions:128,maxMilliseconds:10000});expect(hint).not.toBeNull();const result=transition(state,hint!);expect(result.accepted).toBe(true);
   state=result.state;visited.add(hintPositionKey(state));
  }
  expect(state.status).toBe('won');

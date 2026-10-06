@@ -94,18 +94,18 @@ describe('ported legacy mechanics',()=>{
   expect(transition(state,{type:'booster',kind:'demo',at}).accepted).toBe(false);
  });
  it('empty rovers board colocated free crew, carry once, and retire after delivery',()=>{
-  const level=getAuthoredLessonLevel(31)!;level.actors[0]={id:'rover',kind:'rover',at:{r:3,c:0},routeId:null,routeIndex:0,passengerIds:[]};level.crew[0]!.carrierId=null;
-  const state=loadCampaignLevel(level),result=transition(state,{type:'swap',from:{r:3,c:2},to:{r:3,c:3}});
-  expect(result.accepted).toBe(true);expect(result.events.some(e=>e.type==='transfer'&&e.toCarrierId==='rover')).toBe(true);
+  const level=getAuthoredLessonLevel(31)!;level.actors[0]={id:'rover',kind:'rover',at:{r:3,c:1},routeId:null,routeIndex:0,passengerIds:[]};level.crew[0]!.at={r:3,c:1};level.crew[0]!.carrierId=null;
+  const state=loadCampaignLevel(level),station=structuredClone(state.pieces.find(p=>p.kind==='station')!),result=transition(state,mergeSwap);
+  expect(result.accepted,result.rejection).toBe(true);expect(result.events.some(e=>e.type==='merge')).toBe(true);expect(result.events.some(e=>e.type==='transfer'&&e.toCarrierId==='rover')).toBe(true);
   expect(result.events.filter(e=>e.type==='move'&&e.entityId==='rover')).toHaveLength(1);
-  expect(result.state.status).toBe('won');expect(result.state.actors).toEqual([]);expect(result.state.mechanics).toEqual([{id:'rovers',arrivedIds:['rover']}]);
+  expect(result.state.status).toBe('won');expect(result.state.crew[0]).toMatchObject({at:{r:3,c:2},status:'housed'});expect(result.state.pieces.find(p=>p.id===station.id)).toEqual(station);expect(result.state.actors).toEqual([]);expect(result.state.mechanics).toEqual([{id:'rovers',arrivedIds:['rover']}]);
  });
  it('a blocked rover route waits without overwriting cargo, passengers, or taking a later extra step',()=>{
   const level=getAuthoredLessonLevel(32)!;
   const destination=level.pieces.find(p=>p.at.r===3&&p.at.c===0)!;
   level.pieces=level.pieces.map(p=>p.id===destination.id?{id:p.id,at:p.at,kind:'pod',passengerIds:[]}:p);
-  const result=transition(loadCampaignLevel(level),{type:'swap',from:{r:3,c:2},to:{r:3,c:3}});
-  expect(result.accepted).toBe(true);expect(result.state.actors[0]!.at).toEqual({r:2,c:0});expect(result.state.crew[0]!.at).toEqual({r:2,c:0});
+  const result=transition(loadCampaignLevel(level),{type:'swap',from:{r:1,c:3},to:{r:2,c:3}});
+  expect(result.accepted,result.rejection).toBe(true);expect(result.events.some(e=>e.type==='merge')).toBe(true);expect(result.state.actors[0]!.at).toEqual({r:2,c:0});expect(result.state.crew[0]!.at).toEqual({r:2,c:0});
   expect(result.state.pieces.find(p=>p.id===destination.id)).toMatchObject({kind:'pod',at:{r:3,c:0}});
   expect(result.events.filter(e=>e.type==='move'&&e.entityId==='rover')).toEqual([]);
  });

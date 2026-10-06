@@ -5,6 +5,7 @@ import { loadCampaignLevel } from './engine/load';
 import { transition } from './engine/turn';
 import { validateCandidate } from './validator';
 import { doorCell } from '../core/dome';
+import {parseCampaignState} from './schema';
 export interface SearchLimits {maxNodes:number;maxDepth:number;maxMilliseconds:number}
 export type SolveResult={status:'solved';trace:SolutionTrace}|{status:'timeout'|'exhausted';explored:number};
 
@@ -44,12 +45,12 @@ class Frontier {
  * Time checks surround synchronous engine calls; a single call cannot be preempted.
  * Every cutoff (including depth) is timeout/unresolved, never an unsolvability proof.
  */
-export function solveCampaign(level:CampaignLevel,limits:SearchLimits):SolveResult {
+function searchCampaign(level:CampaignLevel,limits:SearchLimits,initialState?:CampaignState):SolveResult {
   for(const [name,value] of Object.entries(limits))if(!Number.isSafeInteger(value)||value<0)throw new Error(`Invalid search limit ${name}`);
   for(const name of ['maxNodes','maxDepth','maxMilliseconds'] as const)if(limits[name]===undefined)throw new Error(`Missing search limit ${name}`);
   const started=performance.now(),expired=()=>performance.now()-started>=limits.maxMilliseconds;
   const issues=validateCandidate(level);if(issues.length)throw new Error(issues.map(i=>i.message).join('; '));
-  const initial=loadCampaignLevel(level),initialHash=hashState(initial);
+  const initial=initialState??loadCampaignLevel(level),initialHash=hashState(initial);
   let explored=0,order=0,depthCutoff=false;
   const timeout=():SolveResult=>({status:'timeout',explored});
   const solved=(node:Node):SolveResult=>({status:'solved',trace:{levelId:level.id,campaignVersion:level.campaignVersion,rulesVersion:level.rulesVersion,initialHash,actions:node.actions,finalHash:node.hash}});
@@ -82,3 +83,6 @@ export function solveCampaign(level:CampaignLevel,limits:SearchLimits):SolveResu
   }
   return {status:depthCutoff?'timeout':'exhausted',explored};
 }
+export function solveCampaign(level:CampaignLevel,limits:SearchLimits):SolveResult {return searchCampaign(level,limits);}
+/** Offline completion of a validated teaching prefix; the live client never imports this solver. */
+export function solveCampaignState(state:CampaignState,limits:SearchLimits):SolveResult {return searchCampaign(state.level,limits,parseCampaignState(state));}

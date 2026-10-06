@@ -57,7 +57,7 @@ it('receiver holes receive no ordinary spawn and preserve coverage through inact
  refillPieces(c);expect(c.state.pieces.every(p=>p.at.c!==2)).toBe(true);
  c.state.pieces.push({id:'receive',kind:'tile',tier:3,at:{r:0,c:2}});fallPieces(c);expect(c.state.pieces.find(p=>p.id==='receive')!.at).toEqual({r:0,c:2});
 });
-it.each([376,377,378,379,380])('lesson %s has real transport, preserves save/reload, and is causal',id=>{
+it.each([376,377,378,380])('retired lesson %s has real transport, preserves save/reload, and is causal',id=>{
  const level=getAuthoredLessonLevel(id)!,disabled=createCampaignEngine(campaignModules.map(m=>m.id==='portals'?{...m,beforeRefill:undefined}:m));
  let s=loadCampaignLevel(level),without=disabled.loadCampaignLevel(level),transfers=0;
  expect(s.status).toBe('playing');
@@ -68,6 +68,18 @@ it.each([376,377,378,379,380])('lesson %s has real transport, preserves save/rel
   s=r.state;const no=disabled.transition(without,a);if(no.accepted)without=no.state;
  }
  expect(s.status).toBe('won');expect(transfers).toBeGreaterThan(0);expect(without.status).not.toBe('won');
+});
+it('keeps the station fixed in retired 379 instead of advertising its obsolete station-teleport route',()=>{
+ const state=loadCampaignLevel(getAuthoredLessonLevel(379)!);
+ expect(lessonTeachingActions[379]).toBeUndefined();
+ const result=transition(state,{type:'swap',from:{r:2,c:1},to:{r:2,c:0}});
+ expect(result.accepted).toBe(false);expect(result.state).toBe(state);
+ const context=createContext(state),station=state.pieces.find(p=>p.kind==='station')!;
+ // A station saved on IN also remains anchored when the historical portal hook runs.
+ state.pieces=state.pieces.filter(p=>p.at.r!==2||p.at.c!==0);station.at={r:2,c:0};
+ state.pieces=state.pieces.filter(p=>p.at.r!==0||p.at.c!==5);
+ expect(module().beforeRefill!(context)).toBe(false);expect(station.at).toEqual({r:2,c:0});
+ expect(context.events.some(e=>e.type==='portal'&&e.phase==='transferred'&&e.pieceId===station.id)).toBe(false);
 });
 it('once-per-piece persists across later environment settling; next accepted transition resets it',()=>{
  const engine=createCampaignEngine(campaignModules.map(m=>m.id==='portals'?{...m,environment(c){const p=c.state.pieces.find(p=>p.kind==='pod');if(!p||!c.state.transportedThisTurn.includes(p.id))return;const displaced=c.state.pieces.find(p=>p.at.r===2&&p.at.c===0);if(displaced)displaced.at={...p.at};p.at={r:2,c:0};for(const crew of c.state.crew.filter(q=>q.carrierId===p.id))crew.at={...p.at};}}:m));

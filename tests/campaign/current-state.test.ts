@@ -5,8 +5,6 @@ import {parseCampaignLevel,parseCampaignState} from '../../src/campaign/schema';
 import type {CampaignState,GeometryDef} from '../../src/campaign/types';
 import {currents,currentMoves} from '../../src/campaign/mechanics/currents';
 import {createContext} from '../../src/campaign/engine/context';
-import {transition} from '../../src/campaign/engine/turn';
-import {lessonTeachingActions} from '../../src/campaign/content/lesson-solutions.dev';
 import {createCampaignSave} from '../../src/session/campaignSession';
 import {readSave,SAVE_KEY,BACKUP_KEY} from '../../src/session/storage';
 import {MemoryStorage} from '../session/fixtures/legacy';
@@ -36,9 +34,12 @@ it.each(['reverse','relocate'] as const)('rejects a valid cycle that would %s th
  const state=twoLaneState();state.geometry.routes[0]!.cells=kind==='reverse'?[...state.geometry.routes[0]!.cells].reverse():[{r:1,c:0},{r:1,c:1},{r:2,c:1},{r:2,c:0}];
  expect(()=>parseCampaignState(state)).toThrow(/current.*authored/i);
 });
-it('restores a real station-blocked turn and does not rerun authored station exclusions against the runtime',()=>{
- let state=loadCampaignLevel(getAuthoredLessonLevel(280)!);
- for(const action of lessonTeachingActions[280]!.slice(0,2))state=transition(state,action).state;
+it('restores a runtime station blockage without reapplying authored opening station exclusions',()=>{
+ const state=loadCampaignLevel(getAuthoredLessonLevel(280)!),authored=structuredClone(state.level),fixed=structuredClone(state.pieces.find(p=>p.kind==='station')!);
+ const index=state.pieces.findIndex(p=>p.at.r===2&&p.at.c===1),piece=state.pieces[index]!;expect(piece.kind).toBe('tile');
+ // A station formed on the lane retains its authored piece ID; existing stations stay anchored.
+ state.pieces[index]={id:piece.id,at:piece.at,kind:'station',facing:'left'};state.turn=1;
+ expect(parseCampaignLevel(state.level)).toEqual(authored);expect(state.pieces.find(p=>p.id===fixed.id)).toEqual(fixed);
  const restored=parseCampaignState(JSON.parse(JSON.stringify(state)));expect(restored).toEqual(state);
  const route=restored.geometry.routes.find(r=>r.id==='current-0')!;expect(currentMoves(restored,route)).toBeNull();
  const context=createContext(restored);currents.environment!(context);expect(context.state).toEqual(state);expect(context.events).toHaveLength(1);expect(context.events[0]).toMatchObject({type:'current',phase:'waiting'});

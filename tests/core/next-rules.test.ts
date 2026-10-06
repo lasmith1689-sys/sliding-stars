@@ -18,11 +18,10 @@ test('a hint never asks the player to swap a frozen tile', () => {
   expect(s).toEqual(before);
 });
 
-test('a board with a movable station is not dead', () => {
+test('a station cannot supply free moves or misleading hints on a dead legacy board', () => {
   const s = make(['D231','2312','3123','1231']);
-  expect(hasLegalMove(s)).toBe(true);
-  const hint = findHint(s)!;
-  expect(trySwap(s, ...hint).legal).toBe(true);
+  expect(hasLegalMove(s)).toBe(false);
+  expect(findHint(s)).toBeNull();
 });
 
 test('wormhole preserves frozen terrain and carries astronauts with their tiles', () => {

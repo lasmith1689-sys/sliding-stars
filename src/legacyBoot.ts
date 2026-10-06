@@ -1,4 +1,4 @@
-﻿import {Container,Graphics} from 'pixi.js';
+import {Container,Graphics} from 'pixi.js';
 import {createApp} from './render/app';
 import {addBackground,drawBoardFrame} from './render/background';
 import {loadTextures} from './render/textures';
@@ -118,7 +118,7 @@ export async function bootLegacy(game:LegacySession,storage:SaveStorage,provider
  render();game.persist();
  cancelDrag=attachDrag(app,view,()=>game.data.board,(a,b)=>{
   const result=game.swap(a,b);
-  if(!result){view.syncFrom(game.data.board);shell.toast('Join three matching tiles, or slide a pod or station.');}
+  if(!result){view.syncFrom(game.data.board);shell.toast('Join three matching tiles, or slide a pod. Stations stay fixed.');}
   void play(result);
  },()=>game.mode!=='playing'||game.selected!==null,preview);
  app.stage.on('pointerdown',clearHint);

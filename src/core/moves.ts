@@ -2,10 +2,11 @@ import { findMatches } from './match';
 import type { BoardState, Pos } from './types';
 
 export function canSlide(s: BoardState, p: Pos): boolean {
-  return !!s.mask[p.r]?.[p.c] && !!s.grid[p.r]?.[p.c] && !s.overlays[p.r]?.[p.c];
+  const piece=s.grid[p.r]?.[p.c];
+  return !!s.mask[p.r]?.[p.c] && !!piece && piece.kind!=='dome' && !s.overlays[p.r]?.[p.c];
 }
 
-/** Shared, side-effect-free legality check; rescue pieces can slide freely. */
+/** Shared legality check; stations stay fixed while legacy rescue pods can slide. */
 export function isLegalSwap(s: BoardState, a: Pos, b: Pos): boolean {
   if (s.status !== 'playing' || Math.abs(a.r-b.r)+Math.abs(a.c-b.c)!==1 || !canSlide(s,a) || !canSlide(s,b)) return false;
   const pa=s.grid[a.r]![a.c]!, pb=s.grid[b.r]![b.c]!;

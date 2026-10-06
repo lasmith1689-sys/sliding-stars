@@ -61,7 +61,7 @@ it('repeats deterministic seeded authoring and reports capped failures without s
  const a=generateCampaign(options),b=generateCampaign(options);
  expect(a).toEqual(b);expect(a.unresolved).toEqual([]);
  // Frozen release definitions belong to generator 4. Corrected gravity and
- // teaching routes legitimately change generator 5's candidate acceptance.
+ // fixed stations and teaching routes change generator 6's candidate acceptance.
  expect(a.levels.map(l=>l.id)).toEqual(Array.from({length:50},(_,i)=>i+1));
  for(const level of a.levels){expect(replayTrace(level,a.proofs.find(p=>p.levelId===level.id)!)).toEqual({won:true,issues:[]});if(beta.some(l=>l.id===level.id))expect(level).toEqual(levels[level.id-1]);}
  const capped=generateCampaign({...options,maxAttemptsPerLevel:1});
@@ -82,7 +82,9 @@ it('rotates templates and revisits a broad mix of learned mechanics throughout t
  const late=manifest.filter(entry=>entry.id>805&&entry.source==='generated');
  const thoughtful=late.filter(entry=>entry.id%3===0),recovery=late.filter(entry=>entry.id%3===1);
  expect(thoughtful.filter(entry=>entry.proofLength>=5).length/thoughtful.length).toBeGreaterThan(0.6);
- expect(recovery.filter(entry=>entry.proofLength<=3).length/recovery.length).toBeGreaterThan(0.8);
+ // Frozen breather boards may need one additional crew move to a fixed entrance.
+ // Four moves is the runtime generator's existing gentle difficulty threshold.
+ expect(recovery.filter(entry=>entry.proofLength<=4).length/recovery.length).toBeGreaterThan(0.8);
  const repeatedMasks=levels.slice(1).filter((level,index)=>JSON.stringify(level.geometry.mask)===JSON.stringify(levels[index]!.geometry.mask));
  expect(repeatedMasks.length/levels.length).toBeLessThan(0.05);
 });

@@ -2,11 +2,11 @@
 
 A cozy space rescue puzzle game for iPhone, starring Zena and Pepper.
 
-The current beta contains **1,000 proof-verified missions and all 25 planned mechanics**: 127 authored teaching boards plus 873 deterministic terrain variations. It includes changing board shapes, animated creatures, rescue-aware hints, chapter selection and two home stations with 24 residents. The October 5 audit corrected falling through permanent gaps, paired departures and home rewards, then replayed every mission. See the [mechanics audit](docs/2026-10-05-MECHANICS-AUDIT.md), [release checkpoint](docs/2026-10-05-RELEASE-QC.md) and [current handoff](CLAUDE-HANDOFF.md). Further human playtesting and deeper procedural variety remain useful follow-ups.
+The improved app contains **1,000 proof-verified missions and 25 planned mechanics**, with 127 authored boards, 873 deterministic terrain variants and two home stations with 24 residents. Stations now stay fixed; the original astronaut falls through permanent gaps before upstream refill. All **1,176 tests** and all **1,000 corrected routes** pass. See the [fixed station audit](docs/2026-10-06-FIXED-STATIONS-AUDIT.md), [current release checkpoint](docs/2026-10-06-RELEASE-QC.md) and [handoff](CLAUDE-HANDOFF.md). Empty-shuttle usability remains a separate unresolved question.
 
 ## Install on iPhone
 
-**Version 1.0 (17.1) is processed and available to internal TestFlight testers**, confirmed by Apple's API on October 5, 2026. All 1,164 tests passed locally and in the macOS release build. Open TestFlight on iPhone and update to 17.1, then retry Mission 3. Public beta and App Store review remain pending required Apple contact/privacy steps. GitHub Actions macos-26/Xcode 26 builds, cloud-signs and uploads releases. See [delivery instructions](TESTFLIGHT.md) and the [current release checkpoint](docs/2026-10-05-RELEASE-QC.md).
+The fixed-station iPhone build is being delivered through GitHub macos-26/Xcode 26. **1.0 (17.1)** is the previous internally available build and does not contain this correction. Check the [current checkpoint](docs/2026-10-06-RELEASE-QC.md) for the exact newly processed build. Public beta and App Store review still require Apple contact/privacy steps. See [delivery instructions](TESTFLIGHT.md).
 
 Bundle ID: `com.lasmith1689.SlidingStars`. The iOS app bundles game/art locally and stores saves through native Preferences. Safari progress and native-app progress are separate.
 

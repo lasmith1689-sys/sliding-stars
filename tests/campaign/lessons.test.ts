@@ -8,6 +8,7 @@ import { transition } from '../../src/campaign/engine/turn';
 import { hashState } from '../../src/campaign/engine/hash';
 import { legalActions } from '../../src/campaign/engine/actions';
 import {eligibleIds} from '../../src/campaign/references';
+import {baseLevel} from './fixtures/base';
 const obstacleLessons=[16,17,18,19,20,56,57,58,59,60,81,82,83,84,85];
 it.each(obstacleLessons)('lesson %s cannot rescue through the old two-slide bypass',id=>{
  let state=loadCampaignLevel(getAuthoredLessonLevel(id)!);
@@ -63,19 +64,21 @@ it('optional absent failure policy retains the same replay fingerprint after JSO
  expect(hashState(parseCampaignState(saved))).toBe(hashState(omitted));
 });
 it('intro demonstrations explicitly prevent failure; ordinary lessons still lose on an expired rescue need',()=>{
- const raw=getAuthoredLessonLevel(16)!;
+ const raw=baseLevel([['P',2,3,1],[2,3,1,2],[3,1,2,3],[1,2,3,'S']]);
+ raw.id=16;raw.chapter=1;raw.metadata.difficulty='teaching';raw.crew[0]!.at={r:3,c:0};
+ const delayPod=raw.pieces.find(p=>p.at.r===0&&p.at.c===0)!;
+ if(delayPod.kind!=='pod')throw Error('Expected delay shuttle');delayPod.passengerIds=['delay-guest'];
+ raw.crew.push({id:'delay-guest',at:{r:0,c:0},status:'active',carrierId:delayPod.id,rescueMoves:null,shelterMoves:null,shelterStarted:false,vipId:null});
  const level=parseCampaignLevel({...raw,metadata:{...raw.metadata,failurePolicy:'no-failure'}});
  let state=loadCampaignLevel(level);state.crew[0]!.rescueMoves=1;
- const station=state.pieces.find(p=>p.kind==='station')!;
- const slide={type:'swap' as const,from:station.at,to:{r:station.at.r-1,c:station.at.c}};
  for(let i=0;i<30;i++){
-   const result=transition(state,slide);
+   const result=transition(state,{type:'swap',from:{r:0,c:i%2},to:{r:0,c:1-i%2}});
    expect(result.accepted).toBe(true);state=result.state;
  }
  expect(state.status).toBe('playing');expect(state.crew[0]!.rescueMoves).toBe(1);
- const ordinaryLevel=getAuthoredLessonLevel(16)!;ordinaryLevel.id=17;delete ordinaryLevel.metadata.failurePolicy;
+ const ordinaryLevel=structuredClone(raw);ordinaryLevel.id=17;delete ordinaryLevel.metadata.failurePolicy;
  const ordinary=loadCampaignLevel(ordinaryLevel);ordinary.crew[0]!.rescueMoves=1;
- expect(transition(ordinary,slide).state.status).toBe('lost');
+ expect(transition(ordinary,{type:'swap',from:{r:0,c:0},to:{r:0,c:1}}).state.status).toBe('lost');
  expect(()=>parseCampaignLevel({...level,id:17})).toThrow(/demonstration/);
  expect(()=>parseCampaignLevel({...level,moveLimit:5})).toThrow(/moveLimit/);
 });
@@ -101,7 +104,7 @@ it.each(authoredLessonLevels)('level $id wins by its committed booster-free teac
   }
   state=result.state;
  }
- expect(state.status).toBe('won');expect(state.fixtures.filter(f=>f.kind!=='jelly')).toEqual(level.fixtures.filter(f=>f.kind==='portal'||f.kind==='magnet'||f.kind==='relay'||f.kind==='bridge'||f.kind==='garden'||f.kind==='gate'||f.kind==='lock'||f.kind==='gravity-switch'||f.kind==='solar'||f.kind==='phase-door').map(f=>f.kind==='relay'?{...f,active:true}:f.kind==='bridge'?{...f,hits:2,active:true}:f.kind==='garden'?{...f,stage:3}:f.kind==='gate'?{...f,open:true}:f.kind==='gravity-switch'?{...f,direction:state.mechanics.find(m=>m.id==='gravity')!.flippedIds.includes(f.id)?f.direction==='down'?'left':'down':f.direction}:f.kind==='solar'?{...f,charge:f.quota}:f.kind==='phase-door'?{...f,open:![802,804,805].includes(level.id),closingPending:[801,803,965].includes(level.id)}:f));
+ expect(state.status).toBe('won');expect(state.fixtures.filter(f=>f.kind!=='jelly')).toEqual(level.fixtures.filter(f=>f.kind==='portal'||f.kind==='magnet'||f.kind==='relay'||f.kind==='bridge'||f.kind==='garden'||f.kind==='gate'||f.kind==='lock'||f.kind==='gravity-switch'||f.kind==='solar'||f.kind==='phase-door').map(f=>f.kind==='relay'?{...f,active:true}:f.kind==='bridge'?{...f,hits:2,active:true}:f.kind==='garden'?{...f,stage:3}:f.kind==='gate'?{...f,open:true}:f.kind==='gravity-switch'?{...f,direction:state.mechanics.find(m=>m.id==='gravity')!.flippedIds.includes(f.id)?f.direction==='down'?'left':'down':f.direction}:f.kind==='solar'?{...f,charge:f.quota}:f.kind==='phase-door'?{...f,open:![802,803,804,805].includes(level.id),closingPending:[801,965].includes(level.id)}:f));
  for(const fixture of state.fixtures.filter(f=>f.kind==='jelly')){
   expect(level.fixtures.some(f=>f.id===fixture.id&&f.kind==='jelly')).toBe(true);
   if(fixture.preview)expect(state.pieces.some(p=>p.kind==='tile'&&p.at.r===fixture.preview!.r&&p.at.c===fixture.preview!.c)).toBe(true);

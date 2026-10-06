@@ -26,10 +26,14 @@ it('bounds a genuine looping carrier even though complete-state counters prevent
   level.actors=[{id:'rover',kind:'rover',at:{r:0,c:0},routeId:'loop',routeIndex:0,passengerIds:['crew']}];
   level.mechanics=[{id:'rovers',actorIds:['rover']}];
   level.geometry.routes=[{id:'loop',loop:true,cells:[{r:0,c:0},{r:0,c:1},{r:1,c:1},{r:1,c:0}]}];
+  const pod=level.pieces.find(p=>p.at.r===2&&p.at.c===0)!;
+  level.pieces[level.pieces.indexOf(pod)]={id:pod.id,at:pod.at,kind:'pod',passengerIds:['pilot']};
+  level.crew.push({id:'pilot',at:pod.at,status:'active',carrierId:pod.id,rescueMoves:null,shelterMoves:null,shelterStarted:false,vipId:null});
+  const station=structuredClone(level.pieces.find(p=>p.kind==='station')!);
   let state=loadCampaignLevel(level);const initial=hashState(state);
   for(let i=0;i<4;i++){
-    const step=transition(state,{type:'swap',from:{r:3,c:3},to:{r:2,c:3}});
-    expect(step.accepted).toBe(true);state=step.state;
+    const step=transition(state,{type:'swap',from:{r:2,c:i%2},to:{r:2,c:1-i%2}});
+    expect(step.accepted,step.rejection).toBe(true);expect(step.state.pieces.find(p=>p.id===station.id)).toEqual(station);state=step.state;
   }
   expect(state.actors[0]!.at).toEqual({r:0,c:0});expect(state.status).toBe('playing');
   expect(hashState(state)).not.toBe(initial);

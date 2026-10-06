@@ -10,17 +10,25 @@ import {CampaignInput} from '../../src/input/campaign';
 import {Container,Sprite,Texture} from 'pixi.js';
 import {CampaignBoard} from '../../src/render/campaign/board';
 import {pirateLevel} from '../campaign/fixtures/pirates';
+function pirateWithPilot(delivery=false){
+ const level=pirateLevel();
+ level.pieces[0]={id:'tile-0-0',kind:'pod',passengerIds:['pilot'],at:{r:0,c:0}};
+ const index=delivery?2:5,at=level.pieces[index]!.at;
+ level.pieces[index]={id:`tile-${at.r}-${at.c}`,kind:'station',facing:'left',at};
+ level.crew=[{id:'pilot',at:{r:0,c:0},status:'active',carrierId:'tile-0-0',rescueMoves:null,shelterMoves:null,shelterStarted:false,vipId:null}];
+ return level;
+}
 it('homeCrew-only victory with a live drone uses mission copy without claiming parcel return',()=>{
- const l=pirateLevel();l.pieces[0]={id:'tile-0-0',kind:'tile',tier:4,at:{r:0,c:0}};l.pieces[2]={id:'tile-0-2',kind:'station',facing:'left',at:{r:0,c:2}};l.crew=[{id:'guest',at:{r:0,c:0},status:'active',carrierId:null,rescueMoves:null,shelterMoves:null,shelterStarted:false,vipId:null}];l.goals=[{id:'home',type:'homeCrew',eligible:{type:'ids',ids:['guest']}}];
- const r=transition(loadCampaignLevel(l),{type:'swap',from:{r:0,c:2},to:{r:0,c:1}});expect(r.accepted).toBe(true);expect(r.state.status).toBe('won');expect(r.state.actors[0]).toMatchObject({kind:'pirate',routeIndex:1,distraction:2});expect(pirateCoachCopy(r.state)).toBe('Mission complete! Your goal is met.');
+ const l=pirateWithPilot(true);l.goals=[{id:'home',type:'homeCrew',eligible:{type:'ids',ids:['pilot']}}];
+ const r=transition(loadCampaignLevel(l),{type:'swap',from:{r:0,c:0},to:{r:0,c:1}});expect(r.accepted,r.rejection).toBe(true);expect(r.state.status).toBe('won');expect(r.state.crew[0]).toMatchObject({at:{r:0,c:1},status:'housed'});expect(r.state.pieces.find(p=>p.kind==='station')).toEqual(l.pieces[2]);expect(r.state.actors[0]).toMatchObject({kind:'pirate',routeIndex:1,distraction:2});expect(pirateCoachCopy(r.state)).toBe('Mission complete! Your goal is met.');
 });
 it('move-limit loss before the dock uses mission copy without claiming dock arrival',()=>{
- const l=pirateLevel();l.moveLimit=1;l.pieces[0]={id:'tile-0-0',kind:'station',facing:'left',at:{r:0,c:0}};
+ const l=pirateWithPilot();l.moveLimit=1;
  const r=transition(loadCampaignLevel(l),{type:'swap',from:{r:0,c:0},to:{r:0,c:1}});expect(r.accepted).toBe(true);expect(r.state.status).toBe('lost');expect(r.state.actors[0]).toMatchObject({kind:'pirate',routeIndex:1,distraction:2});expect(pirateCoachCopy(r.state)).toBe('Mission ended. Try again right away; your credits and owned supplies are kept.');
 });
 it('actual dock-arrival loss retains the accurate pirate outcome wording',()=>{
- const l=pirateLevel();l.geometry.routes[0]!.cells=[{r:2,c:1},{r:2,c:2}];l.actors[0]!.at={r:2,c:1};l.pieces[0]={id:'tile-0-0',kind:'station',facing:'left',at:{r:0,c:0}};
- const r=transition(loadCampaignLevel(l),{type:'swap',from:{r:0,c:0},to:{r:0,c:1}});expect(r.state.status).toBe('lost');expect(r.state.actors[0]!.at).toEqual({r:2,c:2});expect(pirateCoachCopy(r.state)).toBe('The drone reached its dock. Try again right away; your credits and owned supplies are kept.');
+ const l=pirateWithPilot();l.geometry.routes[0]!.cells=[{r:2,c:1},{r:2,c:2}];l.actors[0]!.at={r:2,c:1};
+ const r=transition(loadCampaignLevel(l),{type:'swap',from:{r:0,c:0},to:{r:0,c:1}});expect(r.accepted,r.rejection).toBe(true);expect(r.state.status).toBe('lost');expect(r.state.actors[0]!.at).toEqual({r:2,c:2});expect(pirateCoachCopy(r.state)).toBe('The drone reached its dock. Try again right away; your credits and owned supplies are kept.');
 });
 it('previews distraction and returned parcel using the real immutable transition',()=>{let s=loadCampaignLevel(getAuthoredLessonLevel(326)!);for(const [i,a] of lessonTeachingActions[326]!.entries()){if(a.type!=='swap')throw Error();const before=structuredClone(s),input=new CampaignInput(()=>s,()=>false,()=>{});input.start(a.from);expect(input.preview(a.to)?.message).toContain(i?'Return the parcel':'One distraction point');expect(s).toEqual(before);s=transition(s,a).state;}});
 it.each([326,327,328,329,330])('lesson %s projects one return to its dock and persists it through final scene',id=>{let s=loadCampaignLevel(getAuthoredLessonLevel(id)!);for(const a of lessonTeachingActions[id]!){const r=transition(s,a),projected=applySceneEvents(makeScene(s),r.events),actual=makeScene(r.state);expect(projected.entityPositions).toEqual(actual.entityPositions);expect(projected.actors).toEqual(actual.actors);expect(projected.returnedDockIds).toEqual(actual.returnedDockIds);s=r.state;}expect(makeScene(s).returnedDockIds).toEqual(['supply-dock']);expect(pirateCoachCopy(s)).toContain('Parcel returned');});

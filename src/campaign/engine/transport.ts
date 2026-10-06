@@ -35,7 +35,7 @@ export function canMovePieces(state:PieceLayers,moves:readonly {id:string;to:Pos
   if(ids.size!==moves.length||new Set(moves.map(m=>`${m.to.r},${m.to.c}`)).size!==moves.length)return false;
   const entries=moves.map(m=>({piece:state.pieces.find(p=>p.id===m.id),to:m.to,riders:pieceRiders(state,m.id)}));
   const riderIds=new Set(entries.flatMap(e=>e.riders.map(c=>c.id)));
-  if(entries.some(({piece,to,riders})=>!piece||!activeCell(state.geometry,to)||blocksTerrain(state,to)||
+  if(entries.some(({piece,to,riders})=>!piece||piece.kind==='station'||!activeCell(state.geometry,to)||blocksTerrain(state,to)||
     (pieceAt(state,to)&&!ids.has(pieceAt(state,to)!.id))||crewAt(state,to).some(c=>c.carrierId===null&&!riderIds.has(c.id))||
     (actorAt(state,to)&&(piece?.kind!=='tile'||riders.length>0))))return false;
   return true;
@@ -53,7 +53,7 @@ export function movePieces(context:TurnContext,moves:readonly {id:string;to:Pos}
 }
 export function canMovePiece(state:CampaignState,id:string,to:Pos):boolean {
   const piece=state.pieces.find(p=>p.id===id),riders=pieceRiders(state,id);
-  return !!piece&&activeCell(state.geometry,to)&&!blocksTerrain(state,to)&&
+  return !!piece&&piece.kind!=='station'&&activeCell(state.geometry,to)&&!blocksTerrain(state,to)&&
     (!pieceAt(state,to)||pieceAt(state,to)!.id===id)&&
     crewAt(state,to).every(c=>c.carrierId!==null||riders.some(r=>r.id===c.id))&&
     (!actorAt(state,to)||(piece.kind==='tile'&&!riders.length));

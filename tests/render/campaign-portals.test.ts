@@ -2,6 +2,7 @@ import {expect,it} from 'vitest';
 import {getRetiredPortalLevel as getAuthoredLessonLevel} from '../campaign/fixtures/portals';
 import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {transition} from '../../src/campaign/engine/turn';
+import {parseCampaignState} from '../../src/campaign/schema';
 import {retiredPortalTeachingActions as lessonTeachingActions} from '../../src/campaign/content/lesson-solutions.dev';
 import {makeScene,applySceneEvents} from '../../src/render/campaign/snapshot';
 import {portalVisualState,portalSpriteLayout} from '../../src/render/campaign/mechanics';
@@ -9,10 +10,16 @@ import {CampaignInput} from '../../src/input/campaign';
 import {CampaignBoard} from '../../src/render/campaign/board';
 import {CAMPAIGN_ASSETS} from '../../src/assets/campaign-manifest';
 import {Container,Sprite,Texture} from 'pixi.js';
-it.each([376,377,378,379,380])('lesson %s event projection preserves all transported entities and prior completion fields',id=>{
+it.each([376,377,378,380])('lesson %s event projection preserves all transported entities and prior completion fields',id=>{
  let s=loadCampaignLevel(getAuthoredLessonLevel(id)!);
  for(const a of lessonTeachingActions[id]!){const r=transition(s,a),projected=applySceneEvents(makeScene(s),r.events),actual=makeScene(r.state);expect(projected.entityPositions).toEqual(actual.entityPositions);expect(projected.returnedDockIds).toEqual(actual.returnedDockIds);expect(projected.departedExitIds).toEqual(actual.departedExitIds);expect(projected.arrivedNurseryIds).toEqual(actual.arrivedNurseryIds);expect(projected.portalsComplete).toBe(actual.portalsComplete);s=r.state;}
  expect(makeScene(s).portalsComplete).toBe(true);
+});
+it('keeps the retired station-teleport fixture fixed across a rejected move, save reload, and scene projection',()=>{
+ const state=loadCampaignLevel(getAuthoredLessonLevel(379)!),before=makeScene(state),result=transition(state,{type:'swap',from:{r:2,c:1},to:{r:2,c:0}});
+ expect(result.accepted).toBe(false);expect(result.state).toBe(state);expect(result.events).toEqual([]);
+ expect(parseCampaignState(JSON.parse(JSON.stringify(result.state)))).toEqual(state);
+ expect(applySceneEvents(before,result.events)).toEqual(before);expect(before.entityPositions['tile-2-1']).toEqual({r:2,c:1});expect(before.portalsComplete).toBe(false);
 });
 it('preview reports a real crossing without altering state, and occupied OUT uses closed-iris state',()=>{
  let s=loadCampaignLevel(getAuthoredLessonLevel(376)!);const portal=s.fixtures[0]!;if(portal.kind!=='portal')throw Error();expect(portalVisualState(makeScene(s),portal)).toBe('waiting');s=transition(s,lessonTeachingActions[376]![0]!).state;

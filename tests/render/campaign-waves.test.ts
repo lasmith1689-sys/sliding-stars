@@ -1,5 +1,6 @@
 import {expect,it,vi} from 'vitest';
 import {getAuthoredLessonLevel,campaignLessons} from '../../src/campaign/lessons';
+import {lessonTeachingActions} from '../../src/campaign/content/lesson-solutions.dev';
 import {loadCampaignLevel} from '../../src/campaign/engine/load';
 import {transition} from '../../src/campaign/engine/turn';
 import {legalActions} from '../../src/campaign/engine/actions';
@@ -20,11 +21,19 @@ it('shows the same waiting head in scene and HUD after a blocked wave turn',()=>
  const s=loadCampaignLevel(getAuthoredLessonLevel(149)!);s.turn=2;s.crew.push({...s.arrivals[0]!.crew[0]!,id:'waiting-guest'});
  expect(waveVisualState(makeScene(s))).toBe('waiting');expect(futureWaveCopy(s)).toContain('Waiting');
 });
-it('makes the independent149 lesson wait after its first station slide, then frees the queued guest',()=>{
- let s=loadCampaignLevel(getAuthoredLessonLevel(149)!);
- const first=transition(s,{type:'swap',from:{r:3,c:2},to:{r:3,c:3}});expect(first.accepted).toBe(true);s=first.state;
+it('makes the independent149 lesson wait after its first terrain match, then frees the queued guest for fixed-station delivery',()=>{
+ let s=loadCampaignLevel(getAuthoredLessonLevel(149)!);const actions=lessonTeachingActions[149]!;
+ const first=transition(s,actions[0]!);expect(first.accepted,first.rejection).toBe(true);s=first.state;
  expect(s.status).toBe('playing');expect(s.arrivals.map(a=>a.status)).toEqual(['admitted','pending']);expect(waveVisualState(makeScene(s))).toBe('waiting');expect(futureWaveCopy(s)).toContain('Waiting');
- const second=transition(s,{type:'swap',from:{r:3,c:1},to:{r:3,c:2}});expect(second.state.arrivals.map(a=>a.status)).toEqual(['admitted','admitted']);expect(second.state.status).toBe('won');
+ let secondAdmission:ReturnType<typeof transition>|undefined;
+ for(const action of actions.slice(1)){
+  const result=transition(s,action);expect(result.accepted,result.rejection).toBe(true);
+  if(result.events.some(event=>event.type==='arrival'&&event.arrivalId==='wave-b'))secondAdmission=result;
+  s=result.state;expect(s.pieces.find(piece=>piece.id==='tile-3-3')).toMatchObject({kind:'station',at:{r:3,c:3}});
+ }
+ expect(secondAdmission).toBeDefined();expect(secondAdmission!.state.arrivals.map(a=>a.status)).toEqual(['admitted','admitted']);expect(secondAdmission!.state.status).toBe('playing');
+ expect(secondAdmission!.state.crew[0]).toMatchObject({id:'wave-a-crew-0',at:{r:3,c:2},status:'housed'});
+ expect(s.status).toBe('won');expect(s.crew).toHaveLength(2);expect(s.crew.every(crew=>crew.status==='housed'&&crew.at.r===3&&crew.at.c===2)).toBe(true);
 });
 it('projects queue advancement and arriving crew exactly from typed events, including turn bookkeeping',()=>{
  const state=loadCampaignLevel(getAuthoredLessonLevel(147)!),result=transition(state,legalActions(state)[0]!);

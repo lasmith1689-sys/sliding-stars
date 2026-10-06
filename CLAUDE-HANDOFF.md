@@ -1,78 +1,64 @@
-# Sliding Stars current handoff — October 5, 2026
+# Sliding Stars current handoff - October 6, 2026
 
-Continue in the current thread; a new thread is not required. This supersedes the October 4 checkpoint. Historical reports remain in docs/.
+Continue in this thread; no new thread is required. This supersedes the October 5 checkpoint, particularly its movable-station assumption. Historical reports remain in docs/.
 
-## Implemented and verified
+## Current behavior and verification
 
-The complete planned set of **25 nonportal mechanics** runs in **1,000 missions**: 127 authored teaching boards and 873 deterministic variants, 68 masks, nine shape families and 16 bounding sizes. All exact definitions have hash-checked, booster-free winning proofs. All 25 newly added teaching boards have causal tests that disabling their mechanic prevents the intended win.
+The improved app has 1,000 missions, 127 authored teaching boards, 873 deterministic variants and 25 planned nonportal mechanics. Definitions remain immutable: SHA-256 `9896b20b34aa2a3104a698427c709a53a57002cc06ae9b9f083c37b2f7a2a3c4`.
 
-Campaign SHA-256: 9896b20b34aa2a3104a698427c709a53a57002cc06ae9b9f083c37b2f7a2a3c4.
+**Stations are fixed.** Campaign and compatible legacy play reject both dragging a station and swapping terrain into one without charging a move. All transport paths enforce the same rule. Bring crew to the glowing side entrance. An old saved station is anchored at its saved position; do not reset or reposition it. Help, coaching and proofs follow this rule.
 
-All **1,164 tests / 124 files**, TypeScript, production build, Capacitor synchronization and production boundary audit passed October 5. Audit: 872 modules, 61 chunks, zero development campaign modules. Offline pack: 208 files, including every chapter, advice map, art, fonts and public support/privacy pages. The macOS native release repeated typecheck, build and the complete test suite successfully.
+The permanent-hole repair remains: compatible same-chamber fall lanes connect across gaps, the hole stays empty, existing terrain and passengers fall first, and refill enters upstream. Reserved rendezvous guests/pods cannot be stolen by generic transport. Campaign rescues/VIPs bank once independently of completion claims. Home construction persists, and the stable 24-resident schedule makes both existing home stations reachable without rewriting definitions or active saves.
 
-The user's Mission 3 gap exposed a real defect: the lower fall segment refilled locally instead of taking the original terrain and passenger from above the permanent hole. Geometry now joins compatible same-chamber fall lanes across permanent gaps; the hole stays empty. Existing pieces fall first, refill enters upstream, and stranded riders cannot trigger local spawns. Closed cells, fixtures, chambers and legacy portal definitions retain their distinct behavior.
+A narrow boot recovery peels minimum practice jelly coatings only for playing no-failure campaign boards with no non-consumable legal move. It refuses exposed pending matches; preserves crew, station, points, turn, RNG, objectives, supplies, wallet and progress; and leaves already playable saves unchanged. Do not broaden into reset or arbitrary board mutation.
 
-The same audit fixed a legal Mission 961 detour that let a station steal a rendezvous passenger and crash strict parsing. Reserved guests/pods are protected from generic stations, moving docks and tractor boarding. Campaign victories now pay actual rescued crew and VIPs once, independently of completion claims. Conservative boot repair recovers unpaid historical entitlements without changing active boards or guessing optional quota VIPs. Guide restores the existing home screen and persisted construction. A stable compatibility schedule maps the 27 historical starter VIP markers to all 24 existing residents, making both existing home stations reachable without rewriting levels or saves.
+October 6 checks: **1,176 tests / 126 files**, typecheck, build and Capacitor sync passed. All **1,000 corrected proof routes** replay, with **3,983 verified advice positions**, depth 1-12, mean 3.983. Independent final review checked every station at every move, all advice, recovery edges and fixed-station coaching; no findings remained. Production: **873 modules / 61 chunks / zero development campaign modules**, **208 offline files**.
 
-All 1,000 routes were replayed under the corrected physics; 110 proof records changed, zero definitions changed. Independent review covered all 25 modules, thousands of accepted off-route transitions, scene reconstruction and historical reward repair. Read [the full mechanics audit](docs/2026-10-05-MECHANICS-AUDIT.md) for source research, per-function findings and deliberate reference differences.
+Real local 390-by-844 browser play completed Mission 3 in seven moves, verified original astronaut gravity through the hole, and rejected both station drag directions without spending a move. Physical iPhone touch, save/reopen and offline checks still need device playtesting.
 
-Phone-size browser play previously completed mission 1 and all five new mechanics, including the tether's second end, collecting a repair kit before repairs, ordered relay matches and simultaneous rendezvous departures. On October 5 the deployed 390×844 Mission 3 board visibly moved the original astronaut below the permanent hole, rejected a drag from the hole without charging a move, rescued both guests in four moves and automatically advanced to Mission 4. The banked rescue/VIP unlocked the Greenhouse, which remained built after reload; board state and move count were preserved. Physical iPhone touch/save/offline checks remain unverified.
+Read [fixed station audit](docs/2026-10-06-FIXED-STATIONS-AUDIT.md), [current QC](docs/2026-10-06-RELEASE-QC.md), [earlier mechanics audit](docs/2026-10-05-MECHANICS-AUDIT.md) and [Apple delivery](docs/app-store/RELEASE.md). Automated proofs establish solvability, not all-path safety, subjective balance or exact commercial parity.
 
-Read docs/2026-10-05-RELEASE-QC.md and docs/app-store/RELEASE.md for actual release status. Never equate upload or a public invitation with approval or installability.
+## User constraints and unresolved feedback
 
-## User constraints
+Preserve original parent game and original Netlify production. Work only in sliding-stars-next. Cute space rescue adaptation, thoughtful relaxed progression, live dragging, offline rounded fonts, automatic celebration-to-next, unsafe opening crew and generous retries remain.
 
-Create a cute space adaptation of Sliding Seas' matching, terrain growth and rescue focus. Relaxed but thoughtful progression, generous retries, varied geometry and playful nonviolent threats. Preserve the parent original game and original Netlify production; work only in this improved app.
+Stations never move. Empty shuttles require a terrain match; occupied shuttles have one-cell flight. Cargo cannot be dragged freely. Do not restore portals, rafts, arrows, mandatory Continue or false safety labels.
 
-Keep real-time dragging, bundled Fredoka/Nunito, automatic celebration-to-next transition and unsafe opening crew. Empty shuttles need a terrain match; occupied shuttles have one-cell flight. Cargo cannot be dragged freely. Do not restore portals, arrows, rafts, mandatory Continue or false safety labels.
+The user also reported empty MATCH ships feeling dead. An optional question about adjacent-crew pickup versus only creating crew-carrying ships is pending. Neither option has been authorized by an answer. Preserve existing empty-shuttle rules meanwhile. Reconstructed screenshot routes cannot be guaranteed for the actual save because RNG/passenger IDs are unknown.
 
-Public source, publishing, public TestFlight and App Store release are authorized. Continue routine steps without phase-boundary stops. Work efficiently; do not expand into sprawling research or new teams without applicable authorization.
+Public source, next-preview publishing, public TestFlight and App Store release are authorized. Continue routine work without stopping at phase boundaries. Do not expand into new teams, broad redesign or research without applicable authorization.
 
-## Completed mechanics
+## Generation and advice
 
-| Introduction | Mechanic | Rule |
-|---|---|---|
-| 376–380 | Magnets | Nearby merges pulse a winch, pulling exact supply cargo down its cleared lane. Gravity cannot move it off the lane. |
-| 841–845 | Relays | Match beside numbered nodes in order to restore the destination. |
-| 881–885 | Tethers | Drag either end of a rigid pair; both guests need suitable terrain together. |
-| 921–925 | Repair | Lower the kit beside the bot; accepted moves then power ordered repairs. |
-| 961–965 | Rendezvous | Stage both assigned occupied shuttles before either departure counts. |
+Keep strict validation, immutable release definitions and save compatibility. Future generator version is **terrain-replay-6**. Generation has a finite 360-attempt cap, deterministic mutation, replay acceptance and duplicate rejection. Never fabricate a win or substitute exhausted candidates.
 
-Each has strict validation, save-safe state, real objectives, five lessons, original vector art, animation and board-specific help. Later practice uses only introduced families. Portal modules serve legacy immutable definitions only, never new release boards.
+The 3,983 advice positions were rebuilt against anchored stations. detourHint remains bounded at 128 transitions / 180 ms, depth four, beam five with cancellation/yielding. It consumes no supply and never mutates live state. The offline solver can complete verified teaching prefixes; it remains outside production. Shelter, jelly and reactor routes retain causal teaching coverage. Retired portal 379's only teaching route required moving a station; historical parsing survives, but that obsolete teaching claim was removed. Live campaign portals remain disabled.
 
-## Generation, advice and honest limits
+Completed introductions: magnets 376-380, relays 841-845, tethers 881-885, repair 921-925 and rendezvous 961-965. Each has strict state, objectives, art, animation and five teaching missions. Practice uses introduced mechanics only.
 
-Generation has a finite **360-attempt cap**, deterministic mutation, strict replay acceptance and duplicate rejection. Never fabricate wins or silently substitute exhausted candidates. Preserve authored definitions and immutable in-progress saves.
+## Paths and release
 
-Proofs span 1–9 moves, mean 3.343. After level 100, 544/801 generated puzzles have at least three moves and 212/801 at least five. These remain template-based terrain/mirror variants, not 1,000 human-playtested strategic designs. Human balance and deeper interacting layouts remain useful follow-ups; all planned modules are implemented. Future generator version is terrain-replay-5; preserve the immutable release definitions.
+- Workspace: `H:\Projects\iPhone Apps\sliding-stars\sliding-stars-next`.
+- Parent branch `codex/thousand-level-campaign`, no remote. Unrelated root `docs/reviews/` stays untouched.
+- Release checkout `release/github`, main, origin `https://github.com/lasmith1689-sys/sliding-stars.git`. Sync improved app files only, excluding ignored data, secrets, original game and nested checkout.
+- Web `https://next--sliding-stars.netlify.app/`, site `bc41ec96-bbad-4e56-b0d1-c612c54db038`. Use **--alias next**, never --prod.
+- `[ship]` uploads iOS and captures native gameplay. `[asc] [prepare]` retries metadata without rebuilding. Documentation-only pushes use `[skip ci]`.
 
-The client ships 3,343 compact verified next-move positions, rebuilt and replayed with all 1,000 routes after the gravity fix. The October 4 sample won 52/52 using route advice; its direct one-turn heuristic won 47/52 in 12 moves. That older sample excludes the asynchronous detour helper and is not a fresh post-fix measurement.
+The fixed-station web/native delivery is in progress. Previous **1.0 (17.1)** is VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING internally, but does not contain this correction. Its app commit is `fef92d8`, native run `37313575860`, web deploy `6ac39eca91789b6cb5fdcf1b`. Use the current QC for the new exact commit, deployment and processed build when verified.
 
-src/advice/detourHint.ts adds bounded detour lookahead: 128 transitions / 180ms, depth four, beam five, yielding and cancellation. Two tests pass. It spends no supplies and never mutates live state. Do not claim every detour is solved. Development generators, solvers and proof artifacts remain excluded from production.
+## Apple constraints
 
-## Paths and publishing
+Windows/iPhone, no Mac. Existing GitHub macos-26/Xcode 26 setup archives ad hoc then cloud-signs during export. Bundle `com.lasmith1689.SlidingStars`, app `6817778193`, version 1.0, internal group **Me** auto-distributes. Build number is run_number.run_attempt. All four secrets already exist; never read/print their values into chat, source or artifacts.
 
-- Workspace: H:\Projects\iPhone Apps\sliding-stars\sliding-stars-next.
-- Parent branch codex/thousand-level-campaign, no remote. Unrelated parent docs/reviews/ stays untouched.
-- Release checkout release/github, main; origin https://github.com/lasmith1689-sys/sliding-stars.git. Sync improved app files only; exclude ignored data, original parent/history, credentials and this checkout itself.
-- Improved web https://next--sliding-stars.netlify.app/. Site bc41ec96-bbad-4e56-b0d1-c612c54db038. Deploy alias **next**, never --prod.
-- [ship] triggers iOS upload and simulator screenshots. [asc] [prepare] retries metadata without rebuilding. Manual App Store release modes: inspect, prepare, testflight, store. Documentation-only pushes can use [skip ci].
+External **Friends and Explorers** invitation `https://testflight.apple.com/join/7w5XTsgG` is not yet publicly installable. Review contact is blank; external state was READY_FOR_BETA_SUBMISSION, store PREPARE_FOR_SUBMISSION. Owner must publish App Privacy. Upload, processing, testing, submission and approval are separate states.
 
-## Apple
+Automatic approval review rejected copying Ai Sky's private contact without specific authorization; that permission question remains pending. Do not reuse it without an answer. Review contact belongs only in Apple, never in public source or artifacts. Legal agreements remain the owner's action if required.
 
-Paid individual account holder; Windows/iPhone, no Mac. GitHub macos-26/Xcode 26. Bundle com.lasmith1689.SlidingStars; ASC app 6817778193, version 1.0. Internal **Me** auto-distributes. External **Friends and Explorers** invitation: https://testflight.apple.com/join/7w5XTsgG. It needs an eligible processed build and external review approval.
-
-Keep working ad-hoc archive → automatic cloud signing/export. Export now uses testFlightInternalTestingOnly=false. Build number run_number.run_attempt. All four existing secrets are configured; never print/read their values into chat, source or artifacts.
-
-.github/scripts/app-store-connect.mjs prepares descriptions, URLs, category, age answers, free pricing, territories, actual simulator screenshots, exact build selection and review submissions inside GitHub. Review contacts stay private in Apple. Support/privacy pages live in public/.
-
-Corrected **1.0 (17.1)** is VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING internally, API-confirmed October 5. External state is READY_FOR_BETA_SUBMISSION, not approved. It is selected for App Store 1.0, which remains PREPARE_FOR_SUBMISSION. Free pricing, NINE_PLUS rating, licensed content rights, 175 territories and automatic release after approval are configured. See docs/app-store/release-status-2026-10-05.json for exact IDs and evidence. App code commit fef92d8 is deployed to the improved next alias, Netlify deploy 6ac39eca91789b6cb5fdcf1b. Native run: https://github.com/lasmith1689-sys/sliding-stars/actions/runs/37313575860.
-
-Apple browser sign-in is pending and required review contact is blank. Automatic approval review rejected copying Ai Sky's private contact without specific authorization; a user permission question is pending. Do not perform that reuse without the answer. The owner must complete the App Privacy questionnaire on the website. Legal agreements remain the owner's action if Apple requires them. Public TestFlight and App Store reviews have not been submitted; do not offer the invitation as an installable public beta yet.
+Native startup was corrected after 13.1: textures disable native worker bitmap probing and use image elements. 17.1's native capture passed readiness/manual inspection and is COMPLETE in Apple; its remaining screenshot metadata failure was missing contact, not rendering. Verify the new build's own screenshot; do not reuse prior image as current proof.
 
 ## Commands and next step
 
-Use npm.cmd / npx.cmd on Windows:
+Use npm.cmd/npx.cmd on Windows:
 
     npm.cmd run typecheck
     npm.cmd test -- --configLoader runner
@@ -80,10 +66,4 @@ Use npm.cmd / npx.cmd on Windows:
     node scripts/campaign/audit-bundle.mts
     npx.cmd netlify deploy --dir dist --alias next --no-build --site bc41ec96-bbad-4e56-b0d1-c612c54db038 --json
 
-Next: update the iPhone to internal TestFlight build 17.1 and retry Mission 3 with existing saved progress, including background/reopen and offline play. External delivery separately needs owner-entered review contact or specific reuse authorization, Apple sign-in and App Privacy; then retry testflight/store release modes for build 17.1 and confirm review state. No app rebuild is needed for those metadata steps. Continue here; no new thread is required.
-
-## Copy-paste Claude Code continuation
-
-Continue Sliding Stars in the improved app folder. Read CLAUDE-HANDOFF.md, docs/2026-10-05-MECHANICS-AUDIT.md, docs/2026-10-05-RELEASE-QC.md and docs/app-store/RELEASE.md; inspect Git and actual Apple build status. All 25 mechanics and 1,000 proved missions are implemented, with 127 authored boards and 68 masks. The permanent-gap/refill, rendezvous reservation and home reward/VIP fixes are live in the next preview and internal TestFlight build 17.1. All 1,164 tests and all 1,000 corrected proof routes pass; definitions and saves remain immutable. Preserve original parent/production, meaningful shuttle rules, live dragging, automatic advancement, cute art, rounded offline fonts, saves, strict validation, no portals and bounded generation/advice. Prioritize actual iPhone Mission 3 gravity, save/offline/touch checks. Continue authorized public TestFlight/App Store delivery through existing GitHub macOS cloud signing when the owner supplies the missing Apple review contact/privacy steps; never expose keys or reuse private review contact without explicit authorization. Distinguish upload, processing, approval and installation. Work efficiently without new teams or broad redesign, continue routine authorized steps, and report concrete blockers without claiming automated wins prove subjective fun.
-
-Native startup fix: 13.1's first capture showed only the background. src/render/textures.ts disables the worker bitmap probe on native platforms and uses image elements. Build 17.1's actual simulator screenshot passed the Vision readiness gate and subsequent manual inspection; its full board/crew/controls image is COMPLETE in Apple. The screenshot job's remaining failure is Apple's missing contact fields, not capture, image processing or signed upload. Artifact 11347362287 preserves current pixels and simulator log; validation/iphone-gameplay-17.1.png stores the inspected image. Do not recommend 13.1.
+Next: finish exact release verification, update the iPhone to the new processed internal build and retry Mission 3 with existing progress, including save/reopen and offline play. Public delivery separately requires owner-entered contact or specific reuse permission and published App Privacy before metadata-only review retries. Continue here; no new thread is required.

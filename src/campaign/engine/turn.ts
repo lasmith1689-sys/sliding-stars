@@ -51,7 +51,11 @@ function runTransition(state:CampaignState,input:CampaignAction,available:readon
   if(state.status!=='playing')return reject('Level is not playing');
   let action:CampaignAction;
   try{action=parseCampaignAction(input);}catch{return reject('Malformed action');}
-  if(action.type==='swap'&&!isLegalSwap(state,action.from,action.to))return reject('Make a match of three. Empty shuttles need a match; occupied shuttles can fly to a station.');
+  if(action.type==='swap'&&!isLegalSwap(state,action.from,action.to))return reject(
+    [action.from,action.to].some(at=>pieceAt(state,at)?.kind==='station')
+      ?'Stations stay fixed. Bring crew to the glowing side entrance.'
+      :'Make a match of three. Empty shuttles need a match; occupied shuttles can fly to a station entrance.',
+  );
   if(action.type==='translate'&&!isLegalTranslation(state,action.actorId,action.dr,action.dc))return reject('Carrier destination is blocked');
   const modules=selectModules(state.level,available),context=createContext(structuredClone(state)),draft=context.state;
   const turnStartActorIds=state.actors.map(a=>a.id);

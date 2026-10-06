@@ -38,7 +38,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -205,7 +205,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -294,7 +294,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "ice"
     ],
@@ -313,7 +313,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "authored",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -371,7 +371,7 @@
     "seed": 1047391941,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -409,7 +409,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -426,7 +426,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -501,7 +501,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "ice"
     ],
@@ -539,7 +539,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -556,7 +556,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "authored",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -575,7 +575,7 @@
     "seed": 7,
     "templateId": 32,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -594,7 +594,7 @@
     "seed": 19,
     "templateId": 33,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -613,7 +613,7 @@
     "seed": 7,
     "templateId": 34,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -671,7 +671,7 @@
     "seed": 2191089001,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -690,7 +690,7 @@
     "seed": 2882593765,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -766,7 +766,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -783,7 +783,7 @@
     "seed": 2811006617,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -822,7 +822,7 @@
     "seed": 1846672721,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -858,7 +858,7 @@
     "seed": 1383877248,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -877,7 +877,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -971,7 +971,7 @@
     "seed": 3627264990,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -1009,7 +1009,7 @@
     "seed": 331114674,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -1047,7 +1047,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -1085,7 +1085,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "authored",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -1104,7 +1104,7 @@
     "seed": 23,
     "templateId": 60,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "crates",
       "reactors"
@@ -1196,7 +1196,7 @@
     "seed": 3943377379,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -1290,7 +1290,7 @@
     "seed": 4088602859,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -1366,7 +1366,7 @@
     "seed": 2139554267,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -1385,7 +1385,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -1404,7 +1404,7 @@
     "seed": 1977060112,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -1481,7 +1481,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -1519,7 +1519,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "comets"
     ],
@@ -1634,7 +1634,7 @@
     "seed": 7,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -1672,7 +1672,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -1708,7 +1708,7 @@
     "seed": 7,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -1746,7 +1746,7 @@
     "seed": 3053539018,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -1803,7 +1803,7 @@
     "seed": 3186952922,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -1822,7 +1822,7 @@
     "seed": 1752769347,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -1861,7 +1861,7 @@
     "seed": 347629357,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -1935,7 +1935,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -1973,7 +1973,7 @@
     "seed": 395529011,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -2030,7 +2030,7 @@
     "seed": 2347399129,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -2239,7 +2239,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 8,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -2256,7 +2256,7 @@
     "seed": 659561044,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -2332,7 +2332,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -2370,7 +2370,7 @@
     "seed": 242228195,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -2428,7 +2428,7 @@
     "seed": 856992672,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -2466,7 +2466,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -2502,7 +2502,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "reactors"
     ],
@@ -2656,7 +2656,7 @@
     "seed": 1786336742,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -2694,7 +2694,7 @@
     "seed": 151699668,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -2730,7 +2730,7 @@
     "seed": 7,
     "templateId": 146,
     "source": "authored",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "waves"
     ],
@@ -2768,7 +2768,7 @@
     "seed": 7,
     "templateId": 148,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 3,
     "mechanics": [
       "waves"
     ],
@@ -2787,7 +2787,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 9,
     "mechanics": [
       "waves"
     ],
@@ -2826,7 +2826,7 @@
     "seed": 1810586167,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -2942,7 +2942,7 @@
     "seed": 3382585676,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -3019,7 +3019,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "comets"
     ],
@@ -3057,7 +3057,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -3095,7 +3095,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 8,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -3112,7 +3112,7 @@
     "seed": 2475934738,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -3131,7 +3131,7 @@
     "seed": 2238734183,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -3169,7 +3169,7 @@
     "seed": 3247131334,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -3226,7 +3226,7 @@
     "seed": 2314438732,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 11,
     "mechanics": [
       "waves"
     ],
@@ -3341,7 +3341,7 @@
     "seed": 4138538963,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -3360,7 +3360,7 @@
     "seed": 2937499372,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -3379,7 +3379,7 @@
     "seed": 1139468592,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -3610,7 +3610,7 @@
     "seed": 3985094741,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -3686,7 +3686,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 5,
     "mechanics": [
       "waves"
     ],
@@ -3724,7 +3724,7 @@
     "seed": 1677639717,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -3743,7 +3743,7 @@
     "seed": 7,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -3782,7 +3782,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -3896,7 +3896,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -3913,7 +3913,7 @@
     "seed": 1371319982,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -3932,7 +3932,7 @@
     "seed": 262355031,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "comets"
     ],
@@ -3970,7 +3970,7 @@
     "seed": 3620386355,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -4027,7 +4027,7 @@
     "seed": 1792164133,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -4065,7 +4065,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -4084,7 +4084,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 6,
     "mechanics": [
       "waves"
     ],
@@ -4159,7 +4159,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -4178,7 +4178,7 @@
     "seed": 1815975044,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -4195,7 +4195,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -4272,7 +4272,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -4291,7 +4291,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -4310,7 +4310,7 @@
     "seed": 1604245090,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -4406,7 +4406,7 @@
     "seed": 7,
     "templateId": 234,
     "source": "authored",
-    "proofLength": 7,
+    "proofLength": 4,
     "mechanics": [
       "pups"
     ],
@@ -4541,7 +4541,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 12,
     "mechanics": [
       "waves"
     ],
@@ -4598,7 +4598,7 @@
     "seed": 3595275011,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -4636,7 +4636,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -4711,7 +4711,7 @@
     "seed": 7,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -4786,7 +4786,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "comets"
     ],
@@ -4824,7 +4824,7 @@
     "seed": 881566201,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 6,
     "mechanics": [
       "waves"
     ],
@@ -4863,7 +4863,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -4882,7 +4882,7 @@
     "seed": 3012988550,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -4921,7 +4921,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -4940,7 +4940,7 @@
     "seed": 1143689400,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 9,
     "mechanics": [
       "waves"
     ],
@@ -4979,7 +4979,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -4996,7 +4996,7 @@
     "seed": 2216103445,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -5034,7 +5034,7 @@
     "seed": 2016493127,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -5092,7 +5092,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -5111,7 +5111,7 @@
     "seed": 2654855485,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -5224,7 +5224,7 @@
     "seed": 7,
     "templateId": 277,
     "source": "authored",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -5320,7 +5320,7 @@
     "seed": 577773457,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -5339,7 +5339,7 @@
     "seed": 3414196584,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -5396,7 +5396,7 @@
     "seed": 4053442740,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -5415,7 +5415,7 @@
     "seed": 43523588,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "currents"
     ],
@@ -5492,7 +5492,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -5511,7 +5511,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 11,
     "mechanics": [
       "waves"
     ],
@@ -5568,7 +5568,7 @@
     "seed": 1711825198,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -5606,7 +5606,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 8,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -5643,7 +5643,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "reactors"
     ],
@@ -5662,7 +5662,7 @@
     "seed": 2625112092,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -5681,7 +5681,7 @@
     "seed": 1372947253,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 11,
     "mechanics": [
       "waves"
     ],
@@ -5738,7 +5738,7 @@
     "seed": 4119060153,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -5893,7 +5893,7 @@
     "seed": 19,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -5912,7 +5912,7 @@
     "seed": 1900555085,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -6008,7 +6008,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -6044,7 +6044,7 @@
     "seed": 23,
     "templateId": 60,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "crates",
       "reactors"
@@ -6081,7 +6081,7 @@
     "seed": 1074587238,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 9,
     "mechanics": [
       "waves"
     ],
@@ -6138,7 +6138,7 @@
     "seed": 2192268659,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -6253,7 +6253,7 @@
     "seed": 1404246444,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -6292,7 +6292,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -6311,7 +6311,7 @@
     "seed": 4070965914,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 7,
     "mechanics": [
       "waves"
     ],
@@ -6350,7 +6350,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -6406,7 +6406,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -6425,7 +6425,7 @@
     "seed": 2298834406,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -6444,7 +6444,7 @@
     "seed": 7,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -6463,7 +6463,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -6480,7 +6480,7 @@
     "seed": 4146685373,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 6,
     "mechanics": [
       "waves"
     ],
@@ -6499,7 +6499,7 @@
     "seed": 23,
     "templateId": 60,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "crates",
       "reactors"
@@ -6538,7 +6538,7 @@
     "seed": 7,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -6614,7 +6614,7 @@
     "seed": 1802710687,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -6653,7 +6653,7 @@
     "seed": 1742522439,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 9,
     "mechanics": [
       "waves"
     ],
@@ -6692,7 +6692,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -6711,7 +6711,7 @@
     "seed": 969893540,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -6769,7 +6769,7 @@
     "seed": 7,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -6826,7 +6826,7 @@
     "seed": 4007147533,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 12,
     "mechanics": [
       "waves"
     ],
@@ -6865,7 +6865,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 9,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -6882,7 +6882,7 @@
     "seed": 2774908832,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -6940,7 +6940,7 @@
     "seed": 3400209701,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -6998,7 +6998,7 @@
     "seed": 1453642771,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -7093,7 +7093,7 @@
     "seed": 1533158432,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 7,
     "mechanics": [
       "ice"
     ],
@@ -7265,7 +7265,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -7284,7 +7284,7 @@
     "seed": 557668730,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -7303,7 +7303,7 @@
     "seed": 1842883662,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -7322,7 +7322,7 @@
     "seed": 574731492,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -7339,7 +7339,7 @@
     "seed": 886254093,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 10,
     "mechanics": [
       "waves"
     ],
@@ -7358,7 +7358,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "comets"
     ],
@@ -7397,7 +7397,7 @@
     "seed": 3204577810,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -7435,7 +7435,7 @@
     "seed": 1687704238,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "reactors"
     ],
@@ -7512,7 +7512,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -7550,7 +7550,7 @@
     "seed": 530994405,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -7569,7 +7569,7 @@
     "seed": 3325431570,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 9,
     "mechanics": [
       "waves"
     ],
@@ -7588,7 +7588,7 @@
     "seed": 3418826896,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -7722,7 +7722,7 @@
     "seed": 3009663036,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -7739,7 +7739,7 @@
     "seed": 3680871362,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -7797,7 +7797,7 @@
     "seed": 1724015522,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -7816,7 +7816,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -7835,7 +7835,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -7854,7 +7854,7 @@
     "seed": 2663512143,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -7951,7 +7951,7 @@
     "seed": 4043941495,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -8141,7 +8141,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -8180,7 +8180,7 @@
     "seed": 2090703499,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -8236,7 +8236,7 @@
     "seed": 2268188110,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "reactors"
     ],
@@ -8294,7 +8294,7 @@
     "seed": 3877988253,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -8313,7 +8313,7 @@
     "seed": 534291481,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -8332,7 +8332,7 @@
     "seed": 1476074906,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -8370,7 +8370,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 10,
     "mechanics": [
       "waves"
     ],
@@ -8426,7 +8426,7 @@
     "seed": 2515426928,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -8483,7 +8483,7 @@
     "seed": 3908201398,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -8694,7 +8694,7 @@
     "seed": 2680711058,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "reactors"
     ],
@@ -8713,7 +8713,7 @@
     "seed": 4028805834,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -8732,7 +8732,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -8771,7 +8771,7 @@
     "seed": 4144040146,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 7,
     "mechanics": [
       "waves"
     ],
@@ -8810,7 +8810,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -8923,7 +8923,7 @@
     "seed": 7,
     "templateId": 471,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -8980,7 +8980,7 @@
     "seed": 7,
     "templateId": 474,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -8999,7 +8999,7 @@
     "seed": 7,
     "templateId": 475,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 8,
     "mechanics": [
       "waves",
       "shelter"
@@ -9116,7 +9116,7 @@
     "seed": 3705165178,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -9135,7 +9135,7 @@
     "seed": 2009815987,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -9249,7 +9249,7 @@
     "seed": 853428499,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "currents"
     ],
@@ -9268,7 +9268,7 @@
     "seed": 3526793535,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -9342,7 +9342,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -9361,7 +9361,7 @@
     "seed": 836430393,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "currents"
     ],
@@ -9380,7 +9380,7 @@
     "seed": 11,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -9456,7 +9456,7 @@
     "seed": 1957563677,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -9513,7 +9513,7 @@
     "seed": 19,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -9591,7 +9591,7 @@
     "seed": 1535920336,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -9646,7 +9646,7 @@
     "seed": 7,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -9760,7 +9760,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "reactors"
     ],
@@ -9998,7 +9998,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -10037,7 +10037,7 @@
     "seed": 888625849,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -10056,7 +10056,7 @@
     "seed": 608359119,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 3,
     "mechanics": [
       "shelter"
     ],
@@ -10094,7 +10094,7 @@
     "seed": 3045064246,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -10113,7 +10113,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "ice"
     ],
@@ -10151,7 +10151,7 @@
     "seed": 1998845839,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -10189,7 +10189,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -10206,7 +10206,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -10340,7 +10340,7 @@
     "seed": 1098238701,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -10397,7 +10397,7 @@
     "seed": 7,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -10435,7 +10435,7 @@
     "seed": 7,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -10492,7 +10492,7 @@
     "seed": 731185270,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 7,
     "mechanics": [
       "waves"
     ],
@@ -10511,7 +10511,7 @@
     "seed": 7,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -10550,7 +10550,7 @@
     "seed": 7,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -10606,7 +10606,7 @@
     "seed": 7,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -10625,7 +10625,7 @@
     "seed": 3178792733,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 3,
     "mechanics": [
       "shelter"
     ],
@@ -10644,7 +10644,7 @@
     "seed": 7,
     "templateId": 561,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "keys"
     ],
@@ -10663,7 +10663,7 @@
     "seed": 7,
     "templateId": 562,
     "source": "authored",
-    "proofLength": 7,
+    "proofLength": 9,
     "mechanics": [
       "keys"
     ],
@@ -10682,7 +10682,7 @@
     "seed": 7,
     "templateId": 563,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "keys"
     ],
@@ -10701,7 +10701,7 @@
     "seed": 7,
     "templateId": 564,
     "source": "authored",
-    "proofLength": 7,
+    "proofLength": 10,
     "mechanics": [
       "keys"
     ],
@@ -10720,7 +10720,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "authored",
-    "proofLength": 6,
+    "proofLength": 8,
     "mechanics": [
       "bridges",
       "keys"
@@ -10877,7 +10877,7 @@
     "seed": 7,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -10915,7 +10915,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "reactors"
     ],
@@ -10934,7 +10934,7 @@
     "seed": 1749171415,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 3,
     "mechanics": [
       "shelter"
     ],
@@ -10953,7 +10953,7 @@
     "seed": 823566771,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -11011,7 +11011,7 @@
     "seed": 2489500343,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -11030,7 +11030,7 @@
     "seed": 1773045885,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -11069,7 +11069,7 @@
     "seed": 1478033743,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -11108,7 +11108,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 7,
     "mechanics": [
       "bridges",
       "keys"
@@ -11147,7 +11147,7 @@
     "seed": 2990506848,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -11166,7 +11166,7 @@
     "seed": 7,
     "templateId": 562,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 8,
     "mechanics": [
       "keys"
     ],
@@ -11395,7 +11395,7 @@
     "seed": 4232675841,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "bridges",
       "keys"
@@ -11415,7 +11415,7 @@
     "seed": 3640703879,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -11434,7 +11434,7 @@
     "seed": 1239873747,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -11491,7 +11491,7 @@
     "seed": 543018413,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -11511,7 +11511,7 @@
     "seed": 795477948,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -11549,7 +11549,7 @@
     "seed": 1166247426,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -11587,7 +11587,7 @@
     "seed": 77434088,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -11625,7 +11625,7 @@
     "seed": 7,
     "templateId": 612,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "gravity"
     ],
@@ -11701,7 +11701,7 @@
     "seed": 3533205396,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -11720,7 +11720,7 @@
     "seed": 4176440757,
     "templateId": 561,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -11739,7 +11739,7 @@
     "seed": 7,
     "templateId": 564,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 8,
     "mechanics": [
       "keys"
     ],
@@ -11777,7 +11777,7 @@
     "seed": 2925775580,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "keys"
     ],
@@ -11874,7 +11874,7 @@
     "seed": 1636143987,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -11893,7 +11893,7 @@
     "seed": 7,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "reactors"
     ],
@@ -11912,7 +11912,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 8,
     "mechanics": [
       "bridges",
       "keys"
@@ -12068,7 +12068,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "comets"
     ],
@@ -12107,7 +12107,7 @@
     "seed": 1251860640,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -12126,7 +12126,7 @@
     "seed": 1664483542,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -12182,7 +12182,7 @@
     "seed": 1306688518,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -12221,7 +12221,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 9,
     "mechanics": [
       "waves"
     ],
@@ -12240,7 +12240,7 @@
     "seed": 216662271,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -12333,7 +12333,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -12392,7 +12392,7 @@
     "seed": 3756155532,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -12411,7 +12411,7 @@
     "seed": 2465991852,
     "templateId": 561,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -12506,7 +12506,7 @@
     "seed": 3016393976,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -12544,7 +12544,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 5,
     "mechanics": [
       "bridges",
       "keys"
@@ -12679,7 +12679,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -12736,7 +12736,7 @@
     "seed": 3243652668,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -12755,7 +12755,7 @@
     "seed": 2987833207,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -12810,7 +12810,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -12891,7 +12891,7 @@
     "seed": 7,
     "templateId": 564,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 9,
     "mechanics": [
       "keys"
     ],
@@ -12929,7 +12929,7 @@
     "seed": 940349184,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -12967,7 +12967,7 @@
     "seed": 2929831264,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 7,
     "mechanics": [
       "waves"
     ],
@@ -12986,7 +12986,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "comets"
     ],
@@ -13102,7 +13102,7 @@
     "seed": 1660559333,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -13141,7 +13141,7 @@
     "seed": 19,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -13160,7 +13160,7 @@
     "seed": 7,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 8,
     "mechanics": [
       "shelter"
     ],
@@ -13179,7 +13179,7 @@
     "seed": 1581608172,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 8,
     "mechanics": [
       "bridges",
       "keys"
@@ -13199,7 +13199,7 @@
     "seed": 1516847450,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -13273,7 +13273,7 @@
     "seed": 7,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "shelter"
     ],
@@ -13331,7 +13331,7 @@
     "seed": 7,
     "templateId": 561,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -13388,7 +13388,7 @@
     "seed": 4025866563,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -13407,7 +13407,7 @@
     "seed": 1035814571,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "reactors"
     ],
@@ -13426,7 +13426,7 @@
     "seed": 1806106462,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -13563,7 +13563,7 @@
     "seed": 1,
     "templateId": 713,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "jelly"
     ],
@@ -13582,7 +13582,7 @@
     "seed": 44,
     "templateId": 714,
     "source": "authored",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "jelly"
     ],
@@ -13601,7 +13601,7 @@
     "seed": 35,
     "templateId": 715,
     "source": "authored",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "jelly",
       "reactors"
@@ -13698,7 +13698,7 @@
     "seed": 35,
     "templateId": 715,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "jelly",
       "reactors"
@@ -13718,7 +13718,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -13795,7 +13795,7 @@
     "seed": 7,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -13814,7 +13814,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 8,
     "mechanics": [
       "bridges",
       "keys"
@@ -13931,7 +13931,7 @@
     "seed": 2002316062,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -13969,7 +13969,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -14083,7 +14083,7 @@
     "seed": 2823102035,
     "templateId": 17,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -14102,7 +14102,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 8,
     "mechanics": [
       "bridges",
       "keys"
@@ -14142,7 +14142,7 @@
     "seed": 7,
     "templateId": 82,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "comets"
     ],
@@ -14220,7 +14220,7 @@
     "seed": 4043081468,
     "templateId": 711,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "jelly"
     ],
@@ -14239,7 +14239,7 @@
     "seed": 2447477574,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -14258,7 +14258,7 @@
     "seed": 760724208,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "shelter"
     ],
@@ -14277,7 +14277,7 @@
     "seed": 7,
     "templateId": 562,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 8,
     "mechanics": [
       "keys"
     ],
@@ -14296,7 +14296,7 @@
     "seed": 2929460189,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -14305,7 +14305,7 @@
     "cols": 4,
     "activeCells": 15,
     "difficulty": "gentle",
-    "contentFingerprint": "c4ebbdcd61be7ac8",
+    "contentFingerprint": "b1a77e8fe234e2d6",
     "attempts": 2,
     "mirrored": true,
     "changedTiles": 2
@@ -14334,7 +14334,7 @@
     "seed": 7,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -14410,7 +14410,7 @@
     "seed": 7,
     "templateId": 757,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 6,
     "mechanics": [
       "docks"
     ],
@@ -14506,7 +14506,7 @@
     "seed": 279558687,
     "templateId": 562,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 8,
     "mechanics": [
       "keys"
     ],
@@ -14661,7 +14661,7 @@
     "seed": 7,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -14680,7 +14680,7 @@
     "seed": 515389867,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -14758,7 +14758,7 @@
     "seed": 2872378363,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -14835,7 +14835,7 @@
     "seed": 2179824547,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -14930,7 +14930,7 @@
     "seed": 2898737229,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -14968,7 +14968,7 @@
     "seed": 1791847666,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "ice"
     ],
@@ -15164,7 +15164,7 @@
     "seed": 4128490679,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -15222,7 +15222,7 @@
     "seed": 1270333071,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 10,
     "mechanics": [
       "waves"
     ],
@@ -15299,7 +15299,7 @@
     "seed": 7,
     "templateId": 803,
     "source": "authored",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "phase"
     ],
@@ -15318,7 +15318,7 @@
     "seed": 7,
     "templateId": 804,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "phase"
     ],
@@ -15337,7 +15337,7 @@
     "seed": 7,
     "templateId": 805,
     "source": "authored",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "phase",
       "keys"
@@ -15357,7 +15357,7 @@
     "seed": 23,
     "templateId": 60,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "crates",
       "reactors"
@@ -15415,7 +15415,7 @@
     "seed": 2434933324,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -15493,7 +15493,7 @@
     "seed": 7,
     "templateId": 564,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 9,
     "mechanics": [
       "keys"
     ],
@@ -15531,7 +15531,7 @@
     "seed": 849382243,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "keys"
     ],
@@ -15646,7 +15646,7 @@
     "seed": 7,
     "templateId": 474,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -15685,7 +15685,7 @@
     "seed": 3310203635,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -15803,7 +15803,7 @@
     "seed": 7,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "waves"
     ],
@@ -15936,7 +15936,7 @@
     "seed": 4223817744,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -15955,7 +15955,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -16127,7 +16127,7 @@
     "seed": 425028966,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "reactors"
     ],
@@ -16146,7 +16146,7 @@
     "seed": 3053331940,
     "templateId": 32,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 3,
     "mechanics": [
       "rovers"
     ],
@@ -16205,7 +16205,7 @@
     "seed": 877206424,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -16224,7 +16224,7 @@
     "seed": 7,
     "templateId": 804,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "phase"
     ],
@@ -16339,7 +16339,7 @@
     "seed": 2154014436,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -16377,7 +16377,7 @@
     "seed": 3217450943,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -16396,7 +16396,7 @@
     "seed": 4052143523,
     "templateId": 714,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 6,
     "mechanics": [
       "jelly"
     ],
@@ -16435,7 +16435,7 @@
     "seed": 2947204075,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -16532,7 +16532,7 @@
     "seed": 3306627072,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -16570,7 +16570,7 @@
     "seed": 11,
     "templateId": 3,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 7,
     "mechanics": [],
     "shape": "diamond",
     "rows": 6,
@@ -16625,7 +16625,7 @@
     "seed": 7,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -16644,7 +16644,7 @@
     "seed": 7,
     "templateId": 562,
     "source": "generated",
-    "proofLength": 7,
+    "proofLength": 8,
     "mechanics": [
       "keys"
     ],
@@ -16682,7 +16682,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -16894,7 +16894,7 @@
     "seed": 7,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -16932,7 +16932,7 @@
     "seed": 3024909865,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -16989,7 +16989,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 7,
     "mechanics": [
       "bridges",
       "keys"
@@ -17009,7 +17009,7 @@
     "seed": 3657684724,
     "templateId": 561,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 5,
     "mechanics": [
       "keys"
     ],
@@ -17047,7 +17047,7 @@
     "seed": 35,
     "templateId": 715,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "jelly",
       "reactors"
@@ -17067,7 +17067,7 @@
     "seed": 657164589,
     "templateId": 757,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 7,
     "mechanics": [
       "docks"
     ],
@@ -17086,7 +17086,7 @@
     "seed": 7,
     "templateId": 805,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 2,
     "mechanics": [
       "phase",
       "keys"
@@ -17106,7 +17106,7 @@
     "seed": 808033824,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 7,
     "mechanics": [
       "waves"
     ],
@@ -17240,7 +17240,7 @@
     "seed": 2586773667,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -17259,7 +17259,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -17662,7 +17662,7 @@
     "seed": 254004221,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -17701,7 +17701,7 @@
     "seed": 1146548663,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -17720,7 +17720,7 @@
     "seed": 3162606417,
     "templateId": 561,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "keys"
     ],
@@ -17833,7 +17833,7 @@
     "seed": 1640185945,
     "templateId": 57,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "reactors"
     ],
@@ -17872,7 +17872,7 @@
     "seed": 3877215695,
     "templateId": 804,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "phase"
     ],
@@ -17891,7 +17891,7 @@
     "seed": 7,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 5,
     "mechanics": [
       "shelter"
     ],
@@ -17910,7 +17910,7 @@
     "seed": 7,
     "templateId": 565,
     "source": "generated",
-    "proofLength": 6,
+    "proofLength": 8,
     "mechanics": [
       "bridges",
       "keys"
@@ -17987,7 +17987,7 @@
     "seed": 3712638862,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -18006,7 +18006,7 @@
     "seed": 7,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -18045,7 +18045,7 @@
     "seed": 1899345434,
     "templateId": 149,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 8,
     "mechanics": [
       "waves"
     ],
@@ -18103,7 +18103,7 @@
     "seed": 2319127645,
     "templateId": 757,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "docks"
     ],
@@ -18161,7 +18161,7 @@
     "seed": 26063769,
     "templateId": 34,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -18219,7 +18219,7 @@
     "seed": 3988767612,
     "templateId": 277,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "currents"
     ],
@@ -18471,7 +18471,7 @@
     "seed": 7,
     "templateId": 563,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "keys"
     ],
@@ -18490,7 +18490,7 @@
     "seed": 19,
     "templateId": 59,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 3,
     "mechanics": [
       "reactors"
     ],
@@ -18586,7 +18586,7 @@
     "seed": 819132184,
     "templateId": 430,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "rovers",
       "bridges"
@@ -18626,7 +18626,7 @@
     "seed": 1748072205,
     "templateId": 33,
     "source": "generated",
-    "proofLength": 2,
+    "proofLength": 4,
     "mechanics": [
       "rovers"
     ],
@@ -18645,7 +18645,7 @@
     "seed": 1185846710,
     "templateId": 805,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 6,
     "mechanics": [
       "phase",
       "keys"
@@ -18703,7 +18703,7 @@
     "seed": 7,
     "templateId": 471,
     "source": "generated",
-    "proofLength": 4,
+    "proofLength": 3,
     "mechanics": [
       "shelter"
     ],
@@ -18779,7 +18779,7 @@
     "seed": 2562696375,
     "templateId": 18,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 6,
     "mechanics": [
       "ice"
     ],
@@ -18798,7 +18798,7 @@
     "seed": 244317236,
     "templateId": 31,
     "source": "generated",
-    "proofLength": 1,
+    "proofLength": 2,
     "mechanics": [
       "rovers"
     ],
@@ -18988,7 +18988,7 @@
     "seed": 7,
     "templateId": 279,
     "source": "generated",
-    "proofLength": 3,
+    "proofLength": 4,
     "mechanics": [
       "currents"
     ],
@@ -19066,7 +19066,7 @@
     "seed": 35,
     "templateId": 715,
     "source": "generated",
-    "proofLength": 5,
+    "proofLength": 4,
     "mechanics": [
       "jelly",
       "reactors"

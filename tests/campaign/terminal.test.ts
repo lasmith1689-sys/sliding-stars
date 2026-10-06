@@ -8,8 +8,9 @@ import { parseCampaignState } from '../../src/campaign/schema';
 import { resolveCrewSafety } from '../../src/campaign/engine/needs';
 
 it('final rescue wins before the last move or need expires',()=>{
-  const state=baseState();state.level.moveLimit=1;state.movesRemaining=1;state.crew[0]!.at={r:3,c:1};state.crew[0]!.rescueMoves=1;
-  const result=transition(state,{type:'swap',from:{r:3,c:3},to:{r:3,c:2}});
+  const state=baseState(baseLevel([[1,2,2,3],[2,1,1,2],[3,2,1,3],[1,1,2,'S']]));state.level.moveLimit=1;state.movesRemaining=1;state.crew[0]!.at={r:3,c:1};state.crew[0]!.rescueMoves=1;
+  const station=structuredClone(state.pieces.find(p=>p.kind==='station')!),result=transition(state,{type:'swap',from:{r:3,c:1},to:{r:3,c:2}});
+  expect(result.accepted,result.rejection).toBe(true);expect(result.events.some(e=>e.type==='merge')).toBe(true);expect(result.state.pieces.find(p=>p.id===station.id)).toEqual(station);expect(result.state.movesRemaining).toBe(0);
   expect(result.state.status).toBe('won');expect(result.state.crew[0]!.status).toBe('housed');expect(result.events.some(e=>e.type==='need'&&e.after===0)).toBe(false);
 });
 it('repeat settling does not tick rescue clocks or award safe-ground points twice',()=>{

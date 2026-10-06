@@ -3,31 +3,38 @@ import {getAuthoredLessonLevel} from '../../../src/campaign/lessons';
 import {loadCampaignLevel} from '../../../src/campaign/engine/load';
 import {transition} from '../../../src/campaign/engine/turn';
 import {lessonTeachingActions} from '../../../src/campaign/content/lesson-solutions.dev';
-import {parseCampaignLevel} from '../../../src/campaign/schema';
+import {parseCampaignLevel,parseCampaignState} from '../../../src/campaign/schema';
 import {readFileSync} from 'node:fs';
+import {createContext} from '../../../src/campaign/engine/context';
+import {settle} from '../../../src/campaign/engine/settle';
+import {selectModules} from '../../../src/campaign/mechanics/registry';
+import {jelly} from '../../../src/campaign/mechanics/jelly';
+import {reactors} from '../../../src/campaign/mechanics/reactors';
 
 it('erupts and spreads before rescue, then clears the coating and reactor together',()=>{
  const level=getAuthoredLessonLevel(715)!;
- let state=loadCampaignLevel(level);
- for(const [index,action] of lessonTeachingActions[715]!.entries()){
+ let state=loadCampaignLevel(level),erupted=false,clearedTogether=false;
+ const station=structuredClone(state.pieces.find(p=>p.kind==='station')!);
+ for(const action of lessonTeachingActions[715]!){
   const result=transition(state,action);expect(result.accepted).toBe(true);state=result.state;
-  if(index===2){
-   const terrain=result.events.filter(e=>e.type==='terrain'&&e.causeId==='jelly-reactor');
-   const spread=result.events.filter(e=>e.type==='jelly'&&e.phase==='coated');
-   expect(terrain.length).toBeGreaterThan(0);expect(spread).toMatchObject([{at:{r:2,c:2}}]);
+  const terrain=result.events.filter(e=>e.type==='terrain'&&e.causeId==='jelly-reactor');
+  const spread=result.events.filter(e=>e.type==='jelly'&&e.phase==='coated');
+  if(terrain.length&&spread.length){
+   expect(spread).toMatchObject([{at:{r:2,c:2}}]);
    expect(terrain.at(-1)!.sequenceId).toBeLessThan(spread[0]!.sequenceId);
-   expect(state.status).toBe('playing');expect(state.fixtures.find(f=>f.id==='jelly-reactor')).toBeDefined();
+   expect(state.status).toBe('playing');expect(state.fixtures.find(f=>f.id==='jelly-reactor')).toBeDefined();erupted=true;
   }
-  if(index===3){
+  if(erupted&&result.events.some(e=>e.type==='fixture'&&e.fixtureId==='jelly-reactor'&&e.after===null)){
    expect(result.events.some(e=>e.type==='jelly'&&e.phase==='cleared'&&e.at?.r===2&&e.at.c===2)).toBe(true);
-   expect(result.events.some(e=>e.type==='fixture'&&e.fixtureId==='jelly-reactor'&&e.after===null)).toBe(true);
-   expect(state.status).toBe('playing');
+   expect(state.status).toBe('playing');clearedTogether=true;
   }
+  expect(state.pieces.find(p=>p.id===station.id)).toEqual(station);
  }
+ expect(erupted).toBe(true);expect(clearedTogether).toBe(true);
  expect(state.status).toBe('won');
 });
 
-it('cancels a due spread when reactor cooling creates a late adjacent merge',()=>{
+it('cancels a due spread when a reactor eruption creates a late adjacent merge',()=>{
  const level=parseCampaignLevel(JSON.parse(readFileSync(new URL('../fixtures/jelly-711-original.json',import.meta.url),'utf8')));
  const reactor={id:'late-reactor',kind:'reactor' as const,at:{r:2,c:3},hp:4,fuse:1,period:3};
  let state=loadCampaignLevel(level);
@@ -43,12 +50,17 @@ it('cancels a due spread when reactor cooling creates a late adjacent merge',()=
   const tile=state.pieces.find(p=>p.kind==='tile'&&p.at.r===1&&p.at.c===column);
   expect(tile?.kind).toBe('tile');if(tile?.kind==='tile')tile.tier=tier;
  }
- const result=transition(state,{type:'swap',from:{r:3,c:3},to:{r:4,c:3}});
- expect(result.accepted,result.rejection).toBe(true);
- const eruption=result.events.find(e=>e.type==='terrain'&&e.causeId===reactor.id&&e.at.r===1&&e.at.c===3);
- const clear=result.events.find(e=>e.type==='jelly'&&e.phase==='cleared'&&e.at?.r===coating.r&&e.at.c===coating.c);
+ const station=structuredClone(state.pieces.find(p=>p.kind==='station')!);
+ expect(state.mechanics.find(m=>m.id==='jelly')).toMatchObject({turnsUntilSpread:1});
+ // Isolate the end-of-turn phases; no fake station slide advances this clock.
+ const context=createContext(state),modules=selectModules(state.level);
+ jelly.beginTurn!(context);reactors.environment!(context);settle(context,modules);jelly.finalize!(context);jelly.snapshot!(context);
+ const eruption=context.events.find(e=>e.type==='terrain'&&e.causeId===reactor.id&&e.at.r===1&&e.at.c===3);
+ const clear=context.events.find(e=>e.type==='jelly'&&e.phase==='cleared'&&e.at?.r===coating.r&&e.at.c===coating.c);
  expect(eruption).toBeDefined();expect(clear).toBeDefined();
  expect(eruption!.sequenceId).toBeLessThan(clear!.sequenceId);
- expect(result.events.filter(e=>e.type==='jelly'&&e.phase==='coated')).toHaveLength(0);
- expect(result.state.mechanics.find(m=>m.id==='jelly')).toMatchObject({turnsUntilSpread:3,cancelledThisTurn:true});
+ expect(context.events.filter(e=>e.type==='jelly'&&e.phase==='coated')).toHaveLength(0);
+ expect(state.mechanics.find(m=>m.id==='jelly')).toMatchObject({turnsUntilSpread:3,cancelledThisTurn:true});
+ expect(state.pieces.find(p=>p.id===station.id)).toEqual(station);
+ expect(parseCampaignState(JSON.parse(JSON.stringify(state)))).toEqual(state);
 });

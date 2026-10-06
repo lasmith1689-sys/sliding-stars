@@ -11,6 +11,7 @@ import {platformStorage,registerNativeLifecycle,installWebOfflinePack} from './p
 import {flushStorage} from './session/nativeStorage';
 import {upgradeRescueShuttles} from './session/rescueUpgrade';
 import {repairCampaignRewards} from './session/campaignRewards';
+import {recoverPracticeMoves} from './session/campaignRecovery';
 async function boot(){
  await Promise.all([document.fonts.load('600 16px Nunito'),document.fonts.load('800 16px Nunito'),document.fonts.load('600 24px Fredoka')]);
  let storage:SaveStorage=await platformStorage();
@@ -23,6 +24,7 @@ async function boot(){
  if(provider===getCampaignLevel)save=await repairCampaignRewards(save,provider);
  if(provider===getCampaignLevel)save=await migrateRetiredBetaMission(save,storage);
  if(provider===getCampaignLevel)save=await upgradeRescueShuttles(save,provider);
+ save=recoverPracticeMoves(save);
  const result=saveSnapshot(storage,save);if(!result.ok)throw Error(result.error??'Could not save initial progress');
  await flushStorage(storage);await registerNativeLifecycle();
  const executor=openExecutor(save,storage);

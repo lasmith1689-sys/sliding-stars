@@ -1,5 +1,6 @@
 import { Application, Container, FederatedPointerEvent } from 'pixi.js';
 import { trySwap, type BoardState, type MoveResult, type Pos } from '../core';
+import {canSlide} from '../core/moves';
 import type { BoardView } from '../render/boardView';
 
 /**
@@ -60,15 +61,7 @@ export function attachDrag(
     }
   };
 
-  const swappable = (state: BoardState, p: Pos): boolean => {
-    if (!state.mask[p.r]?.[p.c]) return false;
-    // cells held by an overlay (crystal/box/reactor/comet) can't move — don't
-    // even lift them, so the player never previews a swap trySwap will reject
-    if (state.overlays[p.r]?.[p.c]) return false;
-    // any other occupied cell can be grabbed — a Space Station (dome) slides
-    // too, even though it can't merge (trySwap allows a dome swap sans match)
-    return !!state.grid[p.r]?.[p.c];
-  };
+  const swappable = canSlide;
 
   stage.on('pointerdown', (e: FederatedPointerEvent) => {
     if (drag || isLocked()) return;

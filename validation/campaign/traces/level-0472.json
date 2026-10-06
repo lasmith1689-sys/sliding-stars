@@ -7,25 +7,25 @@
     {
       "type": "swap",
       "from": {
-        "r": 2,
-        "c": 2
+        "r": 1,
+        "c": 1
       },
       "to": {
-        "r": 2,
-        "c": 3
+        "r": 1,
+        "c": 2
       }
     },
     {
       "type": "swap",
       "from": {
-        "r": 2,
-        "c": 1
+        "r": 0,
+        "c": 0
       },
       "to": {
-        "r": 2,
-        "c": 2
+        "r": 0,
+        "c": 1
       }
     }
   ],
-  "finalHash": "f3f3cce11dbedaa7"
+  "finalHash": "c1ff6f0ff8d8edf1"
 }

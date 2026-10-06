@@ -43,10 +43,11 @@ it('attributes a dock win to boarding only when the boarded ledger covers the gu
  expect(dockCoachCopy(dockWin)).toContain('Every guest boarded');
 
  const ordinary=getAuthoredLessonLevel(756)!;
- ordinary.pieces=ordinary.pieces.map(piece=>piece.at.r===2&&piece.at.c===3?{id:piece.id,at:piece.at,kind:'station' as const,facing:'left' as const}:piece);
- ordinary.crew[0]!.at={r:2,c:1};
- const result=transition(loadCampaignLevel(ordinary),{type:'swap',from:{r:2,c:3},to:{r:2,c:2}});
+ ordinary.pieces=ordinary.pieces.map(piece=>piece.at.r===2&&piece.at.c===3?{id:piece.id,at:piece.at,kind:'station' as const,facing:'left' as const}:piece.at.r===2&&piece.at.c===1?{id:piece.id,at:piece.at,kind:'pod' as const,passengerIds:['crew-0']}:piece);
+ Object.assign(ordinary.crew[0]!,{at:{r:2,c:1},carrierId:'tile-2-1',rescueMoves:null});
+ const result=transition(loadCampaignLevel(ordinary),{type:'swap',from:{r:2,c:1},to:{r:2,c:2}});
  expect(result.accepted,result.rejection).toBe(true);expect(result.state.status).toBe('won');
+ expect(result.state.crew[0]).toMatchObject({at:{r:2,c:2},status:'housed'});expect(result.state.pieces.find(piece=>piece.id==='tile-2-3')).toMatchObject({kind:'station',at:{r:2,c:3}});
  expect(result.state.mechanics.find(m=>m.id==='docks')).toMatchObject({boardedIds:[]});
  expect(result.events.some(event=>event.type==='dock'&&event.phase==='boarded')).toBe(false);
  expect(dockCoachCopy(result.state)).toContain('Mission complete');
@@ -64,5 +65,10 @@ it('guides an active guest to the current entrance after the shuttle parks, not 
  expect(dockCoachCopy(restored)).toContain('BOARD at row 3, column 4');
  expect(dockCoachCopy(restored)).not.toContain('next marked stop');
  const blocked=loadCampaignLevel(getAuthoredLessonLevel(757)!);
- expect(dockCoachCopy(blocked)).toContain('clear its next marked stop');
+ expect(dockCoachCopy(blocked)).toContain('BOARD at row 3, column 1');
+ expect(dockCoachCopy(blocked)).not.toContain('clear its next marked stop');
+ const fixed=blocked.pieces.filter(p=>p.kind==='station');let rescued=blocked;
+ for(const action of lessonTeachingActions[757]!)rescued=transition(rescued,action).state;
+ expect(rescued.status).toBe('won');expect(rescued.pieces.filter(p=>p.kind==='station')).toEqual(fixed);
+ expect(rescued.actors.find(a=>a.kind==='dock')).toMatchObject({routeIndex:0,entrance:{r:2,c:0}});
 });

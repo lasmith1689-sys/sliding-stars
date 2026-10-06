@@ -7,8 +7,16 @@ import { baseLevel,mergeSwap } from '../campaign/fixtures/base';
 import { loadCampaignLevel } from '../../src/campaign/engine/load';
 import { getAuthoredLessonLevel } from '../../src/campaign/lessons';
 import { MemoryStorage,legacyRun } from './fixtures/legacy';
-function setup(winning=false){const store=new MemoryStorage(),save=migrateRun(legacyRun()),level=baseLevel();if(winning)level.crew[0]!.at={r:3,c:1};save.active={kind:'campaign',state:loadCampaignLevel(level),events:[]};return {store,session:new CampaignSession(save,store)};}
-const win={type:'swap' as const,from:{r:3,c:3},to:{r:3,c:2}};
+function setup(winning=false){
+ const store=new MemoryStorage(),save=migrateRun(legacyRun()),level=baseLevel();
+ if(winning){
+  level.pieces=level.pieces.map(piece=>piece.id==='piece-3-1'?{id:piece.id,at:piece.at,kind:'pod',passengerIds:['crew']}:piece);
+  Object.assign(level.crew[0]!,{at:{r:3,c:1},carrierId:'piece-3-1',rescueMoves:null});
+ }
+ save.active={kind:'campaign',state:loadCampaignLevel(level),events:[]};
+ return {store,session:new CampaignSession(save,store)};
+}
+const win={type:'swap' as const,from:{r:3,c:1},to:{r:3,c:2}};
 it('commits state, points and presentation before returning; reload never repeats action',()=>{
  const {store,session}=setup();const before=session.save.wallet.coins,result=session.dispatch(mergeSwap)!;expect(result.accepted).toBe(true);expect(session.locked).toBe(true);
  const saved=loadSave(store)!;expect(saved.active).toEqual({kind:'campaign',state:result.state,events:result.events});expect(saved.wallet.coins).toBe(before+result.state.points);
@@ -22,7 +30,7 @@ it('charges accepted boosters once without ticking a turn and preserves rejected
  expect(session.dispatch({type:'booster',kind:'demo',at:{r:0,c:3}})).toBeNull();if(session.save.active.kind==='campaign')expect(session.save.active.state.turn).toBe(0);
 });
 it('banked victory remains exactly once across reload and presentation completion',()=>{
- const {store,session}=setup(true);expect(session.dispatch(win)?.state.status).toBe('won');expect(session.save.completedCampaignIds).toEqual([1]);expect(session.save.rewardLedger).toHaveLength(2);
+ const {store,session}=setup(true),result=session.dispatch(win)!;expect(result.accepted).toBe(true);expect(result.state.status).toBe('won');expect(result.state.crew[0]).toMatchObject({at:{r:3,c:2},status:'housed'});expect(result.state.pieces.find(piece=>piece.id==='piece-3-3')).toMatchObject({kind:'station',at:{r:3,c:3}});expect(session.save.completedCampaignIds).toEqual([1]);expect(session.save.rewardLedger).toHaveLength(2);
  const saved=structuredClone(session.save),reloaded=new CampaignSession(loadSave(store)!,store);reloaded.finishPresentation();expect(reloaded.dispatch(win)).toBeNull();expect(reloaded.save).toEqual(saved);
 });
 it('quota failure keeps committed in-memory victory locked and exposes retryable warning',()=>{

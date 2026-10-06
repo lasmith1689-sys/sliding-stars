@@ -4,7 +4,7 @@ import {transition} from './engine/turn';
 import {safeTerrain} from './engine/needs';
 import {doorCell} from '../core/dome';
 import {activeCell} from './engine/geometry';
-import {blocksTerrain} from './engine/occupancy';
+import {blocksTerrain,pieceAt} from './engine/occupancy';
 
 /** A tie-breaker for positioning moves, not a proof of reachability. */
 function rescueDistance(state:CampaignState):number {
@@ -53,11 +53,17 @@ export function campaignHintScore(before:CampaignState,after:CampaignState,event
  const completed=(state:CampaignState)=>state.goalProgress.reduce((n,g)=>n+g.completedIds.length,0);
  const sheltered=(state:CampaignState)=>state.crew.filter(c=>c.status==='active'&&safeTerrain(state,c)).length;
  const repairedSteps=events.filter(event=>event.type==='move'&&before.actors.some(actor=>actor.kind==='repair'&&actor.id===event.entityId)).length;
+ // Raising a stranded guest's own terrain is progress before it becomes safe.
+ const raised=before.crew.filter(c=>c.status==='active'&&!safeTerrain(before,c)).reduce((sum,c)=>{
+  const next=after.crew.find(q=>q.id===c.id);if(!next||next.status!=='active')return sum;
+  const from=pieceAt(before,c.at),to=pieceAt(after,next.at);
+  return sum+Math.max(0,(to?.kind==='tile'?to.tier:0)-(from?.kind==='tile'?from.tier:0));
+ },0);
  // A blocked creature needs terrain formation before a station can help.
  // Prefer those preparatory matches only while a creature remains trapped.
  const trapped=before.crew.some(crew=>crew.status==='active'&&crew.carrierId===null&&blocksTerrain(before,crew.at));
  const preparation=trapped?Math.min(4,events.filter(event=>event.type==='merge').length)*0.02:0;
- return (completed(after)-completed(before))*10000+(sheltered(after)-sheltered(before))*100+mechanismProgress(events)*10+repairedSteps*2+(pairedDistance(before)-pairedDistance(after))*2+preparation+
+ return (completed(after)-completed(before))*10000+(sheltered(after)-sheltered(before))*100+mechanismProgress(events)*10+raised+repairedSteps*2+(pairedDistance(before)-pairedDistance(after))*2+preparation+
   Math.max(-1,Math.min(1,(rescueDistance(before)-rescueDistance(after))/100));
 }
 export function campaignHint(state:CampaignState,visited:ReadonlySet<string>=new Set()):CampaignAction|null {

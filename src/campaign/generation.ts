@@ -9,7 +9,7 @@ import {transition} from './engine/turn';
 import {hashState} from './engine/hash';
 
 const EXCLUDED=new Set<MechanicId>(['portals']);
-export const GENERATOR_VERSION='terrain-replay-5';
+export const GENERATOR_VERSION='terrain-replay-6';
 export interface GeneratedManifestEntry {
  id:number;seed:number;templateId:number;source:'authored'|'generated';proofLength:number;
  mechanics:MechanicId[];shape:string;rows:number;cols:number;activeCells:number;

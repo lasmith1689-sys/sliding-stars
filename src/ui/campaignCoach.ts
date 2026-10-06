@@ -11,6 +11,7 @@ import {portalReceiverBlocked} from '../campaign/mechanics/portals';
 import {terrainName} from '../campaign/terrainLabels';
 import {canPullMagnet,magnetTarget} from '../campaign/mechanics/magnets';
 import {repairStep} from '../campaign/mechanics/repair';
+import {pieceAt} from '../campaign/engine/occupancy';
 
 export function relayCoachCopy(state:CampaignState):string|null {
  if(!state.level.mechanics.some(m=>m.id==='relays'))return null;
@@ -80,7 +81,12 @@ export function dockCoachCopy(state:CampaignState):string|null {
  }
  const next=dockNextStep(state,dock);
  if(!next)return `Shuttle parked: BOARD at row ${dock.entrance.r+1}, column ${dock.entrance.c+1} is its final entrance. Bring each guest onto that safe cell.`;
- if(!dockCanStep(state,dock,next))return 'Shuttle waiting: clear its next marked stop. Guests stay on their own tiles.';
+ if(!dockCanStep(state,dock,next)){
+  const entrance={r:next.r+dock.entrance.r-dock.at.r,c:next.c+dock.entrance.c-dock.at.c};
+  return [next,entrance].some(at=>pieceAt(state,at)?.kind==='station')
+   ?`The station stays fixed, so the shuttle waits here. Bring each guest onto safe BOARD at row ${dock.entrance.r+1}, column ${dock.entrance.c+1}.`
+   :'Shuttle waiting: clear its next marked stop. Guests stay on their own tiles.';
+ }
  if(state.levelId===756&&state.turn===0)return 'Slide row 1, column 2 DOWN. Watch the shuttle move while the safe guest waits.';
  return `BOARD is the entrance at row ${dock.entrance.r+1}, column ${dock.entrance.c+1}. The shuttle moves one track stop per move; only a guest on that exact safe cell boards.`;
 }
@@ -96,14 +102,14 @@ export function gravityCoachCopy(state:CampaignState):string|null {
  const sw=state.fixtures.find(f=>f.kind==='gravity-switch');if(!sw)return null;
  if(state.status==='won')return 'A new direction, a safe arrival! The chamber arrow keeps its final direction.';
  if((state.levelId===611||state.levelId===612)&&state.turn===0)return 'Slide row 2, column 1 RIGHT through the switch. Gravity turns LEFT; the guest rides the gap. Tiles refill from the right.';
- if(state.levelId===612&&state.turn===1)return 'The guest rode left. Now slide the station RIGHT to meet them at its door.';
+ if(state.levelId===612&&state.turn===1)return 'The guest rode left. Guide them onto the fixed station\'s glowing side entrance.';
  const current=sw.direction.toUpperCase(),next=sw.direction==='down'?'LEFT':'DOWN',edge=sw.direction==='down'?'TOP':'RIGHT';
  return `Gravity NOW: ${current}; refill from ${edge}. Match THROUGH the switch for ${next}. ${state.levelId===615?'Clear OUT so its pod can cross and fall. Busy OUT waits.':'Riders follow pieces; fixtures stay put.'}`;
 }
 export function keyCoachCopy(state:CampaignState):string|null {
  const gates=state.fixtures.filter(f=>f.kind==='gate');if(!gates.length)return null;
  if(state.status==='won')return 'Star route restored! The gate stays open and your guest is home.';
- if(gates.every(g=>g.open))return state.fixtures.some(f=>f.kind==='bridge'&&!f.active)?'The key gate is open. Make two combinations beside the bridge hinge to finish the station route.':'The star gate stays open. Slide the station through the new route to bring its guest home.';
+ if(gates.every(g=>g.open))return state.fixtures.some(f=>f.kind==='bridge'&&!f.active)?'The key gate is open. Make two combinations beside the bridge hinge to finish the crew route.':'The star gate stays open. Guide the guest through the new route to the fixed station\'s entrance.';
  if(state.levelId===561&&state.turn===0)return 'Slide row 1, column 3 DOWN. The combination clears below the star key so it falls into LOCK 1.';
  return 'Match beneath the star key to lower it into its numbered lock. The matching gate opens permanently. Keys travel with gravity; they cannot slide directly.';
 }
@@ -159,9 +165,9 @@ export function pirateCoachCopy(state:CampaignState):string|null {
 export function currentCoachCopy(state:CampaignState):string|null {
  const def=state.level.mechanics.find(m=>m.id==='currents');if(!def)return null;
  if(state.status==='won')return 'Smooth sailing! The current helped everyone home.';
- if(def.routeIds.some(id=>currentMoves(state,state.geometry.routes.find(r=>r.id===id)!)===null))return 'Current waiting: a station, fixture or blocked rider pauses its whole loop. Clear the lane to let every piece and rider shift together.';
+ if(def.routeIds.some(id=>currentMoves(state,state.geometry.routes.find(r=>r.id===id)!)===null))return 'Current waiting: an obstacle or blocked rider pauses its whole loop. Clear movable obstructions to let pieces and riders shift together. Stations stay fixed.';
  if(state.levelId===276&&state.turn===0)return 'Slide row 1, column 2 DOWN. Watch the current carry the guest one arrow to the station door.';
- if(state.levelId===277&&state.turn===0)return 'Bring the station UP beside the next current stop. After your move, the guest rides one arrow to its door.';
+ if(state.levelId===277&&state.turn===0)return 'Match terrain to advance the current. Guide the guest to the fixed station\'s glowing side entrance.';
  if(state.levelId===280)return 'Match beside the whale to queue a hop. The current shifts after the whale. Then bring the guest home.';
  return 'Plan one arrow ahead. After all creatures step, every piece and its riders shift together; the closing arrow returns to the first cell.';
 }
@@ -185,9 +191,9 @@ export function moonwhaleCoachCopy(state:CampaignState):string|null {
 export function waveCoachCopy(state:CampaignState):string|null {
  if(!state.level.mechanics.some(m=>m.id==='waves'))return null;
  if(state.status==='won')return 'A warm welcome! All required travelers are accounted for.';
- if(state.levelId===146)return state.turn===0?'Slide the station LEFT once to prepare its door. The shuttle lands after this move.':'Bring the station door beside the arriving guest.';
- if(state.levelId===147)return 'Two guests arrive together. Slide the station LEFT to put its door beside their landing.';
- if(state.levelId===149)return 'A busy entry makes the next shuttle wait. Slide the station door beside the waiting guest to free the entry.';
+ if(state.levelId===146)return state.turn===0?'Make a terrain match to welcome the shuttle. Guide the arriving guest to the fixed station\'s entrance.':'Guide the arriving guest onto the fixed station\'s glowing side entrance.';
+ if(state.levelId===147)return 'Two guests arrive together. Guide each guest onto a fixed station\'s glowing side entrance.';
+ if(state.levelId===149)return 'A busy entry makes the next shuttle wait. Guide the waiting guest to the station entrance to free the entry.';
  if(state.levelId===150)return 'Let the capsule depart, then make room for the incoming guest. Both goals matter.';
  return 'Prepare safe terrain before the shuttle arrives, then bring each guest to a station door.';
 }
@@ -215,8 +221,8 @@ export function shelterCoachCopy(state:CampaignState):string|null {
  const guests=state.crew.filter(c=>def.crewIds.includes(c.id)&&c.status==='active'),urgent=guests.some(c=>[c.rescueMoves,c.shelterMoves].some(n=>n!==null&&n<=5));
  if(urgent)return 'A guest needs help soon! The label shows the earlier oxygen or home deadline. Safety clears oxygen; only a station finishes the home request.';
  if(state.levelId===471&&state.turn===0)return 'Slide row 3, column 1 RIGHT to grow safe ground. Watch the little house request start with twenty moves.';
- if(state.levelId===471&&state.turn===1)return 'Safe ground starts the home request. Follow the safe guest down, then bring the bottom station LEFT twice. This practice clock pauses.';
+ if(state.levelId===471&&state.turn===1)return 'Safe ground starts the home request. Guide the guest to the fixed station\'s glowing side entrance. This practice clock pauses.';
  if(state.levelId===474&&state.turn===0)return 'One guest awaits home; the other needs safe ground first. Slide row 3, column 3 RIGHT to start the second request.';
  if(guests.some(c=>!c.shelterStarted))return 'A little house marks a future request. Reach safe terrain to start its twenty moves once; then find a station door.';
- return 'Safe is the beginning. Bring a station door beside each little-house guest. Twenty moves are granted once; leaving safety never renews them.';
+ return 'Safe is the beginning. Guide each little-house guest to a fixed station\'s entrance. Twenty moves are granted once; leaving safety never renews them.';
 }

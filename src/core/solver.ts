@@ -1,6 +1,7 @@
 import { loadLevel } from './level';
 import { trySwap, type MoveResult } from './game';
 import type { BoardState, LevelDef, Pos } from './types';
+import {doorCell} from './dome';
 
 export type SolveResult = { solved: boolean; moves: number };
 
@@ -34,7 +35,7 @@ function score(res: MoveResult): number {
   const stations: Array<{ r: number; c: number }> = [];
   for (let r = 0; r < st.rows; r++)
     for (let c = 0; c < st.cols; c++)
-      if (st.grid[r]![c]?.kind === 'dome') stations.push({ r, c });
+      {const piece=st.grid[r]![c];if(piece?.kind==='dome')stations.push(doorCell(r,c,piece.facing));}
   for (const sv of st.survivors) {
     if (sv.state === 'housed' || sv.state === 'lost') continue;
     sc += 40 * tierAt(sv.r, sv.c); // higher ground under them = closer to a station
@@ -65,17 +66,21 @@ function* legalPairs(state: BoardState): Generator<[Pos, Pos]> {
 
 export function solve(def: LevelDef, maxMoves: number): SolveResult {
   let state = loadLevel(def);
+  const positionKey=(s:BoardState)=>JSON.stringify({grid:s.grid,overlays:s.overlays,survivors:s.survivors.map(v=>({id:v.id,r:v.r,c:v.c,state:v.state})),rovers:s.rovers,collected:s.collected});
+  const visited=new Set([positionKey(state)]);
   for (let mv = 1; mv <= maxMoves; mv++) {
     let best: MoveResult | null = null;
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const [a, b] of legalPairs(state)) {
       const res = trySwap(state, a, b);
       if (!res.legal) continue;
+      if(res.state.status!=='won'&&visited.has(positionKey(res.state)))continue;
       const sc = score(res);
       if (sc > bestScore) { bestScore = sc; best = res; }
     }
     if (!best) return { solved: false, moves: mv - 1 }; // no legal moves at all
     state = best.state;
+    visited.add(positionKey(state));
     if (state.status === 'won') return { solved: true, moves: mv };
     if (state.status === 'lost') return { solved: false, moves: mv };
   }

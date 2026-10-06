@@ -18,8 +18,8 @@
     {
       "type": "swap",
       "from": {
-        "r": 0,
-        "c": 3
+        "r": 1,
+        "c": 2
       },
       "to": {
         "r": 1,
@@ -30,13 +30,13 @@
       "type": "swap",
       "from": {
         "r": 0,
-        "c": 3
+        "c": 0
       },
       "to": {
-        "r": 1,
-        "c": 3
+        "r": 0,
+        "c": 1
       }
     }
   ],
-  "finalHash": "d3f3e87a4bac3b75"
+  "finalHash": "87d7c461f4cdd0c1"
 }
