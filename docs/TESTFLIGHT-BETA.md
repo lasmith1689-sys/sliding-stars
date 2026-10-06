@@ -6,8 +6,8 @@ The improved app has **1,000 immutable missions and 25 planned nonportal mechani
 
 Real local phone-size browser play completed Mission 3 in seven moves with the station anchored. Automated wins establish solvability, not every possible detour or subjective balance. Physical iPhone touch, save/reopen and offline checks still need device playtesting. The empty MATCH shuttle now picks up the crew on the tile it swaps with when that move makes a terrain match. Nonmatching swaps still spend no move.
 
-The new fixed-station release is being delivered. **1.0 (17.1)** is the previous processed internal build and does not contain this correction. See [current QC](2026-10-06-RELEASE-QC.md), [fixed station audit](2026-10-06-FIXED-STATIONS-AUDIT.md) and [release instructions](app-store/RELEASE.md) for the exact new web/native status.
+**1.0 (19.1)** is VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING internally, confirmed by Apple on October 6. It contains fixed stations and matching empty-shuttle pickup. See [current QC](2026-10-06-RELEASE-QC.md), [audit](2026-10-06-FIXED-STATIONS-AUDIT.md) and [release instructions](app-store/RELEASE.md) for exact web/native evidence.
 
 [The public invitation](https://testflight.apple.com/join/7w5XTsgG) does not yet offer installation. Review contact is blank and the owner must publish App Privacy before review submission. Automatic approval review previously rejected copying Ai Sky's private contact without specific authorization; do not reuse it without that authorization.
 
-Next: install the new processed internal build when verified, retry Mission 3 with existing progress, then check save/reopen and offline play. Continue in the current thread; no new thread is required.
+Next: update to internal TestFlight 19.1, retry Mission 3 with existing progress, then check save/reopen and offline play. Continue in the current thread; no new thread is required.

@@ -6,7 +6,7 @@ The improved app contains **1,000 proof-verified missions and 25 planned mechani
 
 ## Install on iPhone
 
-**1.0 (18.1)** is available to internal TestFlight testers with fixed stations. The subsequent empty-shuttle boarding repair is being delivered; check the [current checkpoint](docs/2026-10-06-RELEASE-QC.md) for its exact newly processed build. Public beta and App Store review still require Apple contact/privacy steps. See [delivery instructions](TESTFLIGHT.md).
+**1.0 (19.1)** is processed and available to internal TestFlight testers, confirmed by Apple on October 6. It includes fixed stations and matching empty-shuttle pickup. All 1,181 tests passed locally, in public CI and in the macOS release. Update to 19.1 and retry Mission 3. Public beta and App Store review still require Apple contact/privacy steps. See [delivery instructions](TESTFLIGHT.md) and the [current checkpoint](docs/2026-10-06-RELEASE-QC.md).
 
 Bundle ID: `com.lasmith1689.SlidingStars`. The iOS app bundles game/art locally and stores saves through native Preferences. Safari progress and native-app progress are separate.
 

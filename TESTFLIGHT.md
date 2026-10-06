@@ -4,7 +4,7 @@ This app uses the account owner's existing Ai-sky distribution method: macos-26/
 
 ## 1. Register the app
 
-The app is registered and all four GitHub secrets are configured. Do not repeat registration or create duplicate keys. October 6 correction: stations now stay fixed. 18.1 is processed and available internally with fixed stations. The subsequent empty-shuttle boarding update is pending exact-build verification. See [current QC](docs/2026-10-06-RELEASE-QC.md). See [release instructions](docs/app-store/RELEASE.md) for sharing status and remaining Apple fields.
+The app is registered and all four GitHub secrets are configured. Do not repeat registration or create duplicate keys. October 6 correction: stations now stay fixed. 19.1 is processed and available internally with fixed stations and matching empty-shuttle pickup. Update to 19.1. See [current QC](docs/2026-10-06-RELEASE-QC.md). See [release instructions](docs/app-store/RELEASE.md) for sharing status and remaining Apple fields.
 
 1. Open [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list).
 2. Click **+ → App IDs → Continue → App → Continue**.
@@ -47,6 +47,6 @@ After an upload succeeds, open the app's **TestFlight** tab and wait for Apple p
 
 The app bundles game/art and uses native storage. Safari progress is separate. Public TestFlight and App Store release are authorized. The upload exports an App Store eligible build; a separate distribution job verifies Apple processing and submits external review when contact information exists. The screenshot job captures the actual release app in an iPhone simulator. Upload success and Apple approval are separate.
 
-Next: update to TestFlight 17.1 and retry Mission 3, including background/reopen and offline play. Public release separately needs the missing Apple contact/privacy fields and review. Continue in the current thread; no new thread is required.
+Next: update to TestFlight 19.1 and retry Mission 3, including background/reopen and offline play. Public release separately needs the missing Apple contact/privacy fields and review. Continue in the current thread; no new thread is required.
 
 Reference: the owner's [Ai-sky workflow and cloud-signing script](https://github.com/lasmith1689-sys/Ai-sky/tree/4bcc9a424a10b09adfd9410c6ec107554e85c5e0/.github), read September 29, 2026.

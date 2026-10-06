@@ -18,7 +18,7 @@ Real local 390-by-844 browser play completed Mission 3 in seven moves, verified 
 
 Read [fixed station audit](docs/2026-10-06-FIXED-STATIONS-AUDIT.md), [current QC](docs/2026-10-06-RELEASE-QC.md), [earlier mechanics audit](docs/2026-10-05-MECHANICS-AUDIT.md) and [Apple delivery](docs/app-store/RELEASE.md). Automated proofs establish solvability, not all-path safety, subjective balance or exact commercial parity.
 
-## User constraints and unresolved feedback
+## User constraints and resolved feedback
 
 Preserve original parent game and original Netlify production. Work only in sliding-stars-next. Cute space rescue adaptation, thoughtful relaxed progression, live dragging, offline rounded fonts, automatic celebration-to-next, unsafe opening crew and generous retries remain.
 
@@ -44,7 +44,7 @@ Completed introductions: magnets 376-380, relays 841-845, tethers 881-885, repai
 - Web `https://next--sliding-stars.netlify.app/`, site `bc41ec96-bbad-4e56-b0d1-c612c54db038`. Use **--alias next**, never --prod.
 - `[ship]` uploads iOS and captures native gameplay. `[asc] [prepare]` retries metadata without rebuilding. Documentation-only pushes use `[skip ci]`.
 
-Fixed stations are live in web deployment 6ac557a762dff6d515f511e0 and internal TestFlight **18.1**, confirmed VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING by Apple. Public app commit 0579d12, native run 37525523526. The subsequent empty-shuttle pickup repair is locally verified and being delivered; use current QC for its exact new deployment/commit/build. Do not claim 18.1 contains that later boarding repair.
+Fixed stations and matching empty-shuttle boarding are live in deployment **6ac55d4bd252f30402cee71f** and internal TestFlight **19.1**, confirmed VALID, APP_STORE_ELIGIBLE and IN_BETA_TESTING by Apple on October 6. App commit **dd1b1e325a4891ff78b99b966c7f4f46d16c98ce**, native run **37528481483**, public CI **37528481389**. Native macOS and public CI repeated all 1,181 tests. The same-commit Release simulator capture passed readiness and manual inspection; Apple image **73c00019-65f0-8a11-8009-014409d033c4** is COMPLETE. Evidence: validation/iphone-gameplay-19.1.png and docs/app-store/native-screenshot-19.1.json. Raw build status: docs/app-store/release-status-2026-10-06.json. Do not claim older builds contain the subsequent boarding repair.
 
 ## Apple constraints
 
@@ -54,7 +54,7 @@ External **Friends and Explorers** invitation `https://testflight.apple.com/join
 
 Automatic approval review rejected copying Ai Sky's private contact without specific authorization; that permission question remains pending. Do not reuse it without an answer. Review contact belongs only in Apple, never in public source or artifacts. Legal agreements remain the owner's action if required.
 
-Native startup was corrected after 13.1: textures disable native worker bitmap probing and use image elements. 17.1's native capture passed readiness/manual inspection and is COMPLETE in Apple; its remaining screenshot metadata failure was missing contact, not rendering. Verify the new build's own screenshot; do not reuse prior image as current proof.
+Native startup was corrected after 13.1: textures disable native worker bitmap probing and use image elements. The 19.1 source capture passed readiness/manual inspection and is COMPLETE in Apple. Its screenshot job's final metadata failure is missing contact, not rendering or image processing. Physical iPhone checks remain the user's next step.
 
 ## Commands and next step
 
@@ -66,4 +66,4 @@ Use npm.cmd/npx.cmd on Windows:
     node scripts/campaign/audit-bundle.mts
     npx.cmd netlify deploy --dir dist --alias next --no-build --site bc41ec96-bbad-4e56-b0d1-c612c54db038 --json
 
-Next: finish exact release verification, update the iPhone to the new processed internal build and retry Mission 3 with existing progress, including save/reopen and offline play. Public delivery separately requires owner-entered contact or specific reuse permission and published App Privacy before metadata-only review retries. Continue here; no new thread is required.
+Next: update the iPhone to internal TestFlight 19.1 and retry Mission 3 with existing progress, including save/reopen and offline play. Public delivery separately requires owner-entered contact or specific reuse permission and published App Privacy before metadata-only review retries. Continue here; no new thread is required.
